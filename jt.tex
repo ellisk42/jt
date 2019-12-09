@@ -1,4 +1,5 @@
-\documentclass{beamer} 
+\documentclass{beamer}
+%\setbeamersize{text margin left=10pt,text margin right=10pt}
 \usetheme{metropolis}
 \usepackage{listings}
 \usepackage{amsfonts}
@@ -41,6 +42,11 @@
 \definecolor{backgroundGreen}{HTML}{23373b}
 \lstset{escapeinside={<@}{@>}}
 \usepackage{pgf}  
+
+\newcommand{\Expect}{\mathds{E}} %{{\rm I\kern-.3em E}}
+\newcommand{\indicator}{\mathds{1}} %{{\rm I\kern-.3em E}}
+\newcommand{\expect}{\mathds{E}} %{{\rm I\kern-.3em E}}
+\newcommand{\probability}{\mathds{P}} %{{\rm I\kern-.3em P}}
 
 \usepackage[absolute,overlay]{textpos}
 
@@ -232,7 +238,7 @@ line, line,
 rectangle,
 line, ...
 \end{lstlisting}};
-    \node[ultra thick,anchor = west,inner sep=0pt](traceImage) at (4,-0.5) {
+    \node[ultra thick,anchor = west,inner sep=0pt](traceImage) at (4.15,-0.6) {
       \includegraphics[width = 0.9cm]{TikZfigures/39-parse.png}}; 
     \node(trace)[draw,thin,fit = (traceImage) (traceSource), label = above:{{\small \begin{tabular}{c}
             \textbf{Spec/Drawing Commands}\\
@@ -252,34 +258,82 @@ if (...)
 rectangle(...)
     \end{lstlisting}};
 
-            \node[ultra thick,anchor = west,inner sep=0pt,label=below:{\small extrapolation}](extrapolate) at (11.8,0.9) {\includegraphics[width = 1.3cm]{TikZfigures/39-extrapolated.png}};
 %    \node[ultra thick,anchor = west,inner sep=0pt,label=below:{\small Similarity}](similarity) at (11.3,0) {\includegraphics[width = 1cm]{TikZfigures/expert-38-trim.png}};
-    \node[ultra thick,anchor = west,text width = 2.3cm,inner sep=0pt](errors) at (11.1,-1) {\small error correction};
+
 
     
     \draw[->, ultra thick] ([yshift=10]trace.west) to[out = 150,in = 30] node[midway,yshift = 6]{{\small render}} ([xshift=5,yshift=10]observation.east); % -- node[fill = white,rotate = -90] {{\small Rendering}}
+    \draw[->, ultra thick] ([yshift=10]program.west) to[out = 150,in = 30] node[midway,yshift = 6] {{\small exec}} ([yshift=10]trace.east);
+    
+    \pause
     \draw[->, very thick, red] ([yshift = -15,xshift=3]observation.east) to[out = -30,in = -150] node[midway,yshift = -19,xshift=0]{{\small \begin{tabular}{l}
           learning+ \\SMC
     \end{tabular}}} ([yshift = -15]trace.west);
-    \draw[->, ultra thick] ([yshift=10]program.west) to[out = 150,in = 30] node[midway,yshift = 6] {{\small exec}} ([yshift=10]trace.east);
+
     \draw[->, very thick, red] ([yshift = -15,xshift=0]trace.east) to[out = -30,in = -150] node[midway,yshift = -23,xshift=14]{{\small \begin{tabular}{l}
           learning+ \\program synthesis
     \end{tabular}}} ([yshift = -15]program.west);
-
 %    \draw[->, thick, red, very thick] ([xshift = 10]trace.south) to[out = -10,in = -170] node[midway,yshift = -6]{{\small Learning + Program synthesis}} ([xshift = 10]program.south);
 %    \draw[->, thick, red] (program.east) to[out = 80,in = 180] (errors.west);
 %    \draw[->, thick] (program.east) to[out = 40,in = -230] (similarity.west);
-    \draw[->, thick, red, very thick] (program.east) to[out = 60,in = 180] (extrapolate.west);
+
 
     \draw[decoration = {brace,mirror,raise = 5pt},decorate,thick]
     ([yshift = -40,xshift = -130]trace.south) -- node[below = 6pt] {{\small  Image$\to$Spec}} ([yshift = -40,xshift = -5]trace.south);
     \draw[decoration = {brace,mirror,raise = 5pt},decorate,thick]
     ([xshift = 5,yshift = -40]trace.south) -- node[below = 6pt] {{\small Spec$\to$Program}} ([xshift = 170,yshift = -40]trace.south);
 
+    \pause
+    \node[ultra thick,anchor = west,inner sep=0pt,label=below:{\small extrapolation}](extrapolate) at (11.8,0.9) {\includegraphics[width = 1.3cm]{TikZfigures/39-extrapolated.png}};
+    \draw[->, thick, red, very thick] (program.east) to[out = 60,in = 180] (extrapolate.west);
+    \node[ultra thick,anchor = west,text width = 2.3cm,inner sep=0pt](errors) at (11.1,-1) {\small error correction};
+    
     \draw[decoration = {brace,mirror,raise = 5pt},decorate,thick]
 ([xshift = 180,yshift = -40]trace.south) -- node[below = 6pt] {{\small Applications}} ([xshift = 255,yshift = -40]trace.south);
   \end{tikzpicture}
-  \end{frame}
+\end{frame}
+
+\begin{frame}{Parsing images into specs (\LaTeX~TikZ commands)}
+
+{\footnotesize  Neurally Guided Procedural Modeling (Ritchie et al 2016) + \\Attend, Infer, Repeat (Eslami et al 2016)}
+  \vspace{-0.5cm}
+  \begin{center}
+    \begin{tabular}{c}
+\raisebox{-.5\height}{    \includegraphics[width = 0.8\textwidth]{../TikZpaper/architecture.pdf}            }
+      \end{tabular}
+
+  \end{center}
+
+    \newcommand{\noisySize}{0.12\textwidth}
+    \visible<2->{
+\hspace{0.1\textwidth}      \begin{minipage}[t]{\noisySize}
+        \centering\includegraphics[width = \textwidth]{TikZfigures/expert-60-reduced.png}\\
+                                  {\small     hand drawing}
+      \end{minipage}\hspace{0.05\textwidth}%
+      \begin{minipage}[t]{\noisySize}
+        \centering\includegraphics[width = \textwidth]{TikZfigures/60-1-reduced.png}\\
+                                  {\small noisy \\rerender}
+      \end{minipage}}%
+    %% \visible<3->{\begin{minipage}{0.35\textwidth}
+    %%     \begin{flushright}
+    %%       \textbf{Learned distance metric}\\
+    %%       \small    Serves as likelihood surrogate
+    %%       \begin{align*}
+    %%         \displaystyle\qquad    -\log L_{\text{learned}}(\text{render}&(S_1)|\text{render}(S_2))\approx\\& |S_1 - S_2| + |S_2 - S_1|
+    %%       \end{align*}
+    %%       $S_1$: noisy render\\
+    %%       $S_2$: nonnoisy render
+    %%     \end{flushright}
+    %% \end{minipage}}%
+    \hspace{0.2\textwidth}%
+    \only<3>{\begin{minipage}[c]{0.3\textwidth}
+\vspace{0.4cm}      \includegraphics[width = 0.8\textwidth]{TikZfigures/evaluationPhase1}
+    \end{minipage}}
+        \only<4>{\begin{minipage}[c]{0.3\textwidth}
+\vspace{0.4cm}      \includegraphics[width = 0.8\textwidth]{TikZfigures/evaluationPhase2}
+    \end{minipage}}
+\end{frame}
+
 
 %% \begin{frame}{Human program induction everywhere}
 %% \begin{tikzpicture}
@@ -320,8 +374,31 @@ rectangle(...)
 %% \end{frame}
 
 
+\begin{frame}{Top-down influences on perception}
+  \begin{tabular}{ccc}
+    \small{drawing\phantom{tttttttttttttttt}}&\small{bottom-up neural net}&\small{w/ top-down program bias}\\
+    \multicolumn{3}{c}{\includegraphics[width = \textwidth]{TikZfigures/programSuccess16_statement.png}}\\
+    \multicolumn{3}{c}{\only<3>{\includegraphics[width = \textwidth]{TikZfigures/programSuccess71_statement.png}}}
+    %        \multicolumn{3}{c}{\includegraphics[width = \textwidth]{TikZfigures/programSuccess97.png}}
+  \end{tabular}
 
+  \only<2>{
+    \begin{align*}      
+      &\hat{S}(I) = \argmax_{S\in \mathcal{F}(I)} \probability(I | \text{render}(S))\times \probability_{\beta} [ \text{program}(S)] \\
+      %% \end{equation}
+      %% \begin{equation}
+      &  \beta^* = \argmax_{\beta} \expect \left[ \log \frac{\probability_{\beta} [\text{program}(S)]\times \probability(I|\text{render}(S))}{\sum_{S'\in \mathcal{F}(I)} \probability_{\beta} [\text{program}(S')]\times \probability(I|\text{render}(S'))} \right]
+    \end{align*}
+  }
+\end{frame}
 
+\begin{frame}{Example programs}
+ \includegraphics[width = \textwidth]{../TikZpaper/exampleProgramsSpotlight.pdf}
+  \pause
+  \messageOverlay{Learning played a role...\\
+    but much of this system is specific to 2-D graphics\\\\
+  Goal: a general algorithm for learning to synthesize programs}
+\end{frame}
 
 \begin{frame}{Growing domain-specific knowledge}
   
@@ -333,102 +410,44 @@ rectangle(...)
   \vspace{1cm}
 
   \begin{itemize}
-  \item Library of concepts (declarative knowledge; generative model over programs)
-    \item Inference strategy (procedural knowledge)
+  \item Library of concepts (declarative knowledge; domain specific language; generative model over programs)
+    \item Inference strategy (procedural knowledge; synthesis algorithm)
   \end{itemize}
   \only<2>{
   \begin{tikzpicture}
-    \node(problem) at (0,0) {\includegraphics[width = 2cm]{ecFigures/functions/48.png}};
+    \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
     \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
     \draw[->] (problem.east) -- (synthesizer.west);
-    \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\$f(x) = 0.7x^2+1.2$};
+    \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\$f(x) = 0.3x^3+$\\$1.1x^2-2x+0.6$};
     \draw[->] (synthesizer.east) -- (program.west);
   \end{tikzpicture}
   
-    \vspace{0.2cm}Concepts: $x^2$, etc\\Inference strategy: neurosymbolic search for programs}
+    \vspace{0.2cm}Concepts: $x^3$, $\alpha x + \beta$, etc\\Inference strategy: neurosymbolic search for programs}
   \renewcommand\code\texttt
     \only<3>{
   \begin{tikzpicture}
-    \node(problem) at (0,0) {\includegraphics[width = 2cm]{ecFigures/logoTasks/logo43.png}};
+    \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/radialCircle.png}};
     \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
     \draw[->] (problem.east) -- (synthesizer.west);
-    \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\\code{(for (i 4)}\\ \code{ (circle i))}};
+    \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\\code{(radial-symmetry 5}\\\code{ (circle 3))}};
     \draw[->] (synthesizer.east) -- (program.west);
   \end{tikzpicture}
   
-  \vspace{0.2cm}Concepts: \code{circle}, etc\\Inference strategy: neurosymbolic search for programs
+  \vspace{0.2cm}Concepts: \code{circle}, \code{radial-symmetry}, etc\\Inference strategy: neurosymbolic search for programs
     }
-%%     \only<4>{
-%% \Wider[4em]{  \begin{tikzpicture}
-%%     \node[draw,align=center](problem) at (0,0) {
-%%             \begin{tabular}{l}
-%%           \code{[7\, 2\, 3]}$\to$\code{[7\, 3]}         \\
-%%           \code{[1\, 2\, 3\, 4]}$\to$\code{[3\, 4]} \\
-%%           \code{[4\, 3\, 2\, 1]}$\to$\code{[4\, 3]} \\
-%%           \end{tabular}
-%% };
-%%     \node(synthesizer)[draw,align=center] at ([xshift=2.5cm]problem.east) {Learned \\program inducer};
-%%     \draw[->] (problem.east) -- (synthesizer.west);
-%%     \node(program)[draw, align=center] at ([xshift=2.5cm]synthesizer.east) {program:\\\code{(filter ($\lambda$ (x)}\\\code{ (> x 2)))}};
-%%     \draw[->] (synthesizer.east) -- (program.west);
-%%   \end{tikzpicture}
-
-%%   \vspace{0.5cm}Concepts: \code{filter}, etc\\Inference strategy: neurosymbolic search for programs
-%%     }}
-  
 \end{frame}
 
-\begin{frame}{DSL: Library of concepts}
-\Wider[5.4em]{
-  \renewcommand\code\texttt
-  \renewcommand\codechar[1]{\texttt{"#1"}}
-  \newcommand{\helpSize}{0.25cm}
-  \footnotesize\begin{tabular}{cc}
-    \toprule
-Tasks and     \pop{Programs} & DSL\\
-    \midrule
-      \begin{tabular}{cc}
-        \begin{tabular}{c}
-          \code{[7\, 2\, 3]}$\to$\code{[7\, 3]}         \\
-          \code{[1\, 2\, 3\, 4]}$\to$\code{[3\, 4]} \\
-          \code{[4\, 3\, 2\, 1]}$\to$\code{[4\, 3]} \\
-          \pop{\code{$f(\ell) = $}\code{($f_1$ $\ell$ ($\lambda$ (x)}}\\
-          \hspace{1.15cm}\pop{\code{(> x 2)))}}       \\
-          \\
-          \\
-          \code{[2\, 7\, 8\, 1]}$\to $\code{8}               \\
-          \hspace{0.15cm}\code{[3\, 19\, 14]}$\to $\code{19}                \\
-          \pop{\code{$f(\ell) = $}\code{($f_2$ $\ell$)}}
-        \end{tabular}
-        &
-        \hspace{-0.3cm}\begin{tabular}{c}
-          \code{[7\, 3]}$\to $\code{False}                              \\
-          \hspace{0.3cm}\code{[3]}$\to $\code{False}                    \\
-          \hspace{-0.3cm}\code{[9\, 0\, 0]}$\to $\code{True\phantom{e}} \\
-          \hspace{0.3cm}\code{[0]}$\to $\code{True\phantom{e}}                        \\
-          \hspace{-0.3cm}\code{[0\, 7\, 3]}$\to $\code{True\phantom{e}}                \\
-          \pop{\code{$f(\ell) = $}\code{($f_3$ $\ell$ 0)}}
-        \end{tabular}
-      \end{tabular}
-    &
-    \begin{tabular}{l}
-      \popp{$f_0(\ell,$\code{r}$) \,=\, $\code{(foldr r $\ell$ cons)}}\\
-      \hspace{\helpSize}($f_0$: \emph{Append lists }\code{r}\emph{ and  $\ell$})\\
-      \popp{$f_1(\ell,$\code{p}$) \,=\, $\code{(foldr $\ell$ nil ($\lambda$ (x a)}}\\
-      \hspace{0.5cm}\popp{\code{(if (p x) (cons x a) a)))}}\\
-      \hspace{\helpSize}($f_1$: \emph{Higher-order filter function})\\
-      %(lambda (fold $0 0 (lambda (lambda (if (gt? $0 $1) $0 $1)))))
-      \popp{$f_2(\ell) \,=\, $\code{(foldr $\ell$ 0 ($\lambda$ (x a)}}\\
-      \popp{\phantom{$f_2(\ell) \,=\, $}\code{(if (> a x) a x)))}}\\
-      \hspace{\helpSize}($f_2$: \emph{Maximum element in list $\ell$})\\
-      \popp{$f_3(\ell,$\code{k}$) \,=\, $\code{(foldr $\ell$ (is-nil $\ell$)}}\\
-      \phantom{$f_1(\ell,$}
-      \popp{\code{($\lambda$ (x a) (if a a (= k x))))}}\\
-      \hspace{\helpSize}($f_2$: \emph{Whether $\ell$ contains }\code{k})\\
-    \end{tabular}
-  \\\bottomrule
-  \end{tabular}
-}
+\begin{frame}{Library learning}
+  \centering
+  
+  \only<1>{  \includegraphics[width = \textwidth]{dc/small_list_dsl}}
+  \only<2->{  \includegraphics[width = 0.7\textwidth]{dc/small_list_dsl}}
+
+
+  
+  \only<2>{\includegraphics[width = 0.7\textwidth]{dc/small_list_solution}}
+  \only<3>{\includegraphics[width = 0.7\textwidth]{dc/entire_sort_solution}}
+  
 \end{frame}
 
 \begin{frame}{DreamCoder}
@@ -436,30 +455,26 @@ Tasks and     \pop{Programs} & DSL\\
   \item   \textbf{Wake:} Solve problems by writing programs
   \item \textbf{Sleep:} Improve DSL and neural recognition model:
     \begin{itemize}
-    \item \textbf{Sleep-G:} Improve DSL (\textbf{G}enerative model)
-      \item \textbf{Sleep-R:} Improve \textbf{R}ecognition model
-      \end{itemize}
+    \item \textbf{Abstraction sleep:} Improve library
+      \item \textbf{Dream sleep:} Improve neural inference model
+    \end{itemize}
+    \item   Combines ideas from Wake-Sleep \& Exploration-Compression
   \end{itemize}
-  Combines ideas from Wake-Sleep \& Exploration-Compression algorithm by Eyal Dechter
 \Wider[5.4em]{
   \begin{tikzpicture}
-    \node at (6,0) {  \includegraphics[width = 4cm]{ecFigures/sleepingChild.jpg}};
     \visible<2->{
-      \node(Lisp) at (-3,0) {\includegraphics[width = 3cm]{ecFigures/Lisp.png}};
-      \node[align=center](tower) at ([xshift=1cm]Lisp.east) {\includegraphics[width = 1cm]{ecFigures/functions/627.png}\hspace{0.05cm}\includegraphics[width = 1cm]{ecFigures/functions/615.png}\\
-        \includegraphics[width = 1cm]{ecFigures/functions/382.png}\hspace{0.05cm}\includegraphics[width = 1cm]{ecFigures/functions/0.png}%
-      };
-      \node(logo) at ([xshift=1.5cm]tower.east) {\includegraphics[width =3cm]{ecFigures/9logo.png}}; 
+      \node(Lisp) at (-3,0) {\includegraphics[width = 0.8\textwidth]{statement/taskbar2.png}};
     }
+    \node at (2.5,1.3) {  \includegraphics[width = 4cm]{ecFigures/sleepingChild.jpg}};
     \end{tikzpicture}}
 
 
 \end{frame}
-\begin{frame}[t]{DSL learning as Bayesian inference}
+\begin{frame}[t]{Library learning as Bayesian inference}
   %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
 \centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
 
-  \node[latent,scale=1] at (3.5,3) (dx){DSL};
+  \node[latent,scale=1] at (3.5,3) (dx){Lib};
   \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
   \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {data};
   \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
@@ -493,9 +508,9 @@ Tasks and     \pop{Programs} & DSL\\
 
 \vspace{0.5cm}
   
-\textbf{[Dechter et al., 2013]}  [Liang et al, 2010]; [Lake et al, 2015]
+[Dechter et al., 2013]  [Liang et al, 2010]; [Lake et al, 2015]
 
-\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
+%\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
 
   %% \vfill
   %% Gray: Observed.\\
@@ -520,10 +535,10 @@ Tasks and     \pop{Programs} & DSL\\
           \foreach \dest in {1,...,4}
               \draw [-latex] (H-\source) -- (O-\dest);
     \end{tikzpicture}}
-\begin{frame}[t]{DSL learning as \alert{amortized} Bayesian inference}
+\begin{frame}[t]{Library learning as \alert{amortized} Bayesian inference}
 \centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
 
-  \node[latent,scale=1] at (3.5,3) (dx){DSL};
+  \node[latent,scale=1] at (3.5,3) (dx){Lib};
   \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
   \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {data};
   \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
@@ -553,52 +568,280 @@ Tasks and     \pop{Programs} & DSL\\
 
 
 
-\textbf{New:} amortized inference +\\ better program representation (Lisp) + \\better DSL inference 
+amortized inference +\\ better program representation (Lisp) + \\library learning via program analysis + \\
+new neural inference network for program synthesis
 
 \end{frame}
-\begin{frame}{Wake --- as in Exploration/Compression Algorithm}
-  \only<1>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-ec/slide-0.pdf}
-  }
-  \only<2>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-ec/slide-1.pdf}
-  }
-  \only<3>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-ec/slide-2.pdf}
-  }
-  \only<4>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-ec/slide-3.pdf}
-  }
-  \only<5>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-ec/slide-4.pdf}
-  }
+\newcommand{\NeuralNetwork}[1]{    \begin{tikzpicture}[x=2.5cm,y=1.25cm,transform canvas={scale=#1,shift={+(-1,2.5)}}]
+      \tikzstyle{neuron}=[circle,fill=blue!50,minimum size=20pt]
+      \fill[fill=teal!5!white] (-0.25,-0.5) rectangle (2.25,-4.5);
+      \node[rectangle] at (1,1) {};
+      \foreach \name / \y in {1,...,4}
+          \node[neuron] (I-\name) at (0,-\y) {};
+      \foreach \name / \y in {1,...,3}
+          \node[neuron] (H-\name) at (1,-\y-0.5) {};
+      \foreach \name / \y in {1,...,4}
+          \node[neuron] (O-\name) at (2,-\y) {};
+      \foreach \source in {1,...,4}
+          \foreach \dest in {1,...,3}
+              \draw [-latex] (I-\source) -- (H-\dest);
+      \foreach \source in {1,...,3}
+          \foreach \dest in {1,...,4}
+              \draw [-latex] (H-\source) -- (O-\dest);
+    \end{tikzpicture}}
+\newcommand{\spiral}[2]{
+  \draw[ultra thick,->] ([shift={#1}]-30:#2) arc [radius = #2, start angle = -30, end angle = 90];
+  \draw[ultra thick,->] ([shift={#1}]-30:#2) arc [radius = #2, start angle = -30, end angle = 95];
 
+  
+      \draw[ultra thick,->] ([shift={#1}]90:#2) arc [radius = #2, start angle = 90, end angle = 210];
+      \draw[ultra thick,->] ([shift={#1}]90:#2) arc [radius = #2, start angle = 90, end angle = 205];
+      
+      \draw[ultra thick,->] ([shift={#1}]210:#2) arc [radius = #2, start angle = 210, end angle = 340];
+      \draw[ultra thick,->] ([shift={#1}]210:#2) arc [radius = #2, start angle = 210, end angle = 335];
+}
+\newcommand{\legend}{
+  \begin{tikzpicture}
+    \node at (0,0) (uses){is};
+    \draw[->,red] ([xshift=-0.6cm]uses.west)  -- (uses.west);
+    \node at ([xshift=0.4cm]uses.east) {\NeuralNetwork{0.15}};
+    \draw[thin] (-1,-0.4) rectangle (1.2,0.4);
+  \end{tikzpicture}
+}
+
+\begin{frame}{}
+  \centering
+  \only<1>{\includegraphics[width = \textwidth]{cycleGraphicalModel1}}
+  \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModel2}}
+  \only<3>{\includegraphics[width = \textwidth]{cycleGraphicalModel3}}
+  \only<4>{\includegraphics[width = \textwidth]{cycleGraphicalModel4}}
+  \only<5>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
 \end{frame}
 
-\begin{frame}{DreamCoder --- Wake}
-  \only<1>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-dc/slide-0.pdf}
-  }
-  \only<2>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-dc/slide-1.pdf}
-  }
-  \only<3>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-dc/slide-2.pdf}
-  }
-  \only<4>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-dc/slide-3.pdf}
-  }
-  \only<5>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-dc/slide-4.pdf}
-  }
+%% \begin{frame}{DreamCoder's sleep cycles}
+%% \tiny\begin{tikzpicture}[scale=0.55,line width=0.25mm]
+%%     \draw[fill=teal!5!white] (-1.25,1.25) -- (13.25,1.25) -- (13.25,-4) -- (-1.25,-4) -- (-1.25,1.25);
+%%     \node at (5.5,1.5) {\textsc{\textbf{Wake}}};
 
-\end{frame}
+    
+%%     \begin{scope}[shift={(0.5,0.5)}]
+%%       \node[align=center] at (0,-0.5) (d){
+%%         \begin{tabular}{l}
+%%           \multicolumn{1}{c}{\textbf{Library}}\\
+%%         \texttt{$f_1($x$)=$(+ x 1)}\\
+%%         \texttt{$f_2($z$)=$(fold cons}\\
+%%         \phantom{\texttt{$f_2($z$)$}}\texttt{(cons z nil))}\\
+%%  $\cdots\cdots\cdots$
+%%                 \end{tabular}};
+%%       \node[align=center] at ([yshift = -2cm]d) (t){\textbf{Task}\\
+%%                     \texttt{[7\, 2\, 3]}$\to$\texttt{[4 3 8]}         \\
+%%             \texttt{[3\, 8]}$\to$\texttt{[9 4]}\\
+%%             \texttt{[4\, 3\, 2]}$\to$\texttt{[3 4 5]} };
 
-\begin{frame}{DreamCoder --- Sleep-G}
-  \only<1>{
-    \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-sleep-g/slide-4.pdf}
-  }
-\end{frame}
+%%       \node at ([xshift = 1.25cm]t.east) (nn){\NeuralNetwork{0.1}};
+%%       \node[align = center, text width = 1cm] at ([yshift = 0.7cm,xshift=0cm]nn.north) {\baselineskip=0pt  Recog. model\par};
+%%       \draw [red,-{>[scale=0.2]}] (t.east) -- ([xshift = -0.5cm]nn.west);
+
+%%       \node[draw,rounded corners, align=center, inner sep = 5] at ([xshift = 4.2cm,yshift = 1cm]t.east) (s){Neurally-Guided\\ Enumerative Search};
+
+%%       \draw [red,->] ([xshift = 0.5cm]nn.east) -- ([yshift = -0.25cm]s.west);
+%%       \draw [->,rounded corners,] (d.east) -- ([yshift = 2cm]nn.center) -- ([yshift = 0.25cm]s.west);
+
+%%       \node[align=left] at ([xshift=3cm]s.east) (f) {\textbf{Programs for task:}\\
+%%             \texttt{(map $f_1$ (fold $f_2$ nil x))}\\
+%%          $\cdots\cdots\cdots$};
+%%       \draw [->  ] (s.east) -- (f.west);
+
+%%       \draw [->  ,rounded corners] (t.south) -- ([yshift = -0.5cm]t.south) -- ([yshift = -0.5cm] s.south |- t.south) -- (s.south);
+%%     \end{scope}
+    
+%%     \begin{scope}[shift={(9.4,-3.5)},scale=0.6,line width=0.05mm]
+%%       \node[obs,scale=0.7] at (3.5,3) (dx){Library};
+%%       \node[latent,scale=0.7] at ([yshift=-1.7cm,xshift=0cm]dx) (zp){prog};
+%%       \node[obs,scale=0.7] at ([yshift=-1.45cm]zp) (xp) {task};
+%%       \node[latent,scale=0.7] at ([xshift=1.5cm]zp) (zp1){prog};
+%%       \node[obs,scale=0.7] at ([xshift=1.5cm]xp) (xp1) {task};
+%%       \draw [->] (zp1.south) -- (xp1.north);
+%%       \draw [->] (dx.south) -- (zp1.north);
+%%       \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+%%       \node[latent,scale=0.7] at ([xshift=-1.5cm]zp) (zp1){prog};
+%%       \node[obs,scale=0.7] at ([xshift=-1.5cm]xp) (xp1) {task};
+%%       \draw [->] (zp1.south) -- (xp1.north);
+%%       \draw [->] (dx.south) -- (zp1.north);
+%%       \draw [->] (dx.south) -- (zp.north);
+%%       \draw [->] (zp.south) -- (xp.north);
+%%       \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+%%       \draw [->,red] (xp.east) to[out = 30,in = -30] node(nn){} (zp.east);
+%%     \end{scope}
+
+
+%%     \node at (0,-4.75) {\textbf{\textsc{Sleep: Abstraction}}};
+%%     \draw[fill=teal!5!white] (-3,-5) -- (3,-5) -- (3,-10) -- (5.5,-10) -- (5.5,-13) -- (-3,-13) -- (-3,-5);
+%%     \node at (12,-4.75) {\textbf{\textsc{Sleep: Dreaming}}};
+%%     \draw[fill=teal!5!white] (15,-5) -- (9,-5) -- (9,-10) -- (6.5,-10) -- (6.5,-13) -- (15,-13) -- (15,-5);
+
+%%     \begin{scope}[shift={(9.5,-4.5)}]
+%%       \node(dreaming) at (1,-1) {\underline{Fantasies}};
+%%       \node[anchor=center] at ([yshift=-0.5cm]dreaming.south) (d){\textbf{Library}};
+%%       \node at ([yshift=-1.75cm]d.south) (p1){program};
+%%       \draw[squiggle,-> ] (d.south) -- node[sloped,above]{{ sample}} (p1.north);
+
+%%       \node(replay) at ([xshift=2cm]dreaming.east) {\underline{Replays}};
+%%       \node[anchor=center,align=center] at ([yshift=-0.5cm]replay.south) (d){\textbf{progs. for task}};
+%%       \node at ([yshift=-1.75cm]d.south) (p1){program};
+%%       \draw[squiggle,-> ] (d.south) -- node[sloped,above]{ sample} (p1.north);
+
+%%       \node(p1) at (1.5,-6) {program};      
+%%       \node at ([xshift = 2.0cm]p1.east) (t1){ task};
+%%       \draw [-> ] (p1.east) -- node[above]{ run} (t1.west);
+%%       \node(n) at ([yshift=-1.2cm,xshift=1.25cm]p1.south) {
+%%         \NeuralNetwork{0.17}};
+%%       \draw [->,red] (t1.south) to[out = -90,in = 0]  ([xshift=0.4cm]n.east);
+%%       \draw [dashed] (p1.south) to[out=-120,in=180] node[above,fill=teal!5!white]{\color{black}Loss} ([xshift=-0.4cm]n.west);
+
+
+%%       \node at ($(-0.25,0.5) + (p1.north)!0.5!(t1.north)$) {\underline{Train recognition model}};
+
+%%       %% \node at ([xshift = 1.5cm]p1.east) (t1){ task};
+%%       %% \draw [-> ] (p1.east) -- node[above]{ run} (t1.west);
+%%       %% \node(n) at ([yshift=-1.2cm,xshift=0.4cm]p1.south) {
+%%       %%   \NeuralNetwork{0.17}};
+%%       %% \draw [->,red] (t1.south) to[out = -90,in = 0]  ([xshift=0.4cm]n.east);
+%%       %% \draw [dashed] (p1.south) to[out=-120,in=180] node[above,fill=white]{\color{black}Loss} ([xshift=-0.4cm]n.west);
+
+%%       \begin{scope}[shift={(-3.8,-8)},scale=0.6,line width=0.05mm]
+%%         \node[obs,scale=0.4] at (3.5,3) (dx){L};
+%%         \node[obs,scale=0.4] at ([yshift=-1.7cm,xshift=0cm]dx) (zp){p};
+%%         \node[obs,scale=0.4] at ([yshift=-1.45cm]zp) (xp) {t};
+%%         \node[obs,scale=0.4] at ([xshift=1.5cm]zp) (zp1){p};
+%%         \node[obs,scale=0.4] at ([xshift=1.5cm]xp) (xp1) {t};
+%%         \draw [->] (zp1.south) -- (xp1.north);
+%%         \draw [->] (dx.south) -- (zp1.north);
+%%         \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+%%         \node[obs,scale=0.4] at ([xshift=-1.5cm]zp) (zp1){p};
+%%         \node[obs,scale=0.4] at ([xshift=-1.5cm]xp) (xp1) {t};
+%%         \draw [->] (zp1.south) -- (xp1.north);
+%%         \draw [->] (dx.south) -- (zp1.north);
+%%         \draw [->] (dx.south) -- (zp.north);
+%%         \draw [->] (zp.south) -- (xp.north);
+%%         \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+%%         \draw [->,red] (xp.east) to[out = 30,in = -30] node(nn){} (zp.east);
+%%       \end{scope}
+
+
+%%       \end{scope}
+
+%%     % memory consolidation
+%%     \begin{scope}[shift={(-2,-4.5)}]
+
+%%       %% defined routines for creating fragmented syntax trees
+%%       \newcommand{\syntaxOne}[1]{
+%%         \begin{tikzpicture}[scale=#1,line width=0.35mm]          
+%%           \node(l1) at (0,0) {};
+%%           \node[color=pop3](p1) at (-1,-1) {\texttt{+}};
+%%           \node[color=pop3](n1) at (0.7,-0.9) {\texttt{1}};
+%%           \node(x1) at (0,-1) {\texttt{1}};
+%%           \draw[color=pop3] (l1.south) -- (p1.north);
+%%           \draw[color=pop3] (l1.south) -- (n1.north);
+%%           \draw[color=pop3] (-0.5,-0.45) -- (x1.north);
+
+%%           \node(t) at (-0.5,0.5) {};
+%%           \draw (l1.south) -- (t.south);
+%%           \node(c) at (-1.5,-0.2) {\texttt{cons}};
+%%           \draw (t.south) -- (c.north);
+%%         \end{tikzpicture}
+%%       }
+%%       \newcommand{\syntaxTo}[1]{
+%%         \begin{tikzpicture}[scale=#1,line width=0.35mm]          
+%%             \node(l1) at (0,0) {};
+%%             \node[color=pop3](p1) at (-1,-1) {\texttt{+}};
+%%             \node[color=pop3](n1) at (0.7,-0.9) {\texttt{1}};
+%%             \draw[color=pop3] (l1.south) -- (p1.north);
+%%             \draw[color=pop3] (l1.south) -- (n1.north);
+%%             \draw[color=pop3] (-0.5,-0.45) -- (0,-1);
+%%             \node(c) at (-0.5,-1.5) {\texttt{car}};
+%%             \node(z) at (0.5,-1.5) {\texttt{z}};
+%%             \draw (0,-1) -- (c.north);
+%%             \draw (0,-1) -- (z.north);
+%%         \end{tikzpicture}
+%%       }
+
+%%       \node[align=center,anchor=center] at (0.4,-1.2) (f1){\textbf{ progs. for task 1}:\\\texttt{(+ (car z) 1)}};
+%%       \node[align=center] at ([xshift = 1.75cm]f1.east) (f2){\textbf{  progs. for task 2}:\\\texttt{(cons (+ 1 1))}};
+%%       \node(s1) at ([yshift=-0.5cm]f1.south) {\syntaxOne{0.5}};
+%%       \node(s2) at ([yshift=-0.5cm]f2.south) {\syntaxTo{0.5}};
+%%       \node(c)[align=center,rectangle, rounded corners, draw, minimum width = 1cm, minimum height = 0.5cm, anchor = north] at ($(s1.south)!0.5!(s2.south) + (0,-1)$) {Refactoring Algorithm};
+%%       \draw [-> ] (s1.south) -- (s1.south|-c.north);
+%%       \draw [-> ] (s2.south) -- (s2.south|-c.north);
+
+      
+%%       \node(d) at ([yshift = -1.8cm]c.south) {
+%%         \begin{tikzpicture}[scale=0.5,line width=0.5mm]
+%%           \node[align=center] at (0,0) {\textbf{new Library} w/ \texttt{(+ x 1)}:};
+%%           \begin{scope}[shift={(0.6,-0.5)}]
+%%             \node[pop3](p1) at (-1,-1) {\texttt{+}};
+%%             \node[pop3](n1) at (0.6,-0.9) {\texttt{1}};
+%%             \node[pop3](a) at (0,-1) {\texttt{ }};
+%%             \draw[pop3] (0,0) -- (p1.north);
+%%             \draw[pop3] (0,0) -- (n1.north);
+%%             \draw[pop3] (-0.3,-0.3) -- (a.north);
+%%           \end{scope}
+%%       \end{tikzpicture}};
+%%       \draw [-> ] (c.south) -- (d.north);
+
+
+
+%%       \begin{scope}[shift={(4,-8)},scale=0.6,line width=0.05mm]
+%%         \node[latent,scale=0.7] at (3.5,3) (dx){Library};
+%%         \node[obs,scale=0.7] at ([yshift=-1.7cm,xshift=0cm]dx) (zp){prog};
+%%         \node[obs,scale=0.7] at ([yshift=-1.45cm]zp) (xp) {task};
+%%         \node[obs,scale=0.7] at ([xshift=1.5cm]zp) (zp1){prog};
+%%         \node[obs,scale=0.7] at ([xshift=1.5cm]xp) (xp1) {task};
+%%         \draw [->] (zp1.south) -- (xp1.north);
+%%         \draw [->] (dx.south) -- (zp1.north);
+%%         \node[obs,scale=0.7] at ([xshift=-1.5cm]zp) (zp1){prog};
+%%         \node[obs,scale=0.7] at ([xshift=-1.5cm]xp) (xp1) {task};
+%%         \draw [->] (zp1.south) -- (xp1.north);
+%%         \draw [->] (dx.south) -- (zp1.north);
+%%         \draw [->] (dx.south) -- (zp.north);
+%%         \draw [->] (zp.south) -- (xp.north);
+%%       \end{scope}
+
+
+%%       \end{scope}
+
+
+    
+%%     %% center spiral
+%%     \begin{scope}[shift={(3.25,-7.9)},scale=0.8]    
+%%       \spiral{(3.5,1)}{3.5}
+%%       \node[latent,scale=1] at (3.5,3) (dx){Library};
+%%       \node[latent,scale=1] at ([yshift=-2cm,xshift=0cm]dx) (zp){prog};
+%%       \node[obs,scale=1] at ([yshift=-1.45cm]zp) (xp) {task};
+%%       \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
+%%       \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
+%%       \draw [->] (zp1.south) -- (xp1.north);
+%%       \draw [->] (dx.south) -- (zp1.north);
+%%       \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+      
+%%       \node[latent,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
+%%       \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
+%%       \draw [->] (zp1.south) -- (xp1.north);
+%%       \draw [->] (dx.south) -- (zp1.north);
+%%       \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+
+
+%%       \draw [->,red] (xp.east) to[out = 30,in = -30] node(nn){} (zp.east);
+%%       \draw [->] (dx.south) -- (zp.north);
+%%       \draw [->] (zp.south) -- (xp.north);
+
+%%       \node at ([yshift=-0.6cm]xp.south) {\legend};
+
+%%     \end{scope}    
+%%   \end{tikzpicture}  
+
+%% \end{frame}
+
 
 
 \begin{comment}
