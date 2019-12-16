@@ -43,6 +43,11 @@
 \lstset{escapeinside={<@}{@>}}
 \usepackage{pgf}  
 
+%% \usepackage[sfdefault]{FiraSans} %% option 'sfdefault' activates Fira Sans as the default text font
+%% \usepackage[T1]{fontenc}
+%% \renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+
+
 \newcommand{\Expect}{\mathds{E}} %{{\rm I\kern-.3em E}}
 \newcommand{\indicator}{\mathds{1}} %{{\rm I\kern-.3em E}}
 \newcommand{\expect}{\mathds{E}} %{{\rm I\kern-.3em E}}
@@ -123,7 +128,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{Program Induction:\\Bridging AI and program synthesis,\\ by learning to write code that writes code}
+\title{Program Induction:\\Bridging AI and program synthesis}%,\\ by learning to write code that writes code}
 \author{Kevin Ellis}
 \institute{MIT} 
 \date{2020}
@@ -132,6 +137,25 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{document}
  
 \frame{\titlepage}
+
+\begin{frame}{What computational problems are solved by intelligence?}
+  \Wider[5em]{
+    \centering\textbf{an endless range of problems}
+
+    \begin{tabular}{cccc}
+      language&science&design&engineering\\
+      \includegraphics[height = 2cm]{figures/acquisition}&
+      \includegraphics[height = 2cm]{figures/blackboard}&
+      \includegraphics[height = 2cm]{figures/textile2}&
+      \includegraphics[height = 2cm]{figures/primitiveTools}\\
+      using new devices&writing new characters&coding\\
+      \includegraphics[height = 2cm]{figures/noodles}&
+      \includegraphics[height = 2cm]{figures/Korean}&
+      \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}&
+    \end{tabular}
+  }  
+
+  \end{frame}
 
 \begin{frame}[fragile]{Perception, Learning-to-Learn, Synthesizing models}
 
