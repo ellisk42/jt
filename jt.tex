@@ -142,20 +142,56 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \Wider[5em]{
     \centering\textbf{an endless range of problems}
 
-    \begin{tabular}{cccc}
-      language&science&design&engineering\\
+    \begin{tabular}{ccc}
+      language&science&design\\%&engineering\\
       \includegraphics[height = 2cm]{figures/acquisition}&
       \includegraphics[height = 2cm]{figures/blackboard}&
-      \includegraphics[height = 2cm]{figures/textile2}&
-      \includegraphics[height = 2cm]{figures/primitiveTools}\\
+      \includegraphics[height = 2cm]{figures/textile2}\\
+%      \includegraphics[height = 2cm]{figures/primitiveTools}\\
       using new devices&writing new characters&coding\\
       \includegraphics[height = 2cm]{figures/noodles}&
       \includegraphics[height = 2cm]{figures/Korean}&
-      \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}&
+      \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}\\
+      \multicolumn{2}{c}{engineering}&play\\
+      \includegraphics[height = 2cm]{figures/igloo}&
+      \includegraphics[height = 2cm]{../ecPaper/figures/aqueduct}&
+      \includegraphics[height = 2cm]{figures/childPlaying}
     \end{tabular}
-  }  
+  }
+  \pause
+  \messageOverlay{- learning from modest data/experience\\
+    - communicating \& representing knowledge in understandable formats\\
+    - bootstrapping \& learning-to-learn\\
+    - creatively composing knowledge to produce new concepts and artifacts\\
+    \phantom{test}(\& compositionality)
+  }
+\end{frame}
 
-  \end{frame}
+\begin{frame}{What computational substrates can contribute to this picture?}
+  Three AI traditions: Symbolic, Probabilistic, Neural
+
+  \pause
+
+  \Wider[5em]{
+    \textbf{Program induction}: roots in the works of Solomonoff, Fodor, McCarthy. Combines and complements these three traditions.
+
+    \includegraphics[width = 0.8\textwidth]{../ecPaper/Brendan.jpg}\hspace*{-0.7\textwidth}
+    \pause
+    \vspace{1cm}    
+    \includegraphics[width = 0.8\textwidth]{../ecPaper/theory}
+  }
+
+  \pause
+
+  \messageOverlay{my work:\\%% \\\phantom{test} how program induction can contribute to the engineering of machine intelligence\\
+    %% in engineering terms:\\
+    \phantom{test} how learning can make program synthesis more scalable \& practical\\
+    \phantom{test} how program synthesis can contribute to machine intelligence
+   } 
+  
+  
+
+\end{frame}
 
 \begin{frame}[fragile]{Perception, Learning-to-Learn, Synthesizing models}
 
@@ -361,45 +397,47 @@ rectangle(...)
     \end{minipage}}
 \end{frame}
 
+\begin{frame}{Learning to quickly synthesize programs}
+    Learn search policy $\pi (\text{program subspace} | \text{spec})$
+  \\Think of the subspace as an ``ansatz''
 
-%% \begin{frame}{Human program induction everywhere}
-%% \begin{tikzpicture}
-%%   \node(Lisp) at (0,0) {\includegraphics[width = 5cm]{ecFigures/1975.png}};
-%%   \visible<2->{
-%%     \node(colorless) at (6,0) {\includegraphics[width = 5cm]{ecFigures/colorless.png}};
-%%     \node at ([yshift=-2cm]colorless.south) {\includegraphics[width = 4cm]{ecFigures/child.jpg}};
-%%   }
-%%   \visible<3->{
-%%     \node(aqueduct) at ([yshift=-1cm,xshift=0cm]Lisp.south) {\includegraphics[width = 5cm]{ecFigures/aqueduct.jpg}};
-%%     \node(arch) at ([xshift=1cm,yshift=0cm]aqueduct.south) {\includegraphics[width = 1.5cm]{ecFigures/arch.jpg}};
-%%   }
-%%   \visible<4->{
-%%     \node at ([yshift=-1cm,xshift=-2cm]aqueduct.south) {\includegraphics[width = 2cm]{ecFigures/tapestry.jpg}};
-%%     \node(wiringDiagram) at ([yshift=-1cm,xshift=1.6cm]aqueduct.south) {\includegraphics[width = 5cm]{ecFigures/wiringDiagram.jpg}};
-%%   }
-%%   %% \visible<5->{
-%%   %%   \node at ([xshift=2cm,yshift=1cm]wiringDiagram.east) {\includegraphics[width = 5cm]{tree.jpg}};
-%%   %%   }
-%%   \end{tikzpicture}
+OBJECTIVE: Small subspace for tractability while also being likely to contain good programs
 
-%% \end{frame}
+%  \vspace{0.7cm}
+\Wider[5em]{   \begin{tikzpicture}[scale=0.7]
+    \footnotesize
+    \node[anchor = west] at (0,5.25) {{ Entire program search space}};
+    %\footnotesize
+    \draw[fill = yellow,fill opacity = 0.15,draw = black] (0,0) rectangle (5,5);
+\pause
+\draw [fill = yellow, opacity = 0.2] (0,0)--(0,2)--(4,0)--(0,0);
+    \draw (0,2) -- node[below,sloped]{short progs} (4,0);
+    \draw (0,2) -- node[above,sloped]{long progs} (4,0);
+    \pause
+    
 
-%% %% \begin{frame}{Engineering the language of thought}
-%% %%  \begin{tikzpicture}
-%% %%     \node () {\includegraphics[width = 15.6cm]{theory.png}};
-%% %%     \node at (-5,-4) {  Ullman et al 2012};
-%% %%     \end{tikzpicture}
-%% %% \end{frame}
+    \draw [fill = yellow, opacity = 0.6] (2.5,5)--(3.2,0)--(5,0)--(5,5);
+    \draw (2.5,5) -- node[above,sloped]{progs w/ reflections} (3.2,0);
+    \pause
+    
+    \draw [fill = yellow, opacity = 0.4] (0,5)--(0,1)--(3,5);
+    \draw (0,1) -- node[above,sloped]{ progs w/ loops} (3,5);
+    \pause
+    
+    \node(p1)[anchor =west ] at (5.0,3.5) {$\pi(\text{short, no loop/reflect}|S) = $};
+    \draw [fill = yellow, fill opacity = 0.2,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p1.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p1.east);
+    \node(p2)[anchor =west ] at ([yshift = -0.5cm]p1.west) {$\pi(\text{long, loops}|S) = $};
+    \draw [fill = yellow, fill opacity = 0.4,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p2.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p2.east);
+    \node(p3)[anchor =west ] at ([yshift = -0.5cm]p2.west) {$\pi(\text{long, no loop/reflect}|S) = $};
+    \draw [fill = yellow, fill opacity = 0.15,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p3.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p3.east);
+    \node(p4)[anchor =west ] at ([yshift = -0.5cm]p3.west) {$\pi(\text{long, reflects}|S) = $};
+    \draw [fill = yellow, fill opacity = 0.6,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p4.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p4.east);
+    \node(p5)[anchor =west ] at ([yshift = -0.5cm]p4.west) {\emph{etc.}};
+    \pause
+    \node at (15.2,3) {\includegraphics[width = 3.6cm]{TikZfigures/2policyComparison}};
+  \end{tikzpicture}}
 
-%% \begin{frame}{Human program induction everywhere}
-%%   \begin{tikzpicture}
-%%     \node at(0,0) {\includegraphics[width = 8cm]{characters.png}};
-%%     \node at(-3,2) {\includegraphics[width = 8cm]{Brendan.jpg}};
-
-%%     \node at (-5,-4) {  Lake et al 2015};
-%%     \end{tikzpicture}
-%% \end{frame}
-
+\end{frame}
 
 \begin{frame}{Top-down influences on perception}
   \begin{tabular}{ccc}
@@ -1299,29 +1337,160 @@ new neural inference network for program synthesis
     \end{tabular}
     Dark$\to $Light: Early in learning$\to $Later in learning
 
-  \end{frame}
+\end{frame}
+
+\begin{frame}{From learning libraries to learning languages}
+  these experiments study how DreamCoder grows from a ``beginner'' state to ``expert'':
+  \begin{itemize}
+  \item ``beginner:'' basic domain-specific procedures, only easiest problems have short solutions
+    \item ``expert:'' learned library allowing hardest problems to have short meaningful solutions
+    \end{itemize}
+  \pause
+  go beyond: start with generic arithmetic \& control flow, learn fundamentals of domain
+
+  \begin{itemize}
+  \item Physics from recursive higher-order functions
+    \item Recursive higher-order language from 1959 proto-Lisp \& Y-combinator
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Rediscovering vector algebra}
+\Wider[5em]{  \includegraphics[width = 0.97\textwidth]{dc/physics_only.png}}
+\end{frame}
+
+\begin{frame}{Rediscovering origami programming}
+  \Wider[5em]{  \includegraphics[width = \textwidth]{dc/mccarthy_only.png}}
+\end{frame}
+
+\begin{frame}{From learning libraries to using interpreters}
+  DreamCoder: library building as inspiration\\
+  Software engineers: build libraries, use interpreters, version control, debuggers, ...
+
+  \vfill
+\small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+
+\end{frame}
+
+\begin{frame}{Synthesis with a REPL}
+
+
+  
+\Wider[5em]{  \includegraphics[width = \textwidth]{assets/wrench_wave}}
+
+  REPL: Bridges syntax and semantics
+
+  $\pi$: policy, writes code conditioned on REPL state
+
+  $T$: Markov Decision Process transition function
+
+  Spec: Image to draw
+
+  \vfill
+\small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+  
+\end{frame}
+
+\begin{frame}{Interleaving policy+value+REPL in stochastic tree search}
+  c.f. AlphaGo, TD-Gammon
+
+  \includegraphics[width = \textwidth]{assets/smc}
+
+\end{frame}
+
+\begin{frame}{Scaling to long programs}
+  Branching factor: $ > 1.3$ million per line of code
+
+  Successfully synthesizes $ > $20-line programs in seconds ($ > $100 tokens)
+
+  \vspace{1cm}
+  
+\Wider[5em]{  
+  \setlength{\tabcolsep}{0pt}
+  \renewcommand{\arraystretch}{0}  
+  
+  %    \includegraphics[width = \textwidth]{assets/pixel_montage} \\
+  % \begin{tabular}{cc}
+  %   \includegraphics[width = 0.3\textwidth]{assets/2d_synthetic_montage}&
+  %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
+  % \end{tabular}\\\\    
+  \begin{tabular}{cccccccc}
+    \rotatebox[origin=l]{90}{Spec}
+    &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
+    \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
+    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
+    \includegraphics[width = 2cm]{assets/3-D/demo2/spec}&
+    \includegraphics[width = 2cm]{assets/3-D/demo4/012_png_v.png}&
+    \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_input}&
+    \includegraphics[width = 2cm]{assets/3-D/demo1/spec}
+    \\
+    \rotatebox[origin=l]{90}{Rendered}&
+    \rotatebox[origin=l]{90}{program}$\;$&
+    \includegraphics[width = 2cm]{assets/3-D/demo3/000_SMC_value_pickle_pretty.png}$\;$&
+    \includegraphics[width = 2cm]{assets/3-D/demo6/2}$\;$&
+    \includegraphics[width = 2cm]{assets/3-D/demo2/pretty}$\;$&
+    \includegraphics[width = 2cm]{assets/3-D/demo4/012_SMC_value_pickle_pretty}$\;$&
+    \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_output}$\;$&
+    \includegraphics[width = 2cm]{assets/3-D/demo1/pretty}
+  \end{tabular}
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1}
+}
+\end{frame}
+
+\begin{frame}{Scaling to long programs}
+  Branching factor: $ > 400$ actions
+
+  Successfully synthesizes 40-action programs
+
+  \vspace{1cm}
+  
+  \Wider[5em]{
+\centering
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1}
+  \footnotesize
+
+\begin{tabular}{|lll|}
+\cline{1-3}% \cline{5-6}
+\multicolumn{3}{|c|}{Spec:}\\% &  & \multicolumn{3}{c|}{Spec:} \\
+6/12/2003 & $\to$ & date: 12 mo: 6 year: 2003\\% &  & Dr Mary Jane  Lennon & $\to$ & Lennon, Mary Jane (Dr) \\
+3/16/1997 & $\to$ & date: 16 mo: 3 year: 1997 \\%&  & Mrs Isaac  McCormick & $\to$ & McCormick, Isaac (Mrs) \\ \cline{1-3} \cline{5-7} 
+\cline{1-3}\multicolumn{3}{|c|}{Held out test instance:}\\% &  & \multicolumn{3}{c|}{Held out test instance:} \\
+12/8/2019 & $\to$ & date: 8 mo: 12 year: 2019\\% &  & Dr James Watson & $\to$ & Watson, James (Dr) \\ \cline{1-3} \cline{5-7} 
+\cline{1-3}\multicolumn{3}{|c|}{Results:}\\% &  & \multicolumn{3}{c|}{Results:} \\
+\textbf{Ours} & $\to$ & \textbf{date: 8 mo: 12 year: 2019}\\% &  & \textbf{} & $\to$ & \textbf{Watson, James (Dr)} \\
+%% Rollout & $\to$ & date: 8 mo: 1282019\\% &  &  & $\to$ & Watson, James \\
+%% Beam w/value & $\to$ & date: 8 mo: 12 year:2019\\% &  &  & $\to$ & Watson, JamesDr \\
+%% Beam & $\to$ & date: 8 mo: 12 year:\\% &  &  & $\to$ & Watson, James ( \\
+RobustFill & $\to$ & date:12/8/2019\\% &  &  & $\to$ & Dr James  Watson \\ \cline{1-3} \cline{5-7}
+\cline{1-3}
+\end{tabular}
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1}
+}
+\end{frame}
 
 
 
-\begin{frame}{Vision}
+%% \begin{frame}{Vision}
 
 
-   \underline{More human-like machine intelligence}\\%Flexibly adapting to new problem domains:
-   \begin{itemize}
-   \item    Acquiring a domain-specific representation (DSL)
-     \item Learning  to use that representation (recognition model)
-   \end{itemize}
-   DreamCoder: an algorithm for jointly realizing these goals
+%%    \underline{More human-like machine intelligence}\\%Flexibly adapting to new problem domains:
+%%    \begin{itemize}
+%%    \item    Acquiring a domain-specific representation (DSL)
+%%      \item Learning  to use that representation (recognition model)
+%%    \end{itemize}
+%%    DreamCoder: an algorithm for jointly realizing these goals
 
    
 
 
 
-   \hspace{-1cm}\includegraphics[width = 12cm]{ecFigures/finale.png}
+%%    \hspace{-1cm}\includegraphics[width = 12cm]{ecFigures/finale.png}
 
-   \pause
+%%    \pause
 
-   \Huge \centering \textbf{The End.}
-  \end{frame}
+%%    \Huge \centering \textbf{The End.}
+%%   \end{frame}
 
 \end{document}
