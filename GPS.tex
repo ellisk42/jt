@@ -941,6 +941,78 @@ $\underbrace{-\log \probability\left[\text{Lib} \right]}_{\text{size of library}
 
   \end{frame}
 
+\begin{frame}{}
 
+  \centering
+  \Huge
+  the Schmidhuber universe
+\end{frame}
+
+\begin{frame}{POWERPLAY}
+
+  Idea: bootstrap a general problem solver ``out of thin air''
+
+  \pause
+
+  POWERPLAY Algorithm:
+
+  1. start with a problem-solver (neural net, program, ...)
+
+  2. initialize a set of problems. starts out empty
+
+  \pause
+  
+  3. search for a (problem, problem-solver') pair such that:
+  
+  (i) the current problem-solver cannot solve the problem
+  
+  (ii) BUT, problem-solver' \emph{can} solve the problem
+  
+  (iii) AND, problem-solver' solves everything else in the set of problems
+
+  \pause
+  
+  4. update the problem-solver to problem-solver'; add the problem to the set of problems; go back to step (3)
+
+  \pause
+
+  \messageOverlay{Important point:\\
+  a ``new problem'' can also be just solving old problems more efficiently}
+\end{frame}
+
+\begin{frame}{POWERPLAY on a recurrent network}
+
+  \includegraphics[width = 0.9\textwidth]{figures/powerplay}
+
+  \pause
+
+  \messageOverlay{finding a new problem-solver (network):\\
+    either compress current problem-solver (smaller/fewer weights),\\
+    or invent new problem to be solved.\\
+    POWERPLAY randomly mutates weights/topology
+  }
+
+\end{frame}
+
+\begin{frame}{POWERPLAY demo}
+
+  Learn to move around a ``fovea.'' 24-dimensional input, 8 outputs (cardinal direction+step size)
+
+  \includegraphics[width = 0.8\textwidth]{figures/powerPlayFovea.png}
+
+\end{frame}
+
+\begin{frame}{Sparsification (+ spontaneous modularization)}
+  Typically $\approx 50\%$ of network weights used for each task
+  
+\centering  \includegraphics[width = 0.9\textwidth]{figures/ppcompression}
+  
+\end{frame}
+
+\begin{frame}{Words of caution}
+  ``It may not be advisable to let a general variant of  POWERPLAY loose in an uncontrolled situation,e.g., on a multi-computer network on the internet, possibly with access to control of physical devices, and the potential to acquire additional computational and physical resources... This type of artificial curiosity/creativity, however, may conflict with human intentions on occasion.  On the other hand, unchecked curiosity may sometimes also be harmful or fatal to the learning system itself -- curiosity can kill the cat.''
+
+  \emph{(from the conclusion of the POWERPLAY paper)}
+\end{frame}
 
 \end{document}
