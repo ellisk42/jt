@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{bbm}
 \usepackage{verbatim}
+\usepackage{phonrule}
 %\usepackage{tipa}
 \usepackage{tikz}
 \usetikzlibrary{fit}
@@ -167,44 +168,113 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   }
 \end{frame}
 
-\begin{frame}{What computational substrates can contribute to this picture?}
-  Three AI traditions: Symbolic, Probabilistic, Neural
+\begin{frame}{What computational frameworks can \\contribute to this picture?}
+
+  \Wider[5em]{\begin{center}
+      \begin{tabular}{ccc}
+        \multicolumn{3}{c}{Three AI traditions}\\\\
+        Symbolic&Probabilistic&Neural\\
+        \begin{tabular}{c}
+          \includegraphics[width = 3cm]{figures/deepBlue}\\
+          \includegraphics[width = 3cm]{figures/Mathematica}
+        \end{tabular}&
+        \begin{tabular}{c}
+          \includegraphics[width = 3cm]{figures/bayesianNetwork}\\
+          \includegraphics[width = 3cm]{figures/seismic}
+        \end{tabular}&
+        \begin{tabular}{c}
+          \includegraphics[width = 3cm]{figures/dqn2}\\
+          \includegraphics[width = 3cm]{figures/Alex2}
+        \end{tabular}
+      \end{tabular}
+  \end{center}}
+  
+  
 
   \pause
 
-  \Wider[5em]{
-    \textbf{Program induction}: roots in the works of Solomonoff, Fodor, McCarthy. Combines and complements these three traditions.
+%  \Wider[5em]{
+    \textbf{Program induction}: %% roots in the works of Solomonoff, Fodor, McCarthy.
+    agents that learn by writing their own code
 
-    \includegraphics[width = 0.8\textwidth]{../ecPaper/Brendan.jpg}\hspace*{-0.7\textwidth}
-    \pause
-    \vspace{1cm}    
-    \includegraphics[width = 0.8\textwidth]{../ecPaper/theory}
-  }
+    strong generalization
 
-  \pause
+    data efficiency
 
-  \messageOverlay{my work:\\%% \\\phantom{test} how program induction can contribute to the engineering of machine intelligence\\
-    %% in engineering terms:\\
-    \phantom{test} how learning can make program synthesis more scalable \& practical\\
-    \phantom{test} how program synthesis can contribute to machine intelligence
-   } 
+    interpretability
+
+    compositional reuse
+
+    universal Turing-computable expressiveness
+    %Combines and complements these three traditions
+%  }
+
+  %% \pause
+
+  %% \messageOverlay{my work:\\%% \\\phantom{test} how program induction can contribute to the engineering of machine intelligence\\
+  %%   %% in engineering terms:\\
+  %%   \phantom{test} how learning can make program synthesis more scalable \& practical\\
+  %%   \phantom{test} how program synthesis can contribute to machine intelligence
+  %%  } 
   
   
 
 \end{frame}
 
-\begin{frame}[fragile]{Perception, Learning-to-Learn, Synthesizing models}
+\begin{frame}{Why didn't this old idea work?}
+  Program induction goes back to 1956 Dartmouth Workshop that founded the field of AI
+
+  \Wider[4em]{
+    \begin{tabular}{ccc}
+      \includegraphics[height = 2.5cm]{figures/Dartmouth}&
+      \includegraphics[height = 2.5cm]{figures/Dartmouth2}&
+      \includegraphics[height = 2.5cm]{figures/Dartmouth3}
+    \end{tabular}
+  }
+\end{frame}
+
+\begin{frame}{Why will it work this time?}
+
+  better toolkits:
+  \begin{itemize}
+  \item \textbf{probabilistic} methods for uncertainty and learning-to-learn
+  \item \textbf{neural} methods for guiding combinatorial search
+  \item \textbf{symbolic} methods, from the \textbf{programming languages} community
+    \begin{itemize}
+    \item maturing \textbf{program synthesis} techniques
+    \item type systems, program analysis, constraint solving, ...
+    \end{itemize}   
+  \end{itemize}
+
+  \pause
+
+  better problems:
+  \begin{itemize}
+  \item inverse perception, analysis-by-synthesis
+  \item learning models
+  \item learning to learn
+  \item natural language$\to $code
+  \item programming by examples, computer-aided-programming
+  \end{itemize}
+
+  \end{frame}
+
+\begin{frame}[fragile]{Perception, Synthesizing models, Learning-to-Learn}
 
   Theme \#1: high-level scene understanding, pixels$\to $programs %going from high-dimensional percepts to symbolic program representations
 
   \only<1>{\includegraphics[width = \textwidth]{graphicsTeaser.pdf}}
   \only<2->{{\centering\includegraphics[width = 0.6\textwidth]{assets/we_are_cool_4.png}}}
   
-  \only<2->{Theme \#2: Learning to synthesize programs}
-  \only<2>{\includegraphics[width = 0.9\textwidth]{statement/taskbar2.png}}
-  \only<3->{\includegraphics[width = 1\textwidth]{statement/taskbar_short.png}}
-  \only<3->{Theme \#3: Synthesizing human-understandable models}
-  \only<3>{\includegraphics[width = \textwidth]{phonology/qualitativeSupplement2.pdf}}
+  \only<2>{Theme \#2: Synthesizing human-understandable models}
+  \only<2>{{\centering\phantom{this is a test}\includegraphics[width = 0.6\textwidth]{phonology/qualitativeSupplement2.pdf}}}
+  \only<3->{\vspace{-1cm}Theme \#2: Synthesizing interpretable models\includegraphics[width = 0.15\textwidth]{phonology/qualitativeSupplement2.pdf}}
+  
+  \only<3->{Theme \#3: Learning to synthesize programs}
+  \only<3>{\includegraphics[width = 0.9\textwidth]{statement/taskbar2.png}}
+
+%  \only<3->{\includegraphics[width = 1\textwidth]{statement/taskbar_short.png}}
+
 \end{frame}
 
 \begin{frame}{High-level, abstract visual abilities}
@@ -217,19 +287,41 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 
   \begin{tabular}{ccc}
-    \includegraphics[width = 0.3\textwidth]{figures/textile}&
-    \includegraphics[width = 0.3\textwidth]{figures/mce}&
-    \visible<2->{\includegraphics[width = 0.3\textwidth]{figures/rnn}}\\
-    \visible<2->{\includegraphics[width = 0.3\textwidth]{figures/graphicalModel}}&
-    \visible<3->{\includegraphics[width = 0.3\textwidth]{figures/dinner}}&
-    \visible<3->{\includegraphics[width = 0.3\textwidth]{figures/aqueduct}}\\
-    \visible<4->{\hspace*{-1cm}\includegraphics[width = 0.4\textwidth]{figures/bg.png}}&
-    \visible<5->{\includegraphics[width = 0.3\textwidth]{figures/CAD_laptop}}&
-    \visible<6->{\includegraphics[width = 0.3\textwidth]{figures/fractal_tree}}&
+    \begin{tabular}{c}
+      ...in art
+      \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 0.3\textwidth]{figures/textile}
+      \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 0.3\textwidth]{figures/mce}
+      \end{tabular}\\
+%    \visible<3->{\includegraphics[width = 0.3\textwidth]{figures/dinner}}&
+    \begin{tabular}{c}
+      ...in engineering
+      \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 0.3\textwidth]{figures/aqueduct}
+    \end{tabular}&
+%    \visible<4->{\hspace*{-1cm}\includegraphics[width = 0.4\textwidth]{figures/bg.png}}&
+    \begin{tabular}{c}
+      \includegraphics[width = 0.3\textwidth]{figures/CAD_laptop}
+    \end{tabular}\\
+    \begin{tabular}{c}
+      ...in AI
+    \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 0.3\textwidth]{figures/rnn}
+    \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 0.3\textwidth]{figures/graphicalModel}
+      \end{tabular}
+    
+ %   \visible<6->{\includegraphics[width = 0.3\textwidth]{figures/fractal_tree}}&
   \end{tabular}
 
-  \visible<7->{
-    \messageOverlay{why?\\\phantom{te}impute missing objects, extrapolate percepts,\\\phantom{te}learn visual concepts (`arch', `spiral', HMM),\\\phantom{te}assist graphic design, assist 3D modeling\\how?\\\phantom{te}Bayesian inference of graphics program conditioned on image,\\\phantom{te}+program synthesis\\\phantom{te}+learning}
+  \visible<2->{
+    \messageOverlay{why?\\\phantom{te}impute missing objects, extrapolate percepts,\\\phantom{te}learn visual concepts (`arch', `spiral', `Ising model'),\\\phantom{te}assist graphic design, assist 3D modeling\\how?\\\phantom{te}Bayesian inference of graphics program conditioned on image,\\\phantom{te}+program synthesis\\\phantom{te}+learning}
   }
 \end{frame}
 
@@ -330,7 +422,7 @@ rectangle(...)
     
     \pause
     \draw[->, very thick, red] ([yshift = -15,xshift=3]observation.east) to[out = -30,in = -150] node[midway,yshift = -19,xshift=0]{{\small \begin{tabular}{l}
-          learning+ \\SMC
+          learning+ \\stochastic search
     \end{tabular}}} ([yshift = -15]trace.west);
 
     \draw[->, very thick, red] ([yshift = -15,xshift=0]trace.east) to[out = -30,in = -150] node[midway,yshift = -23,xshift=14]{{\small \begin{tabular}{l}
@@ -356,88 +448,88 @@ rectangle(...)
   \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Parsing images into specs (\LaTeX~TikZ commands)}
+%% \begin{frame}{Parsing images into specs (\LaTeX~TikZ commands)}
 
-{\footnotesize  Neurally Guided Procedural Modeling (Ritchie et al 2016) + \\Attend, Infer, Repeat (Eslami et al 2016)}
-  \vspace{-0.5cm}
-  \begin{center}
-    \begin{tabular}{c}
-\raisebox{-.5\height}{    \includegraphics[width = 0.8\textwidth]{../TikZpaper/architecture.pdf}            }
-      \end{tabular}
+%% {\footnotesize  Neurally Guided Procedural Modeling (Ritchie et al 2016) + \\Attend, Infer, Repeat (Eslami et al 2016)}
+%%   \vspace{-0.5cm}
+%%   \begin{center}
+%%     \begin{tabular}{c}
+%% \raisebox{-.5\height}{    \includegraphics[width = 0.8\textwidth]{../TikZpaper/architecture.pdf}            }
+%%       \end{tabular}
 
-  \end{center}
+%%   \end{center}
 
-    \newcommand{\noisySize}{0.12\textwidth}
-    \visible<2->{
-\hspace{0.1\textwidth}      \begin{minipage}[t]{\noisySize}
-        \centering\includegraphics[width = \textwidth]{TikZfigures/expert-60-reduced.png}\\
-                                  {\small     hand drawing}
-      \end{minipage}\hspace{0.05\textwidth}%
-      \begin{minipage}[t]{\noisySize}
-        \centering\includegraphics[width = \textwidth]{TikZfigures/60-1-reduced.png}\\
-                                  {\small noisy \\rerender}
-      \end{minipage}}%
-    %% \visible<3->{\begin{minipage}{0.35\textwidth}
-    %%     \begin{flushright}
-    %%       \textbf{Learned distance metric}\\
-    %%       \small    Serves as likelihood surrogate
-    %%       \begin{align*}
-    %%         \displaystyle\qquad    -\log L_{\text{learned}}(\text{render}&(S_1)|\text{render}(S_2))\approx\\& |S_1 - S_2| + |S_2 - S_1|
-    %%       \end{align*}
-    %%       $S_1$: noisy render\\
-    %%       $S_2$: nonnoisy render
-    %%     \end{flushright}
-    %% \end{minipage}}%
-    \hspace{0.2\textwidth}%
-    \only<3>{\begin{minipage}[c]{0.3\textwidth}
-\vspace{0.4cm}      \includegraphics[width = 0.8\textwidth]{TikZfigures/evaluationPhase1}
-    \end{minipage}}
-        \only<4>{\begin{minipage}[c]{0.3\textwidth}
-\vspace{0.4cm}      \includegraphics[width = 0.8\textwidth]{TikZfigures/evaluationPhase2}
-    \end{minipage}}
-\end{frame}
+%%     \newcommand{\noisySize}{0.12\textwidth}
+%%     \visible<2->{
+%% \hspace{0.1\textwidth}      \begin{minipage}[t]{\noisySize}
+%%         \centering\includegraphics[width = \textwidth]{TikZfigures/expert-60-reduced.png}\\
+%%                                   {\small     hand drawing}
+%%       \end{minipage}\hspace{0.05\textwidth}%
+%%       \begin{minipage}[t]{\noisySize}
+%%         \centering\includegraphics[width = \textwidth]{TikZfigures/60-1-reduced.png}\\
+%%                                   {\small noisy \\rerender}
+%%       \end{minipage}}%
+%%     %% \visible<3->{\begin{minipage}{0.35\textwidth}
+%%     %%     \begin{flushright}
+%%     %%       \textbf{Learned distance metric}\\
+%%     %%       \small    Serves as likelihood surrogate
+%%     %%       \begin{align*}
+%%     %%         \displaystyle\qquad    -\log L_{\text{learned}}(\text{render}&(S_1)|\text{render}(S_2))\approx\\& |S_1 - S_2| + |S_2 - S_1|
+%%     %%       \end{align*}
+%%     %%       $S_1$: noisy render\\
+%%     %%       $S_2$: nonnoisy render
+%%     %%     \end{flushright}
+%%     %% \end{minipage}}%
+%%     \hspace{0.2\textwidth}%
+%%     \only<3>{\begin{minipage}[c]{0.3\textwidth}
+%% \vspace{0.4cm}      \includegraphics[width = 0.8\textwidth]{TikZfigures/evaluationPhase1}
+%%     \end{minipage}}
+%%         \only<4>{\begin{minipage}[c]{0.3\textwidth}
+%% \vspace{0.4cm}      \includegraphics[width = 0.8\textwidth]{TikZfigures/evaluationPhase2}
+%%     \end{minipage}}
+%% \end{frame}
 
-\begin{frame}{Learning to quickly synthesize programs}
-    Learn search policy $\pi (\text{program subspace} | \text{spec})$
-  \\Think of the subspace as an ``ansatz''
+%% \begin{frame}{Learning to quickly synthesize programs}
+%%     Learn search policy $\pi (\text{program subspace} | \text{spec})$
+%%   \\Think of the subspace as an ``ansatz''
 
-OBJECTIVE: Small subspace for tractability while also being likely to contain good programs
+%% OBJECTIVE: Small subspace for tractability while also being likely to contain good programs
 
-%  \vspace{0.7cm}
-\Wider[5em]{   \begin{tikzpicture}[scale=0.7]
-    \footnotesize
-    \node[anchor = west] at (0,5.25) {{ Entire program search space}};
-    %\footnotesize
-    \draw[fill = yellow,fill opacity = 0.15,draw = black] (0,0) rectangle (5,5);
-\pause
-\draw [fill = yellow, opacity = 0.2] (0,0)--(0,2)--(4,0)--(0,0);
-    \draw (0,2) -- node[below,sloped]{short progs} (4,0);
-    \draw (0,2) -- node[above,sloped]{long progs} (4,0);
-    \pause
+%% %  \vspace{0.7cm}
+%% \Wider[5em]{   \begin{tikzpicture}[scale=0.7]
+%%     \footnotesize
+%%     \node[anchor = west] at (0,5.25) {{ Entire program search space}};
+%%     %\footnotesize
+%%     \draw[fill = yellow,fill opacity = 0.15,draw = black] (0,0) rectangle (5,5);
+%% \pause
+%% \draw [fill = yellow, opacity = 0.2] (0,0)--(0,2)--(4,0)--(0,0);
+%%     \draw (0,2) -- node[below,sloped]{short progs} (4,0);
+%%     \draw (0,2) -- node[above,sloped]{long progs} (4,0);
+%%     \pause
     
 
-    \draw [fill = yellow, opacity = 0.6] (2.5,5)--(3.2,0)--(5,0)--(5,5);
-    \draw (2.5,5) -- node[above,sloped]{progs w/ reflections} (3.2,0);
-    \pause
+%%     \draw [fill = yellow, opacity = 0.6] (2.5,5)--(3.2,0)--(5,0)--(5,5);
+%%     \draw (2.5,5) -- node[above,sloped]{progs w/ reflections} (3.2,0);
+%%     \pause
     
-    \draw [fill = yellow, opacity = 0.4] (0,5)--(0,1)--(3,5);
-    \draw (0,1) -- node[above,sloped]{ progs w/ loops} (3,5);
-    \pause
+%%     \draw [fill = yellow, opacity = 0.4] (0,5)--(0,1)--(3,5);
+%%     \draw (0,1) -- node[above,sloped]{ progs w/ loops} (3,5);
+%%     \pause
     
-    \node(p1)[anchor =west ] at (5.0,3.5) {$\pi(\text{short, no loop/reflect}|S) = $};
-    \draw [fill = yellow, fill opacity = 0.2,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p1.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p1.east);
-    \node(p2)[anchor =west ] at ([yshift = -0.5cm]p1.west) {$\pi(\text{long, loops}|S) = $};
-    \draw [fill = yellow, fill opacity = 0.4,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p2.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p2.east);
-    \node(p3)[anchor =west ] at ([yshift = -0.5cm]p2.west) {$\pi(\text{long, no loop/reflect}|S) = $};
-    \draw [fill = yellow, fill opacity = 0.15,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p3.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p3.east);
-    \node(p4)[anchor =west ] at ([yshift = -0.5cm]p3.west) {$\pi(\text{long, reflects}|S) = $};
-    \draw [fill = yellow, fill opacity = 0.6,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p4.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p4.east);
-    \node(p5)[anchor =west ] at ([yshift = -0.5cm]p4.west) {\emph{etc.}};
-    \pause
-    \node at (15.2,3) {\includegraphics[width = 3.6cm]{TikZfigures/2policyComparison}};
-  \end{tikzpicture}}
+%%     \node(p1)[anchor =west ] at (5.0,3.5) {$\pi(\text{short, no loop/reflect}|S) = $};
+%%     \draw [fill = yellow, fill opacity = 0.2,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p1.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p1.east);
+%%     \node(p2)[anchor =west ] at ([yshift = -0.5cm]p1.west) {$\pi(\text{long, loops}|S) = $};
+%%     \draw [fill = yellow, fill opacity = 0.4,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p2.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p2.east);
+%%     \node(p3)[anchor =west ] at ([yshift = -0.5cm]p2.west) {$\pi(\text{long, no loop/reflect}|S) = $};
+%%     \draw [fill = yellow, fill opacity = 0.15,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p3.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p3.east);
+%%     \node(p4)[anchor =west ] at ([yshift = -0.5cm]p3.west) {$\pi(\text{long, reflects}|S) = $};
+%%     \draw [fill = yellow, fill opacity = 0.6,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p4.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p4.east);
+%%     \node(p5)[anchor =west ] at ([yshift = -0.5cm]p4.west) {\emph{etc.}};
+%%     \pause
+%%     \node at (15.2,3) {\includegraphics[width = 3.6cm]{TikZfigures/2policyComparison}};
+%%   \end{tikzpicture}}
 
-\end{frame}
+%% \end{frame}
 
 \begin{frame}{Top-down influences on perception}
   \begin{tabular}{ccc}
@@ -448,22 +540,204 @@ OBJECTIVE: Small subspace for tractability while also being likely to contain go
   \end{tabular}
 
   \only<2>{
-    \begin{align*}      
-      &\hat{S}(I) = \argmax_{S\in \mathcal{F}(I)} \probability(I | \text{render}(S))\times \probability_{\beta} [ \text{program}(S)] \\
-      %% \end{equation}
-      %% \begin{equation}
-      &  \beta^* = \argmax_{\beta} \expect \left[ \log \frac{\probability_{\beta} [\text{program}(S)]\times \probability(I|\text{render}(S))}{\sum_{S'\in \mathcal{F}(I)} \probability_{\beta} [\text{program}(S')]\times \probability(I|\text{render}(S'))} \right]
-    \end{align*}
+    \begin{tabular}{cc}
+      \begin{tabular}{c}
+        \begin{tikzpicture}
+        \node[obs](i) at (0,0) {img};
+        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
+        \node[latent](h) at ([yshift=0.8cm]p.north) {prior};
+        \draw[->] (h.south) -- (p.north);
+        \draw[->] (p.south) -- (i.north);
+        \node[obs](i) at ([xshift=0.8cm]i.east) {img};
+        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
+        \draw[->] (h.south) -- (p.north);
+        \draw[->] (p.south) -- (i.north);
+        \node[obs](i) at ([xshift=-1.8cm]i.west) {img};
+        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
+        \draw[->] (p.south) -- (i.north);
+        \draw[->] (h.south) -- (p.north);
+      \end{tikzpicture}
+        \end{tabular}&
+      \begin{tabular}{l}
+        $\text{predicted program} = $\\$\argmax_{\text{progs}}\probability\left[\text{img}|\text{prog} \right]\probability\left[\text{prog}|\text{prior} \right]$
+        \end{tabular}
+      \end{tabular}
   }
 \end{frame}
 
 \begin{frame}{Example programs}
- \includegraphics[width = \textwidth]{../TikZpaper/exampleProgramsSpotlight.pdf}
+ \includegraphics[width = 0.5\textwidth]{exampleTikZ.pdf}
   \pause
   \messageOverlay{Learning played a role...\\
     but much of this system is specific to 2-D graphics\\\\
   Goal: a general algorithm for learning to synthesize programs}
 \end{frame}
+
+\begin{frame}{}
+
+  \end{frame}
+
+\begin{frame}[fragile]{Synthesizing human-understandable models of language}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.75]
+      \input{phonology/languageWheel50.tex}
+    \end{tikzpicture}
+  \end{center}
+  \pause
+  \messageOverlay{\large many languages, 70 diverse benchmarks\\\\
+\large children and linguists can learn from sparse data\\\\
+\large  linguists can communicate their knowledge}
+\end{frame}
+
+\begin{frame}{Few-shot language learning experiment}
+  Farsi:
+
+  \vspace{1cm}
+  
+  \begin{tabular}{rll}
+    &\multicolumn{1}{l}{singular}&\multicolumn{1}{l}{plural}\\
+      ``lip''& \phantom{tt}\textipa{l\ae b}&\phantom{tt}\textipa{l\ae ban}\\
+      ``gazelle''& \phantom{tt}\textipa{ahu}& \phantom{tt}\textipa{ahuan}\\
+       ``mother''& \phantom{tt}\textipa{valede}& \only<1>{\phantom{tt}???}\only<2->{\phantom{tt}\textipa{valedean}}
+    \end{tabular}
+%  \end{tabular}
+
+%  \only<6>{
+%  \messageOverly{\textbf{morphology} (subparts of words) + \textbf{phonology} (pronunciation)}}
+
+\end{frame}
+
+\begin{frame}{Few-shot language learning experiment}
+  Mandarin:
+
+  \vspace{1cm}
+
+  \begin{tabular}{rcc}
+    & adjective & adverb\\
+    ``slow'' & \textipa{man} & \textipa{manmand@}\\
+    ``fast'' & \textipa{kuai} & \textipa{kuaikuaid@}\\
+    ``small'' & \textipa{xiao} & \only<2->{\textipa{xiaoxiaod@}}\only<1>{???}
+  \end{tabular}
+
+  \vspace{1cm}
+  
+  \only<3>{stem+stem+\textipa{d@}}
+
+  \end{frame}
+
+\begin{frame}{Few-shot language learning experiment}
+  Serbo-Croatian:
+  \vspace{1cm}
+  
+  \begin{tabular}{rlll}
+    &\multicolumn{1}{c}{masculine}&\multicolumn{1}{c}{feminine}&\only<5->{stem (unobserved)}\\
+    ``rich''&\textipa{bogat}&\textipa{bogata}&\only<5->{bogat}\\
+    ``mild''&\textipa{blag}&\textipa{blaga}&\only<5->{blag}\\
+    ``green''&\textipa{zelen}&\only<1>{???}\only<2->{\textipa{zelena}}&\only<5->{zelen}\\
+    \only<4->{``clear''}&\only<4>{???}\only<5>{\textbf{yasan}}& \only<4->{yasna}&\only<5->{yasn}\\  
+  \end{tabular}
+
+  \vspace{1cm}
+  
+  \only<3->{\emph{add ``a'' to stem to make feminine}}
+  
+  \only<5->{
+    \emph{insert ``a'' between two word-final consonants}\\
+    \phonb{$\varnothing$}{a}{C}{C\#}
+  }
+
+\end{frame}
+
+
+\begin{frame}{Diverse Linguistic Phenomena}
+  \includegraphics[width = \textwidth]{phonology/Croatian}
+\end{frame}
+\begin{frame}{Languages with tones}
+  \includegraphics[width = \textwidth]{phonology/tonal}
+\end{frame}
+\begin{frame}{Vowel ``harmony''}
+  \includegraphics[width = \textwidth]{phonology/harmony}
+\end{frame}
+
+
+\begin{frame}{57 languages drawn from 70 datasets}
+  \includegraphics[width = \textwidth]{phonology/figures/languageComparison}
+\end{frame}
+\begin{frame}[fragile]{Distilling higher-level knowledge}
+  \begin{tikzpicture}
+\input{languageHierarchy.tex}
+    \end{tikzpicture}
+  \end{frame}
+\begin{frame}{Distilling higher-level knowledge}
+  \Wider[5em]{
+    \begin{tabular}{rl}
+      \begin{tabular}{c}
+        Discovered\\ universal grammar \\schema
+      \end{tabular}&
+      \begin{tabular}{l}
+        \multicolumn{1}{c}{\textbf{consonant/vowel distinction}}\\
+        sounds$\gets$ [-vowel]\\
+        sounds$\gets$ [+vowel]\\
+        \emph{a set of sounds is commonly}\\\emph{ all consonants,}\\\emph{ or all vowels}
+      \end{tabular}\\
+      \begin{tabular}{c}
+        w/o learned\\
+        universal grammar
+      \end{tabular}&
+      Tibetan:\phantom{test}    \phonl{[-nasal]}{$\varnothing $}{\#}\\\\
+      \begin{tabular}{c}
+        w/ learned\\
+        universal grammar
+      \end{tabular}&
+      \phantom{Tibetan:test} \phonb{[-vowel]}{$\varnothing $}{\# }{[-vowel]}
+
+%% %    Kerewe&    \phonb{[ ]}{[ +hiTone ]}{[ +hiTone ] [ ] }{ [ ]}
+%%   \end{tabular}&
+      
+    \end{tabular}
+%%     \begin{tabular}{cll}
+%%     \toprule&
+%%   \multicolumn{1}{c}{Without learned universal grammar}&
+%%   \multicolumn{1}{c}{With learned universal grammar}\\\midrule \\
+%%   \begin{tabular}{l}
+%%     \multicolumn{1}{c}{\textbf{consonant/vowel distinction}}\\
+%%     sounds$\gets$ [-vowel]\\
+%%     sounds$\gets$ [+vowel]\\
+%%     \emph{a set of sounds is commonly}\\\emph{ all consonants,}\\\emph{ or all vowels}
+%%   \end{tabular}&
+%%   \begin{tabular}{rl}
+%%     Tibetan&    \phonl{[-nasal]}{$\varnothing $}{\#}
+%% %    Kerewe&    \phonb{[ ]}{[ +hiTone ]}{[ +hiTone ] [ ] }{ [ ]}
+%%   \end{tabular}&
+%%   \begin{tabular}{l}
+%%     
+%%   \end{tabular}
+%%   \\\\\midrule   
+%%   \begin{tabular}{l}
+%%     \multicolumn{1}{c}{\textbf{nasal place assimilation}}\\
+%%     $[\text{+nasal}]\to \alpha\text{place}$ / %\phonb{[+nasal]}{$\alpha$place}{\texttt{trigger}}{\phonfeat[c]{C\\$\alpha$place}}
+%%     \underline{\phantom{aa}}\phonfeat[c]{C\\$\alpha$place}\\
+%%     \emph{nasals (``n'', ``m'', ...) move to the place in the}\\
+%%       \emph{ mouth where the next consonant is}
+%%   \end{tabular}
+%%   &
+  
+%%   \begin{tabular}{rl}    
+%%     Bukusu&    \phonr{\textipa{\~n}}{$\alpha$place}{[$\alpha$place]}\\\\
+%%   \end{tabular}
+%%   &
+%%   \begin{tabular}{l}
+%%     \phonr{[+nasal]}{$\alpha$place}{\phonfeat[c]{C\\$\alpha$place}}\\\\
+%%   \end{tabular}
+%% \end{tabular}
+  }
+%\includegraphics[width = \textwidth]{phonology/universal}
+\end{frame}
+
+
+
+
+
 
 \begin{frame}{Growing domain-specific knowledge}
   
@@ -907,6 +1181,181 @@ new neural inference network for program synthesis
 
 %% \end{frame}
 
+%% \begin{frame}{}
+%%   \only<1>{\includegraphics[width = \textwidth]{figures/compressionAnimation/1.jpg}}
+%%   \only<2>{\includegraphics[width = \textwidth]{figures/compressionAnimation/2.jpg}}
+%%   \only<3>{\includegraphics[width = \textwidth]{figures/compressionAnimation/3.jpg}}
+%%   \only<4>{\includegraphics[width = \textwidth]{figures/compressionAnimation/4.jpg}}
+%%   \only<5>{\includegraphics[width = \textwidth]{figures/compressionAnimation/5.jpg}}
+%% %  \only<6>{\includegraphics[width = \textwidth]{figures/compressionAnimation/6.jpg}}
+%%   \only<7>{\includegraphics[width = \textwidth]{figures/compressionAnimation/7.jpg}}
+%%   \only<8>{\includegraphics[width = \textwidth]{figures/compressionAnimation/8.jpg}}
+%%   \only<9>{\includegraphics[width = \textwidth]{figures/compressionAnimation/9.jpg}}
+%%   \only<10>{\includegraphics[width = \textwidth]{figures/compressionAnimation/10.jpg}}
+%%   \only<11>{\includegraphics[width = \textwidth]{figures/compressionAnimation/11.jpg}}
+%%   \only<12>{\includegraphics[width = \textwidth]{figures/compressionAnimation/12.jpg}}
+%%   \only<13>{\includegraphics[width = \textwidth]{figures/compressionAnimation/13.jpg}}
+%%   \only<14>{\includegraphics[width = \textwidth]{figures/compressionAnimation/14.jpg}}
+%%   \only<15>{\includegraphics[width = \textwidth]{figures/compressionAnimation/15.jpg}}
+%%   \only<16>{\includegraphics[width = \textwidth]{figures/compressionAnimation/16.jpg}}
+%%   \only<17>{\includegraphics[width = \textwidth]{figures/compressionAnimation/17.jpg}}
+%%   \only<18>{\includegraphics[width = \textwidth]{figures/compressionAnimation/18.jpg}}
+%%   \only<19>{\includegraphics[width = \textwidth]{figures/compressionAnimation/19.jpg}}
+%%   \only<20>{\includegraphics[width = \textwidth]{figures/compressionAnimation/20.jpg}}
+%%   \only<21>{\includegraphics[width = \textwidth]{figures/compressionAnimation/21.jpg}}
+%%   \only<22>{\includegraphics[width = \textwidth]{figures/compressionAnimation/22.jpg}}
+%%   \only<23>{\includegraphics[width = \textwidth]{figures/compressionAnimation/23.jpg}}
+%%   \only<24>{\includegraphics[width = \textwidth]{figures/compressionAnimation/24.jpg}}
+%%   \only<25>{\includegraphics[width = \textwidth]{figures/compressionAnimation/25.jpg}}
+%%   \only<26>{\includegraphics[width = \textwidth]{figures/compressionAnimation/26.jpg}}
+%% \end{frame}
+
+\newcommand{\smallTree}[5]{
+  \node(root#1) at (#2) {};
+  \node[anchor=north](r#1) at ([xshift=0.5cm,yshift=-0.5cm]root#1) {#5};
+  \node(l#1) at ([xshift=-0.5cm,yshift=-0.5cm]root#1) {};
+  \node(ll#1) at ([xshift=-0.5cm,yshift=-0.5cm]l#1) {#3};
+  \node(lr#1) at ([xshift=0.5cm,yshift=-0.5cm]l#1) {#4};
+
+  \draw (root#1.south) -- (r#1.north);
+  \draw (root#1.south) -- (l#1.north);
+  \draw (l#1.north) -- (ll#1.north);
+  \draw (l#1.north) -- (lr#1.north);
+}
+\newcommand{\appliedTree}[6]{
+  \smallTree{#1}{#2}{#3}{#4}{#5};
+  \node(a#1) at ([yshift=0.5cm]root#1.south) {$\lambda x$};
+  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
+  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#6};
+
+  \draw (a#1.south) -- (root#1.south);
+  \draw (argument#1.north) -- (ar#1.south);
+  \draw (a#1.north) -- (ar#1.south);
+}
+\newcommand{\chooseAny}[3]{
+  \node[anchor=north](any) at (#1) {\textsc{\small Any}};
+  \node(l) at ([xshift=-0.25cm,yshift=-0.5cm]any.south) {#2};
+  \node(r) at ([xshift=0.25cm,yshift=-0.5cm]any.south) {#3};
+  \draw (any.south)--(l.north);
+  \draw (any.south)--(r.north);  
+}
+\newcommand{\chooseTreeTiny}[3]{
+  \node(a#1) at (#2) {$\lambda z$};
+  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
+  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#3};
+
+  \chooseAny{[yshift=-0.2cm]a#1.south}{#3}{$z$}
+
+  \draw (a#1.south) -- (any.north);
+  \draw (argument#1.north) -- (ar#1.south);
+  \draw (a#1.north) -- (ar#1.south);
+}  
+
+\newcommand{\chooseTreeSmall}[7]{
+  \node(root#1) at (#2) {};
+  \node[anchor=north](r#1) at ([xshift=0.5cm,yshift=-0.5cm]root#1) {#5};
+  \node(l#1) at ([xshift=-0.5cm,yshift=-0.5cm]root#1) {};
+  \chooseAny{[xshift=-0.5cm,yshift=-0.5cm]l#1}{#3}{#4};
+  \draw (l#1.north) -- (any.north);
+%  \node(ll#1) at ([xshift=-0.5cm,yshift=-0.5cm]l#1) {};
+  \node(lr#1) at ([xshift=0.5cm,yshift=-0.5cm]l#1) {#5};
+
+  \draw (root#1.south) -- (r#1.north);
+  \draw (root#1.south) -- (l#1.north);
+  \draw (l#1.north) -- (lr#1.north);
+
+  \node(a#1) at ([yshift=0.5cm]root#1.south) {$\lambda y$};
+  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
+  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#7};
+
+  \draw (a#1.south) -- (root#1.south);
+  \draw (argument#1.north) -- (ar#1.south);
+  \draw (a#1.north) -- (ar#1.south);
+}
+\newcommand{\chooseTree}[6]{
+  \node(root#1) at (#2) {};
+  \chooseAny{[xshift=0.75cm,yshift=-0.75cm]root#1}{#4}{#5};
+  \draw (root#1.south) -- (any.north);  
+  \node(l#1) at ([xshift=-0.75cm,yshift=-0.75cm]root#1) {};
+  \node(ll#1) at ([xshift=-0.75cm,yshift=-0.75cm]l#1) {#3};
+  \chooseAny{[xshift=0.5cm,yshift=-0.5cm]l#1}{#4}{#5};
+  \draw (l#1.north) -- (any.north);
+
+  \draw (root#1.south) -- (l#1.north);
+  \draw (l#1.north) -- (ll#1.north);
+
+
+  \node(a#1) at ([yshift=0.5cm]root#1.south) {$\lambda x$};
+  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
+  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#6};
+
+  \draw (a#1.south) -- (root#1.south);
+  \draw (argument#1.north) -- (ar#1.south);
+  \draw (a#1.north) -- (ar#1.south);
+}
+  
+  
+\begin{frame}[fragile]{version space}
+  $5 + 5$\\\pause\texttt{(+ 5 5)}\pause
+  \begin{tikzpicture}
+    \smallTree{start}{0,0}{+}{5}{5};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{version space}
+  \centering
+  \begin{tikzpicture}[scale=1]
+    \smallTree{start}{0,0}{+}{5}{5};
+    \pause
+    \appliedTree{r1}{4,-0.5}{+}{5}{$x$}{5};
+    \pause
+    \appliedTree{r2}{0,2}{$+$}{$x$}{5}{5};
+    \pause
+    \appliedTree{r3}{-4,-0.5}{$+$}{$x$}{$x$}{5};
+    \pause
+    \appliedTree{r4}{0,-3}{$+$}{5}{5}{5};
+    \pause
+
+    \draw [dashed,orange, very thick](rootstart.south) to[out=10,in=150] (arr1.south);
+    \draw [dashed,orange, very thick](rootstart.south) to[out=20,in=-90] ([xshift=2cm,yshift=-1cm]arr2.south) to[out=90,in=10] (arr2.south);
+    \draw [dashed,orange, very thick](rootstart.south) to[out=160,in=30] (arr3.south);
+    \draw [dashed,orange, very thick](rootstart.south) to[out=20,in=0] (arr4.south);
+
+    \node[anchor=south west](legend) at (-5,3) {legend};
+    \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.2cm]legend.south west)--([yshift=-0.2cm,xshift=0.5cm]legend.south west);
+    \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.5cm]legend.south west) {\small semantic equivalence};
+    \draw[rounded corners] (legend.north west) rectangle (se.south east);
+    
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{version space}
+  \begin{tikzpicture}
+    \node[anchor=south west](legend) at (-5,3) {legend};
+    \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.2cm]legend.south west)--([yshift=-0.2cm,xshift=0.9cm]legend.south west);
+    \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.9cm]legend.south west) {\small semantic equivalence};
+    \node[anchor=west](choosing) at ([yshift=-0.6cm]legend.south west) {{\textsc{\small Any}} \small nondeterministic choice};
+    \draw[rounded corners] (legend.north west) rectangle (choosing.south east);
+
+    \smallTree{start}{0,0}{+}{5}{5};
+    \chooseTree{L}{4,-1.5}{+}{5}{$x$}{5};
+    \draw [dashed,orange, very thick] (rootstart.south)    -- (arL.south);
+
+    \pause
+
+    \chooseTreeSmall{R}{-4,-1}{+}{$y$}{5}{5}{+};
+    \draw [dashed,orange, very thick] (rootstart.south)    -- (arR.south);
+
+    \pause
+
+    \chooseTreeTiny{fiber}{0,-3}{5};
+    
+    \draw [dashed,orange, very thick] (rstart.south)    -- (arfiber.south);
+    \draw [dashed,orange, very thick] (lrstart.south)    -- (arfiber.south);
+  \end{tikzpicture}
+
+\end{frame}
+
 \begin{frame}{Abstraction Sleep: Growing the library via refactoring}
   \centering
     \Wider[0em]{\begin{tikzpicture}[every node/.style={inner sep=1,outer sep=0,rounded corners,thick, scale=0.7}]
@@ -1332,10 +1781,12 @@ new neural inference network for program synthesis
     \begin{tabular}{rr}
 %        \multicolumn{1}{l}{\textbf{B}}\\
     \includegraphics[height = 0.3\textwidth]{../dreamcoder/figures/learningCurves/revision/depthVersusAccuracy_revision_MEAN.png}&
-    \includegraphics[height = 0.3\textwidth]{../dreamcoder/figures/learningCurves/revision/depthVersusAccuracy_revision_SIZE.png} \\\\
+    \visible<2>{\includegraphics[height = 0.3\textwidth]{../dreamcoder/figures/learningCurves/revision/depthVersusAccuracy_revision_SIZE.png}} \\\\
 \multicolumn{2}{c}{    \includegraphics[height = 1cm]{../dreamcoder/figures/learningCurves/revision/scatterLegend.png}}
     \end{tabular}
-    Dark$\to $Light: Early in learning$\to $Later in learning
+    Darker: Early in learning
+
+    Lighter: Later in learning
 
 \end{frame}
 
@@ -1395,12 +1846,12 @@ new neural inference network for program synthesis
   
 \end{frame}
 
-\begin{frame}{Interleaving policy+value+REPL in stochastic tree search}
-  c.f. AlphaGo, TD-Gammon
+%% \begin{frame}{Interleaving policy+value+REPL in stochastic tree search}
+%%   c.f. AlphaGo, TD-Gammon
 
-  \includegraphics[width = \textwidth]{assets/smc}
+%%   \includegraphics[width = \textwidth]{assets/smc}
 
-\end{frame}
+%% \end{frame}
 
 \begin{frame}{Scaling to long programs}
   Branching factor: $ > 1.3$ million per line of code
@@ -1442,38 +1893,70 @@ new neural inference network for program synthesis
 }
 \end{frame}
 
-\begin{frame}{Scaling to long programs}
-  Branching factor: $ > 400$ actions
-
-  Successfully synthesizes 40-action programs
-
-  \vspace{1cm}
-  
-  \Wider[5em]{
-\centering
-  \setlength{\tabcolsep}{2pt}
-  \renewcommand{\arraystretch}{1}
-  \footnotesize
-
-\begin{tabular}{|lll|}
-\cline{1-3}% \cline{5-6}
-\multicolumn{3}{|c|}{Spec:}\\% &  & \multicolumn{3}{c|}{Spec:} \\
-6/12/2003 & $\to$ & date: 12 mo: 6 year: 2003\\% &  & Dr Mary Jane  Lennon & $\to$ & Lennon, Mary Jane (Dr) \\
-3/16/1997 & $\to$ & date: 16 mo: 3 year: 1997 \\%&  & Mrs Isaac  McCormick & $\to$ & McCormick, Isaac (Mrs) \\ \cline{1-3} \cline{5-7} 
-\cline{1-3}\multicolumn{3}{|c|}{Held out test instance:}\\% &  & \multicolumn{3}{c|}{Held out test instance:} \\
-12/8/2019 & $\to$ & date: 8 mo: 12 year: 2019\\% &  & Dr James Watson & $\to$ & Watson, James (Dr) \\ \cline{1-3} \cline{5-7} 
-\cline{1-3}\multicolumn{3}{|c|}{Results:}\\% &  & \multicolumn{3}{c|}{Results:} \\
-\textbf{Ours} & $\to$ & \textbf{date: 8 mo: 12 year: 2019}\\% &  & \textbf{} & $\to$ & \textbf{Watson, James (Dr)} \\
-%% Rollout & $\to$ & date: 8 mo: 1282019\\% &  &  & $\to$ & Watson, James \\
-%% Beam w/value & $\to$ & date: 8 mo: 12 year:2019\\% &  &  & $\to$ & Watson, JamesDr \\
-%% Beam & $\to$ & date: 8 mo: 12 year:\\% &  &  & $\to$ & Watson, James ( \\
-RobustFill & $\to$ & date:12/8/2019\\% &  &  & $\to$ & Dr James  Watson \\ \cline{1-3} \cline{5-7}
-\cline{1-3}
-\end{tabular}
-  \setlength{\tabcolsep}{6pt}
-  \renewcommand{\arraystretch}{1}
-}
+\begin{frame}{Programmatic models of the physical world}
+  \begin{tabular}{rcc}
+    \begin{tabular}{c}
+      hinge
+    \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 3cm]{figures/hinge}
+    \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 3cm]{figures/laptopHinge}
+    \end{tabular}\\
+    \begin{tabular}{c}
+      gear
+    \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 3cm]{figures/gears}
+      \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 3cm]{figures/gear2}
+      \end{tabular}\\
+    \begin{tabular}{c}
+      doorknob
+    \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 3cm]{figures/doorknob}
+    \end{tabular}&
+    \begin{tabular}{c}
+      \includegraphics[width = 3cm]{figures/oldTheDoorknobs.jpg}
+    \end{tabular}
+  \end{tabular}
 \end{frame}
+
+%% \begin{frame}{Scaling to long programs}
+%%   Branching factor: $ > 400$ actions
+
+%%   Successfully synthesizes 40-action programs
+
+%%   \vspace{1cm}
+  
+%%   \Wider[5em]{
+%% \centering
+%%   \setlength{\tabcolsep}{2pt}
+%%   \renewcommand{\arraystretch}{1}
+%%   \footnotesize
+
+%% \begin{tabular}{|lll|}
+%% \cline{1-3}% \cline{5-6}
+%% \multicolumn{3}{|c|}{Spec:}\\% &  & \multicolumn{3}{c|}{Spec:} \\
+%% 6/12/2003 & $\to$ & date: 12 mo: 6 year: 2003\\% &  & Dr Mary Jane  Lennon & $\to$ & Lennon, Mary Jane (Dr) \\
+%% 3/16/1997 & $\to$ & date: 16 mo: 3 year: 1997 \\%&  & Mrs Isaac  McCormick & $\to$ & McCormick, Isaac (Mrs) \\ \cline{1-3} \cline{5-7} 
+%% \cline{1-3}\multicolumn{3}{|c|}{Held out test instance:}\\% &  & \multicolumn{3}{c|}{Held out test instance:} \\
+%% 12/8/2019 & $\to$ & date: 8 mo: 12 year: 2019\\% &  & Dr James Watson & $\to$ & Watson, James (Dr) \\ \cline{1-3} \cline{5-7} 
+%% \cline{1-3}\multicolumn{3}{|c|}{Results:}\\% &  & \multicolumn{3}{c|}{Results:} \\
+%% \textbf{Ours} & $\to$ & \textbf{date: 8 mo: 12 year: 2019}\\% &  & \textbf{} & $\to$ & \textbf{Watson, James (Dr)} \\
+%% %% Rollout & $\to$ & date: 8 mo: 1282019\\% &  &  & $\to$ & Watson, James \\
+%% %% Beam w/value & $\to$ & date: 8 mo: 12 year:2019\\% &  &  & $\to$ & Watson, JamesDr \\
+%% %% Beam & $\to$ & date: 8 mo: 12 year:\\% &  &  & $\to$ & Watson, James ( \\
+%% RobustFill & $\to$ & date:12/8/2019\\% &  &  & $\to$ & Dr James  Watson \\ \cline{1-3} \cline{5-7}
+%% \cline{1-3}
+%% \end{tabular}
+%%   \setlength{\tabcolsep}{6pt}
+%%   \renewcommand{\arraystretch}{1}
+%% }
+%% \end{frame}
 
 
 
