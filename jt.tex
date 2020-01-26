@@ -159,13 +159,13 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
       \includegraphics[height = 2cm]{figures/childPlaying}
     \end{tabular}
   }
-  \pause
-  \messageOverlay{- learning from modest data/experience\\
-    - communicating \& representing knowledge in understandable formats\\
-    - bootstrapping \& learning-to-learn\\
-    - creatively composing knowledge to produce new concepts and artifacts\\
-    \phantom{test}(\& compositionality)
-  }
+  %% \pause
+  %% \messageOverlay{- learning from modest data/experience\\
+  %%   - communicating \& representing knowledge in understandable formats\\
+  %%   - bootstrapping \& learning-to-learn\\
+  %%   - creatively composing knowledge to produce new concepts and artifacts\\
+  %%   \phantom{test}(\& compositionality)
+  %% }
 \end{frame}
 
 \begin{frame}{What computational frameworks can \\contribute to this picture?}
@@ -173,39 +173,39 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \Wider[5em]{\begin{center}
       \begin{tabular}{ccc}
         \multicolumn{3}{c}{Three AI traditions}\\\\
-        Symbolic&Probabilistic&Neural\\
-        \begin{tabular}{c}
+        \visible<2->{Symbolic}&\visible<3->{Probabilistic}&\visible<4->{Neural}\\
+        \visible<2->{\begin{tabular}{c}
           \includegraphics[width = 3cm]{figures/deepBlue}\\
           \includegraphics[width = 3cm]{figures/Mathematica}
-        \end{tabular}&
-        \begin{tabular}{c}
+        \end{tabular}}&
+        \visible<3->{\begin{tabular}{c}
           \includegraphics[width = 3cm]{figures/bayesianNetwork}\\
           \includegraphics[width = 3cm]{figures/seismic}
-        \end{tabular}&
-        \begin{tabular}{c}
+        \end{tabular}}&
+        \visible<4->{\begin{tabular}{c}
           \includegraphics[width = 3cm]{figures/dqn2}\\
           \includegraphics[width = 3cm]{figures/Alex2}
-        \end{tabular}
+        \end{tabular}}
       \end{tabular}
   \end{center}}
   
   
 
-  \pause
+  \visible<5->{
+    \messageOverlay{\textbf{Program induction}\\ %% roots in the works of Solomonoff, Fodor, McCarthy.
+    machines that learn, perceive, and reason,\\\phantom{test} by writing their own code
+    }
+  }
 
-%  \Wider[5em]{
-    \textbf{Program induction}: %% roots in the works of Solomonoff, Fodor, McCarthy.
-    agents that learn by writing their own code
+    %% strong generalization
 
-    strong generalization
+    %% data efficiency
 
-    data efficiency
+    %% interpretability
 
-    interpretability
+    %% compositional reuse
 
-    compositional reuse
-
-    universal Turing-computable expressiveness
+    %% universal Turing-computable expressiveness
     %Combines and complements these three traditions
 %  }
 
@@ -219,6 +219,24 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   
   
 
+\end{frame}
+
+\begin{frame}{Why program induction?}
+  \Wider[5em]{  \begin{tabular}{ccc}
+    \begin{tabular}{l}
+      strong generalization\\
+      +data efficiency
+    \end{tabular}&
+    \begin{tabular}{l}
+      interpretability\\
+    \end{tabular}
+    &\begin{tabular}{l}
+       universal expressivity\\
+     \end{tabular}\\
+    \includegraphics[width = 3cm]{figures/polynomialExtrapolation}&
+    \includegraphics[width = 3.5cm]{figures/explodedCAD}&
+    \includegraphics[width = 4cm]{figures/turingMachine}
+  \end{tabular}}
 \end{frame}
 
 \begin{frame}{Why didn't this old idea work?}
@@ -237,27 +255,26 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
   better toolkits:
   \begin{itemize}
-  \item \textbf{probabilistic} methods for uncertainty and learning-to-learn
-  \item \textbf{neural} methods for guiding combinatorial search
-  \item \textbf{symbolic} methods, from the \textbf{programming languages} community
+  \visible<2->{\item \textbf{probabilistic} methods for uncertainty and learning-to-learn}
+  \visible<3->{\item \textbf{neural} methods for guiding combinatorial search}
+  \visible<4->{\item \textbf{symbolic} methods, from the \textbf{programming languages} community
     \begin{itemize}
     \item maturing \textbf{program synthesis} techniques
     \item type systems, program analysis, constraint solving, ...
-    \end{itemize}   
+    \end{itemize}   }
   \end{itemize}
 
-  \pause
-
-  better problems:
+  \visible<5->{better problems:
   \begin{itemize}
-  \item inverse perception, analysis-by-synthesis
-  \item learning models
-  \item learning to learn
-  \item natural language$\to $code
-  \item programming by examples, computer-aided-programming
-  \end{itemize}
+  \item inverse CAD [???]
+  \item probabilistic program synthesis [???]
+  \item synthesizing human-understandable models [Evans et al. 2019, ???]
+  \item natural language$\to $code [Liang et al. 2011; Zettlemoyer et al. 2007]
+  \item programming by examples [Gulwani 2011], computer-aided-programming [Solar-Lezama 2008]
+  \end{itemize}} 
 
   \end{frame}
+
 
 \begin{frame}[fragile]{Perception, Synthesizing models, Learning-to-Learn}
 
@@ -589,23 +606,23 @@ rectangle(...)
 \large  linguists can communicate their knowledge}
 \end{frame}
 
-\begin{frame}{Few-shot language learning experiment}
-  Farsi:
+%% \begin{frame}{Few-shot language learning experiment}
+%%   Farsi:
 
-  \vspace{1cm}
+%%   \vspace{1cm}
   
-  \begin{tabular}{rll}
-    &\multicolumn{1}{l}{singular}&\multicolumn{1}{l}{plural}\\
-      ``lip''& \phantom{tt}\textipa{l\ae b}&\phantom{tt}\textipa{l\ae ban}\\
-      ``gazelle''& \phantom{tt}\textipa{ahu}& \phantom{tt}\textipa{ahuan}\\
-       ``mother''& \phantom{tt}\textipa{valede}& \only<1>{\phantom{tt}???}\only<2->{\phantom{tt}\textipa{valedean}}
-    \end{tabular}
-%  \end{tabular}
+%%   \begin{tabular}{rll}
+%%     &\multicolumn{1}{l}{singular}&\multicolumn{1}{l}{plural}\\
+%%       ``lip''& \phantom{tt}\textipa{l\ae b}&\phantom{tt}\textipa{l\ae ban}\\
+%%       ``gazelle''& \phantom{tt}\textipa{ahu}& \phantom{tt}\textipa{ahuan}\\
+%%        ``mother''& \phantom{tt}\textipa{valede}& \only<1>{\phantom{tt}???}\only<2->{\phantom{tt}\textipa{valedean}}
+%%     \end{tabular}
+%% %  \end{tabular}
 
-%  \only<6>{
-%  \messageOverly{\textbf{morphology} (subparts of words) + \textbf{phonology} (pronunciation)}}
+%% %  \only<6>{
+%% %  \messageOverly{\textbf{morphology} (subparts of words) + \textbf{phonology} (pronunciation)}}
 
-\end{frame}
+%% \end{frame}
 
 \begin{frame}{Few-shot language learning experiment}
   Mandarin:
@@ -1321,14 +1338,17 @@ new neural inference network for program synthesis
 }
   
   
-\begin{frame}[fragile]{version space}
+\begin{frame}[fragile]{Abstraction Sleep: Growing the library via refactoring}
   $5 + 5$\\\pause\texttt{(+ 5 5)}\pause
-  \begin{tikzpicture}
-    \smallTree{start}{0,0}{+}{5}{5};
-  \end{tikzpicture}
+
+  \begin{center}
+    \begin{tikzpicture}[scale=2]
+      \smallTree{start}{0,0}{+}{5}{5};
+    \end{tikzpicture}
+  \end{center}
 \end{frame}
 
-\begin{frame}[fragile]{version space}
+\begin{frame}[fragile]{Abstraction Sleep: Growing the library via refactoring}
   \centering
   \begin{tikzpicture}[scale=1]
     \smallTree{start}{0,0}{+}{5}{5};
@@ -1355,7 +1375,7 @@ new neural inference network for program synthesis
   \end{tikzpicture}
 \end{frame}
 
-\begin{frame}[fragile]{version space}
+\begin{frame}[fragile]{Abstraction Sleep: Growing the library via refactoring}
   \begin{tikzpicture}
     \node[anchor=south west](legend) at (-5,2) {legend};
     \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.2cm]legend.south west)--([yshift=-0.2cm,xshift=0.9cm]legend.south west);
@@ -1540,6 +1560,7 @@ new neural inference network for program synthesis
     \end{tikzpicture}}
 \end{frame}
 
+\begin{comment}
 \begin{frame}{Version space algebra for refactoring}
   \begin{tabular}{lr}
     \begin{tabular}{l}
@@ -1627,92 +1648,8 @@ new neural inference network for program synthesis
   }
 
 \end{frame}
+\end{comment}
 
-
-
-
-
-
-%% \begin{frame}{DreamCoder --- Sleep-R (\textbf{Experience Replay})}
-%%   \only<1>{
-%%     \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-sleep-r-1/slide-4.pdf}
-%%   }
-%% \end{frame}
-%% \begin{frame}{DreamCoder --- Sleep-R (\textbf{Dreaming})}
-%%   \only<1>{
-%%     \includegraphics[width=11cm]{ecFigures/teachDC/.inkslides-sleep-r-2/slide-4.pdf}
-%%   }
-%% \end{frame}
- 
-
-%% \begin{frame}{List functions --- \small{Created \& investigated by Lucas
-%%   Morales}}
-
-
-%%   \vspace{1cm}
-  
-%%   \begin{figure}[b]\centering
-%% \vspace{-0.5cm}  \begin{tabular}{lll}
-%%     \toprule
-%%     Name & Input & Output \\\midrule
-%%     repeat-3 & [7\, 0] & [7\, 0\, 7\, 0\, 7\, 0] \\
-%%     drop-3 & [0\, 3\, 8\, 6\, 4] & [6\, 4] \\
-%%     rotate-2 & [8\, 14\, 1\, 9] & [1\, 9\, 8\, 14] \\
-%%     count-head-in-tail & [1\, 2\, 1\, 1\, 3] & 2 \\
-%%     keep-div-5 & [5\, 9\, 14\, 6\, 3\, 0] & [5\, 0] \\
-%%     product & [7\, 1\, 6\, 2] & 84 \\
-%%     \bottomrule
-%%   \end{tabular}
-%%   %\captionof{table}{Some tasks in our list function domain.}\label{listExamples}\vspace{-0.5cm}
-%% \end{figure}
-
-%%   Discovers 38 concepts, including `filter'. %With different tasks will also learn `map', `fold', `unfold', etc. starting with 1950's Lispthe
-  
-%% \begin{picture}(50,70) \put(250,0){\hbox{\includegraphics[width = 3cm]{ecFigures/Lucas}}} \end{picture} 
-%% \end{frame}
-
-
-%% \begin{frame}{Text editing}
-%%   In the style of FlashFill (Gulwani 2012)
-
-%%   \centering  \includegraphics[width = 5cm]{textColumn.png}
-
-%% \vspace{-0.5cm}  SyGuS problems: solves 3\% before learning, vs 75\% after learning. Best prior work: 80\%
-
-%% \end{frame}$
-
-%% \begin{frame}{List functions \& Text editing: Learning curves on hold out tasks}
-
-%%   \begin{center}
-%%     \includegraphics[width = 5cm]{ecFigures/listLearningCurve.eps}
-%% \hfill    \includegraphics[width = 5cm]{ecFigures/textLearningCurve.eps} 
-%%     \end{center}
-
-%% Learning curves for DreamCoder both with (\orange{in orange}) and without
-%%     (\teal{in teal}) the recognition model. Solid lines: \% holdout testing tasks solved w/ 10m timeout. Dashed lines: Average solve time, averaged only over tasks that are solved.
-
-
-%% \end{frame}
-
-
-%% \begin{frame}{Learned text processing DSL}
-%%   \only<1>{  \includegraphics[width = \textwidth]{ecFigures/textPrimitives.pdf}}
-%%   \only<2>{  \includegraphics[width = \textwidth]{ecFigures/textPrimitives.png}}
-
-%% \end{frame}
-
-%% \begin{frame}{Learning the fundamentals of programming}
-%%   \includegraphics[width = \textwidth]{ecFigures/McCarthy.png}
-
-%% \centering  McCarthy 1959 Lisp  $\longrightarrow$ Modern functional programming
-  
-%%   22 tasks. 64 CPUs. 93 hours.
-
-%%   \end{frame}
-
-%% \begin{frame}{Symbolic regression from visual input}
-%% \centering\includegraphics[width = 5cm]{symbolicRegression.png}
-%% \end{frame}
 
 \begin{frame}{DreamCoder Domains}
   \only<1>{\includegraphics[width = \textwidth]{statement/taskbar2.png}}
@@ -1753,11 +1690,11 @@ new neural inference network for program synthesis
     \includegraphics[height=3cm]{dc/dreams/beforeLearning25September11}&&
     \includegraphics[height=3cm]{dc/dreams/cherry_picked/montageSeptember14}    
     \end{tabular}}
-    \only<2>{\begin{tabular}{lll}
-        before learning&&after learning\\
-        \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogoinitial.png}&&
-        \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogofinal.png}
-        \end{tabular}}
+    %% \only<2>{\begin{tabular}{lll}
+    %%     before learning&&after learning\\
+    %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogoinitial.png}&&
+    %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogofinal.png}
+    %%     \end{tabular}}
     }
 
 \end{frame}
@@ -1810,45 +1747,95 @@ new neural inference network for program synthesis
   
 \end{frame}
 
-\begin{frame}{synergy between dreaming and library learning}
+\begin{comment}
+  \begin{frame}{Synergy between dreaming and library learning}
     \begin{tabular}{ll}
       %    \textbf{A}\\
       \only<1>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl_stage1.png}}
       \only<2>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl_stage2.png}}
       \only<3>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl_stage3.png}}
-%      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl.png}}
+      %      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl.png}}
       &
       \phantom{ttt}%
       \only<1>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small_stage1.png}}
       \only<2>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small_stage2.png}}
       \only<3>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small_stage3.png}}\\
-%      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small.png}}\\
+      %      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small.png}}\\
       \only<1>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_average_pretty_small_yl_stage1.png}}
       \only<2>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_average_pretty_small_yl_stage2.png}}
       \only<3>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_average_pretty_small_yl_stage3.png}}&
-%      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_average_pretty_small_yl.png}}&
+      %      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_average_pretty_small_yl.png}}&
       \phantom{ttt}%
       \only<1>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small_stage1.png}}
       \only<2>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small_stage2.png}}
       \only<3>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small_stage3.png}}&
-%      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small.png}}\\
+      %      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small.png}}\\
       \only<1>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage1.png}}
       \only<2>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage2.png}}
       \only<3>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage3.png}}&
-%      \only<4->{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl.png}}&
+      %      \only<4->{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl.png}}&
       \phantom{tt.}%
       \only<1>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws_stage1.png}}
       \only<2>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws_stage2.png}}
       \only<3>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws_stage3.png}}
-%      \only<4->{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}}%
-%    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}%
-    \phantom{tt}\includegraphics[width = 2.5cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}\hspace{-3cm}
-    %    \includegraphics[width = 0.25\textwidth]{../dreamcoder/figures/learningCurves/revision/depthVersusAccuracy_revision_MAX.png}
+      %      \only<4->{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}}%
+      %    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}%
+      \phantom{tt}\includegraphics[width = 2.5cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}\hspace{-3cm}
+      %    \includegraphics[width = 0.25\textwidth]{../dreamcoder/figures/learningCurves/revision/depthVersusAccuracy_revision_MAX.png}
     \end{tabular}
 
 
-      %% }
-      %% }
+    %% }
+    %% }
+
+  \end{frame}
+\end{comment}
+
+\begin{frame}{Synergy between dreaming and library learning}
+  \begin{tabular}{lr}
+    \begin{tabular}{l}
+    \only<1>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage1.png}}
+    \only<2>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage2.png}}
+    \only<3>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage3.png}}
+  \end{tabular}
+
+    &
+
+    \begin{tabular}{l}
+    \only<2->{\includegraphics[width = 3cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}}
+  \end{tabular}
+    \end{tabular}
+
+
+
+
+  %% }
+  %% }
+
+\end{frame}
+
+\begin{frame}{Synergy between dreaming and library learning}
+  \begin{tabular}{ll}
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl_stage3.png}
+    %      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl.png}}
+    &
+    \phantom{ttt}%
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small_stage3.png}\\
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_average_pretty_small_yl_stage3.png}&
+    \phantom{ttt}%
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small_stage3.png}\\
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_average_pretty_small_yl_stage3.png}
+    &
+    \phantom{tt.}%
+    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws_stage3.png}
+    %      \only<4->{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}}%
+    %    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}%
+    \phantom{tt}\includegraphics[width = 2.5cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}\hspace{-3cm}
+  \end{tabular}
+
+
+  %% }
+  %% }
 
 \end{frame}
 
