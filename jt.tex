@@ -1,4 +1,6 @@
 \documentclass{beamer}
+\usepackage{tipa}
+\usepackage{phonrule}
 %\setbeamersize{text margin left=10pt,text margin right=10pt}
 \usetheme{metropolis}
 \usepackage{listings}
@@ -240,7 +242,9 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \end{frame}
 
 \begin{frame}{Why didn't this old idea work?}
-  Program induction goes back to 1956 Dartmouth Workshop that founded the field of AI
+  \Wider[4em]{  Program induction goes back to the 1956 Dartmouth Workshop that founded the field of AI }
+
+  \vspace{1cm}
 
   \Wider[4em]{
     \begin{tabular}{ccc}
@@ -266,14 +270,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
   \visible<5->{better problems:
   \begin{itemize}
-  \item inverse CAD [???]
-  \item probabilistic program synthesis [???]
-  \item synthesizing human-understandable models [Evans et al. 2019, ???]
+  \item inverse CAD [Kulkarni et al. 2015]
+%  \item probabilistic program synthesis [???]
+  \item synthesizing human-understandable models [Evans et al. 2019]
   \item natural language$\to $code [Liang et al. 2011; Zettlemoyer et al. 2007]
   \item programming by examples [Gulwani 2011], computer-aided-programming [Solar-Lezama 2008]
   \end{itemize}} 
 
-  \end{frame}
+\end{frame}
+
+
 
 
 \begin{frame}[fragile]{Perception, Synthesizing models, Learning-to-Learn}
@@ -292,6 +298,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 %  \only<3->{\includegraphics[width = 1\textwidth]{statement/taskbar_short.png}}
 
+\end{frame}
+
+\begin{frame}{}
+  \begin{center}
+    \begin{tabular}{l}
+      {\textcolor{black}{Program Induction and perception}}\\
+      \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}\\
+      \phantom{Program Induction and }{\textcolor{gray}{interpretable models}}
+      \end{tabular}
+  \end{center}
 \end{frame}
 
 \begin{frame}{High-level, abstract visual abilities}
@@ -582,193 +598,142 @@ rectangle(...)
   }
 \end{frame}
 
-\begin{frame}{Example programs}
- \includegraphics[width = 0.5\textwidth]{exampleTikZ.pdf}
-  \pause
-  \messageOverlay{Learning played a role...\\
-    but much of this system is specific to 2-D graphics\\\\
-  Goal: a general algorithm for learning to synthesize programs}
+
+\begin{frame}{3D program induction}
+  \Wider[5em]{
+    \begin{center}
+      \includegraphics[width = 0.8\textwidth]{assets/we_are_cool_4.png}
+
+      \vspace{0.52cm}
+      
+      \setlength{\tabcolsep}{0pt}
+      \renewcommand{\arraystretch}{0}  
+      
+      %    \includegraphics[width = \textwidth]{assets/pixel_montage} \\
+      % \begin{tabular}{cc}
+      %   \includegraphics[width = 0.3\textwidth]{assets/2d_synthetic_montage}&
+      %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
+      % \end{tabular}\\\\    
+      \visible<2>{
+
+        \begin{tabular}{ccccccc}
+        \rotatebox[origin=l]{90}{Spec}
+        &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
+        %    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
+        \includegraphics[width = 2cm]{assets/3-D/demo2/spec}&
+        \includegraphics[width = 2cm]{assets/3-D/demo4/012_png_v.png}&
+        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_input}&
+        \includegraphics[width = 2cm]{assets/3-D/demo1/spec}
+        \\
+        \rotatebox[origin=l]{90}{Rendered}&
+        \rotatebox[origin=l]{90}{program}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo3/000_SMC_value_pickle_pretty.png}$\;$&
+        %    \includegraphics[width = 2cm]{assets/3-D/demo6/2}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo2/pretty}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo4/012_SMC_value_pickle_pretty}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_output}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo1/pretty}
+        \end{tabular}
+        }
+      \setlength{\tabcolsep}{6pt}
+      \renewcommand{\arraystretch}{1}
+    \end{center}
+  }
+  
+  \vfill
+\small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+
+\end{frame}
+
+\begin{frame}{3D program induction}
+  \Wider[5em]{
+    \begin{center}
+%      \includegraphics[width = 0.8\textwidth]{assets/we_are_cool_4.png}
+
+ %     \vspace{0.52cm}
+      
+      \setlength{\tabcolsep}{0pt}
+      \renewcommand{\arraystretch}{0}  
+      
+      %    \includegraphics[width = \textwidth]{assets/pixel_montage} \\
+      % \begin{tabular}{cc}
+      %   \includegraphics[width = 0.3\textwidth]{assets/2d_synthetic_montage}&
+      %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
+      % \end{tabular}\\\\    
+
+
+        \begin{tabular}{ccccccc}
+        \rotatebox[origin=l]{90}{Spec}
+        &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
+        %    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
+        \includegraphics[width = 2cm]{assets/3-D/demo2/spec}&
+        \includegraphics[width = 2cm]{assets/3-D/demo4/012_png_v.png}&
+        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_input}&
+        \includegraphics[width = 2cm]{assets/3-D/demo1/spec}
+        \\
+        \rotatebox[origin=l]{90}{Rendered}&
+        \rotatebox[origin=l]{90}{program}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo3/000_SMC_value_pickle_pretty.png}$\;$&
+        %    \includegraphics[width = 2cm]{assets/3-D/demo6/2}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo2/pretty}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo4/012_SMC_value_pickle_pretty}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_output}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo1/pretty}
+        \end{tabular}
+
+      \setlength{\tabcolsep}{6pt}
+      \renewcommand{\arraystretch}{1}
+
+      \vspace{0.5cm}
+      Challenge: combinatorics!\\
+      Branching factor: $ > 1.3$ million per line of code, $\approx$ 20 lines of code
+
+      
+      
+      \vspace{0.5cm}
+      \visible<2>{
+        Solution: stochastic \textbf{tree search} + learn \textbf{policy} that writes code\\ + learn \textbf{value} function that assesses execution of program so far;\\
+      analogous to AlphaGo}
+    \end{center}
+  }
+  
+  \vfill
+\small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+
 \end{frame}
 
 \begin{frame}{}
-
-  \end{frame}
-
-\begin{frame}[fragile]{Synthesizing human-understandable models of language}
   \begin{center}
-    \begin{tikzpicture}[scale=0.75]
-      \input{phonology/languageWheel50.tex}
-    \end{tikzpicture}
+    \begin{tabular}{l}
+      {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
+      \phantom{Program Induction and }{\textcolor{black}{learning to learn}}\\
+      \phantom{Program Induction and }{\textcolor{gray}{interpretable models}}
+      \end{tabular}
   \end{center}
-  \pause
-  \messageOverlay{\large many languages, 70 diverse benchmarks\\\\
-\large children and linguists can learn from sparse data\\\\
-\large  linguists can communicate their knowledge}
-\end{frame}
-
-%% \begin{frame}{Few-shot language learning experiment}
-%%   Farsi:
-
-%%   \vspace{1cm}
-  
-%%   \begin{tabular}{rll}
-%%     &\multicolumn{1}{l}{singular}&\multicolumn{1}{l}{plural}\\
-%%       ``lip''& \phantom{tt}\textipa{l\ae b}&\phantom{tt}\textipa{l\ae ban}\\
-%%       ``gazelle''& \phantom{tt}\textipa{ahu}& \phantom{tt}\textipa{ahuan}\\
-%%        ``mother''& \phantom{tt}\textipa{valede}& \only<1>{\phantom{tt}???}\only<2->{\phantom{tt}\textipa{valedean}}
-%%     \end{tabular}
-%% %  \end{tabular}
-
-%% %  \only<6>{
-%% %  \messageOverly{\textbf{morphology} (subparts of words) + \textbf{phonology} (pronunciation)}}
-
-%% \end{frame}
-
-\begin{frame}{Few-shot language learning experiment}
-  Mandarin:
-
-  \vspace{1cm}
-
-  \begin{tabular}{rcc}
-    & adjective & adverb\\
-    ``slow'' & \textipa{man} & \textipa{manmand@}\\
-    ``fast'' & \textipa{kuai} & \textipa{kuaikuaid@}\\
-    ``small'' & \textipa{xiao} & \only<2->{\textipa{xiaoxiaod@}}\only<1>{???}
-  \end{tabular}
-
-  \vspace{1cm}
-  
-  \only<3>{stem+stem+\textipa{d@}}
-
-  \end{frame}
-
-\begin{frame}{Few-shot language learning experiment}
-  Serbo-Croatian:
-  \vspace{1cm}
-  
-  \begin{tabular}{rlll}
-    &\multicolumn{1}{c}{masculine}&\multicolumn{1}{c}{feminine}&\only<5->{stem (unobserved)}\\
-    ``rich''&\textipa{bogat}&\textipa{bogata}&\only<5->{bogat}\\
-    ``mild''&\textipa{blag}&\textipa{blaga}&\only<5->{blag}\\
-    ``green''&\textipa{zelen}&\only<1>{???}\only<2->{\textipa{zelena}}&\only<5->{zelen}\\
-    \only<4->{``clear''}&\only<4>{???}\only<5>{\textbf{yasan}}& \only<4->{yasna}&\only<5->{yasn}\\  
-  \end{tabular}
-
-  \vspace{1cm}
-  
-  \only<3->{\emph{add ``a'' to stem to make feminine}}
-  
-  \only<5->{
-    \emph{insert ``a'' between two word-final consonants}\\
-    \phonb{$\varnothing$}{a}{C}{C\#}
-  }
-
-\end{frame}
-
-
-\begin{frame}{Diverse Linguistic Phenomena}
-  \includegraphics[width = \textwidth]{phonology/Croatian}
-\end{frame}
-\begin{frame}{Languages with tones}
-  \includegraphics[width = \textwidth]{phonology/tonal}
-\end{frame}
-\begin{frame}{Vowel ``harmony''}
-  \includegraphics[width = \textwidth]{phonology/harmony}
-\end{frame}
-
-
-\begin{frame}{57 languages drawn from 70 datasets}
-  \includegraphics[width = \textwidth]{phonology/figures/languageComparison}
-\end{frame}
-\begin{frame}[fragile]{Distilling higher-level knowledge}
-  \begin{tikzpicture}
-\input{languageHierarchy.tex}
-    \end{tikzpicture}
-  \end{frame}
-\begin{frame}{Distilling higher-level knowledge}
-  \Wider[5em]{
-    \begin{tabular}{rl}
-      \begin{tabular}{c}
-        Discovered\\ universal grammar \\schema
-      \end{tabular}&
-      \begin{tabular}{l}
-        \multicolumn{1}{c}{\textbf{consonant/vowel distinction}}\\
-        sounds$\gets$ [-vowel]\\
-        sounds$\gets$ [+vowel]\\
-        \emph{a set of sounds is commonly}\\\emph{ all consonants,}\\\emph{ or all vowels}
-      \end{tabular}\\
-      \begin{tabular}{c}
-        w/o learned\\
-        universal grammar
-      \end{tabular}&
-      Tibetan:\phantom{test}    \phonl{[-nasal]}{$\varnothing $}{\#}\\\\
-      \begin{tabular}{c}
-        w/ learned\\
-        universal grammar
-      \end{tabular}&
-      \phantom{Tibetan:test} \phonb{[-vowel]}{$\varnothing $}{\# }{[-vowel]}
-
-%% %    Kerewe&    \phonb{[ ]}{[ +hiTone ]}{[ +hiTone ] [ ] }{ [ ]}
-%%   \end{tabular}&
-      
-    \end{tabular}
-%%     \begin{tabular}{cll}
-%%     \toprule&
-%%   \multicolumn{1}{c}{Without learned universal grammar}&
-%%   \multicolumn{1}{c}{With learned universal grammar}\\\midrule \\
-%%   \begin{tabular}{l}
-%%     \multicolumn{1}{c}{\textbf{consonant/vowel distinction}}\\
-%%     sounds$\gets$ [-vowel]\\
-%%     sounds$\gets$ [+vowel]\\
-%%     \emph{a set of sounds is commonly}\\\emph{ all consonants,}\\\emph{ or all vowels}
-%%   \end{tabular}&
-%%   \begin{tabular}{rl}
-%%     Tibetan&    \phonl{[-nasal]}{$\varnothing $}{\#}
-%% %    Kerewe&    \phonb{[ ]}{[ +hiTone ]}{[ +hiTone ] [ ] }{ [ ]}
-%%   \end{tabular}&
-%%   \begin{tabular}{l}
-%%     
-%%   \end{tabular}
-%%   \\\\\midrule   
-%%   \begin{tabular}{l}
-%%     \multicolumn{1}{c}{\textbf{nasal place assimilation}}\\
-%%     $[\text{+nasal}]\to \alpha\text{place}$ / %\phonb{[+nasal]}{$\alpha$place}{\texttt{trigger}}{\phonfeat[c]{C\\$\alpha$place}}
-%%     \underline{\phantom{aa}}\phonfeat[c]{C\\$\alpha$place}\\
-%%     \emph{nasals (``n'', ``m'', ...) move to the place in the}\\
-%%       \emph{ mouth where the next consonant is}
-%%   \end{tabular}
-%%   &
-  
-%%   \begin{tabular}{rl}    
-%%     Bukusu&    \phonr{\textipa{\~n}}{$\alpha$place}{[$\alpha$place]}\\\\
-%%   \end{tabular}
-%%   &
-%%   \begin{tabular}{l}
-%%     \phonr{[+nasal]}{$\alpha$place}{\phonfeat[c]{C\\$\alpha$place}}\\\\
-%%   \end{tabular}
-%% \end{tabular}
-  }
-%\includegraphics[width = \textwidth]{phonology/universal}
 \end{frame}
 
 
 
-
-
-
-\begin{frame}{Growing domain-specific knowledge}
+\begin{frame}{Learning to write code} %Growing domain-specific knowledge}
   
   %  \Large
   Goal: acquire domain-specific knowledge needed to induce a class of programs
 
 
   
-  \vspace{1cm}
+  \vspace{0.75cm}
 
-  \begin{itemize}
-  \item Library of concepts (declarative knowledge; domain specific language; generative model over programs)
+  \Wider[4em]{
+    \begin{itemize}
+  \item Library of concepts (declarative knowledge; domain specific language) %; generative model over programs)
     \item Inference strategy (procedural knowledge; synthesis algorithm)
-  \end{itemize}
+    \end{itemize}
+  }
+  
+  \vspace{0.75cm}
+  
   \only<2>{
   \begin{tikzpicture}
     \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
@@ -830,11 +795,11 @@ rectangle(...)
   %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
 \centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
 
-  \node[latent,scale=1] at (3.5,3) (dx){Lib};
+  \node[latent,scale=1] at (3.5,3) (dx){Library};
   \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
-  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {data};
+  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
   \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {data};
+  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
   \draw [->] (zp1.south) -- (xp1.north);
   \draw [->] (dx.south) -- (zp1.north);
   %\draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
@@ -844,7 +809,7 @@ rectangle(...)
   \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
   
   \node[latent,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {data};
+  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
   \draw [->] (zp1.south) -- (xp1.north);
   \draw [->] (dx.south) -- (zp1.north);
 %  \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
@@ -891,21 +856,21 @@ rectangle(...)
           \foreach \dest in {1,...,4}
               \draw [-latex] (H-\source) -- (O-\dest);
     \end{tikzpicture}}
-\begin{frame}[t]{Library learning as \alert{amortized} Bayesian inference}
+\begin{frame}[t]{Library learning as \alert{neurally-guided} Bayesian inference}
 \centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
 
-  \node[latent,scale=1] at (3.5,3) (dx){Lib};
+  \node[latent,scale=1] at (3.5,3) (dx){Library};
   \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
-  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {data};
+  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
   \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {data};
+  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
   \draw [->] (zp1.south) -- (xp1.north);
   \draw [->] (dx.south) -- (zp1.north);
   \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
 %  \node at (nn) {\NeuralNetwork{0.5}};
   
   \node[latent,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {data};
+  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
   \draw [->] (zp1.south) -- (xp1.north);
   \draw [->] (dx.south) -- (zp1.north);
   \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
@@ -924,8 +889,9 @@ rectangle(...)
 
 
 
-amortized inference +\\ better program representation (Lisp) + \\library learning via program analysis + \\
-new neural inference network for program synthesis
+library learning via program analysis + \\
+new neural inference network for program synthesis + \\
+better program representation (Lisp)
 
 \end{frame}
 \newcommand{\NeuralNetwork}[1]{    \begin{tikzpicture}[x=2.5cm,y=1.25cm,transform canvas={scale=#1,shift={+(-1,2.5)}}]
@@ -1899,82 +1865,283 @@ new neural inference network for program synthesis
   \Wider[5em]{  \includegraphics[width = \textwidth]{dc/mccarthy_only.png}}
 \end{frame}
 
-\begin{frame}{From learning libraries to using interpreters}
-  DreamCoder: library building as inspiration\\
-  Software engineers: build libraries, use interpreters, version control, debuggers, ...
-
-  \vfill
-\small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
-
+\begin{frame}{}
+  \begin{center}
+    \begin{tabular}{l}
+      {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
+      \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}\\
+      \phantom{Program Induction and }{\textcolor{black}{interpretable models}}
+      \end{tabular}
+  \end{center}
 \end{frame}
 
-\begin{frame}{Synthesis with a REPL}
-
-
-  
-\Wider[5em]{  \includegraphics[width = \textwidth]{assets/wrench_wave}}
-
-  REPL: Bridges syntax and semantics
-
-  $\pi$: policy, writes code conditioned on REPL state
-
-  $T$: Markov Decision Process transition function
-
-  Spec: Image to draw
-
-  \vfill
-\small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
-  
+\begin{frame}[fragile]{Synthesizing human-understandable models of language}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.75]
+      \input{phonology/languageWheel50.tex}
+    \end{tikzpicture}
+  \end{center}
+  \pause
+  \messageOverlay{\large many languages, 70 diverse benchmarks\\\\
+\large children and linguists can learn from sparse data\\\\
+\large  linguists can communicate their knowledge}
 \end{frame}
 
-%% \begin{frame}{Interleaving policy+value+REPL in stochastic tree search}
-%%   c.f. AlphaGo, TD-Gammon
+%% \begin{frame}{Few-shot language learning experiment}
+%%   Farsi:
 
-%%   \includegraphics[width = \textwidth]{assets/smc}
+%%   \vspace{1cm}
+  
+%%   \begin{tabular}{rll}
+%%     &\multicolumn{1}{l}{singular}&\multicolumn{1}{l}{plural}\\
+%%       ``lip''& \phantom{tt}\textipa{l\ae b}&\phantom{tt}\textipa{l\ae ban}\\
+%%       ``gazelle''& \phantom{tt}\textipa{ahu}& \phantom{tt}\textipa{ahuan}\\
+%%        ``mother''& \phantom{tt}\textipa{valede}& \only<1>{\phantom{tt}???}\only<2->{\phantom{tt}\textipa{valedean}}
+%%     \end{tabular}
+%% %  \end{tabular}
+
+%% %  \only<6>{
+%% %  \messageOverly{\textbf{morphology} (subparts of words) + \textbf{phonology} (pronunciation)}}
 
 %% \end{frame}
 
-\begin{frame}{Scaling to long programs}
-  Branching factor: $ > 1.3$ million per line of code
+\begin{frame}{Few-shot language learning experiment}
+  Mandarin:
 
-  Successfully synthesizes $ > $20-line programs in seconds ($ > $100 tokens)
+  \vspace{1cm}
+
+  \begin{tabular}{rcc}
+    & adjective & adverb\\
+    ``slow'' & \textipa{man} & \textipa{manmand@}\\
+    ``fast'' & \textipa{kuai} & \textipa{kuaikuaid@}\\
+    ``small'' & \textipa{xiao} & \only<2->{\textipa{xiaoxiaod@}}\only<1>{???}
+  \end{tabular}
 
   \vspace{1cm}
   
-\Wider[5em]{  
-  \setlength{\tabcolsep}{0pt}
-  \renewcommand{\arraystretch}{0}  
+  \only<3>{stem+stem+\textipa{d@}}
+
+  \end{frame}
+
+\begin{frame}{Few-shot language learning experiment}
+  Serbo-Croatian:
+  \vspace{1cm}
   
-  %    \includegraphics[width = \textwidth]{assets/pixel_montage} \\
-  % \begin{tabular}{cc}
-  %   \includegraphics[width = 0.3\textwidth]{assets/2d_synthetic_montage}&
-  %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
-  % \end{tabular}\\\\    
-  \begin{tabular}{cccccccc}
-    \rotatebox[origin=l]{90}{Spec}
-    &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
-    \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
-    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
-    \includegraphics[width = 2cm]{assets/3-D/demo2/spec}&
-    \includegraphics[width = 2cm]{assets/3-D/demo4/012_png_v.png}&
-    \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_input}&
-    \includegraphics[width = 2cm]{assets/3-D/demo1/spec}
-    \\
-    \rotatebox[origin=l]{90}{Rendered}&
-    \rotatebox[origin=l]{90}{program}$\;$&
-    \includegraphics[width = 2cm]{assets/3-D/demo3/000_SMC_value_pickle_pretty.png}$\;$&
-    \includegraphics[width = 2cm]{assets/3-D/demo6/2}$\;$&
-    \includegraphics[width = 2cm]{assets/3-D/demo2/pretty}$\;$&
-    \includegraphics[width = 2cm]{assets/3-D/demo4/012_SMC_value_pickle_pretty}$\;$&
-    \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_output}$\;$&
-    \includegraphics[width = 2cm]{assets/3-D/demo1/pretty}
+  \begin{tabular}{rlll}
+    &\multicolumn{1}{c}{masculine}&\multicolumn{1}{c}{feminine}&\only<5->{stem (unobserved)}\\
+    ``rich''&\textipa{bogat}&\textipa{bogata}&\only<5->{bogat}\\
+    ``mild''&\textipa{blag}&\textipa{blaga}&\only<5->{blag}\\
+    ``green''&\textipa{zelen}&\only<1>{???}\only<2->{\textipa{zelena}}&\only<5->{zelen}\\
+    \only<4->{``clear''}&\only<4>{???}\only<5>{\textbf{yasan}}& \only<4->{yasna}&\only<5->{yasn}\\  
   \end{tabular}
-  \setlength{\tabcolsep}{6pt}
-  \renewcommand{\arraystretch}{1}
-}
+
+  \vspace{1cm}
+  
+  \only<3->{\emph{add ``a'' to stem to make feminine}}
+  
+  \only<5->{
+    \emph{insert ``a'' between two word-final consonants}\\
+    \phonb{$\varnothing$}{a}{C}{C\#}
+  }
+
 \end{frame}
 
-\begin{frame}{Programmatic models of the physical world}
+
+%% \begin{frame}{Diverse Linguistic Phenomena}
+%%   \includegraphics[width = \textwidth]{phonology/Croatian}
+%% \end{frame}
+%% \begin{frame}{Languages with tones}
+%%   \includegraphics[width = \textwidth]{phonology/tonal}
+%% \end{frame}
+\begin{frame}
+  \begin{center}
+    \begin{tabular}{ccc}
+      \includegraphics[width = 0.3\textwidth]{figures/odden}&
+      \includegraphics[width = 0.3\textwidth]{figures/spe}&
+      \includegraphics[width = 0.3\textwidth]{figures/roca}
+    \end{tabular}
+  \end{center}
+\end{frame}
+\begin{frame}{}
+\Wider[5em]{  \includegraphics[width = \textwidth]{figures/Turkish1}}
+\end{frame}
+\begin{frame}{Turkic Sakha (Yakut)}
+\input{phonology/harmonyAnimation.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
+\end{frame}
+\begin{frame}{Turkic Sakha (Yakut)}
+\input{phonology/harmonyAnimation2.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
+\end{frame}
+
+
+\begin{frame}{}
+\Wider[5em]{  \includegraphics[width = \textwidth]{figures/languageMontage}}
+\end{frame}
+\begin{frame}[fragile]{Distilling higher-level knowledge}
+  \Wider[5em]{
+    \begin{center}
+\begin{tikzpicture}[scale=2]
+\input{languageHierarchy.tex}
+\end{tikzpicture}
+  \end{center}}
+  \end{frame}
+%% \begin{frame}{Distilling higher-level knowledge}
+%%   \Wider[5em]{
+%%     \begin{tabular}{rl}
+%%       \begin{tabular}{c}
+%%         Discovered\\ universal grammar \\schema
+%%       \end{tabular}&
+%%       \begin{tabular}{l}
+%%         \multicolumn{1}{c}{\textbf{consonant/vowel distinction}}\\
+%%         sounds$\gets$ [-vowel]\\
+%%         sounds$\gets$ [+vowel]\\
+%%         \emph{a set of sounds is commonly}\\\emph{ all consonants,}\\\emph{ or all vowels}
+%%       \end{tabular}\\
+%%       \begin{tabular}{c}
+%%         w/o learned\\
+%%         universal grammar
+%%       \end{tabular}&
+%%       Tibetan:\phantom{test}    \phonl{[-nasal]}{$\varnothing $}{\#}\\\\
+%%       \begin{tabular}{c}
+%%         w/ learned\\
+%%         universal grammar
+%%       \end{tabular}&
+%%       \phantom{Tibetan:test} \phonb{[-vowel]}{$\varnothing $}{\# }{[-vowel]}
+
+%% %% %    Kerewe&    \phonb{[ ]}{[ +hiTone ]}{[ +hiTone ] [ ] }{ [ ]}
+%% %%   \end{tabular}&
+      
+%%     \end{tabular}
+%% %%     \begin{tabular}{cll}
+%% %%     \toprule&
+%% %%   \multicolumn{1}{c}{Without learned universal grammar}&
+%% %%   \multicolumn{1}{c}{With learned universal grammar}\\\midrule \\
+%% %%   \begin{tabular}{l}
+%% %%     \multicolumn{1}{c}{\textbf{consonant/vowel distinction}}\\
+%% %%     sounds$\gets$ [-vowel]\\
+%% %%     sounds$\gets$ [+vowel]\\
+%% %%     \emph{a set of sounds is commonly}\\\emph{ all consonants,}\\\emph{ or all vowels}
+%% %%   \end{tabular}&
+%% %%   \begin{tabular}{rl}
+%% %%     Tibetan&    \phonl{[-nasal]}{$\varnothing $}{\#}
+%% %% %    Kerewe&    \phonb{[ ]}{[ +hiTone ]}{[ +hiTone ] [ ] }{ [ ]}
+%% %%   \end{tabular}&
+%% %%   \begin{tabular}{l}
+%% %%     
+%% %%   \end{tabular}
+%% %%   \\\\\midrule   
+%% %%   \begin{tabular}{l}
+%% %%     \multicolumn{1}{c}{\textbf{nasal place assimilation}}\\
+%% %%     $[\text{+nasal}]\to \alpha\text{place}$ / %\phonb{[+nasal]}{$\alpha$place}{\texttt{trigger}}{\phonfeat[c]{C\\$\alpha$place}}
+%% %%     \underline{\phantom{aa}}\phonfeat[c]{C\\$\alpha$place}\\
+%% %%     \emph{nasals (``n'', ``m'', ...) move to the place in the}\\
+%% %%       \emph{ mouth where the next consonant is}
+%% %%   \end{tabular}
+%% %%   &
+  
+%% %%   \begin{tabular}{rl}    
+%% %%     Bukusu&    \phonr{\textipa{\~n}}{$\alpha$place}{[$\alpha$place]}\\\\
+%% %%   \end{tabular}
+%% %%   &
+%% %%   \begin{tabular}{l}
+%% %%     \phonr{[+nasal]}{$\alpha$place}{\phonfeat[c]{C\\$\alpha$place}}\\\\
+%% %%   \end{tabular}
+%% %% \end{tabular}
+%%   }
+%% %\includegraphics[width = \textwidth]{phonology/universal}
+%% \end{frame}
+
+
+
+
+\begin{comment}
+  \begin{frame}{From learning libraries to using interpreters}
+    DreamCoder: library building as inspiration\\
+    Software engineers: build libraries, use interpreters, version control, debuggers, ...
+
+    \vfill
+    \small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+
+  \end{frame}
+
+  \begin{frame}{Synthesis with a REPL}
+
+
+    
+    \Wider[5em]{  \includegraphics[width = \textwidth]{assets/wrench_wave}}
+
+    REPL: Bridges syntax and semantics
+
+    $\pi$: policy, writes code conditioned on REPL state
+
+    $T$: Markov Decision Process transition function
+
+    Spec: Image to draw
+
+    \vfill
+    \small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+    
+  \end{frame}
+
+  %% \begin{frame}{Interleaving policy+value+REPL in stochastic tree search}
+  %%   c.f. AlphaGo, TD-Gammon
+
+  %%   \includegraphics[width = \textwidth]{assets/smc}
+
+  %% \end{frame}
+
+  \begin{frame}{Scaling to long programs}
+    Branching factor: $ > 1.3$ million per line of code
+
+    Successfully synthesizes $ > $20-line programs in seconds ($ > $100 tokens)
+
+    \vspace{1cm}
+    
+    \Wider[5em]{  
+      \setlength{\tabcolsep}{0pt}
+      \renewcommand{\arraystretch}{0}  
+      
+      %    \includegraphics[width = \textwidth]{assets/pixel_montage} \\
+      % \begin{tabular}{cc}
+      %   \includegraphics[width = 0.3\textwidth]{assets/2d_synthetic_montage}&
+      %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
+      % \end{tabular}\\\\    
+      \begin{tabular}{cccccccc}
+        \rotatebox[origin=l]{90}{Spec}
+        &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
+        \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
+        \includegraphics[width = 2cm]{assets/3-D/demo2/spec}&
+        \includegraphics[width = 2cm]{assets/3-D/demo4/012_png_v.png}&
+        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_input}&
+        \includegraphics[width = 2cm]{assets/3-D/demo1/spec}
+        \\
+        \rotatebox[origin=l]{90}{Rendered}&
+        \rotatebox[origin=l]{90}{program}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo3/000_SMC_value_pickle_pretty.png}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo6/2}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo2/pretty}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo4/012_SMC_value_pickle_pretty}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_output}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo1/pretty}
+      \end{tabular}
+      \setlength{\tabcolsep}{6pt}
+      \renewcommand{\arraystretch}{1}
+    }
+  \end{frame}
+\end{comment}
+
+\begin{frame}{}
+  \begin{center}
+    \begin{tabular}{l}
+      {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
+      \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}\\
+      \phantom{Program Induction and }{\textcolor{gray}{interpretable models}}\\
+      \phantom{Program Induction and }{\textcolor{black}{the future}}
+      \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Models of the physical world}
   \begin{tabular}{rcc}
     \begin{tabular}{c}
       hinge
@@ -1985,27 +2152,32 @@ new neural inference network for program synthesis
     \begin{tabular}{c}
       \includegraphics[width = 3cm]{figures/laptopHinge}
     \end{tabular}\\
-    \begin{tabular}{c}
-      gear
-    \end{tabular}&
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/gears}
-      \end{tabular}&
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/gear2}
-      \end{tabular}\\
+    \vspace{1cm}
+    \\
+    \multicolumn{1}{c}{
+      \begin{tabular}{c}
+        gear
+      \end{tabular}
+    }&
+    %empty
+    &
     \begin{tabular}{c}
       doorknob
+    \end{tabular}\\
+    \begin{tabular}{c}
+      \includegraphics[width = 3cm]{figures/gears}
     \end{tabular}&
+    &
     \begin{tabular}{c}
       \includegraphics[width = 3cm]{figures/doorknob}
-    \end{tabular}&
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/oldTheDoorknobs.jpg}
     \end{tabular}
   \end{tabular}
 \end{frame}
 
+\begin{frame}{}
+  \Wider[5em]{\includegraphics[width = \textwidth]{figures/futureGearsq}}
+
+  \end{frame}
 %% \begin{frame}{Scaling to long programs}
 %%   Branching factor: $ > 400$ actions
 
