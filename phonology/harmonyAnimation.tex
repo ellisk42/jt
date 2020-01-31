@@ -1,0 +1,136 @@
+\newcommand{\R}[1]{$\xrightarrow{r_{#1}}$}
+\newcommand{\li}[2]{$\text{\textsc{#2}}: \text{\textipa{#1}}$}
+
+\usetikzlibrary{calc}
+
+\definecolor{observationColor}{RGB}{204,51,0}
+\definecolor{languageColor}{RGB}{0,128,102}
+\definecolor{lexiconColor}{RGB}{51,76,128}
+\definecolor{universalColor}{RGB}{255,128,128}
+
+\newcommand{\surfaceTriple}[4]{\phantom{t}\textcolor{observationColor}{\textsc{#1}}&\surface{#2}&\surface{#3}\underline{\surface{#4}}}
+
+\newcommand{\ip}[1]{\textipa{#1}}
+\newcommand{\surface}[1]{{\color{observationColor}\textipa{#1}}}
+
+\newcommand{\meaning}[1]{ {\color{observationColor} #1} }
+
+\newcommand{\chain}[3]{ \phantom{1}\vphantom{\R{1}}{\color{observationColor}\textsc{#1}}$\to$#2{\color{observationColor}\textipa{#3}}}
+\renewcommand{\chain}[3]{ \phantom{1}\vphantom{\R{1}}{\color{observationColor}\textsc{#1}}:\phantom{tt}{\color{observationColor}\textipa{#3}}\phantom{test}}
+\newcommand{\chainml}[4]{ \phantom{1}\vphantom{\R{1}}%
+  {\color{observationColor}\textsc{#1}}$\to$#2\\
+  \phantom{1}\vphantom{\R{1}}\phantom{testing}#3{\color{observationColor}[\textipa{#4}]}}
+
+\renewcommand{\arraystretch}{0.5}
+\setlength{\tabcolsep}{0.0em} % for the horizontal padding
+
+
+\newcommand{\qualitativeLong}[7]{
+    \begin{tikzpicture}[every node/.style={inner sep=1}]
+      
+      \visible<4->{
+        \node(l)[anchor=north west,align=left,draw] at (0,0) {
+          \begin{tabular}{r}
+            #3
+          \end{tabular}
+        };
+        \node(lexiconLabel)[anchor=south,align=center] at (l.north) {\large stems\\\large (unobserved)};
+      }
+
+    \node(d)[anchor=north west,draw=observationColor] at ([xshift=0.5cm]l.north east) {
+      \begin{tabular}{l}
+        #4
+      \end{tabular}
+    };
+    \node(observationLevel)[anchor=south west,align=left] at (d.north -| d.west) {\large{\color{observationColor}observed data}};
+    \visible<2->{
+      \node[align=left,draw,anchor=south west](t) at ($(d.north west)+(0,1)$) {
+      \begin{tabular}{l}
+        #2
+      \end{tabular}
+      };
+      \node[anchor= south ] at (t.north) {\large grammar (unobserved)};
+      \draw[very thick,->] ([xshift=0.2cm]observationLevel.east |- t.south) -- ([xshift=0.2cm]d.north -| observationLevel.east);
+    }
+%    \node[anchor=south](language) at (t.north) {\large\textbf{#1}};
+
+    
+
+
+
+
+%    \draw[color=white] (lexiconLabel.north west) -- (t.north west) node[midway,sloped,color=black]{\Large\textbf{#1}};
+
+    \visible<4->{
+      \foreach \n in {0,...,#5}
+               {
+                 \draw[->] ($(l.north east)-(0.1,0.45)+\n*(0,-0.3)$) -- ($(d.north west)-(-0.1,0.45)+\n*(0,-0.3)$);
+                 %-0.5*(0,\n)
+               }
+    }
+  \end{tikzpicture}
+}
+
+
+
+\newcommand{\success}{
+  \qualitativeLong{Turkic Sakha (Yakut)}{
+    %    	# Nom_sg 	Gen_sg 		Nom_pl 		Gen_pl 		gloss
+    \textsc{Singular}$\to $stem\\
+    \textsc{Plural}$\to $stem+\ip{lar}\\
+%    \textsc{Associative}$\to $stem+\ip{l11n}\\
+    \\
+\visible<3->{    $r_1$: \phonl{\textipa{l}}{\textipa{d}}{[ -lateral -tense ]}\\
+    \phantom{$r_1$: }\textbf{``l'' becomes ``d'' next to ``r'', ``t'', but not ``l''}\\\\
+    $r_2$: \phonl{C}{[ -voice ]}{[ -voice ]}\\
+    \phantom{$r_1$: }\textbf{do not voice next to voiceless}\\\\
+    $r_3$: \phonl{V}{[ +rounded ]}{[ +rounded ] [ -low ]\textsubscript{0}}\\
+    $r_4$: \phonl{[ +continuant -high ]}{[ -rounded ]}{\textipa{u} C\textsubscript{0}}\\
+    \phantom{$r_1$: }\textbf{``harmonize'' round vowels like ``u'', ``o''}\\\\
+    $r_5$: \phonl{V}{[ -back -low ]}{[ -back +vowel ] [ ]\textsubscript{0}}\\
+    \phantom{$r_1$: }\textbf{``harmonize'' vowels to be not at back of mouth}\\\\
+    $r_6$: \phonl{[ -sonorant +voice ]}{[ +nasal ]}{[ +nasal ]}\\
+    \phantom{$r_1$: }\textbf{``nasalize'' consonant next to a nasal, like ``m''}
+}
+  }{
+    \\\addlinespace[0.1cm]
+    \li{oron}{Bed}\\
+    \li{bie}{Mare}\\
+    \li{1skaap}{Cabinet}\\
+    %\li{\"orus}{river}\\
+    \addlinespace[0.15cm]\\
+  }{
+    %    \chain{faces (nom)}{\ip{j\"uz}+\ip{lar}$\to $\ip{j\"uzlar}\R{1}}{j\"uzler}\\
+    %% \begin{comment}
+    %% \chain{bed (singular)}{t}{\phantom{testt}oron}\phantom{te}\chain{bed (plural)}{\ip{oron}+\ip{lar}$\to $\ip{oronlar}\R{1}\ip{orondar}\R{3}\ip{orondor}\R{6}}{\phantom{testt}oronnor}\\
+    %% \chain{mare (singular)}{\phantom{test}t4}{\phantom{tes}bie}\phantom{test}\chain{mare (plural)}{\ip{bie}+\ip{lar}$\to $\ip{bielar}\R{5}}{\phantom{tes}bieler}\\
+    %% \chain{cabinet (singular)}{t}{1skaap}\chain{cabinet (plural)}{\ip{1skaap}+\ip{lar}$\to $\ip{1skaaplar}\R{1}\ip{1skaapdar}\R{2}}{1skaaptar}\\
+    %% \end{comment}
+    \begin{tabular}{lll}
+      &\textcolor{observationColor}{\textsc{Singular}}\phantom{test}&\textcolor{observationColor}{\textsc{Plural}}\\\addlinespace[0.1cm]
+      \surfaceTriple{Bed}{oron}{oron}{nor}\\
+      \surfaceTriple{Mare}{bie}{bie}{ler}\\
+      \surfaceTriple{Cabinet\phantom{te}}{1skaap}{1skaaptar}{tar}\\\addlinespace[0.1cm]
+      \end{tabular}
+\\    \multicolumn{1}{c}{\emph{138 total examples}}\\
+    %% \chainml{river (assoc)}{\ip{\"orus}+\ip{l11n}$\to $\ip{\"orusl11n}\R{1}\ip{\"orusd11n}\R{2}}{%
+    %%   \ip{\"orust11n}\R{3}\ip{\"orustuun}\R{5}}{\"or\"ust\"u\"un}
+%    \chain{stamps (gen)}{\ip{pul}+\ip{un}$\to $}{pulun}\phantom{\R{1}}
+%    \chain{rope (gen)}{\ip{ip}+\ip{un}$\to $\ip{ipun}$\to $}{ipin}
+      %% \textipa{ip} & \textipa{ipin} & \textipa{ipler} & \textipa{iplerin}\\
+      %% \textipa{k1z} & \textipa{k1z1n} & \textipa{k1zlar} & \textipa{k1zlar1n}\\
+      %% \textipa{j\"uz} & \textipa{j\"uz\"un} & \textipa{j\"uzler} & \textipa{j\"uzlerin}\\
+      %% \textipa{pul} & \textipa{pulun} & \textipa{pullar} & \textipa{pullar1n}\\
+      %% \textipa{el} & \textipa{elin} & \textipa{eller} & \textipa{ellerin}\\
+      %% \textipa{t\super San} & \textipa{t\super San1n} & \textipa{t\super Sanlar} & \textipa{t\super Sanlar1n}\\
+      %% \textipa{k\"oj} & \textipa{k\"oj\"un} & \textipa{k\"ojler} & \textipa{k\"ojlerin}\\
+      %% \textipa{son} & \textipa{sonun} & \textipa{sonlar} & \textipa{sonlar1n}
+  }{2}{138}{2}
+}
+
+
+
+\Wider[5em]{
+  \begin{center}
+    \scriptsize\success
+    \end{center}}}
