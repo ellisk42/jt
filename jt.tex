@@ -131,7 +131,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{Program Induction:\\Bridging AI and program synthesis}%,\\ by learning to write code that writes code}
+\title{Building Machines that Discover Generalizable, Interpretable Knowledge}%,\\ by learning to write code that writes code}
 \author{Kevin Ellis}
 \institute{MIT} 
 \date{2020}
@@ -284,16 +284,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \begin{frame}[fragile]{Perception, Synthesizing models, Learning-to-Learn}
 
-  Theme \#1: high-level scene understanding, pixels$\to $programs %going from high-dimensional percepts to symbolic program representations
+  Theme: high-level visual understanding, pixels$\to $programs %going from high-dimensional percepts to symbolic program representations
 
   \only<1>{\includegraphics[width = \textwidth]{graphicsTeaser.pdf}}
   \only<2->{{\centering\includegraphics[width = 0.6\textwidth]{assets/we_are_cool_4.png}}}
   
-  \only<2>{Theme \#2: Synthesizing human-understandable models}
+  \only<2>{Theme: Synthesizing human-understandable models}
   \only<2>{{\centering\phantom{this is a test}\includegraphics[width = 0.6\textwidth]{phonology/qualitativeSupplement2.pdf}}}
   \only<3->{\vspace{-1cm}Theme \#2: Synthesizing interpretable models\includegraphics[width = 0.15\textwidth]{phonology/qualitativeSupplement2.pdf}}
   
-  \only<3->{Theme \#3: Learning to synthesize programs}
+  \only<3->{Theme: Learning to synthesize programs}
   \only<3>{\includegraphics[width = 0.9\textwidth]{statement/taskbar2.png}}
 
 %  \only<3->{\includegraphics[width = 1\textwidth]{statement/taskbar_short.png}}
@@ -354,7 +354,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \end{tabular}
 
   \visible<2->{
-    \messageOverlay{why?\\\phantom{te}impute missing objects, extrapolate percepts,\\\phantom{te}learn visual concepts (`arch', `spiral', `Ising model'),\\\phantom{te}assist graphic design, assist 3D modeling\\how?\\\phantom{te}Bayesian inference of graphics program conditioned on image,\\\phantom{te}+program synthesis\\\phantom{te}+learning}
+    \messageOverlay{why?\\\phantom{te}impute missing objects, extrapolate percepts,\\\phantom{te}learn visual concepts (`arch', `spiral', `Ising model'),\\\phantom{te}assist graphic design, assist 3D modeling\\how?\\\phantom{te}machine learning + \\\phantom{te}program synthesis techniques from programming languages community}
   }
 \end{frame}
 
@@ -377,7 +377,7 @@ for (0 <= i < 3)
 \end{tikzpicture}
 
     \vskip0pt plus 1filll
-    \hspace*{-0.75cm}\underline{Ellis}, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.
+    \hspace*{-0.75cm}Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.
 \end{frame}
 
 \begin{frame}[fragile]{Learning to infer graphics programs from hand-drawn images}
@@ -411,7 +411,7 @@ for (0 <= i < 3 <@\textcolor{red}{\textbf{+ 1}}@>)
 }
 
 %    \vskip0pt plus 1filll
-    \hspace*{-0.75cm}\underline{Ellis}, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.
+    \hspace*{-0.75cm}Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.
 \end{frame}
 
 \begin{frame}[fragile]{How to infer graphics programs from hand-drawn images}
@@ -429,7 +429,7 @@ line, ...
     \node[ultra thick,anchor = west,inner sep=0pt](traceImage) at (4.15,-0.6) {
       \includegraphics[width = 0.9cm]{TikZfigures/39-parse.png}}; 
     \node(trace)[draw,thin,fit = (traceImage) (traceSource), label = above:{{\small \begin{tabular}{c}
-            \textbf{Spec/Drawing Commands}\\
+            \textbf{Drawing Commands}\\
             \textbf{(Latent)}
     \end{tabular}}}] {};
     
@@ -458,7 +458,7 @@ rectangle(...)
           learning+ \\stochastic search
     \end{tabular}}} ([yshift = -15]trace.west);
 
-    \draw[->, very thick, red] ([yshift = -15,xshift=0]trace.east) to[out = -30,in = -150] node[midway,yshift = -23,xshift=14]{{\small \begin{tabular}{l}
+    \draw[->, very thick, red] ([yshift = -15,xshift=0]trace.east) to[out = -30,in = -150] node[midway,yshift = -25,xshift=18]{{\small \begin{tabular}{l}
           learning+ \\program synthesis
     \end{tabular}}} ([yshift = -15]program.west);
 %    \draw[->, thick, red, very thick] ([xshift = 10]trace.south) to[out = -10,in = -170] node[midway,yshift = -6]{{\small Learning + Program synthesis}} ([xshift = 10]program.south);
@@ -467,9 +467,9 @@ rectangle(...)
 
 
     \draw[decoration = {brace,mirror,raise = 5pt},decorate,thick]
-    ([yshift = -40,xshift = -130]trace.south) -- node[below = 6pt] {{\small  Image$\to$Spec}} ([yshift = -40,xshift = -5]trace.south);
+    ([yshift = -40,xshift = -130]trace.south) -- node[below = 6pt] {{\small  Image$\to$Parse}} ([yshift = -40,xshift = -5]trace.south);
     \draw[decoration = {brace,mirror,raise = 5pt},decorate,thick]
-    ([xshift = 5,yshift = -40]trace.south) -- node[below = 6pt] {{\small Spec$\to$Program}} ([xshift = 170,yshift = -40]trace.south);
+    ([xshift = 5,yshift = -40]trace.south) -- node[below = 6pt] {{\small Parse$\to$Program}} ([xshift = 170,yshift = -40]trace.south);
 
     \pause
     \node[ultra thick,anchor = west,inner sep=0pt,label=below:{\small extrapolation}](extrapolate) at (11.8,0.9) {\includegraphics[width = 1.3cm]{TikZfigures/39-extrapolated.png}};
@@ -617,7 +617,7 @@ rectangle(...)
       \visible<2>{
 
         \begin{tabular}{ccccccc}
-        \rotatebox[origin=l]{90}{Spec}
+        \rotatebox[origin=l]{90}{Input}
         &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
         \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
         %    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
@@ -642,9 +642,10 @@ rectangle(...)
   }
   
   \vfill
-\small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+\small  Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
 
 \end{frame}
+
 
 \begin{frame}{3D program induction}
   \Wider[5em]{
@@ -700,7 +701,17 @@ rectangle(...)
   }
   
   \vfill
-\small  \underline{Ellis}$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+\small  Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+
+\end{frame}
+
+\begin{frame}{Lessons}
+
+  The bias from a programming language gives extrapolation, or strong generalization, sometimes even without meta-learning
+
+  \vspace{1cm}
+  
+  Mix-and-match techniques to play to their strengths: neural nets for perception, symbols for reasoning, Bayesian methods for uncertainty
 
 \end{frame}
 
@@ -761,20 +772,18 @@ rectangle(...)
 \begin{frame}{Library learning}
   \centering
   
-  \only<1>{  \includegraphics[width = \textwidth]{dc/small_list_dsl}}
-  \only<2->{  \includegraphics[width = 0.7\textwidth]{dc/small_list_dsl}}
-
-
-  
-  \only<2>{\includegraphics[width = 0.7\textwidth]{dc/small_list_solution}}
-  \only<3>{\includegraphics[width = 0.7\textwidth]{dc/entire_sort_solution}}
+  \only<1>{  \Wider[5em]{\includegraphics[width = \textwidth]{figures/figure15}}}
+  \only<2>{  \Wider[5em]{\includegraphics[width = \textwidth]{figures/figure14}}}
+  \only<3>{  \Wider[5em]{\includegraphics[width = \textwidth]{figures/figure13}}}
+  \only<4>{  \Wider[5em]{\includegraphics[width = \textwidth]{figures/figure12}}}
+  \only<5>{  \Wider[5em]{\includegraphics[width = \textwidth]{figures/figure11}}}
   
 \end{frame}
 
 \begin{frame}{DreamCoder}
   \begin{itemize}
   \item   \textbf{Wake:} Solve problems by writing programs
-  \item \textbf{Sleep:} Improve DSL and neural recognition model:
+  \item \textbf{Sleep:} Improve library and neural recognition model:
     \begin{itemize}
     \item \textbf{Abstraction sleep:} Improve library
       \item \textbf{Dream sleep:} Improve neural inference model
@@ -888,11 +897,13 @@ rectangle(...)
 \end{tikzpicture}
 
 
-
-library learning via program analysis + \\
-new neural inference network for program synthesis + \\
-better program representation (Lisp)
-
+\Wider[4em]{
+  \begin{center}
+    library learning via program analysis + \\
+    new neural inference network for program synthesis + \\
+    better program representation (Lisp+polymorphic types [Milner 1978])
+  \end{center}
+}
 \end{frame}
 \newcommand{\NeuralNetwork}[1]{    \begin{tikzpicture}[x=2.5cm,y=1.25cm,transform canvas={scale=#1,shift={+(-1,2.5)}}]
       \tikzstyle{neuron}=[circle,fill=blue!50,minimum size=20pt]
@@ -1337,12 +1348,14 @@ better program representation (Lisp)
     \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.2cm]legend.south west)--([yshift=-0.2cm,xshift=0.5cm]legend.south west);
     \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.5cm]legend.south west) {\small semantic equivalence};
     \draw[rounded corners] (legend.north west) rectangle (se.south east);
+
+    \node[anchor=west] at (-5.5,-4) {\small cf. [Tate et al. 2009]};
     
   \end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]{Abstraction Sleep: Growing the library via refactoring}
-  \begin{tikzpicture}
+\Wider[4em]{  \begin{tikzpicture}
     \node[anchor=south west](legend) at (-5,2) {legend};
     \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.2cm]legend.south west)--([yshift=-0.2cm,xshift=0.9cm]legend.south west);
     \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.9cm]legend.south west) {\small semantic equivalence};
@@ -1352,6 +1365,8 @@ better program representation (Lisp)
     \smallTree{start}{0,0}{+}{5}{5};
     \chooseTree{L}{4,-1}{+}{5}{$x$}{5};
     \draw [*-*,dashed,orange, very thick] (rootstart.south)    -- (arL.south);
+
+    \node[align=left,anchor=west] at (-5.75,-5) {cf. Tate et al. 2009\\\phantom{cf. }Gulwani 2012};
 
     \pause
 
@@ -1380,7 +1395,7 @@ better program representation (Lisp)
     \node at (rootstart.north) {\small $2\times 2=4$ choices};
 %    \node[inner sep=0pt,dotted,very thick,label=above:{$2\times 2=4$ choices},fit=(choiceLabelA)(choiceLabelB),draw] {};
     
-  \end{tikzpicture}
+  \end{tikzpicture}}
 \end{frame}
 
 \begin{frame}[fragile]{}
@@ -1843,18 +1858,23 @@ better program representation (Lisp)
   \end{frame}
 
 \begin{frame}{From learning libraries to learning languages}
-  these experiments study how DreamCoder grows from a ``beginner'' state to ``expert'':
-  \begin{itemize}
-  \item ``beginner:'' basic domain-specific procedures, only easiest problems have short solutions
-    \item ``expert:'' learned library allowing hardest problems to have short meaningful solutions
-    \end{itemize}
-  \pause
-  go beyond: start with generic arithmetic \& control flow, learn fundamentals of domain
 
-  \begin{itemize}
-  \item Physics from recursive higher-order functions
-    \item Recursive higher-order language from 1959 proto-Lisp \& Y-combinator
-  \end{itemize}
+  \huge
+
+  How far can we push library learning?
+  
+  %% these experiments study how DreamCoder grows from a ``beginner'' state to ``expert'':
+  %% \begin{itemize}
+  %% \item ``beginner:'' basic domain-specific procedures, only easiest problems have short solutions
+  %%   \item ``expert:'' learned library allowing hardest problems to have short meaningful solutions
+  %%   \end{itemize}
+  %% \pause
+  %% go beyond: start with generic arithmetic \& control flow, learn fundamentals of domain
+
+  %% \begin{itemize}
+  %% \item Physics from recursive higher-order functions
+  %%   \item Recursive higher-order language from 1959 proto-Lisp \& Y-combinator
+  %% \end{itemize}
 \end{frame}
 
 \begin{frame}{Rediscovering vector algebra}
@@ -1863,6 +1883,15 @@ better program representation (Lisp)
 
 \begin{frame}{Rediscovering origami programming}
   \Wider[5em]{  \includegraphics[width = \textwidth]{dc/mccarthy_only.png}}
+\end{frame}
+
+\begin{frame}{Lessons}
+
+  Symbols aren't necessarily interpretable. Flexibly grow the language based on experience to make it more powerful \emph{and} more human understandable
+
+  \vspace{1cm}
+
+  Learning-from-scratch is possible in principle. Don't do it. Choose wisely what to learn and what to build in
 \end{frame}
 
 \begin{frame}{}
@@ -2130,6 +2159,16 @@ better program representation (Lisp)
   \end{frame}
 \end{comment}
 
+\begin{frame}{Lessons}
+
+  Higher-level knowledge matters (``universal grammar''). Get the basic computational substrate correct
+
+  \vspace{1cm}
+
+  But \emph{some} of this higher-level knowledge can be learned. You don't need millions of examples to learn it. But it's not a one-shot learning problem either
+
+\end{frame}
+
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
@@ -2175,7 +2214,29 @@ better program representation (Lisp)
 \end{frame}
 
 \begin{frame}{}
-  \Wider[5em]{\includegraphics[width = \textwidth]{figures/futureGearsq}}
+  \Wider[5em]{\includegraphics[width = \textwidth]{figures/futureGears}}
+
+\end{frame}
+\newcommand{\person}[2]{\begin{tabular}{c}
+    {\footnotesize #1}\\
+    \includegraphics[width = 1.7cm]{#2}
+\end{tabular}}
+
+\begin{frame}{Collaborators}
+\Wider[4em]{  \begin{tabular}{cccc}
+    \person{Tim O'Donnell}{collaborators/Timothy}&
+    \person{Josh Tenenbaum}{collaborators/Josh}&
+    \person{Adam Albright}{collaborators/Adam}&
+    \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}\\
+    \person{Max Nye}{collaborators/MaxNye}&
+    \person{Cathy Wong}{collaborators/cw}&
+    \person{Yewen Pu}{collaborators/Evan}&
+    \person{Dan Ritchie}{collaborators/Daniel}\\
+    \person{Mathias Sable-Meyer}{collaborators/French}&
+    \person{Lucas Morales}{collaborators/Lucas}&
+    \multicolumn{2}{c}{\textbf{\Large thank you}}
+    \end{tabular}}
+  
 
   \end{frame}
 %% \begin{frame}{Scaling to long programs}
