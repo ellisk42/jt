@@ -291,7 +291,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   
   \only<2>{Theme: Synthesizing human-understandable models}
   \only<2>{{\centering\phantom{this is a test}\includegraphics[width = 0.6\textwidth]{phonology/qualitativeSupplement2.pdf}}}
-  \only<3->{\vspace{-1cm}Theme \#2: Synthesizing interpretable models\includegraphics[width = 0.15\textwidth]{phonology/qualitativeSupplement2.pdf}}
+  \only<3->{\vspace{-1cm}Theme: Synthesizing models \includegraphics[width = 0.15\textwidth]{phonology/qualitativeSupplement2.pdf}}
   
   \only<3->{Theme: Learning to synthesize programs}
   \only<3>{\includegraphics[width = 0.9\textwidth]{statement/taskbar2.png}}
@@ -305,7 +305,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \begin{tabular}{l}
       {\textcolor{black}{Program Induction and perception}}\\
       \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{interpretable models}}
+      \phantom{Program Induction and }{\textcolor{gray}{model discovery}}
       \end{tabular}
   \end{center}
 \end{frame}
@@ -720,7 +720,7 @@ rectangle(...)
     \begin{tabular}{l}
       {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
       \phantom{Program Induction and }{\textcolor{black}{learning to learn}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{interpretable models}}
+      \phantom{Program Induction and }{\textcolor{gray}{discovering models}}
       \end{tabular}
   \end{center}
 \end{frame}
@@ -1319,7 +1319,7 @@ rectangle(...)
   $5 + 5$\\\pause\texttt{(+ 5 5)}\pause
 
   \begin{center}
-    \begin{tikzpicture}[scale=2]
+    \begin{tikzpicture}[scale=1]
       \smallTree{start}{0,0}{+}{5}{5};
     \end{tikzpicture}
   \end{center}
@@ -1366,7 +1366,7 @@ rectangle(...)
     \chooseTree{L}{4,-1}{+}{5}{$x$}{5};
     \draw [*-*,dashed,orange, very thick] (rootstart.south)    -- (arL.south);
 
-    \node[align=left,anchor=west] at (-5.75,-5) {cf. Tate et al. 2009\\\phantom{cf. }Gulwani 2012};
+    \node[align=left,anchor=west] at (-5.75,-5) {cf. Tate et al. 2009\\\phantom{cf. }Gulwani 2012\\\phantom{cf. }Liang et al. 2010};
 
     \pause
 
@@ -1857,11 +1857,16 @@ rectangle(...)
 
   \end{frame}
 
-\begin{frame}{From learning libraries to learning languages}
+\begin{frame}{}
 
-  \huge
+  {\huge
+    From learning libraries,\phantom{tttesttesttest} \phantom{Fr} to learning languages}
 
-  How far can we push library learning?
+  \vspace{2cm}
+
+  \Wider[4em]{
+    \visible<3>{\Large 1950's Lisp $\to $  modern }\visible<2->{\Large functional programming $\to $ physics}
+  }
   
   %% these experiments study how DreamCoder grows from a ``beginner'' state to ``expert'':
   %% \begin{itemize}
@@ -1877,12 +1882,26 @@ rectangle(...)
   %% \end{itemize}
 \end{frame}
 
-\begin{frame}{Rediscovering vector algebra}
-\Wider[5em]{  \includegraphics[width = 0.97\textwidth]{dc/physics_only.png}}
+\begin{frame}{Growing languages for vector algebra and physics}
+  \Wider[5em]{
+    \only<1>{\includegraphics[width = \textwidth]{figures/physicsAnimation7}}
+    \only<2>{\includegraphics[width = \textwidth]{figures/physicsAnimation6}}
+    \only<3>{\includegraphics[width = \textwidth]{figures/physicsAnimation5}}
+    \only<4>{\includegraphics[width = \textwidth]{figures/physicsAnimation4}}
+    \only<5>{\includegraphics[width = \textwidth]{figures/physicsAnimation3}}
+    \only<6>{\includegraphics[width = \textwidth]{figures/physicsAnimation2}}
+    \only<7>{\includegraphics[width = \textwidth]{figures/physicsAnimation1}}
+    }
 \end{frame}
 
 \begin{frame}{Rediscovering origami programming}
-  \Wider[5em]{  \includegraphics[width = \textwidth]{dc/mccarthy_only.png}}
+  \Wider[5em]{
+    \only<1>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation5}}
+    \only<2>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation4}}
+    \only<3>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation3}}
+    \only<4>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation2}}
+    \only<5>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation1}}
+  }
 \end{frame}
 
 \begin{frame}{Lessons}
@@ -1899,7 +1918,7 @@ rectangle(...)
     \begin{tabular}{l}
       {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
       \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}\\
-      \phantom{Program Induction and }{\textcolor{black}{interpretable models}}
+      \phantom{Program Induction and }{\textcolor{black}{discovering models}}
       \end{tabular}
   \end{center}
 \end{frame}
@@ -2174,7 +2193,7 @@ rectangle(...)
     \begin{tabular}{l}
       {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
       \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{interpretable models}}\\
+      \phantom{Program Induction and }{\textcolor{gray}{model discovery}}\\
       \phantom{Program Induction and }{\textcolor{black}{the future}}
       \end{tabular}
   \end{center}
@@ -2212,6 +2231,11 @@ rectangle(...)
     \end{tabular}
   \end{tabular}
 \end{frame}
+
+\begin{frame}{}
+  
+
+  \end{frame}
 
 \begin{frame}{}
   \Wider[5em]{\includegraphics[width = \textwidth]{figures/futureGears}}
