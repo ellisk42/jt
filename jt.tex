@@ -272,8 +272,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \begin{itemize}
   \item inverse CAD [Kulkarni et al. 2015]
 %  \item probabilistic program synthesis [???]
-  \item synthesizing human-understandable models [Evans et al. 2019]
-  \item natural language$\to $code [Liang et al. 2011; Zettlemoyer et al. 2007]
+%  \item synthesizing human-understandable models [Evans et al. 2019]
+  \item semantic parsing [Liang et al. 2011; Zettlemoyer et al. 2007]
   \item programming by examples [Gulwani 2011], computer-aided-programming [Solar-Lezama 2008]
   \end{itemize}} 
 
@@ -291,7 +291,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   
   \only<2>{Theme: Synthesizing human-understandable models}
   \only<2>{{\centering\phantom{this is a test}\includegraphics[width = 0.6\textwidth]{phonology/qualitativeSupplement2.pdf}}}
-  \only<3->{\vspace{-1cm}Theme: Synthesizing models \includegraphics[width = 0.15\textwidth]{phonology/qualitativeSupplement2.pdf}}
+  \only<3->{\vspace{-1cm}Theme: Synthesizing human-understandable models \includegraphics[width = 0.15\textwidth]{phonology/qualitativeSupplement2.pdf}}
   
   \only<3->{Theme: Learning to synthesize programs}
   \only<3>{\includegraphics[width = 0.9\textwidth]{statement/taskbar2.png}}
@@ -788,7 +788,7 @@ rectangle(...)
     \item \textbf{Abstraction sleep:} Improve library
       \item \textbf{Dream sleep:} Improve neural inference model
     \end{itemize}
-  \item   Combines ideas from Wake-Sleep \& Exploration-Compression % \& Program analysis
+%  \item   Combines ideas from Wake-Sleep \& Exploration-Compression % \& Program analysis
   \end{itemize}
 \Wider[5.4em]{
   \begin{tikzpicture}
@@ -798,7 +798,7 @@ rectangle(...)
     \node at (2.5,1.3) {  \includegraphics[width = 4cm]{ecFigures/sleepingChild.jpg}};
     \end{tikzpicture}}
 
-
+\vspace*{-0.2cm} cf. Helmholtz machine, wake/sleep neural network training algorithms
 \end{frame}
 \begin{frame}[t]{Library learning as Bayesian inference}
   %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
@@ -1729,7 +1729,7 @@ rectangle(...)
 \end{frame}
 
 \begin{comment}
-  \begin{frame}{Synergy between dreaming and library learning}
+  \begin{frame}{Learning dynamics}
     \begin{tabular}{ll}
       %    \textbf{A}\\
       \only<1>{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl_stage1.png}}
@@ -1772,22 +1772,31 @@ rectangle(...)
   \end{frame}
 \end{comment}
 
-\begin{frame}{Synergy between dreaming and library learning}
+\begin{frame}{Learning dynamics}
   \begin{tabular}{lr}
     \begin{tabular}{l}
     \only<1>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage1.png}}
-    \only<2>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage2.png}}
-    \only<3>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage3.png}}
+    %    \only<2>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage2.png}}
+    \only<2>{\includegraphics[height = 2.29cm]{figures/tower_hits_ws_average_pretty_small_yl_ablationStage.png}}
+%    \only<3>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage3.png}}
+    \only<3>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl.png}}
   \end{tabular}
 
     &
 
     \begin{tabular}{l}
-    \only<2->{\includegraphics[width = 3cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}}
+      \only<2>{\includegraphics[width = 3cm]{../dreamcoder/figures/learningCurves/revision/curveLegendTruncated.png}}
+          \only<3>{\includegraphics[width = 3cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}}
   \end{tabular}
-    \end{tabular}
+  \end{tabular}
 
+  
 
+  \visible<3>{
+    \small baselines: Exploration-Compression, EC (Dechter et al. 2013)
+    \small \phantom{baselines: }neural synthesis, RobustFill (Devlin et al. 2017)\phantom{otest}
+    \small \phantom{baselines: }24 hours of brute-force enumeration
+    }
 
 
   %% }
@@ -1795,20 +1804,20 @@ rectangle(...)
 
 \end{frame}
 
-\begin{frame}{Synergy between dreaming and library learning}
+\begin{frame}{Learning dynamics}
   \begin{tabular}{ll}
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl_stage3.png}
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl.png}
     %      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl.png}}
     &
     \phantom{ttt}%
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small_stage3.png}\\
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_average_pretty_small_yl_stage3.png}&
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small.png}\\
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_average_pretty_small_yl.png}&
     \phantom{ttt}%
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small_stage3.png}\\
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_average_pretty_small_yl_stage3.png}
+    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small.png}\\
+    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_ws_average_pretty_small_yl.png}
     &
     \phantom{tt.}%
-    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws_stage3.png}
+    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}
     %      \only<4->{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}}%
     %    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}%
     \phantom{tt}\includegraphics[width = 2.5cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}\hspace{-3cm}
@@ -1820,7 +1829,7 @@ rectangle(...)
 
 \end{frame}
 
-\begin{frame}{synergy between dreaming and library learning}
+\begin{frame}{Synergy between dreaming and library learning}
   \begin{tikzpicture}[scale=1.5]
     {
     \begin{scope}[shift = {(1,-1)}]
