@@ -267,6 +267,10 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \vspace{1cm}
 
   John McCarthy, Ray Solomonoff
+
+  \pause
+
+  \textbf{main obstacle: combinatorial search is hard}
 \end{frame}
 
 \begin{frame}{Why try again?}
@@ -702,7 +706,7 @@ rectangle(...)
 
 
         \begin{tabular}{ccccccc}
-        \rotatebox[origin=l]{90}{Spec}
+        \rotatebox[origin=l]{90}{Input}
         &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
         \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
         %    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
@@ -731,15 +735,26 @@ rectangle(...)
 
       
       
-      \vspace{0.5cm}
-      \visible<2>{
-        Solution: stochastic \textbf{tree search} + learn \textbf{policy} that writes code\\ + learn \textbf{value} function that assesses execution of program so far;\\
-      analogous to \textbf{AlphaGo}}
     \end{center}
   }
   
   \vfill
 \small  Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+\end{frame}
+
+\begin{frame}{}
+  Solution: stochastic \textbf{tree search} + learn \textbf{policy} that writes code\\ + learn \textbf{value} function that assesses execution of program so far;\\
+  analogous to \textbf{AlphaGo} [Silver et al. 2016]
+
+  \Wider[5em]{
+    \only<1>{\includegraphics[width = \textwidth]{figures/capitalism3}}
+    \only<2>{\includegraphics[width = \textwidth]{figures/capitalism2}}
+    \only<3>{\includegraphics[width = \textwidth]{figures/capitalism1}}
+    \only<4>{\includegraphics[width = \textwidth]{figures/capitalism}}
+    \vfill
+    \small  Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019. $^*$equal contribution
+
+  }
 
 \end{frame}
 
@@ -803,8 +818,8 @@ rectangle(...)
   \begin{tabular}{rcc}
     & adjective & adverb\\
     ``slow'' & \textipa{man} & \textipa{manmand@}\\
-    ``fast'' & \textipa{kuai} & \textipa{kuaikuaid@}\\
-    ``small'' & \textipa{xiao} & \only<2->{\textipa{xiaoxiaod@}}\only<1>{???}
+    ``small'' & \textipa{xiao} & \textipa{xiaoxiaod@}\\
+    ``fast'' & \textipa{kuai} & \only<2->{\textipa{kuaikuaid@}}\only<1>{???}
   \end{tabular}
 
   \vspace{1cm}
@@ -864,7 +879,10 @@ rectangle(...)
 
 
 \begin{frame}{}
-\Wider[5em]{  \includegraphics[width = \textwidth]{figures/languageMontage}}
+  \Wider[5em]{
+    \only<1>{\includegraphics[width = \textwidth]{figures/betterMontage1}}
+    \only<2>{\includegraphics[width = \textwidth]{figures/betterMontage}}
+  }
 \end{frame}
 \begin{frame}[fragile]{Distilling higher-level knowledge}
   \Wider[5em]{
@@ -996,7 +1014,7 @@ rectangle(...)
       %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
       % \end{tabular}\\\\    
       \begin{tabular}{cccccccc}
-        \rotatebox[origin=l]{90}{Spec}
+        \rotatebox[origin=l]{90}{Input}
         &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
         \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
         \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
@@ -1785,7 +1803,7 @@ rectangle(...)
 
     \pause
 
-    \node(double)[anchor=north] at (python.south) {$=$\texttt{double}};
+    \node(double)[anchor=north] at (python.south) {$=$\texttt{ double}};
 
     \pause
 
@@ -1893,8 +1911,9 @@ rectangle(...)
 
     \end{tikzpicture}}
 
-    \pause
-    \messageOverlay{these $\mathbf{10^{14}}$ refactorings are represented in DreamCoder's\\ exponentially more efficient refactoring data structure\\ using $\mathbf{10^{6}}$ nodes, calculated in under 5min}
+    \only<4>{
+      \messageOverlay{these $\mathbf{10^{14}}$ refactorings are represented in DreamCoder's\\ exponentially more efficient refactoring data structure\\ using $\mathbf{10^{6}}$ nodes, calculated in under 5min}
+      }
 \end{frame}
 
 \begin{comment}
@@ -2025,8 +2044,8 @@ rectangle(...)
     }
 \end{frame}
 
-\begin{frame}{What does DreamCoder dream of?}
-  \emph{before} learning:
+\begin{frame}{What does DreamCoder dream of? (before learning)}
+%  \emph{before} learning:
   \Wider[5em]{
     \begin{center}
       \includegraphics[height=0.9\textheight]{dc/dreams/beforeLearning25September11}
@@ -2042,10 +2061,12 @@ rectangle(...)
     %%     \end{tabular}}
 \end{frame}
 
-\begin{frame}{What does DreamCoder dream of?}
-  \emph{after} learning:
-  \Wider[5em]{
-    \includegraphics[width=\textwidth]{dc/dreams/cherry_picked/montageSeptember14}    
+\begin{frame}{What does DreamCoder dream of? (after learning)}
+%  \emph{after} learning:
+  \Wider[4em]{
+    \begin{center}
+      \includegraphics[height=\textheight]{figures/postDreams6}
+    \end{center}
   }
   
 
@@ -2236,8 +2257,8 @@ rectangle(...)
 \begin{frame}{Evidence for dreaming bootstrapping better libraries}
     \begin{tabular}{rr}
 %        \multicolumn{1}{l}{\textbf{B}}\\
-    \includegraphics[height = 0.3\textwidth]{../dreamcoder/figures/learningCurves/revision/depthVersusAccuracy_revision_MEAN.png}&
-    \visible<2>{\includegraphics[height = 0.3\textwidth]{../dreamcoder/figures/learningCurves/revision/depthVersusAccuracy_revision_SIZE.png}} \\\\
+    \includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN.png}&
+    \visible<2>{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_SIZE.png}} \\\\
 \multicolumn{2}{c}{    \includegraphics[height = 1cm]{../dreamcoder/figures/learningCurves/revision/scatterLegend.png}}
     \end{tabular}
     Darker: Early in learning
@@ -2291,19 +2312,12 @@ rectangle(...)
   \Wider[4em]{
     \visible<3>{\Large 1950's Lisp $\to $  modern }\visible<2->{\Large functional programming $\to $ physics}
   }
-  
-  %% these experiments study how DreamCoder grows from a ``beginner'' state to ``expert'':
-  %% \begin{itemize}
-  %% \item ``beginner:'' basic domain-specific procedures, only easiest problems have short solutions
-  %%   \item ``expert:'' learned library allowing hardest problems to have short meaningful solutions
-  %%   \end{itemize}
-  %% \pause
-  %% go beyond: start with generic arithmetic \& control flow, learn fundamentals of domain
+\end{frame}
 
-  %% \begin{itemize}
-  %% \item Physics from recursive higher-order functions
-  %%   \item Recursive higher-order language from 1959 proto-Lisp \& Y-combinator
-  %% \end{itemize}
+\begin{frame}{}
+  \begin{center}
+    \includegraphics[width = 0.8\textwidth]{figures/PhysicsFormulas}
+   \end{center}
 \end{frame}
 
 \begin{frame}{Growing languages for vector algebra and physics}
@@ -2323,17 +2337,23 @@ rectangle(...)
     \only<1>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation5}}
     \only<2>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation4}}
     \only<3>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation3}}
-    \only<4>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation2}}
+    \only<4->{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation2}}
 %    \only<5>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation1}}
   }
 
+  \vspace{-1cm}
+  
+  \visible<5>{\textbf{\Large 1 year of compute. 5 days on 64 CPUs.}}
+  
   \visible<4->{
     \begin{tabular}{cc}
       \begin{tabular}{c}
         \includegraphics[width = 2cm]{figures/origamiCrane}
-        \end{tabular}&Origami Programming: Jeremy Gibbons, 2003
+        \end{tabular}&\normalsize Origami Programming: Jeremy Gibbons, 2003
     \end{tabular}
-    }
+  }
+
+  
 \end{frame}
 
 \begin{frame}{Lessons}
@@ -2354,6 +2374,14 @@ rectangle(...)
       \phantom{Program Induction and }{\textcolor{black}{the future}}
       \end{tabular}
   \end{center}
+\end{frame}
+
+\begin{frame}{What's in reach}
+  What we've got now:\\ a neuro-symbolic toolkit for Bayesian program induction, combining scalable parallelism with insights from the programming languages community
+
+  \vspace{2cm}
+
+  Where will this toolkit take us?
 \end{frame}
 
 \newcommand{\closex}[2]{
@@ -2447,7 +2475,7 @@ rectangle(...)
   \end{tabular}
 \end{frame}
 
-\begin{frame}{Modeling the physical world} %$\sim$vaporware$\sim$}
+\begin{frame}{Modeling the physical world: Within reach} %$\sim$vaporware$\sim$}
   \Wider[5em]{
     \begin{center}
       \input{vapor.tex}
@@ -2456,8 +2484,9 @@ rectangle(...)
 \end{frame}
 
 \begin{frame}{What's far off, but worthwhile?}
-  A far-off, long-term goal for AI: Making machines that can learn to solve the full span of problems humans can master,
-  while also learning from modest amounts of experience, and acquiring knowledge that can be interpreted and extended
+  What kinds of future machines could learn all this?
+
+  \vspace{1cm}
 
   \Wider[5em]{
     \begin{center}
@@ -2483,24 +2512,28 @@ rectangle(...)
 
   \end{frame}
 
-\newcommand{\person}[2]{\begin{tabular}{c}
+\newcommand{\person}[2]{\closex{0.2}{\begin{tabular}{c}
     {\footnotesize #1}\\
     \includegraphics[width = 1.7cm]{#2}
-\end{tabular}}
+\end{tabular}}}
 
 \begin{frame}{Collaborators}
-\Wider[4em]{  \begin{tabular}{cccc}
+\Wider[6em]{  \begin{tabular}{cccc}
+    \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
+    \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
     \person{Tim O'Donnell}{collaborators/Timothy}&
-    \person{Josh Tenenbaum}{collaborators/Josh}&
-    \person{Adam Albright}{collaborators/Adam}&
-    \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}\\
+    \person{Adam Albright}{collaborators/Adam}\\    \phantom{test}\\
     \person{Max Nye}{collaborators/MaxNye}&
     \person{Cathy Wong}{collaborators/cw}&
     \person{Yewen Pu}{collaborators/Evan}&
-    \person{Dan Ritchie}{collaborators/Daniel}\\
+    \person{Dan Ritchie}{collaborators/Daniel}\\\phantom{test}\\
     \person{Mathias Sable-Meyer}{collaborators/French}&
     \person{Lucas Morales}{collaborators/Lucas}&
-    \multicolumn{2}{c}{\visible<2>{\textbf{\Large thank you}}}
+    \person{Tao Du}{collaborators/tao}&
+    \visible<2>{\begin{tabular}{c}
+        \textbf{\Large thank}\\
+        \textbf{\Large you}
+    \end{tabular}}
     \end{tabular}}
   
 
