@@ -1716,7 +1716,7 @@ rectangle(...)
     \chooseTree{L}{4,-1}{+}{5}{$x$}{5};
     \draw [*-*,dashed,orange, very thick] (rootstart.south)    -- (arL.south);
 
-    \node[align=left,anchor=west] at (-5.75,-5) {\small cf. Downey et al. 1980\\\small\phantom{cf. }Gulwani 2012\\\small\phantom{cf. }Liang et al. 2010};
+    \node[align=left,anchor=west] at (-5.75,-4.5) {\small cf. [Gulwani 2012]\\\phantom{t}};%\\\small\phantom{cf. }Liang et al. 2010};
 
     \pause
 
@@ -1746,17 +1746,17 @@ rectangle(...)
 %    \node[inner sep=0pt,dotted,very thick,label=above:{$2\times 2=4$ choices},fit=(choiceLabelA)(choiceLabelB),draw] {};
     
 \end{tikzpicture}}
-  \myPaperRight{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
 \end{frame}
 
 \begin{frame}[fragile]{}
-  \myPaperRight{\small Ellis, Wong, ..., Solar-Lezama, Tenenbaum. 2020.}%
+  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}%
   \Wider[4em]{  \vspace*{-0.5cm}\begin{tikzpicture}
 %      \node[align=left,anchor=south west] at (7,-9) {\small Ellis et al. 2020.};
     \node[anchor=south west](legend) at (-1,-8) {legend};
-    \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.2cm]legend.south west)--([yshift=-0.2cm,xshift=0.9cm]legend.south west);
-    \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.9cm]legend.south west) {\small semantic equivalence};
-    \node[anchor=west](choosing) at ([yshift=-0.6cm]legend.south west) {{\textsc{\small Any}} \small nondeterministic choice};
+    \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.1cm]legend.south west)--([yshift=-0.1cm,xshift=0.9cm]legend.south west);
+    \node(se)[anchor=west] at ([yshift=-0.1cm,xshift=0.9cm]legend.south west) {\small semantic equivalence};
+    \node[anchor=west](choosing) at ([yshift=-0.5cm]legend.south west) {{\textsc{\small Any}} \small nondeterministic choice};
     \draw[rounded corners] (legend.north west) rectangle (choosing.south east);
     
     \smallTree{original}{0,0}{+}{5}{5};
@@ -2137,37 +2137,7 @@ rectangle(...)
 \end{frame}
 
 
-\newcommand{\image}[2]{\includegraphics[#1]{../dreamcoder/figures/dpl/every/#2.pdf}}
-\begin{frame}{Library structure: Text Editing}
-  \Wider[5em]{
-    DreamCoder learns libraries for FlashFill-style text editing  [Gulwani 2012]
 
-    \vspace{0.5cm}
-
-    \begin{tabular}{cc}
-      \image{height=2.4cm}{text3}&
-      \image{height=2.4cm}{text6}\\
-      \image{height=2.4cm}{text5}&
-      \image{height=2.4cm}{text4}
-    \end{tabular}
-  }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
-\end{frame}
-\begin{frame}{Library structure: Generating Text}
-  Libraries for probabilistic generative models over text:\\data from crawling web for CSV files
-
-  
-  \Wider[5em]{\begin{center}
-    
-    \begin{tabular}{cc}
-      \image{height=3cm}{regex3}&
-      \image{height=3.5cm}{regex1}\\
-      \image{height=3.5cm}{regex2}&
-      \image{height=3cm}{regex4}
-    \end{tabular}
-    \end{center}
-  }
-\end{frame}
 %% \begin{frame}{Library structure: Probabilistic generative modeling of text}
 %%   \Wider[5em]{\includegraphics[width = \textwidth]{deepArray2.pdf}}
 %% \end{frame}
@@ -2180,7 +2150,7 @@ rectangle(...)
   \vspace{2cm}
 
   \Wider[4em]{
-    \visible<3>{\Large 1950's Lisp $\to $  modern }\visible<2->{\Large functional programming $\to $ physics}
+    \visible<3>{\Large 1950's Lisp $\to $  }\visible<2->{\Large modern functional programming $\to $ physics}
   }
 \end{frame}
 
@@ -2196,10 +2166,10 @@ rectangle(...)
     \only<1>{\includegraphics[width = \textwidth]{figures/physicsAnimation7}}
     \only<2>{\includegraphics[width = \textwidth]{figures/physicsAnimation6}}
     \only<3>{\includegraphics[width = \textwidth]{figures/physicsAnimation5}}
-    \only<4>{\includegraphics[width = \textwidth]{figures/physicsAnimation4}}
-    \only<5>{\includegraphics[width = \textwidth]{figures/physicsAnimation3}}
-    \only<6>{\includegraphics[width = \textwidth]{figures/physicsAnimation2}}
-    \only<7>{\includegraphics[width = \textwidth]{figures/physicsAnimation1}}
+%    \only<4>{\includegraphics[width = \textwidth]{figures/physicsAnimation4}}
+    \only<4>{\includegraphics[width = \textwidth]{figures/physicsAnimation3}}
+    \only<5>{\includegraphics[width = \textwidth]{figures/physicsAnimation2}}
+    \only<6>{\includegraphics[width = \textwidth]{figures/physicsAnimation1}}
   }
 \end{frame}
 
@@ -2465,5 +2435,42 @@ rectangle(...)
 
 %%    \Huge \centering \textbf{The End.}
 %%   \end{frame}
+\newcommand{\image}[2]{\includegraphics[#1]{../dreamcoder/figures/dpl/every/#2.pdf}}
+\begin{frame}{Library structure: Text Editing}
+  \Wider[5em]{
+    DreamCoder learns libraries for FlashFill-style text editing  [Gulwani 2012]
 
+    \vspace{0.5cm}
+
+    \begin{tabular}{cc}
+      \image{height=2.4cm}{text3}&
+      \image{height=2.4cm}{text6}\\
+      \image{height=2.4cm}{text5}&
+      \image{height=2.4cm}{text4}
+    \end{tabular}
+  }
+  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+\end{frame}
+\begin{frame}{Library structure: Generating Text}
+  Libraries for probabilistic generative models over text:\\data from crawling web for CSV files
+
+  
+  \Wider[5em]{\begin{center}
+    
+    \begin{tabular}{cc}
+      \image{height=3cm}{regex3}&
+      \image{height=3.5cm}{regex1}\\
+      \image{height=3.5cm}{regex2}&
+      \image{height=3cm}{regex4}
+    \end{tabular}
+    \end{center}
+  }
+\end{frame}
+
+\begin{frame}{150 random dreams before learning}
+  \includegraphics[width = \textwidth]{../dreamcoder/figures/dreams/appendixlogoinitial.png}
+\end{frame}
+\begin{frame}{150 random dreams after learning}
+  \includegraphics[width = \textwidth]{../dreamcoder/figures/dreams/appendixlogofinal.png}
+\end{frame}
 \end{document}
