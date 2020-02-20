@@ -13,11 +13,11 @@
 
 \newcommand{\meaning}[1]{ {\color{observationColor} #1} }
 
-\newcommand{\chain}[3]{ \phantom{1}\vphantom{\R{1}}{\color{observationColor}\textsc{#1}}$\to$#2{\color{observationColor}\textipa{#3}}}
+\newcommand{\chain}[3]{ \phantom{1}\vphantom{\R{1}}{\color{observationColor}\textsc{#1}}\visible<2->{$\to$}#2{\color{observationColor}\textipa{#3}}}
 %\renewcommand{\chain}[3]{ \phantom{1}\vphantom{\R{1}}{\color{observationColor}\textsc{#1}}:\phantom{tt}{\color{observationColor}\textipa{#3}}\phantom{test}}
 \newcommand{\chainml}[4]{ \phantom{1}\vphantom{\R{1}}%
   {\color{observationColor}\textsc{#1}}$\to$#2\\
-  \phantom{1}\vphantom{\R{1}}\phantom{testing}#3{\color{observationColor}[\textipa{#4}]}}
+  \phantom{1}\vphantom{\R{1}}\phantom{testing}#3{\color{observationColor}\textipa{#4}}}
 
 \renewcommand{\arraystretch}{0.5}
 \setlength{\tabcolsep}{0.0em} % for the horizontal padding
@@ -32,7 +32,7 @@
             #3
           \end{tabular}
         };
-        \node(lexiconLabel)[anchor=south,align=center] at (l.north) {\large stems\\\large (unobserved)};
+        \node(lexiconLabel)[anchor=south,align=center] at (l.north) {\Large stems\\\large (unobserved)};
       }
 
     \node(d)[anchor=north west,draw=observationColor] at ([xshift=0.5cm]l.north east) {
@@ -40,7 +40,7 @@
         #4
       \end{tabular}
     };
-    \node(observationLevel)[anchor=south west,align=left] at (d.north -| d.west) {\large{\color{observationColor}observed data}};
+    \node(observationLevel)[anchor=south west,align=left] at (d.north -| d.west) {\Large{\color{observationColor}observed data}};
     {
       \node[align=left,draw,anchor=south west](t) at ($(d.north west)+(0,1)$) {
       \begin{tabular}{l}
@@ -78,32 +78,32 @@
     \textsc{Plural}$\to $stem+\ip{lar}\\
 %    \textsc{Associative}$\to $stem+\ip{l11n}\\
     \\
-{    $r_1$: \phonl{\textipa{l}}{\textipa{d}}{[ -lateral -tense ]}\\
+{\only<3>{$\mathbf{r_1}$}\only<4->{$r_1$}\only<1-2>{$r_1$}: \phonl{\textipa{l}}{\textipa{d}}{[ -lateral -tense ]}\\
     \phantom{$r_1$: }\textbf{``l'' becomes ``d'' next to ``r'', ``t'', but not ``l''}\\\\
     $r_2$: \phonl{C}{[ -voice ]}{[ -voice ]}\\
     \phantom{$r_1$: }\textbf{do not voice next to voiceless}\\\\
-    $r_3$: \phonl{V}{[ +rounded ]}{[ +rounded ] [ -low ]\textsubscript{0}}\\
+    \only<4>{$\mathbf{r_3}$}\only<5->{$r_3$}\only<1-3>{$r_3$}: \phonl{V}{[ +rounded ]}{[ +rounded ] [ -low ]\textsubscript{0}}\\
     $r_4$: \phonl{[ +continuant -high ]}{[ -rounded ]}{\textipa{u} C\textsubscript{0}}\\
     \phantom{$r_1$: }\textbf{``harmonize'' round vowels like ``u'', ``o''}\\\\
     $r_5$: \phonl{V}{[ -back -low ]}{[ -back +vowel ] [ ]\textsubscript{0}}\\
     \phantom{$r_1$: }\textbf{``harmonize'' vowels to be not at back of mouth}\\\\
-    $r_6$: \phonl{[ -sonorant +voice ]}{[ +nasal ]}{[ +nasal ]}\\
+    \only<5->{$\mathbf{r_6}$}%% \only<6->{$r_6$}
+    \only<1-4>{$r_6$}: \phonl{[ -sonorant +voice ]}{[ +nasal ]}{[ +nasal ]}\\
     \phantom{$r_1$: }\textbf{``nasalize'' consonant next to a nasal, like ``m''}
 }
   }{
-    \li{1skaap}{cabinet}\\
-    \li{oron}{bed}\\
-    \li{bie}{mare}\\
-    \li{\"orus}{river}\\
-    \phantom{\li{l}{l}}
+    \li{oron}{bed}
+    %% \visible<6->{\li{bie}{mare}}\\
+    %% \visible<6->{\li{1skaap}{cabinet}}\\
+    %% \visible<6->{\li{\"orus}{river}}%% \\
+    %% \phantom{\li{l}{l}}
   }{
 %    \chain{faces (nom)}{\ip{j\"uz}+\ip{lar}$\to $\ip{j\"uzlar}\R{1}}{j\"uzler}\\
-    \chain{cabinets}{\ip{1skaap}+\ip{lar}$\to $\ip{1skaaplar}\R{1}\ip{1skaapdar}\R{2}}{1skaaptar}
-    \\
-    \chain{beds}{\ip{oron}+\ip{lar}$\to $\ip{oronlar}\R{1}\ip{orondar}\R{3}\ip{orondor}\R{6}}{oronnor}\\
-    \chain{mares}{\ip{bie}+\ip{lar}$\to $\ip{bielar}\R{5}}{bieler}\\
- \chainml{river (assoc)}{\ip{\"orus}+\ip{l11n}$\to $\ip{\"orusl11n}\R{1}\ip{\"orusd11n}\R{2}}{%
-   \ip{\"orust11n}\R{3}\ip{\"orustuun}\R{5}}{\"or\"ust\"u\"un}
+    \chain{beds}{\visible<2->{\ip{oron}+\ip{lar}$\to $\ip{oronlar}}\visible<3->{\R{1}\ip{orondar}}\visible<4->{\R{3}\ip{orondor}}\visible<5->{\R{6}}}{\visible<5->{oronnor}}
+ %%    \visible<6->{\chain{mares}{\ip{bie}+\ip{lar}$\to $\ip{bielar}\R{5}}{bieler}}\\
+ %%    \visible<6->{\chain{cabinets}{\ip{1skaap}+\ip{lar}$\to $\ip{1skaaplar}\R{1}\ip{1skaapdar}\R{2}}{1skaaptar}}\\
+ %% \visible<6->{\chainml{river (assoc)}{\ip{\"orus}+\ip{l11n}$\to $\ip{\"orusl11n}\R{1}\ip{\"orusd11n}\R{2}}{%
+ %%   \ip{\"orust11n}\R{3}\ip{\"orustuun}\R{5}}{\"or\"ust\"u\"un}}
 %    \chain{stamps (gen)}{\ip{pul}+\ip{un}$\to $}{pulun}\phantom{\R{1}}
 %    \chain{rope (gen)}{\ip{ip}+\ip{un}$\to $\ip{ipun}$\to $}{ipin}
       %% \textipa{ip} & \textipa{ipin} & \textipa{ipler} & \textipa{iplerin}\\
@@ -114,7 +114,7 @@
       %% \textipa{t\super San} & \textipa{t\super San1n} & \textipa{t\super Sanlar} & \textipa{t\super Sanlar1n}\\
       %% \textipa{k\"oj} & \textipa{k\"oj\"un} & \textipa{k\"ojler} & \textipa{k\"ojlerin}\\
       %% \textipa{son} & \textipa{sonun} & \textipa{sonlar} & \textipa{sonlar1n}
-  }{3}{138}{2}
+  }{0}{138}{2}
 }
 
 

@@ -532,7 +532,7 @@ line, ...
 \end{lstlisting}};
     \node[ultra thick,anchor = west,inner sep=0pt](traceImage) at (4.15,-0.6) {
       \includegraphics[width = 0.9cm]{TikZfigures/39-parse.png}}; 
-    \node(trace)[draw,thin,fit = (traceImage) (traceSource), label = above:{{\small \begin{tabular}{c}
+    \node(trace)[draw,thick,fit = (traceImage) (traceSource), label = above:{{\small \begin{tabular}{c}
             \textbf{Drawing Commands}\\
             \textbf{(Latent)}
     \end{tabular}}}] {};
@@ -558,7 +558,7 @@ rectangle(...)
     \draw[->, ultra thick] ([yshift=10]program.west) to[out = 150,in = 30] node[midway,yshift = 6] {{\small exec}} ([yshift=10]trace.east);
     
     \pause
-    \draw[->, very thick, red] ([yshift = -15,xshift=3]observation.east) to[out = -30,in = -150] node[midway,yshift = -25,xshift=0]{{\small \begin{tabular}{l}
+    \draw[->, very thick, red] ([yshift = -15,xshift=3]observation.east) to[out = -30,in = -150] node[midway,yshift = -35,xshift=0]{{\small \begin{tabular}{l}
           neural network+ \\sequential monte carlo
     \end{tabular}}} ([yshift = -15]trace.west);
 
@@ -865,11 +865,16 @@ rectangle(...)
   \vspace{1cm}
   
   \begin{tabular}{rlll}
-    &\multicolumn{1}{c}{masculine}&\multicolumn{1}{c}{feminine}&\only<5->{stem (unobserved)}\\
-    ``rich''&\textipa{bogat}&\textipa{bogata}&\only<5->{bogat}\\
-    ``mild''&\textipa{blag}&\textipa{blaga}&\only<5->{blag}\\
-    ``green''&\textipa{zelen}&\only<1>{???}\only<2->{\textipa{zelena}}&\only<5->{zelen}\\
-    \only<4->{``clear''}&\only<4>{???}\only<5>{\textbf{yasan}}& \only<4->{yasna}&\only<5->{yasn}\\  
+    &\multicolumn{1}{c}{masculine}&\multicolumn{1}{c}{feminine}&%% \only<5->{stem (unobserved)}
+    \\
+    ``rich''&\textipa{bogat}&\textipa{bogata}&%% \only<5->{bogat}
+    \\
+    ``mild''&\textipa{blag}&\textipa{blaga}&%% \only<5->{blag}
+    \\
+    ``green''&\textipa{zelen}&\only<1>{???}\only<2->{\textipa{zelena}}&%% \only<5->{zelen}
+    \\
+    \only<4->{``clear''}&\only<4>{???}\only<5>{\textbf{yasan}}& \only<4->{yasna}&%% \only<5->{yasn}
+    \\  
   \end{tabular}
 
   \vspace{1cm}
@@ -908,7 +913,11 @@ rectangle(...)
 \end{frame}
 \begin{frame}{Turkic Sakha (Yakut)}
   \input{phonology/harmonyAnimation2.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
-%  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+\end{frame}
+\begin{frame}{Turkic Sakha (Yakut)}
+  \input{phonology/harmonyAnimation3.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
+  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
 \end{frame}
 
 
@@ -1077,7 +1086,7 @@ rectangle(...)
     Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
 \end{frame}
 
-\begin{frame}{Library learning}
+\begin{frame}[t]{Library learning}
 \Wider[5em]{  \begin{center}
     \begin{tabular}{ccc}
       \includegraphics[height=0.6\textheight]{figures/figureOneFinal1_primitives}&
@@ -1111,7 +1120,7 @@ rectangle(...)
 
     \tiny\texttt{(lambda (x) (map (lambda (y) (car (fold (fold x nil (lambda (z u) (if (gt? (+ y 1) (length (fold x nil (lambda (v w) (if (gt? z v) (cons v w) w))))) (cons z u) u))) nil (lambda (a b) (if (nil? (fold (fold x nil (lambda (c d) (if (gt? (+ y 1) (length (fold x nil (lambda (e f) (if (gt? c e) (cons e f) f))))) (cons c d) d))) nil (lambda (g h) (if (gt? g a) (cons g h) h)))) (cons a b) b))))) (range (length x))))}}
 
-  \visible<13>{\normalsize induced sort program found in $\leq 10$min. Brute-force search without learned library would take $\approx 10^{78}$ years }
+  \visible<13>{\normalsize induced sort program found in $\leq 10$min. Brute-force search without learned library would take $\approx 10^{73}$ years }
 
   \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
   
@@ -1177,7 +1186,7 @@ rectangle(...)
 
 \vspace{0.5cm}
   
-[Dechter et al., 2013]  [Liang et al, 2010]; [Lake et al, 2015]
+[Dechter et al, 2013]  [Liang et al, 2010] [Lake et al, 2015]
 
 %\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
 
@@ -2106,18 +2115,23 @@ rectangle(...)
 
     \visible<2->{
       \draw [->,thick] (synthesis.-120) to[out = -150,in = 60] node[below,rotate = 45,align = center]{{\footnotesize Trains}\\{\footnotesize (Abstraction)}} (Library.30);
-      \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=white,inner sep=0pt,align = center]{  \footnotesize{Inductive bias}\\\footnotesize{(Wake)}} (synthesis.west);
     }
     \visible<3->{
-      \draw [->,thick] (synthesis.-60) to[out = -30,in = 120] node[below,rotate=-45,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (recognitionModel.150);
-    
-      \draw [->,thick] (Library.east) to[out = -30,in = 210] node[above, align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (recognitionModel.west);
+%      \draw [->,thick] (synthesis.-60) to[out = -30,in = 120] node[below,rotate=-45,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (recognitionModel.150);
+      \draw [->,thick] (Library.east) to[out = -30,in = 210] node[above, align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (recognitionModel.west);    
     }
 
 
     \visible<4->{
-      \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=white,inner sep=0pt,align = center]{{\footnotesize Makes tractable}\\{\footnotesize (Wake)}} (synthesis.east);
+      \draw [->,thick] (recognitionModel.150) to[in = -30,out = 120] node[below,rotate=-45,align = center]{{\footnotesize Makes tractable}\\{\footnotesize (Wake)}} (synthesis.-60);
     }
+
+    \visible<5->{
+      \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=white,inner sep=1pt,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (synthesis.east);
+      \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=white,inner sep=0pt,align = center]{\footnotesize{Inductive bias}\\\footnotesize{(Wake)}
+      } (synthesis.west);
+    }
+
   \end{scope}}
     \end{tikzpicture}
   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}

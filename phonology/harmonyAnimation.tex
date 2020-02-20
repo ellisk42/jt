@@ -52,6 +52,10 @@
       \node[anchor= south ] at (t.north) {\large grammar (unobserved)};
       \draw[very thick,->] ([xshift=0.2cm]observationLevel.east |- t.south) -- ([xshift=0.2cm]d.north -| observationLevel.east);
     }
+
+    \visible<3->{
+      \node[align=left,anchor=right] at ($(t.west) + (-0.5,0)$) {constraint--based\\\phantom{t}synthesis\\\phantom{t}[Solar-Lezama 2008]\\test-driven synthesis\\\phantom{t}[Perelman et al. 2016]};
+    }
 %    \node[anchor=south](language) at (t.north) {\large\textbf{#1}};
 
     
