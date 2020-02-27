@@ -736,10 +736,10 @@ rectangle(...)
   analogous to \textbf{AlphaGo} [Silver et al. 2016]
 
   \Wider[5em]{
-    \only<1>{\includegraphics[width = \textwidth]{figures/capitalism3}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/capitalism2}}
-    \only<3>{\includegraphics[width = \textwidth]{figures/capitalism1}}
-    \only<4>{\includegraphics[width = \textwidth]{figures/capitalism}}
+    \only<1>{\includegraphics[width = \textwidth]{figures/capitalism3.png}}
+    \only<2>{\includegraphics[width = \textwidth]{figures/capitalism2.png}}
+    \only<3>{\includegraphics[width = \textwidth]{figures/capitalism1.png}}
+    \only<4>{\includegraphics[width = \textwidth]{figures/capitalism.png}}
   }
 %  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
 \end{frame}
@@ -2243,6 +2243,11 @@ rectangle(...)
   #2
   \renewcommand{\arraystretch}{1}
 }
+\newcommand{\closey}[2]{
+  \setlength{\tabcolsep}{#1}
+  #2
+  \setlength{\tabcolsep}{6pt}
+}
 \begin{frame}{What's in reach}
   \Wider[5em]{
     \begin{center}
@@ -2342,6 +2347,76 @@ rectangle(...)
     \end{center}
   }
 \end{frame}
+\renewcommand{\insertframenumber}{}
+\begin{frame}{What do we want from machine learning?}
+  \Wider[4em]{
+\vspace*{-0.25cm}    \closex{0.1}{\closey{1pt}{\begin{tabular}{rccc}
+      Strong generalization&
+      \begin{tabular}{rcl}
+        %% \begin{tabular}{c}
+        %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing1.png}
+        %% \end{tabular}&$\to$&%
+        %% \begin{tabular}{c}
+        %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation1.png}
+        %% \end{tabular}\\
+        \begin{tabular}{c}
+          \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing2.png}
+        \end{tabular}&$\to$&%
+        \begin{tabular}{c}
+          \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation2.png}
+        \end{tabular}
+      \end{tabular}&\phantom{test}&
+      \begin{tabular}{c}
+        \includegraphics[width = 1.75cm]{dc/dreams/cherry_picked/65_pretty.png}
+      \end{tabular}
+    \end{tabular}}}
+
+    \pause
+
+    %  \vspace{1cm}
+
+    Bootstrapping, learning-to-learn, representation learning
+    \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
+          \multicolumn{1}{c}{\begin{tabular}{llll}
+              \phantom{testtest}&
+            \begin{tabular}{c}
+              \includegraphics[width = 4cm]{figures/finalLearningCurveMontage}
+              \end{tabular}&\phantom{test}&\begin{tabular}{c}
+              \includegraphics[width = 4cm]{../dreamcoder/figures/dpl/every/text6.pdf}
+              \end{tabular}
+          \end{tabular}}
+        \end{tabular}
+    }}
+
+    \pause
+    
+    %  \vspace{1cm}
+
+    \phantom{test}
+
+    \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
+          Discovering knowledge that humans can understand and build on\\
+          \begin{tabular}{lll}
+            \begin{tabular}{c}
+              \includegraphics[width = 0.15\textwidth]{figures/odden}
+              \end{tabular}&
+            \begin{tabular}{c}
+              \includegraphics[width = 0.15\textwidth]{figures/spe}
+              \end{tabular}&
+            \begin{tabular}{cc}
+              \begin{tabular}{c}
+                \includegraphics[width = 2cm]{figures/origamiCrane}
+                \end{tabular}&
+              \begin{tabular}{c}
+                \includegraphics[width = 6cm]{figures/mcCarthyAnimationFinalMontage}
+              \end{tabular}
+              \end{tabular}
+          \end{tabular}
+        \end{tabular}
+    }}
+
+  }
+  \end{frame}
 
 \begin{frame}{What's far off, but worthwhile?}
   What kinds of future machines could learn all this?
