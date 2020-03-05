@@ -107,7 +107,7 @@
   \end{minipage}%
   }%
 }
-
+\definecolor{backgroundBeige}{RGB}{250,250,250}
 \newcommand{\denotation}[1]{{\llbracket #1 \rrbracket}}
 
 \usepackage[utf8]{inputenc}
@@ -325,7 +325,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
   programming by examples [Gulwani 2011]
 
-  computer-aided-programming [Solar-Lezama 2008]
+  computer aided programming [Solar-Lezama 2008]
 
   inverse procedural modeling [Kulkarni et al. 2015]
   
@@ -817,10 +817,12 @@ rectangle(...)
     \includegraphics[width = 0.8\textwidth]{figures/distillingLaws}\\
                     {\small Schmidt \& Lipson: ``Distilling Free-Form Natural Laws from Experimental Data''}
 
-                    \\
+                    \\\vspace{1cm}\\
                     \begin{tabular}{cc}
-                      \includegraphics[width = 0.45\textwidth]{figures/genetics}&
-                      \visible<2>{\hspace*{-0.5cm}\includegraphics[width = 0.53\textwidth]{figures/solomonScience2}}\\
+                      \begin{tabular}{c}
+                        \includegraphics[width = 0.45\textwidth]{figures/genetics}
+                        \end{tabular}&
+                      %% \visible<2>{\hspace*{-0.5cm}\includegraphics[width = 0.53\textwidth]{figures/solomonScience2}}\\
                       \begin{tabular}{l}
                         {\small Lezon et al. 2006}\\{\small inferring genetic interaction networks}
                       \end{tabular}&
@@ -1041,14 +1043,14 @@ rectangle(...)
 
   \Wider[4em]{
     \begin{itemize}
-  \item Library of concepts (declarative knowledge; domain specific language) %; generative model over programs)
-    \item Inference strategy (procedural knowledge; synthesis algorithm)
-    \end{itemize}
+    \item Library of concepts (declarative knowledge; domain specific language) \\ %; generative model over programs)
+      \item      Inference strategy (procedural knowledge; synthesis algorithm)
+      \end{itemize}
   }
   
   \vspace{0.75cm}
   
-  \only<2>{
+  \visible<2>{
   \begin{tikzpicture}
     \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
     \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
@@ -1305,6 +1307,7 @@ rectangle(...)
   \only<3>{\includegraphics[width = \textwidth]{cycleGraphicalModel3}}
   \only<4>{\includegraphics[width = \textwidth]{cycleGraphicalModel4}}
   \only<5>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
+  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
 \end{frame}
 
 %% \begin{frame}{DreamCoder's sleep cycles}
@@ -1705,8 +1708,8 @@ rectangle(...)
     \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.5cm]legend.south west) {\small semantic equivalence};
     \draw[rounded corners] (legend.north west) rectangle (se.south east);
 
-    \node[anchor=west] at (-5.5,-3.7) {\small cf. %%[Tate,  et al. %% 2009
-      [Downey et al. 1980]
+    \node[anchor=west] at (-5.5,-3.25) {\small cf. [Ross Tate et al. 2009]
+      %[Downey et al. 1980]
       };
     
   \end{tikzpicture}
@@ -1908,6 +1911,94 @@ rectangle(...)
       }
 \end{frame}
 
+\begin{frame}
+  \only<1>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
+  \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModelRecognition}}
+\end{frame}
+
+\begin{frame}[t]{Neural recognition model guides search}
+  \vspace{1.2cm}
+  \begin{tikzpicture}
+    \node(t) at (0,0) {task};
+    \node(n) at ([xshift=2cm]task.east) {
+      \NeuralNetwork{0.17}};
+    \node(p) at ([xshift=2cm]n.east) {program};
+    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
+    \draw[thick,->] ([xshift=0.4cm]n.east) -- (p.west);
+
+    %% \node(n1) at ([yshift=-2cm]t.south) {\phantom{.}};
+    %% \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {\phantom{is a \textbf{``bigram'' model over syntax trees}}\\\phantom{test}\\\phantom{test}}\\\phantom{test}};
+  \end{tikzpicture}
+
+\end{frame}
+\begin{frame}[t]{Neural recognition model guides search}
+  \vspace{1cm}
+  \begin{tikzpicture}
+    \node(t) at (0,0) {task};
+    \node(n) at ([xshift=2cm]task.east) {
+      \NeuralNetwork{0.17}};
+    \node(d) at ([xshift=2cm]n.east) {distribution};
+    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
+    \draw[thick,->] ([xshift=0.4cm]n.east) -- (d.west);
+    \node(p) at ([xshift=2cm]d.east) {program};
+    \draw[squiggle, thick,->] (d.east) -- node[sloped,above]{{{sample}}} (p.west);
+
+    \pause
+
+    \node(n1) at ([yshift=-2cm]t.south) {\NeuralNetwork{0.17}};
+    \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {is a...\\\phantom{is a...}recurrent network (Devlin et al 2017)\\
+      \phantom{is a...}unigram model (Menon et al 2013; Balog et al 2016)};
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}[t]{Neural recognition model guides search}
+  \vspace{1cm}
+  \begin{tikzpicture}
+    \node(t) at (0,0) {task};
+    \node(n) at ([xshift=2cm]task.east) {
+      \NeuralNetwork{0.17}};
+    \node[align=left](d) at ([xshift=2cm]n.east) {distribution};
+    \node[anchor=north] at (d.south) {{\tiny P(child$\vert$parent,arg)}};
+    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
+    \draw[thick,->] ([xshift=0.4cm]n.east) -- (d.west);
+    \node(p) at ([xshift=2cm]d.east) {program};
+    \draw[squiggle, thick,->] (d.east) -- node[sloped,above]{{{sample}}} (p.west);
+
+    \only<1>{
+      \node(n1) at ([yshift=-2cm]t.south) {\NeuralNetwork{0.17}};
+      \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {is a \textbf{``bigram'' model over syntax trees}};
+    }
+
+    \only<2->{
+%      \node(l)[draw] at (2,-1) {\texttt{$\lambda$ (a)}};
+      \node(k)[draw] at (1.7,-1.3) {\texttt{+}};
+      \only<3->{
+      \node(o)[draw] at ([xshift=-50,yshift=-50]k.south) {\texttt{9}};
+      \draw[->] (k.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{+},\text{arg}=\text{left})}(o.north);
+      }
+      \only<4->{
+        \node(m)[draw] at ([xshift=50,yshift=-50]k.south) {\texttt{*}};
+        \draw[->] (k.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{+},\text{arg}=\text{right})}(m.north);
+      }
+      \only<5->{
+        \node(x1)[draw] at ([xshift=50,yshift=-50]m.south) {\texttt{2}};
+        \node(x2)[draw] at ([xshift=-50,yshift=-50]m.south) {\texttt{8}};
+
+        %      \draw[->] (l.south)-- node[fill=white,align=center,midway,inner sep=0,outer sep=0]{$Q_{\text{start},\texttt{+},1}(x)$}(k.north);
+        
+
+        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{left})}(x1.north);
+        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{right})}(x2.north);
+      }
+
+      \only<6>{
+        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU};
+      }
+      \only<7>{
+        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU\\learns to break syntactic symmetries:\\\phantom{tt}P(1$\vert$\texttt{*},\text{arg}=\text{left})=0.0\\\phantom{tttt}``do not multiply by one''};
+        }
+    }
+  \end{tikzpicture}
+\end{frame}
 
 
 \begin{frame}{DreamCoder Domains}
@@ -2051,18 +2142,18 @@ rectangle(...)
     }
   \begin{tabular}{lr}
     \begin{tabular}{l}
-    \only<1>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage1.png}}
-    %    \only<2>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage2.png}}
+    \only<1>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage1.png}}
+    %    \only<2>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage2.png}}
     \only<2>{\includegraphics[height = 2.29cm]{figures/tower_hits_ws_average_pretty_small_yl_ablationStage.png}}
-%    \only<3>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl_stage3.png}}
-    \only<3>{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_ws_average_pretty_small_yl.png}}
+%    \only<3>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage3.png}}
+    \only<3>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl.png}}
   \end{tabular}
 
     &
 
     \begin{tabular}{l}
-      \only<2>{\includegraphics[width = 3cm]{../dreamcoder/figures/learningCurves/revision/curveLegendTruncated.png}}
-          \only<3>{\includegraphics[width = 3cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}}
+      \only<2>{\includegraphics[width = 3cm]{figures/revisedLearningCurves/curveLegendTruncated.png}}
+          \only<3>{\includegraphics[width = 3cm]{figures/revisedLearningCurves/curveLegend.png}}
   \end{tabular}
   \end{tabular}
 
@@ -2082,21 +2173,21 @@ rectangle(...)
 
 \begin{frame}{Learning dynamics}
   \begin{tabular}{ll}
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl.png}
-    %      \only<4->{\includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/text_hits_average_pretty_small_yl.png}}
+    \includegraphics[height = 2cm]{figures/revisedLearningCurves/text_hits_average_pretty_small_yl.png}
+    %      \only<4->{\includegraphics[height = 2cm]{figures/revisedLearningCurves/text_hits_average_pretty_small_yl.png}}
     &
     \phantom{ttt}%
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/logo_hits_average_pretty_small.png}\\
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/tower_hits_average_pretty_small_yl.png}&
+    \includegraphics[height = 2cm]{figures/revisedLearningCurves/logo_hits_average_pretty_small.png}\\
+    \includegraphics[height = 2cm]{figures/revisedLearningCurves/tower_hits_average_pretty_small_yl.png}&
     \phantom{ttt}%
-    \includegraphics[height = 2cm]{../dreamcoder/figures/learningCurves/revision/rational_hits_average_pretty_small.png}\\
-    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/list_hard_hits_ws_average_pretty_small_yl.png}
+    \includegraphics[height = 2cm]{figures/revisedLearningCurves/rational_hits_average_pretty_small.png}\\
+    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/list_hard_hits_ws_average_pretty_small_yl.png}
     &
     \phantom{tt.}%
-    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}
-    %      \only<4->{\includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}}%
-    %    \includegraphics[height = 2.29cm]{../dreamcoder/figures/learningCurves/revision/regex_marginal_test_unigram_gen_ws.png}%
-    \phantom{tt}\includegraphics[width = 2.5cm]{../dreamcoder/figures/learningCurves/revision/curveLegend.png}\hspace{-3cm}
+    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}
+    %      \only<4->{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}}%
+    %    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}%
+    \phantom{tt}\includegraphics[width = 2.5cm]{figures/revisedLearningCurves/curveLegend.png}\hspace{-3cm}
   \end{tabular}
 
   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
@@ -2127,8 +2218,8 @@ rectangle(...)
     }
 
     \visible<5->{
-      \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=white,inner sep=1pt,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (synthesis.east);
-      \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=white,inner sep=0pt,align = center]{\footnotesize{Inductive bias}\\\footnotesize{(Wake)}
+      \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=backgroundBeige,inner sep=1pt,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (synthesis.east);
+      \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=backgroundBeige,inner sep=0pt,align = center]{\footnotesize{Inductive bias}\\\footnotesize{(Wake)}
       } (synthesis.west);
     }
 
@@ -2143,7 +2234,7 @@ rectangle(...)
       \only<1>{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN_blue.png}}
     \only<2->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN.png}}&
     \visible<3->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_SIZE.png}} \\\\
-\multicolumn{2}{c}{    \visible<2->{\includegraphics[height = 1cm]{../dreamcoder/figures/learningCurves/revision/scatterLegend.png}}}
+\multicolumn{2}{c}{    \visible<2->{\includegraphics[height = 1cm]{figures/revisedLearningCurves/scatterLegend.png}}}
     \end{tabular}
     Darker: Early in learning
 
@@ -2230,7 +2321,7 @@ rectangle(...)
 \end{frame}
 
 \begin{frame}{}
-  What we've got now:\\ a toolkit for program induction,\\addressing combinatorial program search via learning, integrating symbolic, probabilistic, and neural techniques
+  What we've got now:\\ a toolkit for program induction,\\addressing combinatorial program search via learning, integrating techniques for machine learning, AI, and programming languages %symbolic, probabilistic, and neural techniques
   
 
   \vspace{2cm}
@@ -2347,102 +2438,136 @@ rectangle(...)
     \end{center}
   }
 \end{frame}
-\renewcommand{\insertframenumber}{}
-\begin{frame}{What do we want from machine learning?}
-  \Wider[4em]{
-\vspace*{-0.25cm}    \closex{0.1}{\closey{1pt}{\begin{tabular}{rccc}
-      Strong generalization&
-      \begin{tabular}{rcl}
-        %% \begin{tabular}{c}
-        %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing1.png}
-        %% \end{tabular}&$\to$&%
-        %% \begin{tabular}{c}
-        %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation1.png}
-        %% \end{tabular}\\
-        \begin{tabular}{c}
-          \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing2.png}
-        \end{tabular}&$\to$&%
-        \begin{tabular}{c}
-          \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation2.png}
-        \end{tabular}
-      \end{tabular}&\phantom{test}&
-      \begin{tabular}{c}
-        \includegraphics[width = 1.75cm]{dc/dreams/cherry_picked/65_pretty.png}
-      \end{tabular}
-    \end{tabular}}}
 
-    \pause
+\begin{frame}{}
 
-    %  \vspace{1cm}
-
-    Bootstrapping, learning-to-learn, representation learning
-    \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
-          \multicolumn{1}{c}{\begin{tabular}{llll}
-              \phantom{testtest}&
-            \begin{tabular}{c}
-              \includegraphics[width = 4cm]{figures/finalLearningCurveMontage}
-              \end{tabular}&\phantom{test}&\begin{tabular}{c}
-              \includegraphics[width = 4cm]{../dreamcoder/figures/dpl/every/text6.pdf}
-              \end{tabular}
-          \end{tabular}}
-        \end{tabular}
-    }}
-
-    \pause
-    
-    %  \vspace{1cm}
-
-    \phantom{test}
-
-    \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
-          Discovering knowledge that humans can understand and build on\\
-          \begin{tabular}{lll}
-            \begin{tabular}{c}
-              \includegraphics[width = 0.15\textwidth]{figures/odden}
-              \end{tabular}&
-            \begin{tabular}{c}
-              \includegraphics[width = 0.15\textwidth]{figures/spe}
-              \end{tabular}&
-            \begin{tabular}{cc}
-              \begin{tabular}{c}
-                \includegraphics[width = 2cm]{figures/origamiCrane}
-                \end{tabular}&
-              \begin{tabular}{c}
-                \includegraphics[width = 6cm]{figures/mcCarthyAnimationFinalMontage}
-              \end{tabular}
-              \end{tabular}
-          \end{tabular}
-        \end{tabular}
-    }}
-
-  }
-  \end{frame}
-
-\begin{frame}{What's far off, but worthwhile?}
-  What kinds of future machines could learn all this?
+  These applications are in reach.
 
   \vspace{1cm}
 
-  \Wider[5em]{
-    \begin{center}
-      \only<1>{\begin{tabular}{ccc}
-              using new devices&play&coding\\
-    \includegraphics[height = 2cm]{figures/noodles}&
-    \includegraphics[height = 2cm]{figures/childPlaying}&
-    \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}\\
-    language&science&design\\%&engineering\\
-    \includegraphics[height = 2cm]{figures/acquisition}&
-    \includegraphics[height = 2cm]{figures/blackboard}&
-    \includegraphics[height = 2cm]{figures/textile2}
-    %      \includegraphics[height = 2cm]{figures/primitiveTools}\\
-    \end{tabular}}
-    \end{center}
-  }
-  
+  More broadly: what's in the future of machine learning?
 
-  
+\end{frame}
+
+\begin{frame}{What we want for the future of machine learning}
+
+  Strong generalization %%in many domains
+
+  %% \vspace{1cm}
+
+  %% Domain generality
+
+  \vspace{1cm}
+
+  Bootstrapping, learning-to-learn, representation learning
+
+  \vspace{1cm}
+
+  Discovering knowledge that humans can understand and build on
+
+\end{frame}
+\begin{comment}
+  \renewcommand{\insertframenumber}{}
+  \begin{frame}{What do we want from machine learning?}
+    \Wider[4em]{
+      \vspace*{-0.25cm}    \closex{0.1}{\closey{1pt}{\begin{tabular}{rccc}
+            Strong generalization&
+            \begin{tabular}{rcl}
+              %% \begin{tabular}{c}
+              %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing1.png}
+              %% \end{tabular}&$\to$&%
+              %% \begin{tabular}{c}
+              %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation1.png}
+              %% \end{tabular}\\
+              \begin{tabular}{c}
+                \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing2.png}
+              \end{tabular}&$\to$&%
+              \begin{tabular}{c}
+                \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation2.png}
+              \end{tabular}
+            \end{tabular}&\phantom{test}&
+            \begin{tabular}{c}
+              \includegraphics[width = 1.75cm]{dc/dreams/cherry_picked/65_pretty.png}
+            \end{tabular}
+      \end{tabular}}}
+
+      \visible<2->{
+
+        %  \vspace{1cm}
+
+        Bootstrapping, learning-to-learn, representation learning
+        \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
+              \multicolumn{1}{c}{\begin{tabular}{llll}
+                  \phantom{testtest}&
+                  \begin{tabular}{c}
+                    \includegraphics[width = 4cm]{figures/finalLearningCurveMontage}
+                  \end{tabular}&\phantom{test}&\begin{tabular}{c}
+                    \visible<3->{\includegraphics[width = 4cm]{../dreamcoder/figures/dpl/every/text6.pdf}}
+                  \end{tabular}
+              \end{tabular}}
+            \end{tabular}
+        }}
+      }
+
+
+      %  \vspace{1cm}
+
+      \phantom{test}
+
+      \visible<4->{
+        \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
+              Discovering knowledge that humans can understand and build on\\
+              \begin{tabular}{lll}
+                \begin{tabular}{c}
+                  \includegraphics[width = 0.15\textwidth]{figures/odden}
+                \end{tabular}&
+                \begin{tabular}{c}
+                  \includegraphics[width = 0.15\textwidth]{figures/spe}
+                \end{tabular}&
+                \begin{tabular}{cc}
+                  \begin{tabular}{c}
+                    \includegraphics[width = 2cm]{figures/origamiCrane}
+                  \end{tabular}&
+                  \begin{tabular}{c}
+                    \includegraphics[width = 6cm]{figures/mcCarthyAnimationFinalMontage}
+                  \end{tabular}
+                \end{tabular}
+              \end{tabular}
+            \end{tabular}
+        }}
+      }
+
+    }
+  \end{frame}
+\end{comment}
+
+\begin{comment}
+  \begin{frame}{What's far off, but worthwhile?}
+    What kinds of future machines could learn all this?
+
+    \vspace{1cm}
+
+    \Wider[5em]{
+      \begin{center}
+        \only<1>{\begin{tabular}{ccc}
+            using new devices&play&coding\\
+            \includegraphics[height = 2cm]{figures/noodles}&
+            \includegraphics[height = 2cm]{figures/childPlaying}&
+            \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}\\
+            language&science&design\\%&engineering\\
+            \includegraphics[height = 2cm]{figures/acquisition}&
+            \includegraphics[height = 2cm]{figures/blackboard}&
+            \includegraphics[height = 2cm]{figures/textile2}
+            %      \includegraphics[height = 2cm]{figures/primitiveTools}\\
+        \end{tabular}}
+      \end{center}
+    }
+    
+
+    
 
   \end{frame}
+\end{comment}
 
 \newcommand{\person}[2]{\closex{0.2}{\begin{tabular}{c}
     {\footnotesize #1}\\
