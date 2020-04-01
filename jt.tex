@@ -52,6 +52,8 @@
 
 
 \newcommand{\Expect}{\mathds{E}} %{{\rm I\kern-.3em E}}
+\newcommand{\1}[1]{\mathds{1}\left[#1\right]}
+\newcommand{\E}{\mathds{E}} %{{\rm I\kern-.3em E}}
 \newcommand{\indicator}{\mathds{1}} %{{\rm I\kern-.3em E}}
 \newcommand{\expect}{\mathds{E}} %{{\rm I\kern-.3em E}}
 \newcommand{\probability}{\mathds{P}} %{{\rm I\kern-.3em P}}
@@ -76,6 +78,7 @@
 \usepackage[absolute,overlay]{textpos}
 \usepackage{stmaryrd}
 \newcommand{\sem}[1]{\llbracket #1\rrbracket}
+\newcommand{\eval}[1]{\llbracket #1\rrbracket}
 \newcommand{\tuple}[1]{\ensuremath{\left \langle #1\right \rangle}}
 \newcommand{\messageOverlay}[1]{
       \tikz[overlay,remember picture]
@@ -149,90 +152,102 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
  
 \frame{\titlepage}
 
-\begin{frame}{What computational problems are solved by intelligence?}
-  \Wider[5em]{
-    \centering\textbf{an endless range of problems}
+\begin{frame}{The premise of program induction}
 
-    \begin{tabular}{ccc}
-      language&science&design\\%&engineering\\
-      \includegraphics[height = 2cm]{figures/acquisition}&
-      \includegraphics[height = 2cm]{figures/blackboard}&
-      \includegraphics[height = 2cm]{figures/textile2}\\
-%      \includegraphics[height = 2cm]{figures/primitiveTools}\\
-      using new devices&writing new characters&coding\\
-      \includegraphics[height = 2cm]{figures/noodles}&
-      \includegraphics[height = 2cm]{figures/Korean}&
-      \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}\\
-      \multicolumn{2}{c}{engineering}&play\\
-      \includegraphics[height = 2cm]{figures/igloo}&
-      \includegraphics[height = 2cm]{../ecPaper/figures/aqueduct}&
-      \includegraphics[height = 2cm]{figures/childPlaying}
-    \end{tabular}
-  }
-  %% \pause
-  %% \messageOverlay{- learning from modest data/experience\\
-  %%   - communicating \& representing knowledge in understandable formats\\
-  %%   - bootstrapping \& learning-to-learn\\
-  %%   - creatively composing knowledge to produce new concepts and artifacts\\
-  %%   \phantom{test}(\& compositionality)
-  %% }
-\end{frame}
+  1. Represent knowledge as programs: as symbolic code
 
-\begin{frame}{What computational frameworks can \\contribute to this picture?}
+  \pause
 
-  \Wider[5em]{\begin{center}
-      \begin{tabular}{ccc}
-        \multicolumn{3}{c}{Three AI traditions}\\
-        \visible<2->{Symbolic}&\visible<3->{Probabilistic}&\visible<4->{Neural}\\\\
-        \visible<2->{\begin{tabular}{c}
-            \includegraphics[width = 3cm]{figures/deepBlue}\\%Chess\\
-            \includegraphics[width = 3cm]{figures/Mathematica}\\%Mathematica\\
-%            \includegraphics[width = 3cm]{figures/Lispsymbolic}\\Lisp
-        \end{tabular}}&
-        \visible<3->{\begin{tabular}{c}
-            \includegraphics[width = 3cm]{figures/bayesianNetwork}\\
-%            \includegraphics[width = 3cm]{figures/voice}\\Voice recognition\\
-           \includegraphics[width = 3cm]{figures/seismic} %\\Nuclear test monitoring
-        \end{tabular}}&
-        \visible<4->{\begin{tabular}{c}
-          \includegraphics[width = 3cm]{figures/dqn2}\\
-          \includegraphics[width = 3cm]{figures/Alex2} %\\Image recognition\\
+  \vspace{1cm}
+
+  2. Learning$ = $adding to that body of knowledge$ = $\\\phantom{2. }making new programs$ = $program synthesis
+
+  \end{frame}
+
+%% \begin{frame}{What computational problems are solved by intelligence?}
+%%   \Wider[5em]{
+%%     \centering\textbf{an endless range of problems}
+
+%%     \begin{tabular}{ccc}
+%%       language&science&design\\%&engineering\\
+%%       \includegraphics[height = 2cm]{figures/acquisition}&
+%%       \includegraphics[height = 2cm]{figures/blackboard}&
+%%       \includegraphics[height = 2cm]{figures/textile2}\\
+%% %      \includegraphics[height = 2cm]{figures/primitiveTools}\\
+%%       using new devices&writing new characters&coding\\
+%%       \includegraphics[height = 2cm]{figures/noodles}&
+%%       \includegraphics[height = 2cm]{figures/Korean}&
+%%       \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}\\
+%%       \multicolumn{2}{c}{engineering}&play\\
+%%       \includegraphics[height = 2cm]{figures/igloo}&
+%%       \includegraphics[height = 2cm]{../ecPaper/figures/aqueduct}&
+%%       \includegraphics[height = 2cm]{figures/childPlaying}
+%%     \end{tabular}
+%%   }
+%%   %% \pause
+%%   %% \messageOverlay{- learning from modest data/experience\\
+%%   %%   - communicating \& representing knowledge in understandable formats\\
+%%   %%   - bootstrapping \& learning-to-learn\\
+%%   %%   - creatively composing knowledge to produce new concepts and artifacts\\
+%%   %%   \phantom{test}(\& compositionality)
+%%   %% }
+%% \end{frame}
+
+%% \begin{frame}{What computational frameworks can \\contribute to this picture?}
+
+%%   \Wider[5em]{\begin{center}
+%%       \begin{tabular}{ccc}
+%%         \multicolumn{3}{c}{Three AI traditions}\\
+%%         \visible<2->{Symbolic}&\visible<3->{Probabilistic}&\visible<4->{Neural}\\\\
+%%         \visible<2->{\begin{tabular}{c}
+%%             \includegraphics[width = 3cm]{figures/deepBlue}\\%Chess\\
+%%             \includegraphics[width = 3cm]{figures/Mathematica}\\%Mathematica\\
+%% %            \includegraphics[width = 3cm]{figures/Lispsymbolic}\\Lisp
+%%         \end{tabular}}&
+%%         \visible<3->{\begin{tabular}{c}
+%%             \includegraphics[width = 3cm]{figures/bayesianNetwork}\\
+%% %            \includegraphics[width = 3cm]{figures/voice}\\Voice recognition\\
+%%            \includegraphics[width = 3cm]{figures/seismic} %\\Nuclear test monitoring
+%%         \end{tabular}}&
+%%         \visible<4->{\begin{tabular}{c}
+%%           \includegraphics[width = 3cm]{figures/dqn2}\\
+%%           \includegraphics[width = 3cm]{figures/Alex2} %\\Image recognition\\
           
-        \end{tabular}}
-      \end{tabular}
-  \end{center}}
+%%         \end{tabular}}
+%%       \end{tabular}
+%%   \end{center}}
   
   
 
-  \visible<5->{
-    \messageOverlay{\textbf{Program induction}\\ %% roots in the works of Solomonoff, Fodor, McCarthy.
-    machines that learn, perceive, and reason,\\\phantom{test} by writing their own code
-    }
-  }
+%%   \visible<5->{
+%%     \messageOverlay{\textbf{Program induction}\\ %% roots in the works of Solomonoff, Fodor, McCarthy.
+%%     machines that learn, perceive, and reason,\\\phantom{test} by writing their own code
+%%     }
+%%   }
 
-    %% strong generalization
+%%     %% strong generalization
 
-    %% data efficiency
+%%     %% data efficiency
 
-    %% interpretability
+%%     %% interpretability
 
-    %% compositional reuse
+%%     %% compositional reuse
 
-    %% universal Turing-computable expressiveness
-    %Combines and complements these three traditions
-%  }
+%%     %% universal Turing-computable expressiveness
+%%     %Combines and complements these three traditions
+%% %  }
 
-  %% \pause
+%%   %% \pause
 
-  %% \messageOverlay{my work:\\%% \\\phantom{test} how program induction can contribute to the engineering of machine intelligence\\
-  %%   %% in engineering terms:\\
-  %%   \phantom{test} how learning can make program synthesis more scalable \& practical\\
-  %%   \phantom{test} how program synthesis can contribute to machine intelligence
-  %%  } 
+%%   %% \messageOverlay{my work:\\%% \\\phantom{test} how program induction can contribute to the engineering of machine intelligence\\
+%%   %%   %% in engineering terms:\\
+%%   %%   \phantom{test} how learning can make program synthesis more scalable \& practical\\
+%%   %%   \phantom{test} how program synthesis can contribute to machine intelligence
+%%   %%  } 
   
   
 
-\end{frame}
+%% \end{frame}
 
 \begin{frame}{Why program induction?}
   \Wider[6.5em]{  \begin{tabular}{ccc}
@@ -743,6 +758,68 @@ rectangle(...)
   }
 %  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
 \end{frame}
+
+\begin{frame}{}
+\Wider[4em]{  \vspace*{-0.9cm}\begin{align*}
+    &pp = \text{partial program (state)}\phantom{test}\sem{pp} = \text{render of }pp\nonumber\\
+    &\visible<2->{a = \text{action (line of code). sample }\left\{a_t \right\}_{t = 1}^T\text{, define }pp_t = a_{t - 1}(pp_{t - 1})}\nonumber\\
+    \visible<3->{&\mathcal{L}^{\text{imitation}} = \sum_{t = 1}^{T}\log\pi(a_t|pp_{t - 1},\sem{pp_T})}\nonumber
+          %% v\left( \eval{pp}, spec\right) &= \E_\pi\left[R~|~\eval{pp}, spec \right] = \E_\pi\left[\1{spec\text{ is satisfied}}~|~\eval{pp}, spec \right]\nonumber\\ &= \text{P}(\text{rollout w/ $\pi$ satisfies $spec$}~|~\eval{pp}, spec)\\
+          %% \mathcal{L}^{\text{RL}}(v,\pi) = ~ &R  \sum_{t\leq T}\log v(\eval{pp_t},spec) + (1 - R) \sum_{t\leq T}\log (1 - v(\eval{pp_t},spec)) + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},spec)
+  \end{align*}}
+  \vspace*{-1.5cm}\Wider[5em]{
+    \begin{center}
+      \includegraphics[width = 0.9\textwidth]{figures/capitalism.png}
+    \end{center}
+  }
+%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+\end{frame}
+\begin{frame}{}
+  \Wider[4em]{
+    \vspace*{-0.9cm}\begin{align*}
+      &pp = \text{partial program (state)}\phantom{tes}\sem{pp} = \text{render of }pp\phantom{tes}a = \text{line of code (action)}\nonumber\\
+      &V\left( \eval{pp}, goal\right) = \E_\pi\left[R~|~\eval{pp}, goal \right]\visible<2->{ = \E_\pi\left[\1{goal\text{ is satisfied}}~|~\eval{pp}, goal \right]}\nonumber\\
+  &\visible<3->{= \text{P}(\text{rollout satisfies $goal$}~|~\eval{pp}, goal)}\\
+  %% \mathcal{L}^{\text{RL}}(V,\pi) = ~ &R  \sum_{t\leq T}\log V(\eval{pp_t},goal) + (1 - R) \sum_{t\leq T}\log (1 - V(\eval{pp_t},goal)) + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},goal)
+  \end{align*}}
+  \vspace*{-1.5cm}\Wider[5em]{
+    \begin{center}
+      \includegraphics[width = 0.9\textwidth]{figures/capitalism.png}
+    \end{center}
+  }
+%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+\end{frame}
+\begin{frame}{}
+  \Wider[4em]{
+    \vspace*{-0.9cm}\begin{align*}
+      &pp = \text{partial program (state)}\phantom{tes}\sem{pp} = \text{render of }pp\phantom{tes}a = \text{line of code (action)}\nonumber\\
+      &V\left( \eval{pp}, goal\right) = \text{P}(\text{rollout satisfies $goal$}~|~\eval{pp}, goal)\nonumber\\
+&  \mathcal{L}^{\text{RL}} = ~ R  \sum_{t\leq T}\log V(\eval{pp_t},goal) + (1 - R) \sum_{t\leq T}\log (1 - V(\eval{pp_t},goal))\\&\phantom{test} + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},goal)
+  \end{align*}}
+  \vspace*{-1.5cm}\Wider[5em]{
+    \begin{center}
+      \includegraphics[width = 0.9\textwidth]{figures/capitalism.png}
+    \end{center}
+  }
+%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+\end{frame}
+\begin{frame}{}
+  \Wider[4em]{
+    \vspace*{-0.9cm}\begin{align*}
+      &pp = \text{partial program (state)}\phantom{tes}\sem{pp} = \text{render of }pp\phantom{tes}a = \text{line of code (action)}\nonumber\\
+      &\text{Sequential Monte Carlo for search:}\\
+      &\text{maintain population of particles (states)}\\
+      &\visible<2->{\text{1. sample from policy $\pi$ to get new population}}\\
+      &\visible<3->{\text{2. reweigh by value $V$, resample, goto 1}}
+  \end{align*}}
+  \vspace*{-1.5cm}\Wider[5em]{
+    \begin{center}
+      \includegraphics[width = 0.9\textwidth]{figures/capitalism.png}
+    \end{center}
+  }
+%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+\end{frame}
+
 
 \begin{frame}{3D program induction}
   \Wider[5em]{
@@ -2319,16 +2396,6 @@ rectangle(...)
       \end{tabular}
   \end{center}
 \end{frame}
-
-\begin{frame}{}
-  What we've got now:\\ a toolkit for program induction,\\addressing combinatorial program search via learning, integrating techniques for machine learning, AI, and programming languages %symbolic, probabilistic, and neural techniques
-  
-
-  \vspace{2cm}
-
-  Where will this toolkit take us?
-\end{frame}
-
 \newcommand{\closex}[2]{
   \renewcommand{\arraystretch}{#1}
   #2
@@ -2339,6 +2406,17 @@ rectangle(...)
   #2
   \setlength{\tabcolsep}{6pt}
 }
+
+\begin{comment}
+\begin{frame}{}
+  What we've got now:\\ a toolkit for program induction,\\addressing combinatorial program search via learning, integrating techniques for machine learning, AI, and programming languages %symbolic, probabilistic, and neural techniques
+  
+
+  \vspace{2cm}
+
+  Where will this toolkit take us?
+\end{frame}
+
 \begin{frame}{What's in reach}
   \Wider[5em]{
     \begin{center}
@@ -2448,7 +2526,7 @@ rectangle(...)
   More broadly: what's in the future of machine learning?
 
 \end{frame}
-
+\end{comment}
 \begin{frame}{What we want for the future of machine learning}
 
   Strong generalization %%in many domains
