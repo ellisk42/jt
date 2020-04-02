@@ -779,7 +779,7 @@ rectangle(...)
     \vspace*{-0.9cm}\begin{align*}
       &pp = \text{partial program (state)}\phantom{tes}\sem{pp} = \text{render of }pp\phantom{tes}a = \text{line of code (action)}\nonumber\\
       &V\left( \eval{pp}, goal\right) = \E_\pi\left[R~|~\eval{pp}, goal \right]\visible<2->{ = \E_\pi\left[\1{goal\text{ is satisfied}}~|~\eval{pp}, goal \right]}\nonumber\\
-  &\visible<3->{= \text{P}(\text{rollout satisfies $goal$}~|~\eval{pp}, goal)}\\
+  &\visible<3->{\phantom{V\left( \eval{pp}, goal\right)}= \text{P}(\text{rollout satisfies $goal$}~|~\eval{pp}, goal)}\\
   %% \mathcal{L}^{\text{RL}}(V,\pi) = ~ &R  \sum_{t\leq T}\log V(\eval{pp_t},goal) + (1 - R) \sum_{t\leq T}\log (1 - V(\eval{pp_t},goal)) + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},goal)
   \end{align*}}
   \vspace*{-1.5cm}\Wider[5em]{
@@ -794,7 +794,7 @@ rectangle(...)
     \vspace*{-0.9cm}\begin{align*}
       &pp = \text{partial program (state)}\phantom{tes}\sem{pp} = \text{render of }pp\phantom{tes}a = \text{line of code (action)}\nonumber\\
       &V\left( \eval{pp}, goal\right) = \text{P}(\text{rollout satisfies $goal$}~|~\eval{pp}, goal)\nonumber\\
-&  \mathcal{L}^{\text{RL}} = ~ R  \sum_{t\leq T}\log V(\eval{pp_t},goal) + (1 - R) \sum_{t\leq T}\log (1 - V(\eval{pp_t},goal))\\&\phantom{test} + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},goal)
+&  \visible<2->{\mathcal{L}^{\text{RL}} = ~ R  \sum_{t\leq T}\log V(\eval{pp_t},goal) + (1 - R) \sum_{t\leq T}\log (1 - V(\eval{pp_t},goal))}\\&\visible<3->{\phantom{test} + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},goal)}
   \end{align*}}
   \vspace*{-1.5cm}\Wider[5em]{
     \begin{center}
