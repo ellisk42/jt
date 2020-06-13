@@ -2,7 +2,8 @@
 \usepackage{tipa}
 \usepackage{phonrule}
 %\setbeamersize{text margin left=10pt,text margin right=10pt}
-\usetheme{metropolis}
+\usetheme[numbering=none]{metropolis}
+\usepackage{media9}
 \usepackage{listings}
 \usepackage{amsfonts}
 \usepackage{dsfont}
@@ -49,6 +50,26 @@
 %% \usepackage[sfdefault]{FiraSans} %% option 'sfdefault' activates Fira Sans as the default text font
 %% \usepackage[T1]{fontenc}
 %% \renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+
+\newcommand{\closex}[2]{
+  \renewcommand{\arraystretch}{#1}
+  #2
+  \renewcommand{\arraystretch}{1}
+}
+\newcommand{\closey}[2]{
+  \setlength{\tabcolsep}{#1}
+  #2
+  \setlength{\tabcolsep}{6pt}
+}
+
+\newcommand{\person}[2]{\closex{0.2}{\begin{tabular}{c}
+    {\footnotesize #1}\\
+    \includegraphics[width = 1.7cm]{#2}
+\end{tabular}}}
+\newcommand{\bigPerson}[2]{\closex{0.2}{\begin{tabular}{c}
+    {#1}\\
+    \includegraphics[width = 3cm]{#2}
+\end{tabular}}}
 
 
 \newcommand{\Expect}{\mathds{E}} %{{\rm I\kern-.3em E}}
@@ -136,10 +157,12 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 %\newcommand{\Expect}{\mathds{E}} %{{\rm I\kern-.3em E}}
 \newcommand{\Probability}{\mathds{P}} %{{\rm I\kern-.3em P}}
-
+%\usepackage{cancel}
 %\DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{Building Machines that Discover Generalizable, Interpretable Knowledge}%,\\ by learning to write code that writes code}
+%\usepackage{soul}
+\usepackage[normalem]{ulem}
+\title{\texorpdfstring{\normalsize\sout{Algorithms for Learning to Induce Programs}}\Huge\phantom{test}\\\Large Building Machines that Discover Generalizable, Interpretable Knowledge}
 \author{Kevin Ellis}
 \institute{MIT} 
 \date{2020}
@@ -432,7 +455,8 @@ for (0 <= i < 3)
 
   \end{center}
 %    \vskip0pt plus 1filll
-    \myPaper{Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.}
+  \myPaper{Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.}
+  \begin{tikzpicture}[remember picture, overlay,label distance=-2mm] \node[anchor=south east, label={Dan Ritchie}] at (current page.south east) {\includegraphics[width = 2cm]{collaborators/Daniel}}; \end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]{Learning to infer graphics programs from hand-drawn images}
@@ -680,56 +704,75 @@ rectangle(...)
         \only<4>{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess16_4.png}}%
         \only<5->{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess16_5.png}}%
     }\\
-    \multicolumn{3}{c}{\only<7>{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess71_statement.png}}}
+    \multicolumn{3}{c}{\only<6>{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess71_statement.png}}}
     %        \multicolumn{3}{c}{\includegraphics[width = \textwidth]{TikZfigures/programSuccess97.png}}
     \end{tabular}
   }
 
-  \only<6>{
-    \begin{tabular}{cc}
-      \begin{tabular}{c}
-        \begin{tikzpicture}
-        \node[obs](i) at (0,0) {img};
-        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
-        \node[latent](h) at ([yshift=0.8cm]p.north) {prior};
-        \draw[->] (h.south) -- (p.north);
-        \draw[->] (p.south) -- (i.north);
-        \node[obs](i) at ([xshift=0.8cm]i.east) {img};
-        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
-        \draw[->] (h.south) -- (p.north);
-        \draw[->] (p.south) -- (i.north);
-        \node[obs](i) at ([xshift=-1.8cm]i.west) {img};
-        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
-        \draw[->] (p.south) -- (i.north);
-        \draw[->] (h.south) -- (p.north);
-      \end{tikzpicture}
-        \end{tabular}&
-      \begin{tabular}{l}
-        $\text{predicted program} = $\\$\argmax_{\text{progs}}\probability\left[\text{img}|\text{prog} \right]\probability\left[\text{prog}|\text{prior} \right]$
-        \end{tabular}
-      \end{tabular}
-  }
+  %% \only<6>{
+  %%   \begin{tabular}{cc}
+  %%     \begin{tabular}{c}
+  %%       \begin{tikzpicture}
+  %%       \node[obs](i) at (0,0) {img};
+  %%       \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
+  %%       \node[latent](h) at ([yshift=0.8cm]p.north) {prior};
+  %%       \draw[->] (h.south) -- (p.north);
+  %%       \draw[->] (p.south) -- (i.north);
+  %%       \node[obs](i) at ([xshift=0.8cm]i.east) {img};
+  %%       \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
+  %%       \draw[->] (h.south) -- (p.north);
+  %%       \draw[->] (p.south) -- (i.north);
+  %%       \node[obs](i) at ([xshift=-1.8cm]i.west) {img};
+  %%       \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
+  %%       \draw[->] (p.south) -- (i.north);
+  %%       \draw[->] (h.south) -- (p.north);
+  %%     \end{tikzpicture}
+  %%       \end{tabular}&
+  %%     \begin{tabular}{l}
+  %%       $\text{predicted program} = $\\$\argmax_{\text{progs}}\probability\left[\text{img}|\text{prog} \right]\probability\left[\text{prog}|\text{prior} \right]$
+  %%       \end{tabular}
+  %%     \end{tabular}
+  %% }
 \end{frame}
 
 
-\begin{frame}{3D program induction}
+\begin{frame}[t]{3D program induction}
   \Wider[5em]{
     \begin{center}
       \includegraphics[width = \textwidth]{assets/we_are_cool_4.png}
     \end{center}
   }
 
-  \visible<2>{
+  \vspace{1cm}
+
+  \centering\begin{tabular}{ccc}
+    \person{Max Nye}{collaborators/MaxNye}&
+    \person{Evan Pu}{collaborators/Evan}&
+    \person{Felix Sosa}{collaborators/Felix}
+  \end{tabular}
+
+    
+\myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+
+\end{frame}
+
+\begin{frame}[t]{3D program induction}
+  \Wider[5em]{
+    \begin{center}
+      \includegraphics[width = \textwidth]{assets/we_are_cool_4.png}
+    \end{center}
+  }
+
     \vspace{1cm}
     
       Challenge: combinatorial search!\\
       Branching factor: $ > 1.3$ million per line of code, $\approx$ 20 lines of code\\
       search space size: $(1.3\text{ million})^{20}\approx 10^{122}$ programs
-}
-  
 \myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
 
 \end{frame}
+
+
 
 \begin{frame}{}
   Solution: stochastic \textbf{tree search} + learn \textbf{policy} that writes code\\ + learn \textbf{value} function that assesses execution of program so far;\\
@@ -841,7 +884,8 @@ rectangle(...)
 %%   \messageOverlay{\large many languages, 70 diverse benchmarks\\\\
 %%     \large linguists distill out higher-level knowledge: ``universal grammar''\\\\
 %% \large children and linguists can learn from sparse data\\\\
-%% \large  linguists can communicate their knowledge}
+  %% \large  linguists can communicate their knowledge}
+  \begin{tikzpicture}[remember picture, overlay,label distance=-2mm] \node[anchor=south east, label={Tim O'Donnell}] at (current page.south east) {\includegraphics[width = 2cm]{collaborators/Timothy}}; \end{tikzpicture}
 \end{frame}
 
 \begin{frame}{Few-shot language learning experiment}
@@ -917,28 +961,60 @@ rectangle(...)
   \input{phonology/harmonyAnimation2.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
   \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
 \end{frame}
-\begin{frame}{Turkic Sakha (Yakut)}
-  \input{phonology/harmonyAnimation3.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
-\end{frame}
+%% \begin{frame}{Turkic Sakha (Yakut)}
+%%   \input{phonology/harmonyAnimation3.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
+%%   \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+%% \end{frame}
 
 
 \begin{frame}{}
   \Wider[5em]{
-    \only<1>{\includegraphics[width = \textwidth]{figures/betterMontage1}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/betterMontage}}
+%    \only<1>{\includegraphics[width = \textwidth]{figures/betterMontage1}}
+    %    \only<2>{\includegraphics[width = \textwidth]{figures/betterMontage2}}
+    \only<1>{\includegraphics[width = \textwidth]{figures/percentage_solved_just_names}}
+    \only<2>{\includegraphics[width = \textwidth]{figures/percentage_solved}}
   }
+%  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+\end{frame}
+\begin{frame}[fragile]{Distilling higher-level knowledge}
+  \Wider[5em]{
+    \begin{center}
+      \begin{tikzpicture}[scale=2]
+        \input{languageHierarchy.tex}
+      \end{tikzpicture}
+  \end{center}}
   \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
 \end{frame}
 \begin{frame}[fragile]{Distilling higher-level knowledge}
   \Wider[5em]{
     \begin{center}
-\begin{tikzpicture}[scale=2]
-\input{languageHierarchy.tex}
-\end{tikzpicture}
+      \begin{tikzpicture}[scale=2]
+        \node[align=left] at (-2.2,0) {\textbf{dark}: we know it\\\textbf{light}: we wanna know it\\$\mathbf{A\to B}$: A makes B};
+        \input{languageHierarchy2.tex}
+      \end{tikzpicture}
   \end{center}}
   \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
-  \end{frame}
+\end{frame}
+\begin{frame}[fragile]{Distilling higher-level knowledge}
+  \Wider[5em]{
+    \begin{center}
+      \begin{tikzpicture}[scale=2]
+        \node[align=left] at (-2.2,0) {\textbf{dark}: we know it\\\textbf{light}: we wanna know it\\$\mathbf{A\to B}$: A makes B};
+        \input{languageHierarchy3.tex}
+      \end{tikzpicture}
+  \end{center}}
+  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+\end{frame}
+\begin{frame}[fragile]{Distilling higher-level knowledge}
+  \Wider[5em]{
+    \begin{center}
+      \begin{tikzpicture}[scale=2]
+        \node[align=left] at (-2.2,0) {\textbf{dark}: we know it\\\textbf{light}: we wanna know it\\$\mathbf{A\to B}$: A makes B};
+        \input{languageHierarchy4.tex}
+      \end{tikzpicture}
+  \end{center}}
+  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+\end{frame}
 %% \begin{frame}{Distilling higher-level knowledge}
 %%   \Wider[5em]{
 %%     \begin{tabular}{rl}
@@ -1046,6 +1122,16 @@ rectangle(...)
     \item Library of concepts (declarative knowledge; domain specific language) \\ %; generative model over programs)
       \item      Inference strategy (procedural knowledge; synthesis algorithm)
       \end{itemize}
+  }
+
+  \only<1>{
+    \vspace{1cm}
+    \centering\begin{tabular}{cccc}
+      \person{Cathy Wong}{collaborators/cw}&
+      \person{Max Nye}{collaborators/MaxNye}&
+      \person{Mathias\\{\footnotesize Sable-Meyer}}{collaborators/French2}&
+      \person{Lucas Morales}{collaborators/Lucas}
+    \end{tabular}
   }
   
   \vspace{0.75cm}
@@ -1708,7 +1794,7 @@ rectangle(...)
     \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.5cm]legend.south west) {\small semantic equivalence};
     \draw[rounded corners] (legend.north west) rectangle (se.south east);
 
-    \node[anchor=west] at (-5.5,-3.25) {\small cf. [Ross Tate et al. 2009]
+    \node[anchor=west,align=left] at (-5.5,-3.25) {\small cf. [Tate, Stepp, \\\small\phantom{cf. [}Tatlock, Lerner 2009]
       %[Downey et al. 1980]
       };
     
@@ -1729,7 +1815,7 @@ rectangle(...)
     \chooseTree{L}{4,-1}{+}{5}{$x$}{5};
     \draw [*-*,dashed,orange, very thick] (rootstart.south)    -- (arL.south);
 
-    \node[align=left,anchor=west] at (-5.75,-4.5) {\small cf. [Gulwani 2012]\\\phantom{t}};%\\\small\phantom{cf. }Liang et al. 2010};
+    \node[align=left,anchor=west] at (-5.75,-4.5) {\small cf. [Lau, Wolfman, \\\small\phantom{cf. [}Domingos, Weld '02]\\\phantom{t}};%\\\small\phantom{cf. }Liang et al. 2010};
 
     \pause
 
@@ -1911,94 +1997,7 @@ rectangle(...)
       }
 \end{frame}
 
-\begin{frame}
-  \only<1>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
-  \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModelRecognition}}
-\end{frame}
 
-\begin{frame}[t]{Neural recognition model guides search}
-  \vspace{1.2cm}
-  \begin{tikzpicture}
-    \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
-      \NeuralNetwork{0.17}};
-    \node(p) at ([xshift=2cm]n.east) {program};
-    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
-    \draw[thick,->] ([xshift=0.4cm]n.east) -- (p.west);
-
-    %% \node(n1) at ([yshift=-2cm]t.south) {\phantom{.}};
-    %% \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {\phantom{is a \textbf{``bigram'' model over syntax trees}}\\\phantom{test}\\\phantom{test}}\\\phantom{test}};
-  \end{tikzpicture}
-
-\end{frame}
-\begin{frame}[t]{Neural recognition model guides search}
-  \vspace{1cm}
-  \begin{tikzpicture}
-    \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
-      \NeuralNetwork{0.17}};
-    \node(d) at ([xshift=2cm]n.east) {distribution};
-    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
-    \draw[thick,->] ([xshift=0.4cm]n.east) -- (d.west);
-    \node(p) at ([xshift=2cm]d.east) {program};
-    \draw[squiggle, thick,->] (d.east) -- node[sloped,above]{{{sample}}} (p.west);
-
-    \pause
-
-    \node(n1) at ([yshift=-2cm]t.south) {\NeuralNetwork{0.17}};
-    \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {is a...\\\phantom{is a...}recurrent network (Devlin et al 2017)\\
-      \phantom{is a...}unigram model (Menon et al 2013; Balog et al 2016)};
-  \end{tikzpicture}
-\end{frame}
-\begin{frame}[t]{Neural recognition model guides search}
-  \vspace{1cm}
-  \begin{tikzpicture}
-    \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
-      \NeuralNetwork{0.17}};
-    \node[align=left](d) at ([xshift=2cm]n.east) {distribution};
-    \node[anchor=north] at (d.south) {{\tiny P(child$\vert$parent,arg)}};
-    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
-    \draw[thick,->] ([xshift=0.4cm]n.east) -- (d.west);
-    \node(p) at ([xshift=2cm]d.east) {program};
-    \draw[squiggle, thick,->] (d.east) -- node[sloped,above]{{{sample}}} (p.west);
-
-    \only<1>{
-      \node(n1) at ([yshift=-2cm]t.south) {\NeuralNetwork{0.17}};
-      \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {is a \textbf{``bigram'' model over syntax trees}};
-    }
-
-    \only<2->{
-%      \node(l)[draw] at (2,-1) {\texttt{$\lambda$ (a)}};
-      \node(k)[draw] at (1.7,-1.3) {\texttt{+}};
-      \only<3->{
-      \node(o)[draw] at ([xshift=-50,yshift=-50]k.south) {\texttt{9}};
-      \draw[->] (k.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{+},\text{arg}=\text{left})}(o.north);
-      }
-      \only<4->{
-        \node(m)[draw] at ([xshift=50,yshift=-50]k.south) {\texttt{*}};
-        \draw[->] (k.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{+},\text{arg}=\text{right})}(m.north);
-      }
-      \only<5->{
-        \node(x1)[draw] at ([xshift=50,yshift=-50]m.south) {\texttt{2}};
-        \node(x2)[draw] at ([xshift=-50,yshift=-50]m.south) {\texttt{8}};
-
-        %      \draw[->] (l.south)-- node[fill=white,align=center,midway,inner sep=0,outer sep=0]{$Q_{\text{start},\texttt{+},1}(x)$}(k.north);
-        
-
-        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{left})}(x1.north);
-        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{right})}(x2.north);
-      }
-
-      \only<6>{
-        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU};
-      }
-      \only<7>{
-        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU\\learns to break syntactic symmetries:\\\phantom{tt}P(1$\vert$\texttt{*},\text{arg}=\text{left})=0.0\\\phantom{tttt}``do not multiply by one''};
-        }
-    }
-  \end{tikzpicture}
-\end{frame}
 
 
 \begin{frame}{DreamCoder Domains}
@@ -2030,8 +2029,10 @@ rectangle(...)
     \begin{tabular}{rl}
     circle$(r)$
     &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{dc/logo_primitives/circle_negative.png}}\\
-    polygon$(n,\ell)$
-    &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{dc/logo_primitives/polygon_negative.png}}
+    arc$(n,\ell,\theta)$
+    &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{../dreamcoder/figures/logo_primitives/arc/arc.png}}
+    %% polygon$(n,\ell)$
+    %% &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{dc/logo_primitives/polygon_negative.png}}
   \end{tabular}
   }}
   \only<5>{
@@ -2134,6 +2135,7 @@ rectangle(...)
   \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_final.png}
 %  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
 \end{frame}
+\begin{comment}
 \begin{frame}{Learning dynamics}
   \phantom{
   \small baselines: Exploration-Compression, EC [Dechter et al. 2013]
@@ -2195,6 +2197,69 @@ rectangle(...)
   %% }
 
 \end{frame}
+\end{comment}
+
+\begin{frame}{Learning dynamics}
+  \phantom{
+  \small baselines: Exploration-Compression, EC [Dechter et al. 2013]
+    \small \phantom{baselines: }neural program synthesis, RobustFill [Devlin et al. 2017]\phantom{otest}
+    \small \phantom{baselines: }24 hours of brute-force enumeration
+    }
+  \begin{tabular}{lr}
+    \begin{tabular}{l}
+    \only<1>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage1.png}}
+    %    \only<2>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage2.png}}
+    \only<2>{\includegraphics[height = 2.29cm]{figures/tower_hits_ws_average_pretty_small_yl_ablationStage.png}}
+%    \only<3>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage3.png}}
+    \only<3>{\includegraphics[height = 2.29cm]{figures/memorizeMontage/tower_memorize_talk_hits_ws_average_pretty_small_yl.png}}
+  \end{tabular}
+
+    &
+
+    \begin{tabular}{l}
+      \only<2>{\includegraphics[width = 3cm]{figures/revisedLearningCurves/curveLegendTruncated.png}}
+          \only<3>{\includegraphics[width = 3cm]{figures/memorizeMontage/curveLegend.png}}
+  \end{tabular}
+  \end{tabular}
+
+  
+
+  \visible<3>{
+    \small baselines: memorize programs rather than refactor them [Cropper 2019]
+    \small \phantom{baselines: }neural program synthesis, RobustFill [Devlin et al. 2017]\phantom{otest}
+    \small \phantom{baselines: }24 hours of brute-force enumeration
+    }
+
+
+  %% }
+  %% }
+  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+\end{frame}
+
+\begin{frame}{Learning dynamics}
+  \begin{tabular}{ll}
+    \includegraphics[height = 2cm]{figures/memorizeMontage/text_talk_memorize_hits_average_pretty_small_yl.png}
+    %      \only<4->{\includegraphics[height = 2cm]{figures/memorizeMontage/text_hits_average_pretty_small_yl.png}}
+    &
+    \phantom{ttt}%
+    \includegraphics[height = 2cm]{figures/memorizeMontage/logo_memorize_talk_hits_average_pretty_small.png}\\
+    \includegraphics[height = 2cm]{figures/memorizeMontage/tower_memorize_talk_hits_average_pretty_small_yl.png}&
+    \phantom{ttt}%
+    \includegraphics[height = 2cm]{figures/memorizeMontage/rational_memorize_talk_hits_average_pretty_small.png}\\
+    \includegraphics[height = 2.29cm]{figures/memorizeMontage/list_talk_memorize_hard_hits_ws_average_pretty_small_yl.png}
+    &
+    \phantom{tt.}%
+    \includegraphics[height = 2.29cm]{figures/memorizeMontage/regex_marginal_memorize_talk.png}
+    %      \only<4->{\includegraphics[height = 2.29cm]{figures/memorizeMontage/regex_marginal_test_unigram_gen_ws.png}}%
+    %    \includegraphics[height = 2.29cm]{figures/memorizeMontage/regex_marginal_test_unigram_gen_ws.png}%
+    \phantom{tt}\includegraphics[width = 2.5cm]{figures/memorizeMontage/curveLegend.png}\hspace{-3cm}
+  \end{tabular}
+
+  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %% }
+  %% }
+
+\end{frame}
 
 \begin{frame}{Synergy between dreaming and library learning}
   \begin{tikzpicture}[scale=1.5]
@@ -2217,11 +2282,11 @@ rectangle(...)
       \draw [->,thick] (recognitionModel.150) to[in = -30,out = 120] node[below,rotate=-45,align = center]{{\footnotesize Makes tractable}\\{\footnotesize (Wake)}} (synthesis.-60);
     }
 
-    \visible<5->{
-      \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=backgroundBeige,inner sep=1pt,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (synthesis.east);
-      \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=backgroundBeige,inner sep=0pt,align = center]{\footnotesize{Inductive bias}\\\footnotesize{(Wake)}
-      } (synthesis.west);
-    }
+    %% \visible<5->{
+    %%   \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=backgroundBeige,inner sep=1pt,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (synthesis.east);
+    %%   \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=backgroundBeige,inner sep=0pt,align = center]{\footnotesize{Inductive bias}\\\footnotesize{(Wake)}
+    %%   } (synthesis.west);
+    %% }
 
   \end{scope}}
     \end{tikzpicture}
@@ -2329,16 +2394,6 @@ rectangle(...)
   Where will this toolkit take us?
 \end{frame}
 
-\newcommand{\closex}[2]{
-  \renewcommand{\arraystretch}{#1}
-  #2
-  \renewcommand{\arraystretch}{1}
-}
-\newcommand{\closey}[2]{
-  \setlength{\tabcolsep}{#1}
-  #2
-  \setlength{\tabcolsep}{6pt}
-}
 \begin{frame}{What's in reach}
   \Wider[5em]{
     \begin{center}
@@ -2398,50 +2453,50 @@ rectangle(...)
 }
 \end{frame}
 
-\begin{frame}{Within reach: Modeling the physical world}
-  \begin{tabular}{rcc}
-    \begin{tabular}{c}
-      hinge
-    \end{tabular}&
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/hinge}
-    \end{tabular}&
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/laptopHinge}
-    \end{tabular}\\
-    \vspace{1cm}
-    \\
-    \multicolumn{1}{c}{
-      \begin{tabular}{c}
-        gear
-      \end{tabular}
-    }&
-    %empty
-    &
-    \begin{tabular}{c}
-      doorknob
-    \end{tabular}\\
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/gears}
-    \end{tabular}&
-    &
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/doorknob}
-    \end{tabular}
-  \end{tabular}
-\end{frame}
+%% \begin{frame}{Within reach: Modeling the physical world}
+%%   \begin{tabular}{rcc}
+%%     \begin{tabular}{c}
+%%       hinge
+%%     \end{tabular}&
+%%     \begin{tabular}{c}
+%%       \includegraphics[width = 3cm]{figures/hinge}
+%%     \end{tabular}&
+%%     \begin{tabular}{c}
+%%       \includegraphics[width = 3cm]{figures/laptopHinge}
+%%     \end{tabular}\\
+%%     \vspace{1cm}
+%%     \\
+%%     \multicolumn{1}{c}{
+%%       \begin{tabular}{c}
+%%         gear
+%%       \end{tabular}
+%%     }&
+%%     %empty
+%%     &
+%%     \begin{tabular}{c}
+%%       doorknob
+%%     \end{tabular}\\
+%%     \begin{tabular}{c}
+%%       \includegraphics[width = 3cm]{figures/gears}
+%%     \end{tabular}&
+%%     &
+%%     \begin{tabular}{c}
+%%       \includegraphics[width = 3cm]{figures/doorknob}
+%%     \end{tabular}
+%%   \end{tabular}
+%% \end{frame}
 
-\begin{frame}{Within reach: Modeling the physical world}
-  \Wider[5em]{
-    \begin{center}
-      \input{vapor.tex}
-    \end{center}
-  }
-\end{frame}
+%% \begin{frame}{Within reach: Modeling the physical world}
+%%   \Wider[5em]{
+%%     \begin{center}
+%%       \input{vapor.tex}
+%%     \end{center}
+%%   }
+%% \end{frame}
 
 \begin{frame}{}
 
-  These applications are in reach.
+  These next steps are in reach.
 
   \vspace{1cm}
 
@@ -2459,11 +2514,11 @@ rectangle(...)
 
   \vspace{1cm}
 
-  Bootstrapping, learning-to-learn, representation learning
+\pause  Bootstrapping, learning-to-learn, representation learning
 
   \vspace{1cm}
 
-  Discovering knowledge that humans can understand and build on
+\pause  Discovering knowledge that humans can understand and build on
 
 \end{frame}
 \begin{comment}
@@ -2569,32 +2624,164 @@ rectangle(...)
   \end{frame}
 \end{comment}
 
-\newcommand{\person}[2]{\closex{0.2}{\begin{tabular}{c}
+\begin{frame}
+\centering
+  \begin{tabular}{cc}
+    \bigPerson{Josh Tenenbaum}{collaborators/Josh}&
+    \bigPerson{Armando Solar-Lezama}{collaborators/Armando}&
+    \end{tabular}
+\end{frame}
+
+\renewcommand{\person}[2]{\closex{0.2}{\begin{tabular}{c}
     {\footnotesize #1}\\
-    \includegraphics[width = 1.7cm]{#2}
+    \includegraphics[width = 2.3cm]{#2}
 \end{tabular}}}
 
-\begin{frame}{Collaborators}
-\Wider[6em]{  \begin{tabular}{cccc}
-    \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
-    \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
-    \person{Tim O'Donnell}{collaborators/Timothy}&
-    \person{Adam Albright}{collaborators/Adam}\\    \phantom{test}\\
-    \person{Max Nye}{collaborators/MaxNye}&
+\begin{frame}%{Collaborators}
+\Wider[6em]{\centering \closey{0}{ \begin{tabular}{ccccc}
+    \person{Evan Pu}{collaborators/haircut}&
+    \person{Lucas Tian}{collaborators/LucasT}&
+    \person{Marta Kryven}{collaborators/Marta}&
+%    \person{Adam Albright}{collaborators/Adam}&
+    \person{Chris Yang}{collaborators/Chris}&
+    \person{Ronald Alvarez}{collaborators/Ronald}\\
+%        \person{Josh Rule}{collaborators/jr}\\
+    \person{Max Nye}{collaborators/MaxNye}& 
     \person{Cathy Wong}{collaborators/cw}&
-    \person{Yewen Pu}{collaborators/Evan}&
-    \person{Dan Ritchie}{collaborators/Daniel}\\\phantom{test}\\
-    \person{Mathias Sable-Meyer}{collaborators/French}&
+%    \person{Jiajun Wu}{collaborators/jw}    &
+%    \person{Dan Ritchie}{collaborators/Daniel}&
+    \person{Kliment\\{\footnotesize Serafimov}}{collaborators/ks}&
+    \person{Eyal Dechter}{collaborators/eyal}&
+    \person{Mathias\\{\footnotesize Sable-Meyer}}{collaborators/French}\\
     \person{Lucas Morales}{collaborators/Lucas}&
     \person{Tao Du}{collaborators/tao}&
-    \visible<2>{\begin{tabular}{c}
-        \textbf{\Large thank}\\
-        \textbf{\Large you}
-    \end{tabular}}
-    \end{tabular}}
-  
+    \person{Felix Sosa}{collaborators/Felix}&
+%    \person{Tim O'Donnell}{collaborators/Timothy}\\
+%    \person{Owen Lewis}{collaborators/Owen}&
+%    \person{Sumit Gulwani}{collaborators/sg}&
+    \person{Sam Tenka}{collaborators/st}&
+    \person{Julio\\{\footnotesize Cortazar}}{collaborators/Julio.jpg} 
+    \end{tabular}}}  
+\end{frame}
+
+\begin{frame}{thank you...}
+  family
+
+  \begin{tabular}{cccc}
+    \includegraphics[width = 2cm]{collaborators/family/1}
+    &    \includegraphics[width = 2cm]{collaborators/family/2}
+    &    \includegraphics[width = 2.5cm]{collaborators/family/3}
+    &    \includegraphics[width = 2cm]{collaborators/family/g}
+  \end{tabular}
+
+  \vspace{1cm}
+
+  MIT Brain and Cognitive Sciences
+
+  \vspace{1cm}
+
+  twitch viewers
+
+\end{frame}
+
+\begin{frame}{}
+
+  \Huge\centering
+
+  \texttt{the end.}
 
   \end{frame}
+
+\begin{frame}
+  \only<1>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
+  \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModelRecognition}}
+\end{frame}
+
+\begin{frame}[t]{Neural recognition model guides search}
+  \vspace{1.2cm}
+  \begin{tikzpicture}
+    \node(t) at (0,0) {task};
+    \node(n) at ([xshift=2cm]task.east) {
+      \NeuralNetwork{0.17}};
+    \node(p) at ([xshift=2cm]n.east) {program};
+    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
+    \draw[thick,->] ([xshift=0.4cm]n.east) -- (p.west);
+
+    %% \node(n1) at ([yshift=-2cm]t.south) {\phantom{.}};
+    %% \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {\phantom{is a \textbf{``bigram'' model over syntax trees}}\\\phantom{test}\\\phantom{test}}\\\phantom{test}};
+  \end{tikzpicture}
+
+\end{frame}
+\begin{frame}[t]{Neural recognition model guides search}
+  \vspace{1cm}
+  \begin{tikzpicture}
+    \node(t) at (0,0) {task};
+    \node(n) at ([xshift=2cm]task.east) {
+      \NeuralNetwork{0.17}};
+    \node(d) at ([xshift=2cm]n.east) {distribution};
+    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
+    \draw[thick,->] ([xshift=0.4cm]n.east) -- (d.west);
+    \node(p) at ([xshift=2cm]d.east) {program};
+    \draw[squiggle, thick,->] (d.east) -- node[sloped,above]{{{sample}}} (p.west);
+
+    \pause
+
+    \node(n1) at ([yshift=-2cm]t.south) {\NeuralNetwork{0.17}};
+    \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {is a...\\\phantom{is a...}recurrent network (Devlin et al 2017)\\
+      \phantom{is a...}unigram model (Menon et al 2013; Balog et al 2016)};
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}[t]{Neural recognition model guides search}
+  \vspace{1cm}
+  \begin{tikzpicture}
+    \node(t) at (0,0) {task};
+    \node(n) at ([xshift=2cm]task.east) {
+      \NeuralNetwork{0.17}};
+    \node[align=left](d) at ([xshift=2cm]n.east) {distribution};
+    \node[anchor=north] at (d.south) {{\tiny P(child$\vert$parent,arg)}};
+    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
+    \draw[thick,->] ([xshift=0.4cm]n.east) -- (d.west);
+    \node(p) at ([xshift=2cm]d.east) {program};
+    \draw[squiggle, thick,->] (d.east) -- node[sloped,above]{{{sample}}} (p.west);
+
+    \only<1>{
+      \node(n1) at ([yshift=-2cm]t.south) {\NeuralNetwork{0.17}};
+      \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {is a \textbf{``bigram'' model over syntax trees}};
+    }
+
+    \only<2->{
+%      \node(l)[draw] at (2,-1) {\texttt{$\lambda$ (a)}};
+      \node(k)[draw] at (1.7,-1.3) {\texttt{+}};
+      \only<3->{
+      \node(o)[draw] at ([xshift=-50,yshift=-50]k.south) {\texttt{9}};
+      \draw[->] (k.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{+},\text{arg}=\text{left})}(o.north);
+      }
+      \only<4->{
+        \node(m)[draw] at ([xshift=50,yshift=-50]k.south) {\texttt{*}};
+        \draw[->] (k.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{+},\text{arg}=\text{right})}(m.north);
+      }
+      \only<5->{
+        \node(x1)[draw] at ([xshift=50,yshift=-50]m.south) {\texttt{2}};
+        \node(x2)[draw] at ([xshift=-50,yshift=-50]m.south) {\texttt{8}};
+
+        %      \draw[->] (l.south)-- node[fill=white,align=center,midway,inner sep=0,outer sep=0]{$Q_{\text{start},\texttt{+},1}(x)$}(k.north);
+        
+
+        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{left})}(x1.north);
+        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{right})}(x2.north);
+      }
+
+      \only<6>{
+        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU};
+      }
+      \only<7>{
+        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU\\learns to break syntactic symmetries:\\\phantom{tt}P(1$\vert$\texttt{*},\text{arg}=\text{left})=0.0\\\phantom{tttt}``do not multiply by one''};
+        }
+    }
+  \end{tikzpicture}
+\end{frame}
+
+
 %% \begin{frame}{Scaling to long programs}
 %%   Branching factor: $ > 400$ actions
 
