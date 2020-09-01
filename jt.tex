@@ -142,9 +142,9 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 %\DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{Building Machines that Discover Generalizable, Interpretable Knowledge}%,\\ by learning to write code that writes code}
-\author{Kevin Ellis}
-\institute{MIT} 
+\title{DreamCoder:\\Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning}
+\author{Kevin Ellis\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
+\institute{colala group meeting} 
 \date{2020}
   
  
@@ -277,6 +277,28 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \end{tabular}}
 \end{frame}
 
+\begin{frame}{Human program induction}
+  \begin{tikzpicture}
+    \node at(0,0) {\includegraphics[width = 8cm]{../ecPaper/characters.png}};
+    \node at(-3,2) {\includegraphics[width = 8cm]{../ecPaper/Brendan.jpg}};
+
+    \node at (-5,-4) {  Lake et al 2015};
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Human program induction}
+  \begin{tabular}{c}
+    \includegraphics[width = 8cm]{seasons}\\
+    Piantadosi 2020: also kinship, subway routes, counting, ...
+  \end{tabular}\pause
+
+  \vspace{1cm}
+  \begin{tabular}{c}
+    \includegraphics[width = 4cm]{drum_rhythm}\\
+    Evans 2019, ``Apperception.'' Also visual occlusion, analogies, ...
+    \end{tabular}
+\end{frame}
+
 \begin{frame}{Why didn't this old idea work?}
   \Wider[4em]{  Program induction goes back to the 1956 Dartmouth Workshop that founded the field of AI }
 
@@ -299,7 +321,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \textbf{main obstacle: combinatorial search is hard}
 \end{frame}
 
-\begin{frame}{Why try again?}
+\begin{frame}{Why try now?}
 
   better toolkits: neural+probabilistic+symbolic, and knowing how to combine them % we now know how to use all these things together
 
@@ -328,782 +350,13 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 
 \end{frame}
-\begin{frame}{A lesson from the AI winter}
 
-  We need an on-ramp of practical, tractable problems:
-
-  \vspace{1cm}
-
-%  Program induction is already working: a roadmap of problems...
-
-  semantic parsing [Liang et al. 2011; Zettlemoyer et al. 2007]
-
-  programming by examples [Gulwani 2011]
-
-  computer aided programming [Solar-Lezama 2008]
-
-  inverse procedural modeling [Kulkarni et al. 2015]
-  
-
-%%   \visible<5->{better problems:
-%%   \begin{itemize}
-%%   \item inverse CAD 
-%% %  \item probabilistic program synthesis [???]
-%% %  \item synthesizing human-understandable models [Evans et al. 2019]
-%%   \item 
-%%   \item 
-%%   \end{itemize}} 
-
-\end{frame}
-
-\begin{frame}[fragile]{Perception, Synthesizing models, Learning-to-Learn}
-
-  Theme \#1: high-level visual understanding, pixels$\to $programs %going from high-dimensional percepts to symbolic program representations
-
-  \centering
-  
-  \includegraphics[width = \textwidth]{graphicsTeaser.pdf}
-\end{frame}
-\begin{frame}[fragile]{Perception, Synthesizing models, Learning-to-Learn}
-
-  Theme \#1: high-level visual understanding, pixels$\to $programs %going from high-dimensional percepts to symbolic program representations  
-Theme \#2: synthesizing human-understandable models
-
-\begin{center}
-  \includegraphics[width = 0.6\textwidth]{phonology/qualitativeSupplement2.pdf}
-\end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Perception, Synthesizing models, Learning-to-Learn}
-  Theme \#1: high-level visual understanding, pixels$\to $programs\\ %going from high-dimensional percepts to symbolic program representations  
-  Theme \#2: Synthesizing human-understandable models\\
-  Theme \#3: learning to synthesize programs\\
-
-  \vspace{0.5cm}\\
-
-  
-  \Wider[3em]{
-    \includegraphics[width = \textwidth]{figures/manyDomains.png}
-    }
-\end{frame}
 
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and perception}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{model discovery}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}
-      \end{tabular}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Vision is more than knowing what is where}
-
-  Can you visually extrapolate this aqueduct?
-
-  \only<1>{
-    \includegraphics[width = 0.99\textwidth]{figures/aqueductCovered}
-  }
-  \only<2>{
-    \includegraphics[width = 0.99\textwidth]{figures/aqueduct}
-  }
-
-\end{frame}
-
-\begin{frame}{Vision is more than knowing what is where}
-
-  Can you infer what goes in the ellipses?
-
-  \vspace{1cm}
-
-  \begin{center}
-    \includegraphics[width = \textwidth]{figures/RNN-unrolled}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Vision is more than knowing what is where}
-  \includegraphics[width = \textwidth]{figures/CAD_laptop}
-\end{frame}
-
-\begin{frame}[fragile]{Learning to infer graphics programs from hand-drawn images}
-  \begin{center}
-    \begin{tikzpicture}
-      \node[draw,label={hand drawing}](picture1) at (0,-1) {\includegraphics[height = 2.2cm]{TikZfigures/expert-31-trim.png}};
-      \node[label={%% [align=right]left:
-          machine-generated program},draw,right=1cm of picture1] (c1) {
-        \begin{lstlisting}[basicstyle = \small\ttfamily]
-for (0 <= i < 3)
- rectangle(3*i,-2*i+4,
-           3*i+2,6)
- for (0 <= j < i + 1)
-  circle(3*i+1,-2*j+5)
-        \end{lstlisting}
-      };
-      
-      \draw[very thick,->] (picture1.east)  -- (c1.west);
-
-      %    \node(l1)[anchor=south] at ([yshift=0.75cm,xshift=2.5cm]picture1.north) {model infers program from drawing};
-    \end{tikzpicture}
-
-  \end{center}
-%    \vskip0pt plus 1filll
-    \myPaper{Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.}
-\end{frame}
-
-\begin{frame}[fragile]{Learning to infer graphics programs from hand-drawn images}
-  \begin{center}
-    \begin{tikzpicture}
-      \node[draw,label={hand drawing}](picture1) at (0,-1) {\includegraphics[height = 2.2cm]{TikZfigures/expert-31-trim.png}};
-      \node[label={%% [align=right]left:
-          machine-generated program},draw,right=1cm of picture1] (c1) {
-        \begin{lstlisting}[basicstyle = \small\ttfamily]
-for (0 <= i < 3 <@\textcolor{red}{\textbf{+ 1}}@>)
- rectangle(3*i,-2*i+4,
-           3*i+2,6)
- for (0 <= j < i + 1)
-  circle(3*i+1,-2*j+5)
-        \end{lstlisting}
-      };
-      
-      \draw[very thick,->] (picture1.east)  -- (c1.west);
-
-      %    \node(l1)[anchor=south] at ([yshift=0.75cm,xshift=2.5cm]picture1.north) {model infers program from drawing};
-    \end{tikzpicture}
-
-  \end{center}
-%    \vskip0pt plus 1filll
-    \myPaper{Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.}
-\end{frame}
-
-\begin{frame}[fragile]{Learning to infer graphics programs from hand-drawn images}
-\hspace*{-0.45cm}\begin{tikzpicture}
-      \node[draw,label={hand drawing}](picture1) at (0,-1) {\includegraphics[height = 2.2cm]{TikZfigures/expert-31-trim.png}};
-      \node[label={%% [align=right]left:
-          machine-generated program},draw,right=1cm of picture1] (c1) {
-        \begin{lstlisting}[basicstyle = \small\ttfamily]
-for (0 <= i < 3 <@\textcolor{red}{\textbf{+ 1}}@>)
- rectangle(3*i,-2*i+4,
-           3*i+2,6)
- for (0 <= j < i + 1)
-  circle(3*i+1,-2*j+5)
-        \end{lstlisting}
-      };
-      
-      \draw[very thick,->] (picture1.east)  -- (c1.west);
-\end{tikzpicture}
-
-
-\myPaper{Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.}
-
-\end{frame}
-
-
-
-
-\begin{frame}[fragile]{Learning to infer graphics programs from hand-drawn images}
-\hspace*{-0.9cm}\begin{tikzpicture}
-        \node[draw,label={[align=center]hand drawing}](picture1) at (0,-1) {\includegraphics[height = 2.2cm]{TikZfigures/expert-31-trim.png}};
-
-     \node[label={machine-generated program},draw,right=1cm of picture1] (c1) {
-        \begin{lstlisting}[basicstyle = \small\ttfamily]
-for (0 <= i < 3 <@\textcolor{red}{\textbf{+ 1}}@>)
- rectangle(3*i,-2*i+4,
-           3*i+2,6)
- for (0 <= j < i + 1)
-  circle(3*i+1,-2*j+5)
-\end{lstlisting}
-     };
-      
-      \draw[very thick,->] (picture1.east)  -- (c1.west);    
-
-      \node(e)[anchor=west,label={[align=center]autogenerated\\extrapolation}] at ([xshift=1cm]c1.east) {\includegraphics[width = 2.2cm]{TikZfigures/31-extrapolated-trim.png}};
-      
-      \draw[very thick,->] (c1.east)  -- (e.west);
-      \node[anchor=south west] at ([yshift=-1cm]picture1.south west) {\textbf{one-shot generalization / extrapolation}};
-    \end{tikzpicture}
-
-
-  \myPaper{Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.}  
-\end{frame}
-
-\begin{frame}{Extrapolation from a single image}
-  \Wider[5em]{
-    \includegraphics[width = \textwidth]{TikZfigures/extrapolationMatrix1improved.png}
-  }
-  \myPaper{Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.}  
-\end{frame}
-
-\begin{frame}[fragile]{How to infer graphics programs from hand-drawn images}
-
-\hspace*{-1cm}\begin{tikzpicture}[scale=0.9]
-  \node[ thick,anchor = west,inner sep=0pt,label={[yshift = 0.3cm]{\small \begin{tabular}{c}
-          \textbf{Image}\\
-          \textbf{(Observed)}
-  \end{tabular}}}](observation) at (0,0) {\includegraphics[width = 1.5cm]{TikZfigures/expert-39-trimmed.png}};
-    \node[ultra thick,anchor = west,inner sep=0pt](traceSource) at (3.7,0.5){    \begin{lstlisting}[basicstyle = \scriptsize\ttfamily]
-line, line,
-rectangle,
-line, ...
-\end{lstlisting}};
-    \node[ultra thick,anchor = west,inner sep=0pt](traceImage) at (4.15,-0.6) {
-      \includegraphics[width = 0.9cm]{TikZfigures/39-parse.png}}; 
-    \node(trace)[draw,thick,fit = (traceImage) (traceSource), label = above:{{\small \begin{tabular}{c}
-            \textbf{Drawing Commands}\\
-            \textbf{(Latent)}
-    \end{tabular}}}] {};
-    
-    \node[draw, thick,anchor = west,inner sep=2pt,label=above:{\small \begin{tabular}{c}
-          \textbf{Program}\\
-          \textbf{(Latent)}
-    \end{tabular}}](program) at (7.7,0) {
-      \begin{lstlisting}[basicstyle = \scriptsize\ttfamily]
-for (j < 3)
-for (i < 3)
-if (...)
- line(...)
- line(...)
-rectangle(...)
-    \end{lstlisting}};
-
-%    \node[ultra thick,anchor = west,inner sep=0pt,label=below:{\small Similarity}](similarity) at (11.3,0) {\includegraphics[width = 1cm]{TikZfigures/expert-38-trim.png}};
-
-
-    
-    \draw[->, ultra thick] ([yshift=10]trace.west) to[out = 150,in = 30] node[midway,yshift = 6]{{\small render}} ([xshift=5,yshift=10]observation.east); % -- node[fill = white,rotate = -90] {{\small Rendering}}
-    \draw[->, ultra thick] ([yshift=10]program.west) to[out = 150,in = 30] node[midway,yshift = 6] {{\small exec}} ([yshift=10]trace.east);
-    
-    \pause
-    \draw[->, very thick, red] ([yshift = -15,xshift=3]observation.east) to[out = -30,in = -150] node[midway,yshift = -35,xshift=0]{{\small \begin{tabular}{l}
-          neural network+ \\sequential monte carlo
-    \end{tabular}}} ([yshift = -15]trace.west);
-
-    \draw[->, very thick, red] ([yshift = -15,xshift=0]trace.east) to[out = -30,in = -150] node[midway,yshift = -35,xshift=53]{{\small \begin{tabular}{l}
-          learning+ \\constraint-based program synthesis
-    \end{tabular}}} ([yshift = -15]program.west);
-%    \draw[->, thick, red, very thick] ([xshift = 10]trace.south) to[out = -10,in = -170] node[midway,yshift = -6]{{\small Learning + Program synthesis}} ([xshift = 10]program.south);
-%    \draw[->, thick, red] (program.east) to[out = 80,in = 180] (errors.west);
-%    \draw[->, thick] (program.east) to[out = 40,in = -230] (similarity.west);
-
-
-    \draw[decoration = {brace,mirror,raise = 5pt},decorate,thick]
-    ([yshift = -40,xshift = -130]trace.south) -- node[below = 6pt] {{\small  Image$\to$Parse}} ([yshift = -40,xshift = -5]trace.south);
-    \draw[decoration = {brace,mirror,raise = 5pt},decorate,thick]
-    ([xshift = 5,yshift = -40]trace.south) -- node[below = 6pt] {{\small Parse$\to$Program}} ([xshift = 170,yshift = -40]trace.south);
-
-    \pause
-    \node[ultra thick,anchor = west,inner sep=0pt,label=below:{\small extrapolation}](extrapolate) at (11.8,0.9) {\includegraphics[width = 1.3cm]{TikZfigures/39-extrapolated.png}};
-    \draw[->, thick, red, very thick] (program.east) to[out = 60,in = 180] (extrapolate.west);
-    \node[ultra thick,anchor = west,text width = 2.3cm,inner sep=0pt](errors) at (11.1,-1) {\small error correction};
-    
-%%     \draw[decoration = {brace,mirror,raise = 5pt},decorate,thick]
-%% ([xshift = 180,yshift = -40]trace.south) -- node[below = 6pt] {{\small Applications}} ([xshift = 255,yshift = -40]trace.south);
-\end{tikzpicture}
-
-  \myPaper{Ellis, Ritchie, Solar-Lezama, Tenenbaum. NeurIPS 2018.}  
-\end{frame}
-
-%% \begin{frame}{Parsing images into specs (\LaTeX~TikZ commands)}
-
-%% {\footnotesize  Neurally Guided Procedural Modeling (Ritchie et al 2016) + \\Attend, Infer, Repeat (Eslami et al 2016)}
-%%   \vspace{-0.5cm}
-%%   \begin{center}
-%%     \begin{tabular}{c}
-%% \raisebox{-.5\height}{    \includegraphics[width = 0.8\textwidth]{../TikZpaper/architecture.pdf}            }
-%%       \end{tabular}
-
-%%   \end{center}
-
-%%     \newcommand{\noisySize}{0.12\textwidth}
-%%     \visible<2->{
-%% \hspace{0.1\textwidth}      \begin{minipage}[t]{\noisySize}
-%%         \centering\includegraphics[width = \textwidth]{TikZfigures/expert-60-reduced.png}\\
-%%                                   {\small     hand drawing}
-%%       \end{minipage}\hspace{0.05\textwidth}%
-%%       \begin{minipage}[t]{\noisySize}
-%%         \centering\includegraphics[width = \textwidth]{TikZfigures/60-1-reduced.png}\\
-%%                                   {\small noisy \\rerender}
-%%       \end{minipage}}%
-%%     %% \visible<3->{\begin{minipage}{0.35\textwidth}
-%%     %%     \begin{flushright}
-%%     %%       \textbf{Learned distance metric}\\
-%%     %%       \small    Serves as likelihood surrogate
-%%     %%       \begin{align*}
-%%     %%         \displaystyle\qquad    -\log L_{\text{learned}}(\text{render}&(S_1)|\text{render}(S_2))\approx\\& |S_1 - S_2| + |S_2 - S_1|
-%%     %%       \end{align*}
-%%     %%       $S_1$: noisy render\\
-%%     %%       $S_2$: nonnoisy render
-%%     %%     \end{flushright}
-%%     %% \end{minipage}}%
-%%     \hspace{0.2\textwidth}%
-%%     \only<3>{\begin{minipage}[c]{0.3\textwidth}
-%% \vspace{0.4cm}      \includegraphics[width = 0.8\textwidth]{TikZfigures/evaluationPhase1}
-%%     \end{minipage}}
-%%         \only<4>{\begin{minipage}[c]{0.3\textwidth}
-%% \vspace{0.4cm}      \includegraphics[width = 0.8\textwidth]{TikZfigures/evaluationPhase2}
-%%     \end{minipage}}
-%% \end{frame}
-
-%% \begin{frame}{Learning to quickly synthesize programs}
-%%     Learn search policy $\pi (\text{program subspace} | \text{spec})$
-%%   \\Think of the subspace as an ``ansatz''
-
-%% OBJECTIVE: Small subspace for tractability while also being likely to contain good programs
-
-%% %  \vspace{0.7cm}
-%% \Wider[5em]{   \begin{tikzpicture}[scale=0.7]
-%%     \footnotesize
-%%     \node[anchor = west] at (0,5.25) {{ Entire program search space}};
-%%     %\footnotesize
-%%     \draw[fill = yellow,fill opacity = 0.15,draw = black] (0,0) rectangle (5,5);
-%% \pause
-%% \draw [fill = yellow, opacity = 0.2] (0,0)--(0,2)--(4,0)--(0,0);
-%%     \draw (0,2) -- node[below,sloped]{short progs} (4,0);
-%%     \draw (0,2) -- node[above,sloped]{long progs} (4,0);
-%%     \pause
-    
-
-%%     \draw [fill = yellow, opacity = 0.6] (2.5,5)--(3.2,0)--(5,0)--(5,5);
-%%     \draw (2.5,5) -- node[above,sloped]{progs w/ reflections} (3.2,0);
-%%     \pause
-    
-%%     \draw [fill = yellow, opacity = 0.4] (0,5)--(0,1)--(3,5);
-%%     \draw (0,1) -- node[above,sloped]{ progs w/ loops} (3,5);
-%%     \pause
-    
-%%     \node(p1)[anchor =west ] at (5.0,3.5) {$\pi(\text{short, no loop/reflect}|S) = $};
-%%     \draw [fill = yellow, fill opacity = 0.2,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p1.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p1.east);
-%%     \node(p2)[anchor =west ] at ([yshift = -0.5cm]p1.west) {$\pi(\text{long, loops}|S) = $};
-%%     \draw [fill = yellow, fill opacity = 0.4,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p2.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p2.east);
-%%     \node(p3)[anchor =west ] at ([yshift = -0.5cm]p2.west) {$\pi(\text{long, no loop/reflect}|S) = $};
-%%     \draw [fill = yellow, fill opacity = 0.15,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p3.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p3.east);
-%%     \node(p4)[anchor =west ] at ([yshift = -0.5cm]p3.west) {$\pi(\text{long, reflects}|S) = $};
-%%     \draw [fill = yellow, fill opacity = 0.6,draw = black]  ([xshift = 0cm,yshift = -0.2cm]p4.east) rectangle ([xshift = 0.4cm,yshift = 0.2cm]p4.east);
-%%     \node(p5)[anchor =west ] at ([yshift = -0.5cm]p4.west) {\emph{etc.}};
-%%     \pause
-%%     \node at (15.2,3) {\includegraphics[width = 3.6cm]{TikZfigures/2policyComparison}};
-%%   \end{tikzpicture}}
-
-%% \end{frame}
-
-\begin{frame}{Top-down influences on perception}
-  \Wider[2em]{
-    \begin{tabular}{ccc}
-    \small{\phantom{test}drawing\phantom{tttttttttttt}}&\visible<2->{\small{bottom-up neural net}}&\visible<4->{\small{w/ top-down program bias}}\\
-    \multicolumn{3}{c}{\only<1>{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess16_1.png}}%
-        \only<2>{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess16_2.png}}%
-        \only<3>{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess16_3.png}}%
-        \only<4>{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess16_4.png}}%
-        \only<5->{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess16_5.png}}%
-    }\\
-    \multicolumn{3}{c}{\only<7>{\includegraphics[width = 0.9\textwidth]{TikZfigures/programSuccess71_statement.png}}}
-    %        \multicolumn{3}{c}{\includegraphics[width = \textwidth]{TikZfigures/programSuccess97.png}}
+      {\textcolor{black}{Program Induction and learning to learn}}
     \end{tabular}
-  }
-
-  \only<6>{
-    \begin{tabular}{cc}
-      \begin{tabular}{c}
-        \begin{tikzpicture}
-        \node[obs](i) at (0,0) {img};
-        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
-        \node[latent](h) at ([yshift=0.8cm]p.north) {prior};
-        \draw[->] (h.south) -- (p.north);
-        \draw[->] (p.south) -- (i.north);
-        \node[obs](i) at ([xshift=0.8cm]i.east) {img};
-        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
-        \draw[->] (h.south) -- (p.north);
-        \draw[->] (p.south) -- (i.north);
-        \node[obs](i) at ([xshift=-1.8cm]i.west) {img};
-        \node[latent](p) at ([yshift=0.8cm]i.north) {prog};
-        \draw[->] (p.south) -- (i.north);
-        \draw[->] (h.south) -- (p.north);
-      \end{tikzpicture}
-        \end{tabular}&
-      \begin{tabular}{l}
-        $\text{predicted program} = $\\$\argmax_{\text{progs}}\probability\left[\text{img}|\text{prog} \right]\probability\left[\text{prog}|\text{prior} \right]$
-        \end{tabular}
-      \end{tabular}
-  }
-\end{frame}
-
-
-\begin{frame}{3D program induction}
-  \Wider[5em]{
-    \begin{center}
-      \includegraphics[width = \textwidth]{assets/we_are_cool_4.png}
-    \end{center}
-  }
-
-  \visible<2>{
-    \vspace{1cm}
-    
-      Challenge: combinatorial search!\\
-      Branching factor: $ > 1.3$ million per line of code, $\approx$ 20 lines of code\\
-      search space size: $(1.3\text{ million})^{20}\approx 10^{122}$ programs
-}
-  
-\myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-
-\end{frame}
-
-\begin{frame}{}
-  Solution: stochastic \textbf{tree search} + learn \textbf{policy} that writes code\\ + learn \textbf{value} function that assesses execution of program so far;\\
-  analogous to \textbf{AlphaGo} [Silver et al. 2016]
-
-  \Wider[5em]{
-    \only<1>{\includegraphics[width = \textwidth]{figures/capitalism3.png}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/capitalism2.png}}
-    \only<3>{\includegraphics[width = \textwidth]{figures/capitalism1.png}}
-    \only<4>{\includegraphics[width = \textwidth]{figures/capitalism.png}}
-  }
-%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-\end{frame}
-
-\begin{frame}{}
-\Wider[4em]{  \vspace*{-0.9cm}\begin{align*}
-    &pp = \text{partial program (state)}\phantom{test}\sem{pp} = \text{render of }pp\nonumber\\
-    &\visible<2->{a = \text{action (line of code). sample }\left\{a_t \right\}_{t = 1}^T\text{, define }pp_t = a_{t - 1}(pp_{t - 1})}\nonumber\\
-    \visible<3->{&\mathcal{L}^{\text{imitation}} = \sum_{t = 1}^{T}\log\pi(a_t|pp_{t - 1},\sem{pp_T})}\nonumber
-          %% v\left( \eval{pp}, spec\right) &= \E_\pi\left[R~|~\eval{pp}, spec \right] = \E_\pi\left[\1{spec\text{ is satisfied}}~|~\eval{pp}, spec \right]\nonumber\\ &= \text{P}(\text{rollout w/ $\pi$ satisfies $spec$}~|~\eval{pp}, spec)\\
-          %% \mathcal{L}^{\text{RL}}(v,\pi) = ~ &R  \sum_{t\leq T}\log v(\eval{pp_t},spec) + (1 - R) \sum_{t\leq T}\log (1 - v(\eval{pp_t},spec)) + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},spec)
-  \end{align*}}
-  \vspace*{-1.5cm}\Wider[5em]{
-    \begin{center}
-      \includegraphics[width = 0.9\textwidth]{figures/capitalism.png}
-    \end{center}
-  }
-%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-\end{frame}
-\begin{frame}{}
-  \Wider[4em]{
-    \vspace*{-0.9cm}\begin{align*}
-      &pp = \text{partial program (state)}\phantom{tes}\sem{pp} = \text{render of }pp\phantom{tes}a = \text{line of code (action)}\nonumber\\
-      &V\left( \eval{pp}, goal\right) = \E_\pi\left[R~|~\eval{pp}, goal \right]\visible<2->{ = \E_\pi\left[\1{goal\text{ is satisfied}}~|~\eval{pp}, goal \right]}\nonumber\\
-  &\visible<3->{\phantom{V\left( \eval{pp}, goal\right)}= \text{P}(\text{rollout satisfies $goal$}~|~\eval{pp}, goal)}\\
-  %% \mathcal{L}^{\text{RL}}(V,\pi) = ~ &R  \sum_{t\leq T}\log V(\eval{pp_t},goal) + (1 - R) \sum_{t\leq T}\log (1 - V(\eval{pp_t},goal)) + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},goal)
-  \end{align*}}
-  \vspace*{-1.5cm}\Wider[5em]{
-    \begin{center}
-      \includegraphics[width = 0.9\textwidth]{figures/capitalism.png}
-    \end{center}
-  }
-%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-\end{frame}
-\begin{frame}{}
-  \Wider[4em]{
-    \vspace*{-0.9cm}\begin{align*}
-      &pp = \text{partial program (state)}\phantom{tes}\sem{pp} = \text{render of }pp\phantom{tes}a = \text{line of code (action)}\nonumber\\
-      &V\left( \eval{pp}, goal\right) = \text{P}(\text{rollout satisfies $goal$}~|~\eval{pp}, goal)\nonumber\\
-&  \visible<2->{\mathcal{L}^{\text{RL}} = ~ R  \sum_{t\leq T}\log V(\eval{pp_t},goal) + (1 - R) \sum_{t\leq T}\log (1 - V(\eval{pp_t},goal))}\\&\visible<3->{\phantom{test} + R\sum_{t\leq T}\log \pi(a_t|\eval{pp_t},goal)}
-  \end{align*}}
-  \vspace*{-1.5cm}\Wider[5em]{
-    \begin{center}
-      \includegraphics[width = 0.9\textwidth]{figures/capitalism.png}
-    \end{center}
-  }
-%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-\end{frame}
-\begin{frame}{}
-  \Wider[4em]{
-    \vspace*{-0.9cm}\begin{align*}
-      &pp = \text{partial program (state)}\phantom{tes}\sem{pp} = \text{render of }pp\phantom{tes}a = \text{line of code (action)}\nonumber\\
-      &\text{Sequential Monte Carlo for search:}\\
-      &\text{maintain population of particles (states)}\\
-      &\visible<2->{\text{1. sample from policy $\pi$ to get new population}}\\
-      &\visible<3->{\text{2. reweigh by value $V$, resample, goto 1}}
-  \end{align*}}
-  \vspace*{-1.5cm}\Wider[5em]{
-    \begin{center}
-      \includegraphics[width = 0.9\textwidth]{figures/capitalism.png}
-    \end{center}
-  }
-%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-\end{frame}
-
-
-\begin{frame}{3D program induction}
-  \Wider[5em]{
-    \begin{center}
-      
-      \setlength{\tabcolsep}{0pt}
-      \renewcommand{\arraystretch}{0}  
-      
-      %    \includegraphics[width = \textwidth]{assets/pixel_montage} \\
-      % \begin{tabular}{cc}
-      %   \includegraphics[width = 0.3\textwidth]{assets/2d_synthetic_montage}&
-      %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
-      % \end{tabular}\\\\    
-
-
-        \begin{tabular}{ccccccc}
-        \rotatebox[origin=l]{90}{Input}
-        &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
-        %    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
-        \includegraphics[width = 2cm]{assets/3-D/demo2/spec}&
-        \includegraphics[width = 2cm]{assets/3-D/demo4/012_png_v.png}&
-        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_input}&
-        \includegraphics[width = 2cm]{assets/3-D/demo1/spec}
-        \\
-        \rotatebox[origin=l]{90}{Rendered}&
-        \rotatebox[origin=l]{90}{program}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo3/000_SMC_value_pickle_pretty.png}$\;$&
-        %    \includegraphics[width = 2cm]{assets/3-D/demo6/2}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo2/pretty}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo4/012_SMC_value_pickle_pretty}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_output}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo1/pretty}
-        \end{tabular}
-      \setlength{\tabcolsep}{6pt}
-      \renewcommand{\arraystretch}{1}
-    \end{center}
-  }
-
-  \visible<2>{\textbf{\large same architecture learns to synthesize text editing programs (FlashFill, Gulwani 2012)}}
-  
-  \myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-
-\end{frame}
-
-
-
-\begin{frame}{Lessons}
-
-  The inductive bias from a programming language gives extrapolation, or strong generalization
-
-  \vspace{1cm}
-  
-  Combine the best of different techniques: neural nets for perception and pattern recognition, symbols for reasoning, Bayesian methods for uncertainty
-
-\end{frame}
-
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
-      \phantom{Program Induction and }{\textcolor{black}{model discovery}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}
-      \end{tabular}
-  \end{center}
-\end{frame}
-
-
-\begin{frame}[fragile]{Scientific discovery}
-
-  \Wider[4em]{
-    \includegraphics[width = 0.8\textwidth]{figures/distillingLaws}\\
-                    {\small Schmidt \& Lipson: ``Distilling Free-Form Natural Laws from Experimental Data''}
-
-                    \\\vspace{1cm}\\
-                    \begin{tabular}{cc}
-                      \begin{tabular}{c}
-                        \includegraphics[width = 0.45\textwidth]{figures/genetics}
-                        \end{tabular}&
-                      %% \visible<2>{\hspace*{-0.5cm}\includegraphics[width = 0.53\textwidth]{figures/solomonScience2}}\\
-                      \begin{tabular}{l}
-                        {\small Lezon et al. 2006}\\{\small inferring genetic interaction networks}
-                      \end{tabular}&
-                      \end{tabular}
-  }
-
-\end{frame}
-
-\begin{frame}[fragile]{Discovering human-understandable models of language}
-  \begin{center}
-    \begin{tikzpicture}[scale=0.75]
-      \input{phonology/languageWheel50.tex}
-    \end{tikzpicture}
-  \end{center}
-%%   \pause
-%%   \messageOverlay{\large many languages, 70 diverse benchmarks\\\\
-%%     \large linguists distill out higher-level knowledge: ``universal grammar''\\\\
-%% \large children and linguists can learn from sparse data\\\\
-%% \large  linguists can communicate their knowledge}
-\end{frame}
-
-\begin{frame}{Few-shot language learning experiment}
-  Mandarin:
-
-  \vspace{1cm}
-
-  \begin{tabular}{rcc}
-    & adjective & adverb\\
-    ``slow'' & \textipa{man} & \textipa{manmand@}\\
-    ``small'' & \textipa{xiao} & \textipa{xiaoxiaod@}\\
-    ``fast'' & \textipa{kuai} & \only<2->{\textipa{kuaikuaid@}}\only<1>{???}
-  \end{tabular}
-
-  \vspace{1cm}
-  
-  \only<3>{stem+stem+\textipa{d@}}
-
-  \end{frame}
-
-\begin{frame}{Few-shot language learning experiment}
-  Serbo-Croatian:
-  \vspace{1cm}
-  
-  \begin{tabular}{rlll}
-    &\multicolumn{1}{c}{masculine}&\multicolumn{1}{c}{feminine}&%% \only<5->{stem (unobserved)}
-    \\
-    ``rich''&\textipa{bogat}&\textipa{bogata}&%% \only<5->{bogat}
-    \\
-    ``mild''&\textipa{blag}&\textipa{blaga}&%% \only<5->{blag}
-    \\
-    ``green''&\textipa{zelen}&\only<1>{???}\only<2->{\textipa{zelena}}&%% \only<5->{zelen}
-    \\
-    \only<4->{``clear''}&\only<4>{???}\only<5>{\textbf{yasan}}& \only<4->{yasna}&%% \only<5->{yasn}
-    \\  
-  \end{tabular}
-
-  \vspace{1cm}
-  
-  \only<3->{\emph{add ``a'' to stem to make feminine}}
-  
-  \only<5->{
-    \emph{insert ``a'' between two word-final consonants}\\
-    \phonb{$\varnothing$}{a}{C}{C\#}
-  }
-
-\end{frame}
-
-
-%% \begin{frame}{Diverse Linguistic Phenomena}
-%%   \includegraphics[width = \textwidth]{phonology/Croatian}
-%% \end{frame}
-%% \begin{frame}{Languages with tones}
-%%   \includegraphics[width = \textwidth]{phonology/tonal}
-%% \end{frame}
-\begin{frame}
-  \begin{center}
-    \begin{tabular}{ccc}
-      \includegraphics[width = 0.3\textwidth]{figures/odden}&
-      \includegraphics[width = 0.3\textwidth]{figures/spe}&
-      \includegraphics[width = 0.3\textwidth]{figures/roca}
-    \end{tabular}
-  \end{center}
-\end{frame}
-\begin{frame}{}
-\Wider[5em]{  \includegraphics[width = \textwidth]{figures/Turkish1}}
-\end{frame}
-\begin{frame}{Turkic Sakha (Yakut)}
-  \input{phonology/harmonyAnimation.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
-\end{frame}
-\begin{frame}{Turkic Sakha (Yakut)}
-  \input{phonology/harmonyAnimation2.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
-\end{frame}
-\begin{frame}{Turkic Sakha (Yakut)}
-  \input{phonology/harmonyAnimation3.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
-\end{frame}
-
-
-\begin{frame}{}
-  \Wider[5em]{
-    \only<1>{\includegraphics[width = \textwidth]{figures/betterMontage1}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/betterMontage}}
-  }
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
-\end{frame}
-\begin{frame}[fragile]{Distilling higher-level knowledge}
-  \Wider[5em]{
-    \begin{center}
-\begin{tikzpicture}[scale=2]
-\input{languageHierarchy.tex}
-\end{tikzpicture}
-  \end{center}}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
-  \end{frame}
-%% \begin{frame}{Distilling higher-level knowledge}
-%%   \Wider[5em]{
-%%     \begin{tabular}{rl}
-%%       \begin{tabular}{c}
-%%         Discovered\\ universal grammar \\schema
-%%       \end{tabular}&
-%%       \begin{tabular}{l}
-%%         \multicolumn{1}{c}{\textbf{consonant/vowel distinction}}\\
-%%         sounds$\gets$ [-vowel]\\
-%%         sounds$\gets$ [+vowel]\\
-%%         \emph{a set of sounds is commonly}\\\emph{ all consonants,}\\\emph{ or all vowels}
-%%       \end{tabular}\\
-%%       \begin{tabular}{c}
-%%         w/o learned\\
-%%         universal grammar
-%%       \end{tabular}&
-%%       Tibetan:\phantom{test}    \phonl{[-nasal]}{$\varnothing $}{\#}\\\\
-%%       \begin{tabular}{c}
-%%         w/ learned\\
-%%         universal grammar
-%%       \end{tabular}&
-%%       \phantom{Tibetan:test} \phonb{[-vowel]}{$\varnothing $}{\# }{[-vowel]}
-
-%% %% %    Kerewe&    \phonb{[ ]}{[ +hiTone ]}{[ +hiTone ] [ ] }{ [ ]}
-%% %%   \end{tabular}&
-      
-%%     \end{tabular}
-%% %%     \begin{tabular}{cll}
-%% %%     \toprule&
-%% %%   \multicolumn{1}{c}{Without learned universal grammar}&
-%% %%   \multicolumn{1}{c}{With learned universal grammar}\\\midrule \\
-%% %%   \begin{tabular}{l}
-%% %%     \multicolumn{1}{c}{\textbf{consonant/vowel distinction}}\\
-%% %%     sounds$\gets$ [-vowel]\\
-%% %%     sounds$\gets$ [+vowel]\\
-%% %%     \emph{a set of sounds is commonly}\\\emph{ all consonants,}\\\emph{ or all vowels}
-%% %%   \end{tabular}&
-%% %%   \begin{tabular}{rl}
-%% %%     Tibetan&    \phonl{[-nasal]}{$\varnothing $}{\#}
-%% %% %    Kerewe&    \phonb{[ ]}{[ +hiTone ]}{[ +hiTone ] [ ] }{ [ ]}
-%% %%   \end{tabular}&
-%% %%   \begin{tabular}{l}
-%% %%     
-%% %%   \end{tabular}
-%% %%   \\\\\midrule   
-%% %%   \begin{tabular}{l}
-%% %%     \multicolumn{1}{c}{\textbf{nasal place assimilation}}\\
-%% %%     $[\text{+nasal}]\to \alpha\text{place}$ / %\phonb{[+nasal]}{$\alpha$place}{\texttt{trigger}}{\phonfeat[c]{C\\$\alpha$place}}
-%% %%     \underline{\phantom{aa}}\phonfeat[c]{C\\$\alpha$place}\\
-%% %%     \emph{nasals (``n'', ``m'', ...) move to the place in the}\\
-%% %%       \emph{ mouth where the next consonant is}
-%% %%   \end{tabular}
-%% %%   &
-  
-%% %%   \begin{tabular}{rl}    
-%% %%     Bukusu&    \phonr{\textipa{\~n}}{$\alpha$place}{[$\alpha$place]}\\\\
-%% %%   \end{tabular}
-%% %%   &
-%% %%   \begin{tabular}{l}
-%% %%     \phonr{[+nasal]}{$\alpha$place}{\phonfeat[c]{C\\$\alpha$place}}\\\\
-%% %%   \end{tabular}
-%% %% \end{tabular}
-%%   }
-%% %\includegraphics[width = \textwidth]{phonology/universal}
-%% \end{frame}
-
-
-
-
-
-
-\begin{frame}{Lessons}
-
-  Higher-level knowledge matters (``universal grammar''). Get the basics of the representation correct
-
-  \vspace{1cm}
-
-  But \emph{some} of this higher-level knowledge can be learned. You don't need millions of examples to learn it. But it's not a one-shot learning problem either
-
-\end{frame}
-
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{model discovery}}\\
-      \phantom{Program Induction and }{\textcolor{black}{learning to learn}}
-      \end{tabular}
   \end{center}
 \end{frame}
 
@@ -2389,13 +1642,32 @@ rectangle(...)
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{model discovery}}\\
+      {\textcolor{black}{Program Induction and }\textcolor{gray}{learning to learn}}\\
       \phantom{Program Induction and }{\textcolor{black}{the future}}
       \end{tabular}
   \end{center}
 \end{frame}
+
+\begin{frame}{Some unresolved questions}
+
+  Not everything is crisp and symbolic. How do we learn neurosymbolic hybrid programs?
+
+  \vspace{1cm}
+
+  \pause
+
+  Search is still hard
+
+  \vspace{1cm}
+
+  \pause
+
+  Is this a good model for human learning and thinking? % How can we answer this question behaviorally, when the space of program induction models is so under-constrained?
+
+\end{frame}
+
+
+
 \newcommand{\closex}[2]{
   \renewcommand{\arraystretch}{#1}
   #2
@@ -2407,129 +1679,9 @@ rectangle(...)
   \setlength{\tabcolsep}{6pt}
 }
 
-\begin{comment}
-\begin{frame}{}
-  What we've got now:\\ a toolkit for program induction,\\addressing combinatorial program search via learning, integrating techniques for machine learning, AI, and programming languages %symbolic, probabilistic, and neural techniques
-  
-
-  \vspace{2cm}
-
-  Where will this toolkit take us?
-\end{frame}
-
-\begin{frame}{What's in reach}
-  \Wider[5em]{
-    \begin{center}
-      \begin{tabular}[t]{ccc}
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<2>{\textbf{Library learning+}}\only<1>{Library learning+}\only<3->{Library learning+}\\
-            \only<2>{\textbf{Natural language}}\only<1>{Natural language}\only<3->{Natural language}\\
-            \includegraphics[width = 3cm]{figures/semanticParsing}
-          \end{tabular}
-        }&
-
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-2>{Computer-Aided}\only<3>{\textbf{Computer-Aided}}\only<4->{Computer-Aided}\\
-            \only<1-2>{Science}\only<3>{\textbf{Science}}\only<4->{Science}\\
-            \includegraphics[width = 3cm]{figures/geneInteraction}
-          \end{tabular}
-        }&
-
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-3>{Synthesis for}\only<4>{\textbf{Synthesis for}}\only<5->{Synthesis for}\\
-            \only<1-3>{software engineers}\only<4>{\textbf{software engineers}}\only<5->{software engineers}\\
-            \includegraphics[width = 3cm]{figures/IDE}
-          \end{tabular}
-        }
-        
-        
-      \end{tabular}
-
-      \vspace{0.6cm}
-
-      \begin{tabular}{cc}
-        \closex{0.3}{
-          \begin{tabular}{c}
-
-            \only<1-4>{Theory for}\only<5>{\textbf{Theory for}}\only<6->{Theory for}\\
-            \only<1-4>{program induction}\only<5>{\textbf{program induction}}\only<6->{program induction}\\
-            \includegraphics[width = 3cm]{figures/formula}\\
-            \includegraphics[width = 2cm]{figures/complexityTextbook} 
-          \end{tabular}
-        }
-
-        &
-
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-5>{Modeling the}\only<6>{\textbf{Modeling the}}\\%\only<4-6>{Modeling the}\only<7>{\textbf{Modeling the}}\\
-            \only<1-5>{physical world}\only<6>{\textbf{physical world}}\\%\only<4-6>{physical world}\only<7>{\textbf{physical world}}\\
-            \includegraphics[width = 3cm]{figures/room}\\\phantom{t}
-          \end{tabular}
-        }
-        
-      \end{tabular}
-    \end{center}
-}
-\end{frame}
-
-\begin{frame}{Within reach: Modeling the physical world}
-  \begin{tabular}{rcc}
-    \begin{tabular}{c}
-      hinge
-    \end{tabular}&
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/hinge}
-    \end{tabular}&
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/laptopHinge}
-    \end{tabular}\\
-    \vspace{1cm}
-    \\
-    \multicolumn{1}{c}{
-      \begin{tabular}{c}
-        gear
-      \end{tabular}
-    }&
-    %empty
-    &
-    \begin{tabular}{c}
-      doorknob
-    \end{tabular}\\
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/gears}
-    \end{tabular}&
-    &
-    \begin{tabular}{c}
-      \includegraphics[width = 3cm]{figures/doorknob}
-    \end{tabular}
-  \end{tabular}
-\end{frame}
-
-\begin{frame}{Within reach: Modeling the physical world}
-  \Wider[5em]{
-    \begin{center}
-      \input{vapor.tex}
-    \end{center}
-  }
-\end{frame}
-
-\begin{frame}{}
-
-  These applications are in reach.
-
-  \vspace{1cm}
-
-  More broadly: what's in the future of machine learning?
-
-\end{frame}
-\end{comment}
 \begin{frame}{What we want for the future of machine learning}
 
-  Strong generalization %%in many domains
+  Strong generalization \pause %%in many domains
 
   %% \vspace{1cm}
 
@@ -2537,115 +1689,14 @@ rectangle(...)
 
   \vspace{1cm}
 
-  Bootstrapping, learning-to-learn, representation learning
+  Bootstrapping, learning-to-learn, representation learning\pause
 
   \vspace{1cm}
 
   Discovering knowledge that humans can understand and build on
 
 \end{frame}
-\begin{comment}
-  \renewcommand{\insertframenumber}{}
-  \begin{frame}{What do we want from machine learning?}
-    \Wider[4em]{
-      \vspace*{-0.25cm}    \closex{0.1}{\closey{1pt}{\begin{tabular}{rccc}
-            Strong generalization&
-            \begin{tabular}{rcl}
-              %% \begin{tabular}{c}
-              %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing1.png}
-              %% \end{tabular}&$\to$&%
-              %% \begin{tabular}{c}
-              %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation1.png}
-              %% \end{tabular}\\
-              \begin{tabular}{c}
-                \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing2.png}
-              \end{tabular}&$\to$&%
-              \begin{tabular}{c}
-                \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation2.png}
-              \end{tabular}
-            \end{tabular}&\phantom{test}&
-            \begin{tabular}{c}
-              \includegraphics[width = 1.75cm]{dc/dreams/cherry_picked/65_pretty.png}
-            \end{tabular}
-      \end{tabular}}}
 
-      \visible<2->{
-
-        %  \vspace{1cm}
-
-        Bootstrapping, learning-to-learn, representation learning
-        \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
-              \multicolumn{1}{c}{\begin{tabular}{llll}
-                  \phantom{testtest}&
-                  \begin{tabular}{c}
-                    \includegraphics[width = 4cm]{figures/finalLearningCurveMontage}
-                  \end{tabular}&\phantom{test}&\begin{tabular}{c}
-                    \visible<3->{\includegraphics[width = 4cm]{../dreamcoder/figures/dpl/every/text6.pdf}}
-                  \end{tabular}
-              \end{tabular}}
-            \end{tabular}
-        }}
-      }
-
-
-      %  \vspace{1cm}
-
-      \phantom{test}
-
-      \visible<4->{
-        \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
-              Discovering knowledge that humans can understand and build on\\
-              \begin{tabular}{lll}
-                \begin{tabular}{c}
-                  \includegraphics[width = 0.15\textwidth]{figures/odden}
-                \end{tabular}&
-                \begin{tabular}{c}
-                  \includegraphics[width = 0.15\textwidth]{figures/spe}
-                \end{tabular}&
-                \begin{tabular}{cc}
-                  \begin{tabular}{c}
-                    \includegraphics[width = 2cm]{figures/origamiCrane}
-                  \end{tabular}&
-                  \begin{tabular}{c}
-                    \includegraphics[width = 6cm]{figures/mcCarthyAnimationFinalMontage}
-                  \end{tabular}
-                \end{tabular}
-              \end{tabular}
-            \end{tabular}
-        }}
-      }
-
-    }
-  \end{frame}
-\end{comment}
-
-\begin{comment}
-  \begin{frame}{What's far off, but worthwhile?}
-    What kinds of future machines could learn all this?
-
-    \vspace{1cm}
-
-    \Wider[5em]{
-      \begin{center}
-        \only<1>{\begin{tabular}{ccc}
-            using new devices&play&coding\\
-            \includegraphics[height = 2cm]{figures/noodles}&
-            \includegraphics[height = 2cm]{figures/childPlaying}&
-            \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}\\
-            language&science&design\\%&engineering\\
-            \includegraphics[height = 2cm]{figures/acquisition}&
-            \includegraphics[height = 2cm]{figures/blackboard}&
-            \includegraphics[height = 2cm]{figures/textile2}
-            %      \includegraphics[height = 2cm]{figures/primitiveTools}\\
-        \end{tabular}}
-      \end{center}
-    }
-    
-
-    
-
-  \end{frame}
-\end{comment}
 
 \newcommand{\person}[2]{\closex{0.2}{\begin{tabular}{c}
     {\footnotesize #1}\\
@@ -2653,19 +1704,15 @@ rectangle(...)
 \end{tabular}}}
 
 \begin{frame}{Collaborators}
-\Wider[6em]{  \begin{tabular}{cccc}
+\Wider[6em]{  \centering\begin{tabular}{ccc}
     \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
     \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
-    \person{Tim O'Donnell}{collaborators/Timothy}&
-    \person{Adam Albright}{collaborators/Adam}\\    \phantom{test}\\
-    \person{Max Nye}{collaborators/MaxNye}&
+    \person{Max Nye}{collaborators/MaxNye}\\\phantom{test}\\
     \person{Cathy Wong}{collaborators/cw}&
-    \person{Yewen Pu}{collaborators/Evan}&
-    \person{Dan Ritchie}{collaborators/Daniel}\\\phantom{test}\\
     \person{Mathias Sable-Meyer}{collaborators/French}&
-    \person{Lucas Morales}{collaborators/Lucas}&
-    \person{Tao Du}{collaborators/tao}&
-    \visible<2>{\begin{tabular}{c}
+    \person{Lucas Morales}{collaborators/Lucas}\\\phantom{test}\\
+    \multicolumn{3}{c}{
+    \begin{tabular}{c}
         \textbf{\Large thank}\\
         \textbf{\Large you}
     \end{tabular}}
