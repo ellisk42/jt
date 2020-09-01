@@ -1719,7 +1719,81 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \end{tabular}}
   
 
-  \end{frame}
+\end{frame}
+\begin{frame}[t]{3D program induction}
+  \Wider[5em]{
+    \begin{center}
+      \includegraphics[width = \textwidth]{assets/we_are_cool_4.png}
+    \end{center}
+  }
+
+    \vspace{1cm}
+    
+      Challenge: combinatorial search!\\
+      Branching factor: $ > 1.3$ million per line of code, $\approx$ 20 lines of code\\
+      search space size: $(1.3\text{ million})^{20}\approx 10^{122}$ programs
+\myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+
+\end{frame}
+
+
+
+\begin{frame}{}
+  Solution: stochastic \textbf{tree search} + learn \textbf{policy} that writes code\\ + learn \textbf{value} function that assesses execution of program so far;\\
+  analogous to \textbf{AlphaGo} [Silver et al. 2016]
+
+  \Wider[5em]{
+    \only<1>{\includegraphics[width = \textwidth]{figures/capitalism3.png}}
+    \only<2>{\includegraphics[width = \textwidth]{figures/capitalism2.png}}
+    \only<3>{\includegraphics[width = \textwidth]{figures/capitalism1.png}}
+    \only<4>{\includegraphics[width = \textwidth]{figures/capitalism.png}}
+  }
+%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+\end{frame}
+
+\begin{frame}{3D program induction}
+  \Wider[5em]{
+    \begin{center}
+      
+      \setlength{\tabcolsep}{0pt}
+      \renewcommand{\arraystretch}{0}  
+      
+      %    \includegraphics[width = \textwidth]{assets/pixel_montage} \\
+      % \begin{tabular}{cc}
+      %   \includegraphics[width = 0.3\textwidth]{assets/2d_synthetic_montage}&
+      %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
+      % \end{tabular}\\\\    
+
+
+        \begin{tabular}{ccccccc}
+        \rotatebox[origin=l]{90}{Input}
+        &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
+        %    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
+        \includegraphics[width = 2cm]{assets/3-D/demo2/spec}&
+        \includegraphics[width = 2cm]{assets/3-D/demo4/012_png_v.png}&
+        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_input}&
+        \includegraphics[width = 2cm]{assets/3-D/demo1/spec}
+        \\
+        \rotatebox[origin=l]{90}{Rendered}&
+        \rotatebox[origin=l]{90}{program}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo3/000_SMC_value_pickle_pretty.png}$\;$&
+        %    \includegraphics[width = 2cm]{assets/3-D/demo6/2}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo2/pretty}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo4/012_SMC_value_pickle_pretty}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_output}$\;$&
+        \includegraphics[width = 2cm]{assets/3-D/demo1/pretty}
+        \end{tabular}
+      \setlength{\tabcolsep}{6pt}
+      \renewcommand{\arraystretch}{1}
+    \end{center}
+  }
+
+  \visible<2>{ same architecture learns to synthesize text editing programs (FlashFill, Gulwani 2012)}
+  
+  \myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+
+\end{frame}
 %% \begin{frame}{Scaling to long programs}
 %%   Branching factor: $ > 400$ actions
 
