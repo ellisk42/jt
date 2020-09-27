@@ -142,9 +142,9 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 %\DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{DreamCoder:\\Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning}
+\title{Growing domain-specific languages alongside neural program synthesizers via wake-sleep program learning} %DreamCoder:\\Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning}
 \author{Kevin Ellis\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
-\institute{colala group meeting} 
+\institute{neurosym webinar}
 \date{2020}
   
  
@@ -160,94 +160,10 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
   \vspace{1cm}
 
-  2. Learning$ = $adding to that body of knowledge$ = $\\\phantom{2. }making new programs$ = $program synthesis
+  2. Learning$ = $adding to that body of knowledge$ = $ \phantom{testtesttest}%
+  making new programs$ = $program synthesis
 
-  \end{frame}
-
-%% \begin{frame}{What computational problems are solved by intelligence?}
-%%   \Wider[5em]{
-%%     \centering\textbf{an endless range of problems}
-
-%%     \begin{tabular}{ccc}
-%%       language&science&design\\%&engineering\\
-%%       \includegraphics[height = 2cm]{figures/acquisition}&
-%%       \includegraphics[height = 2cm]{figures/blackboard}&
-%%       \includegraphics[height = 2cm]{figures/textile2}\\
-%% %      \includegraphics[height = 2cm]{figures/primitiveTools}\\
-%%       using new devices&writing new characters&coding\\
-%%       \includegraphics[height = 2cm]{figures/noodles}&
-%%       \includegraphics[height = 2cm]{figures/Korean}&
-%%       \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}\\
-%%       \multicolumn{2}{c}{engineering}&play\\
-%%       \includegraphics[height = 2cm]{figures/igloo}&
-%%       \includegraphics[height = 2cm]{../ecPaper/figures/aqueduct}&
-%%       \includegraphics[height = 2cm]{figures/childPlaying}
-%%     \end{tabular}
-%%   }
-%%   %% \pause
-%%   %% \messageOverlay{- learning from modest data/experience\\
-%%   %%   - communicating \& representing knowledge in understandable formats\\
-%%   %%   - bootstrapping \& learning-to-learn\\
-%%   %%   - creatively composing knowledge to produce new concepts and artifacts\\
-%%   %%   \phantom{test}(\& compositionality)
-%%   %% }
-%% \end{frame}
-
-%% \begin{frame}{What computational frameworks can \\contribute to this picture?}
-
-%%   \Wider[5em]{\begin{center}
-%%       \begin{tabular}{ccc}
-%%         \multicolumn{3}{c}{Three AI traditions}\\
-%%         \visible<2->{Symbolic}&\visible<3->{Probabilistic}&\visible<4->{Neural}\\\\
-%%         \visible<2->{\begin{tabular}{c}
-%%             \includegraphics[width = 3cm]{figures/deepBlue}\\%Chess\\
-%%             \includegraphics[width = 3cm]{figures/Mathematica}\\%Mathematica\\
-%% %            \includegraphics[width = 3cm]{figures/Lispsymbolic}\\Lisp
-%%         \end{tabular}}&
-%%         \visible<3->{\begin{tabular}{c}
-%%             \includegraphics[width = 3cm]{figures/bayesianNetwork}\\
-%% %            \includegraphics[width = 3cm]{figures/voice}\\Voice recognition\\
-%%            \includegraphics[width = 3cm]{figures/seismic} %\\Nuclear test monitoring
-%%         \end{tabular}}&
-%%         \visible<4->{\begin{tabular}{c}
-%%           \includegraphics[width = 3cm]{figures/dqn2}\\
-%%           \includegraphics[width = 3cm]{figures/Alex2} %\\Image recognition\\
-          
-%%         \end{tabular}}
-%%       \end{tabular}
-%%   \end{center}}
-  
-  
-
-%%   \visible<5->{
-%%     \messageOverlay{\textbf{Program induction}\\ %% roots in the works of Solomonoff, Fodor, McCarthy.
-%%     machines that learn, perceive, and reason,\\\phantom{test} by writing their own code
-%%     }
-%%   }
-
-%%     %% strong generalization
-
-%%     %% data efficiency
-
-%%     %% interpretability
-
-%%     %% compositional reuse
-
-%%     %% universal Turing-computable expressiveness
-%%     %Combines and complements these three traditions
-%% %  }
-
-%%   %% \pause
-
-%%   %% \messageOverlay{my work:\\%% \\\phantom{test} how program induction can contribute to the engineering of machine intelligence\\
-%%   %%   %% in engineering terms:\\
-%%   %%   \phantom{test} how learning can make program synthesis more scalable \& practical\\
-%%   %%   \phantom{test} how program synthesis can contribute to machine intelligence
-%%   %%  } 
-  
-  
-
-%% \end{frame}
+\end{frame}
 
 \begin{frame}{Why program induction?}
   \Wider[6.5em]{  \begin{tabular}{ccc}
@@ -277,7 +193,27 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \end{tabular}}
 \end{frame}
 
-\begin{frame}{Human program induction}
+
+\begin{frame}{}
+  \Wider[5em]{  \begin{tabular}{cc}
+      FlashFill (Gulwani 2012)&\\
+      \begin{tabular}{c}
+        \includegraphics[width = 6cm]{ff_example}
+      \end{tabular}&
+      \begin{tabular}{c}
+        \visible<3->{\includegraphics[width = 5cm]{ff_DSL}}
+      \end{tabular}\\
+      \visible<2->{Szalinski (Nandi 2020)}&\\
+      \begin{tabular}{c}
+        \visible<2->{\includegraphics[width = 6cm]{uwCAD_example}}
+      \end{tabular}&
+      \begin{tabular}{c}
+        \visible<3->{\includegraphics[width = 5cm]{uwCAD_DSL}}
+      \end{tabular}
+  \end{tabular}}
+\end{frame}
+
+\begin{frame}{Program induction for learning and perception}
   \begin{tikzpicture}
     \node at(0,0) {\includegraphics[width = 8cm]{../ecPaper/characters.png}};
     \node at(-3,2) {\includegraphics[width = 8cm]{../ecPaper/Brendan.jpg}};
@@ -286,76 +222,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{Human program induction}
-  \begin{tabular}{c}
-    \includegraphics[width = 8cm]{seasons}\\
-    Piantadosi 2020: also kinship, subway routes, counting, ...
-  \end{tabular}\pause
 
-  \vspace{1cm}
-  \begin{tabular}{c}
-    \includegraphics[width = 4cm]{drum_rhythm}\\
-    Evans 2019, ``Apperception.'' Also visual occlusion, analogies, ...
-    \end{tabular}
-\end{frame}
-
-\begin{frame}{Why didn't this old idea work?}
-  \Wider[4em]{  Program induction goes back to the 1956 Dartmouth Workshop that founded the field of AI }
-
-  \vspace{1cm}
-
-  \Wider[4em]{
-    \begin{tabular}{ccc}
-      \includegraphics[height = 2.5cm]{figures/Dartmouth}&
-      \includegraphics[height = 2.5cm]{figures/Dartmouth2}&
-      \includegraphics[height = 2.5cm]{figures/Dartmouth3}
-    \end{tabular}
-  }
-
-  \vspace{1cm}
-
-  John McCarthy, Ray Solomonoff
-
-  \pause
-
-  \textbf{main obstacle: combinatorial search is hard}
-\end{frame}
-
-\begin{frame}{Why try now?}
-
-  better toolkits: neural+probabilistic+symbolic, and knowing how to combine them % we now know how to use all these things together
-
-  \pause
-
-  \phantom{better toolkits: }maturing \textbf{program synthesis} techniques
-
-  \vspace{0.5cm}
-
-
-  \pause
-
-  better compute+parallel algorithms
-%  \\
-
-  
-  %% \begin{itemize}
-  %% \visible<2->{\item \textbf{probabilistic} methods for uncertainty and learning-to-learn}
-  %% \visible<3->{\item \textbf{neural} methods for guiding combinatorial search}
-  %% \visible<4->{\item \textbf{symbolic} methods, from the \textbf{programming languages} community
-  %%   \begin{itemize}
-  %%   \item maturing \textbf{program synthesis} techniques
-  %%   \item type systems, program analysis, constraint solving, ...
-  %%   \end{itemize}   }
-  %% \end{itemize}
-
-
-\end{frame}
 
 
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and learning to learn}}
+      {\textcolor{black}{Program Induction and {\textcolor{black}{learning to learn}}}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -373,8 +249,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
   \Wider[4em]{
     \begin{itemize}
-    \item Library of concepts (declarative knowledge; domain specific language) \\ %; generative model over programs)
-      \item      Inference strategy (procedural knowledge; synthesis algorithm)
+    \item Library of abstractions (domain specific language) \\ %; generative model over programs)
+      \item      Inference strategy (synthesis algorithm)
       \end{itemize}
   }
   
@@ -471,13 +347,13 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \Wider[5.4em]{
     \begin{center}
       \begin{tikzpicture}
-    \visible<2->{
+%    \visible<2->{
       %      \node(Lisp) at (-3,0) {\includegraphics[width = 0.8\textwidth]{figures/manyDomains_child.png}};
-      \node[align=left,anchor=left](Lisp) at (-1,1) {Memory consolidation during human sleep:\\
-        1. Slow-wave ($\sim$explicit, declarative)\\
-      2. Fast-wave REM ($\sim$implicit, procedural)};
-    }
-    \node at (0.9,1.3) {  \includegraphics[width = 4cm]{ecFigures/sleepingChild.jpg}};
+    %%   \node[align=left,anchor=left](Lisp) at (-1,1) {Memory consolidation during human sleep:\\
+    %%     1. Slow-wave ($\sim$explicit, declarative)\\
+    %%   2. Fast-wave REM ($\sim$implicit, procedural)};
+    %% }
+%    \node at (0.9,1.3) {  \includegraphics[width = 4cm]{ecFigures/sleepingChild.jpg}};
   \end{tikzpicture}
         \end{center}}
 
@@ -486,7 +362,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{frame}[t]{Library learning as Bayesian inference}
   %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
 \centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
-
+\node[align=left] at (1.5,3) {\small dark: observed\\\small light: unobserved};
   \node[latent,scale=1] at (3.5,3) (dx){Library};
   \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
   \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
@@ -494,27 +370,15 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
   \draw [->] (zp1.south) -- (xp1.north);
   \draw [->] (dx.south) -- (zp1.north);
-  %\draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
-%  \node at (nn) {\NeuralNetwork{0.5}};
-  % HACK : "invisible" arrow to phantom and push to the left and align with next
-  % slide
   \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
   
   \node[latent,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
   \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
   \draw [->] (zp1.south) -- (xp1.north);
   \draw [->] (dx.south) -- (zp1.north);
-%  \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
-%  \node at (nn) {\NeuralNetwork{0.5}};
-
-
-%  \draw [->,red] (xp.east) to[out = 30,in = -30] node(nn){} (zp.east);
- % \node at (nn) {\NeuralNetwork{0.5}};
   \draw [->] (dx.south) -- (zp.north);
   \draw [->] (zp.south) -- (xp.north);
 
-
-  %\node[shift={+(0,-1.7)}] at (nn) { $Q$  };
 
   \end{tikzpicture}
   
@@ -522,6 +386,114 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \vspace{0.5cm}
   
 [Dechter et al, 2013]  [Liang et al, 2010] [Lake et al, 2015]
+
+%\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
+
+  %% \vfill
+  %% Gray: Observed.\\
+  %% White: Latent.\\
+  %% Boxed (plate): Repeated.\\
+  
+\end{frame}
+\begin{frame}[t]{Library learning as Bayesian inference}
+  %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
+\centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
+\node[align=left] at (1.5,3) {\small dark: observed\\\small light: unobserved};
+  \node[obs,scale=1] at (3.5,3) (dx){Library};
+  \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
+  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
+  \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
+  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
+  \draw [->] (zp1.south) -- (xp1.north);
+  \draw [->] (dx.south) -- (zp1.north);
+  \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+  
+  \node[latent,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
+  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
+  \draw [->] (zp1.south) -- (xp1.north);
+  \draw [->] (dx.south) -- (zp1.north);
+  \draw [->] (dx.south) -- (zp.north);
+  \draw [->] (zp.south) -- (xp.north);
+
+
+  \end{tikzpicture}
+  
+
+\vspace{0.5cm}
+  
+\textbf{[Dechter et al, 2013]}  [Liang et al, 2010] [Lake et al, 2015]
+
+%\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
+
+  %% \vfill
+  %% Gray: Observed.\\
+  %% White: Latent.\\
+  %% Boxed (plate): Repeated.\\
+  
+\end{frame}
+\begin{frame}[t]{Library learning as Bayesian inference}
+  %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
+\centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
+\node[align=left] at (1.5,3) {\small dark: observed\\\small light: unobserved};
+  \node[latent,scale=1] at (3.5,3) (dx){Library};
+  \node[obs,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
+  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
+  \node[obs,scale=1] at ([xshift=2cm]zp) (zp1){prog};
+  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
+  \draw [->] (zp1.south) -- (xp1.north);
+  \draw [->] (dx.south) -- (zp1.north);
+  \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+  
+  \node[obs,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
+  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
+  \draw [->] (zp1.south) -- (xp1.north);
+  \draw [->] (dx.south) -- (zp1.north);
+  \draw [->] (dx.south) -- (zp.north);
+  \draw [->] (zp.south) -- (xp.north);
+
+
+  \end{tikzpicture}
+  
+
+\vspace{0.5cm}
+  
+\textbf{[Dechter et al, 2013]}  [Liang et al, 2010] [Lake et al, 2015]
+
+%\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
+
+  %% \vfill
+  %% Gray: Observed.\\
+  %% White: Latent.\\
+  %% Boxed (plate): Repeated.\\
+  
+\end{frame}
+\begin{frame}[t]{Library learning as Bayesian inference}
+  %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
+\centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
+\node[align=left] at (1.5,3) {\small dark: observed\\\small light: unobserved};
+  \node[obs,scale=1] at (3.5,3) (dx){Library};
+  \node[obs,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
+  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
+  \node[obs,scale=1] at ([xshift=2cm]zp) (zp1){prog};
+  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
+  \draw [->] (zp1.south) -- (xp1.north);
+  \draw [->] (dx.south) -- (zp1.north);
+  \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
+  
+  \node[obs,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
+  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
+  \draw [->] (zp1.south) -- (xp1.north);
+  \draw [->] (dx.south) -- (zp1.north);
+  \draw [->] (dx.south) -- (zp.north);
+  \draw [->] (zp.south) -- (xp.north);
+
+
+  \end{tikzpicture}
+  
+
+\vspace{0.5cm}
+  
+\textbf{[Dechter et al, 2013]}  [Liang et al, 2010] [Lake et al, 2015]
 
 %\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
 
@@ -1005,7 +977,17 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \draw (argument#1.north) -- (ar#1.south);
   \draw (a#1.north) -- (ar#1.south);
 }
-  
+
+\begin{frame}{}
+  \begin{center}
+    \begin{tabular}{l}
+      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
+      {\phantom{Program Induction and }\textcolor{black}{learning a DSL}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+    \end{tabular}
+  \end{center}
+\end{frame}
   
 \begin{frame}[fragile]{Abstraction Sleep: Growing the library via refactoring}
   $5 + 5$\\\pause\texttt{(+ 5 5)}\pause
@@ -1244,6 +1226,17 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
       }
 \end{frame}
 
+\begin{frame}{}
+  \begin{center}
+    \begin{tabular}{l}
+      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
+      {\phantom{Program Induction and }\textcolor{black}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+    \end{tabular}
+  \end{center}
+\end{frame}
+
 \begin{frame}
   \only<1>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
   \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModelRecognition}}
@@ -1324,7 +1317,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
       }
 
       \only<6>{
-        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU};
+        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Why we do this:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU};
       }
       \only<7>{
         \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU\\learns to break syntactic symmetries:\\\phantom{tt}P(1$\vert$\texttt{*},\text{arg}=\text{left})=0.0\\\phantom{tttt}``do not multiply by one''};
@@ -1333,6 +1326,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \end{tikzpicture}
 \end{frame}
 
+\begin{frame}{}
+  \begin{center}
+    \begin{tabular}{l}
+      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{black}{synergy between DSL+learned synthesizer}}}\\
+    \end{tabular}
+  \end{center}
+\end{frame}
 
 \begin{frame}{DreamCoder Domains}
   \Wider[5em]{
@@ -1645,27 +1648,31 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and }\textcolor{gray}{learning to learn}}\\
-      \phantom{Program Induction and }{\textcolor{black}{the future}}
-      \end{tabular}
+      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
+      {\phantom{Program Induction and }\textcolor{black}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+    \end{tabular}
   \end{center}
 \end{frame}
 
 \begin{frame}{Some unresolved questions}
 
-  Not everything is crisp and symbolic. How do we learn neurosymbolic hybrid programs?
+  Not everything is crisp and symbolic. How do we learn DSLs for neurosymbolic hybrid programs?\\(see Memoised Wake-Sleep, Hewitt et al 2020)
 
   \vspace{1cm}
 
   \pause
 
-  Search is still hard
+  Search is still hard\\(see ``REPL'': Ellis, Nye, Pu, Sosa et al 2019)
 
   \vspace{1cm}
 
   \pause
 
-  Is this a good model for human learning and thinking? % How can we answer this question behaviorally, when the space of program induction models is so under-constrained?
+  Library$\not=$Language:\\
+  How do we learn data structures, or discover new types, and thereby \emph{actually} learn DSLs?
+
 
 \end{frame}
 
@@ -1681,25 +1688,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   #2
   \setlength{\tabcolsep}{6pt}
 }
-
-\begin{frame}{What we want for the future of machine learning}
-
-  Strong generalization \pause %%in many domains
-
-  %% \vspace{1cm}
-
-  %% Domain generality
-
-  \vspace{1cm}
-
-  Bootstrapping, learning-to-learn, representation learning\pause
-
-  \vspace{1cm}
-
-  Discovering knowledge that humans can understand and build on
-
-\end{frame}
-
 
 \newcommand{\person}[2]{\closex{0.2}{\begin{tabular}{c}
     {\footnotesize #1}\\
