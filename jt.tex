@@ -835,6 +835,119 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
 \end{frame}
 
+\begin{frame}{LOGO Turtle Graphics}
+  \begin{block}{DSL}
+    \texttt{OP ::= FW x | RT x | UP | DOWN | SET state}
+  \end{block}
+
+  \begin{block}{Tasks}
+    \texttt{task : image}
+  \end{block}
+
+  \vspace{0.2cm}
+
+  \only<1>{
+    \begin{columns}[T]
+      \column{0.5 \textwidth}
+        \begin{mycode}
+          \texttt{FW 1}\\
+          \vspace*{5\baselineskip}
+        \end{mycode}
+      \column{0.5 \textwidth}
+        \includegraphics[width = 4cm]{../ecPaper/figures/teachLogo/line.eps}
+    \end{columns}
+  }
+  \only<2>{
+    \begin{columns}[T]
+      \column{0.5 \textwidth}
+        \begin{mycode}
+          \texttt{FW 1}\\
+          \texttt{RT} $\frac\pi2$\\
+          \texttt{FW 1}\\
+          \vspace*{3\baselineskip}
+        \end{mycode}
+      \column{0.5 \textwidth}
+        \includegraphics[width = 4cm]{../ecPaper/figures/teachLogo/angle.eps}
+    \end{columns}
+  }
+  \only<3>{
+    \begin{columns}[T]
+      \column{0.5 \textwidth}
+        \begin{mycode}
+          \texttt{FW 1}\\
+          \texttt{RT} $\frac\pi2$\\
+          \texttt{FW 1}\\
+          \texttt{RT} $\frac\pi2$\\
+          \texttt{FW 1}\\
+          \vspace*{1\baselineskip}
+        \end{mycode}
+      \column{0.5 \textwidth}
+        \includegraphics[width = 4cm]{../ecPaper/figures/teachLogo/angle2.eps}
+    \end{columns}
+  }
+  \only<4>{
+    \begin{columns}[T]
+      \column{0.5 \textwidth}
+        \begin{mycode}
+          \texttt{for i in range(4)}\\
+          \texttt{> FW 1}\\
+          \texttt{> RT} $\frac\pi2$\\
+          \vspace*{3\baselineskip}
+        \end{mycode}
+      \column{0.5 \textwidth}
+        \includegraphics[width = 4cm]{../ecPaper/figures/teachLogo/square.eps}
+    \end{columns}
+  }
+  \only<5>{
+    \begin{columns}[T]
+      \column{0.5 \textwidth}
+        \begin{mycode}
+          \texttt{for i in range(8)}\\
+          \texttt{> FW 1} \\
+          \texttt{> SET origin} \\
+          \texttt{> RT} $\frac{2\pi}{8}$\\
+          \vspace*{2\baselineskip}
+        \end{mycode}
+      \column{0.5 \textwidth}
+        \includegraphics[width = 4cm]{../ecPaper/figures/teachLogo/star.eps}
+    \end{columns}
+  }
+  \only<6>{
+    \begin{columns}[T]
+      \column{0.5 \textwidth}
+        \begin{mycode}
+          \texttt{for i in range(8)}\\
+          \texttt{> PU} \\
+          \texttt{> FW} $\frac{\text{\texttt{i}}}{2}$\\
+          \texttt{> PD} \\
+          \texttt{> FW} $\frac{\text{\texttt{i}}}{2}$\\
+          \texttt{> RT} $\frac\pi2$\\
+          \vspace*{0\baselineskip}
+        \end{mycode}
+      \column{0.5 \textwidth}
+        \includegraphics[width = 4cm]{../ecPaper/figures/teachLogo/spiral.eps}
+    \end{columns}
+  }
+  \only<7>{
+    \begin{columns}[T]
+      \column{0.5 \textwidth}
+        \begin{mycode}
+          \texttt{for i in range($\infty$)}\\
+          \texttt{> FW $\varepsilon$}\\
+          \texttt{> RT} $\varepsilon$\\
+          \vspace*{3\baselineskip}
+        \end{mycode}
+      \column{0.5 \textwidth}
+        \includegraphics[width = 4cm]{../ecPaper/figures/teachLogo/circle.eps}
+    \end{columns}
+  }
+  \visible<7>{
+    \vspace{0.2cm}
+    \texttt{\alert{NUM} ::= 1 | $\pi$ | $\infty$ | $\varepsilon$ | + | - | * | / }
+  }
+
+    \end{frame}
+
 \begin{frame}{LOGO Turtle Graphics -- learning an interpretable library}
   \Wider[5em]{
     \only<1>{\includegraphics[width = \textwidth]{dc/logo_kathy.png}}
@@ -1049,12 +1162,11 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \end{frame}
 
 \begin{frame}{Evidence for dreaming bootstrapping better libraries}
-    \begin{tabular}{rr}
+    \begin{tabular}{c}
       %        \multicolumn{1}{l}{\textbf{B}}\\
       \only<1>{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN_blue.png}}
-    \only<2->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN.png}}&
-    \visible<3->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_SIZE.png}} \\\\
-\multicolumn{2}{c}{    \visible<2->{\includegraphics[height = 1cm]{figures/revisedLearningCurves/scatterLegend.png}}}
+    \only<2->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN.png}}\\
+{    \visible<2->{\includegraphics[height = 1cm]{figures/revisedLearningCurves/scatterLegend.png}}}
     \end{tabular}
     Darker: Early in learning
 
@@ -1127,6 +1239,10 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \vspace{1cm}
 
   Learning-from-scratch is possible in principle. Don't do it. But program induction makes it convenient to build in what we know how to build in, and then learn and adapt on top of that
+
+  \vspace{1cm}
+
+  Some abstractions can be bootstrapped without language---but surely natural language supervision help...?
 \end{frame}
 
 \begin{comment}
