@@ -59,6 +59,7 @@
 \newcommand{\probability}{\mathds{P}} %{{\rm I\kern-.3em P}}
 \DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
 \DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmaxk}{arg\,top-\textit{k}} % thin space, limits underneath in displays
 
 \usepackage[absolute,overlay]{textpos}
 
@@ -143,8 +144,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 %\DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
 \title{Growing domain-specific languages alongside neural program synthesizers via wake-sleep program learning} %DreamCoder:\\Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning}
-\author{Kevin Ellis\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
-\institute{neurosym webinar}
+\author{Kevin Ellis}%\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
+\institute{PL+AI Seminar}
 \date{2020}
   
  
@@ -612,8 +613,41 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \only<3>{\includegraphics[width = \textwidth]{cycleGraphicalModel3}}
   \only<4>{\includegraphics[width = \textwidth]{cycleGraphicalModel4}}
   \only<5>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
-  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
+%  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
 \end{frame}
+
+
+\begin{frame}[t]{}
+  \Wider[3em]{
+    \only<1>{OBJECTIVE: $\probability\left[\text{library} \right]\prod\limits_{\text{task}}\probability\left[\text{task}|\text{library} \right]$}
+    \only<2->{OBJECTIVE: $\probability\left[\text{library} \right]\prod\limits_{\text{task}}\sum\limits_{\text{prog}}\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]$}\\  
+    \visible<3->{\phantom{OBJECTIVE: }$\qquad\geq \probability\left[\text{library} \right]\prod\limits_{\text{task}}\sum\limits_{\substack{\text{prog}\in \\\text{beam}(\text{task})}}\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]$}\\
+    \visible<4->{lower bound holds $\forall \text{beam}(\cdot )$.}
+    \visible<5->{ finite beam: $|\text{beam}(\text{task})|\leq 5$}\\\\
+
+    \visible<6->{\underline{ABSTRACTION}: max wrt library:}\\
+    \visible<7->{$\argmax\limits_{\text{library}}\underbrace{\probability\left[\text{library} \right]}_{\text{short lib}}\prod\limits_{\text{task}}\underbrace{\sum\limits_{\substack{\text{prog}\in \\\text{beam}(\text{task})}}\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]}_{\text{compress programs}}$}\\
+    \visible<8->{\underline{WAKE}: max wrt beams:}\\
+    \only<9>{$\text{beam}(\text{task}) = \argmaxk\limits_{\text{prog}}\underbrace{\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]}_{\propto\text{posterior prob.}}$}
+    \visible<10->{$\text{beam}(\text{task}) = \argmaxk\limits_{\text{prog}\sim\text{NN}(\cdot |\text{task})}\underbrace{\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]}_{\propto\text{posterior prob.}}$}\\
+    \visible<11->{\underline{DREAMING}: train neural net (NN):}\\
+    \visible<11->{train $\text{NN}(\text{prog}|\text{task})\approx\probability\left[\text{prog}|\text{task},\text{library} \right]\propto\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]$}
+
+    \only<1-5>{
+     % \vfill
+      \vspace*{-4cm}\hspace*{4cm}\includegraphics[width = 0.3\textwidth]{cycleGraphicalModel1}
+    }
+  }
+\end{frame}
+
+\begin{frame}{}
+%  \myPaper{\footnotesize Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  \centering
+  \only<1>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
+  \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
+\end{frame}
+
+
 
 %% \begin{frame}{DreamCoder's sleep cycles}
 %% \tiny\begin{tikzpicture}[scale=0.55,line width=0.25mm]
@@ -1694,23 +1728,25 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \includegraphics[width = 1.7cm]{#2}
 \end{tabular}}}
 
-\begin{frame}{Collaborators}
-\Wider[6em]{  \centering\begin{tabular}{ccc}
-    \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
-    \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
-    \person{Max Nye}{collaborators/MaxNye}\\\phantom{test}\\
-    \person{Cathy Wong}{collaborators/cw}&
-    \person{Mathias Sable-Meyer}{collaborators/French}&
-    \person{Lucas Morales}{collaborators/Lucas}\\\phantom{test}\\
-    \multicolumn{3}{c}{
-    \begin{tabular}{c}
-        \textbf{\Large thank}\\
-        \textbf{\Large you}
-    \end{tabular}}
-    \end{tabular}}
+%% \begin{frame}{Collaborators}
+%% \Wider[6em]{  \centering\begin{tabular}{ccc}
+%%     \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
+%%     \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
+%%     \person{Max Nye}{collaborators/MaxNye}\\\phantom{test}\\
+%%     \person{Cathy Wong}{collaborators/cw}&
+%%     \person{Mathias Sable-Meyer}{collaborators/French}&
+%%     \person{Lucas Morales}{collaborators/Lucas}\\\phantom{test}\\
+%%     \multicolumn{3}{c}{
+%%     \begin{tabular}{c}
+%%         \textbf{\Large thank}\\
+%%         \textbf{\Large you}
+%%     \end{tabular}}
+%%     \end{tabular}}
   
 
-\end{frame}
+%% \end{frame}
+
+
 \begin{frame}[t]{3D program induction}
   \Wider[5em]{
     \begin{center}
@@ -1785,61 +1821,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
 
 \end{frame}
-%% \begin{frame}{Scaling to long programs}
-%%   Branching factor: $ > 400$ actions
-
-%%   Successfully synthesizes 40-action programs
-
-%%   \vspace{1cm}
-  
-%%   \Wider[5em]{
-%% \centering
-%%   \setlength{\tabcolsep}{2pt}
-%%   \renewcommand{\arraystretch}{1}
-%%   \footnotesize
-
-%% \begin{tabular}{|lll|}
-%% \cline{1-3}% \cline{5-6}
-%% \multicolumn{3}{|c|}{Spec:}\\% &  & \multicolumn{3}{c|}{Spec:} \\
-%% 6/12/2003 & $\to$ & date: 12 mo: 6 year: 2003\\% &  & Dr Mary Jane  Lennon & $\to$ & Lennon, Mary Jane (Dr) \\
-%% 3/16/1997 & $\to$ & date: 16 mo: 3 year: 1997 \\%&  & Mrs Isaac  McCormick & $\to$ & McCormick, Isaac (Mrs) \\ \cline{1-3} \cline{5-7} 
-%% \cline{1-3}\multicolumn{3}{|c|}{Held out test instance:}\\% &  & \multicolumn{3}{c|}{Held out test instance:} \\
-%% 12/8/2019 & $\to$ & date: 8 mo: 12 year: 2019\\% &  & Dr James Watson & $\to$ & Watson, James (Dr) \\ \cline{1-3} \cline{5-7} 
-%% \cline{1-3}\multicolumn{3}{|c|}{Results:}\\% &  & \multicolumn{3}{c|}{Results:} \\
-%% \textbf{Ours} & $\to$ & \textbf{date: 8 mo: 12 year: 2019}\\% &  & \textbf{} & $\to$ & \textbf{Watson, James (Dr)} \\
-%% %% Rollout & $\to$ & date: 8 mo: 1282019\\% &  &  & $\to$ & Watson, James \\
-%% %% Beam w/value & $\to$ & date: 8 mo: 12 year:2019\\% &  &  & $\to$ & Watson, JamesDr \\
-%% %% Beam & $\to$ & date: 8 mo: 12 year:\\% &  &  & $\to$ & Watson, James ( \\
-%% RobustFill & $\to$ & date:12/8/2019\\% &  &  & $\to$ & Dr James  Watson \\ \cline{1-3} \cline{5-7}
-%% \cline{1-3}
-%% \end{tabular}
-%%   \setlength{\tabcolsep}{6pt}
-%%   \renewcommand{\arraystretch}{1}
-%% }
-%% \end{frame}
-
-
-
-%% \begin{frame}{Vision}
-
-
-%%    \underline{More human-like machine intelligence}\\%Flexibly adapting to new problem domains:
-%%    \begin{itemize}
-%%    \item    Acquiring a domain-specific representation (DSL)
-%%      \item Learning  to use that representation (recognition model)
-%%    \end{itemize}
-%%    DreamCoder: an algorithm for jointly realizing these goals
-
-   
-
-
-
-%%    \hspace{-1cm}\includegraphics[width = 12cm]{ecFigures/finale.png}
-
-%%    \pause
-
-%%    \Huge \centering \textbf{The End.}
-%%   \end{frame}
 \newcommand{\image}[2]{\includegraphics[#1]{../dreamcoder/figures/dpl/every/#2.pdf}}
 \begin{frame}{Library structure: Text Editing}
   \Wider[5em]{
