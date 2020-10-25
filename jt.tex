@@ -1532,7 +1532,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \end{frame}
 
-\begin{frame}{Synergy between dreaming and library learning}
+\begin{frame}{Synergy between recognition model and library learning}
   \begin{tikzpicture}[scale=1.5]
     {
     \begin{scope}[shift = {(1,-1)}]
@@ -1553,11 +1553,11 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
       \draw [->,thick] (recognitionModel.150) to[in = -30,out = 120] node[below,rotate=-45,align = center]{{\footnotesize Makes tractable}\\{\footnotesize (Wake)}} (synthesis.-60);
     }
 
-    \visible<5->{
-      \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=backgroundBeige,inner sep=1pt,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (synthesis.east);
-      \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=backgroundBeige,inner sep=0pt,align = center]{\footnotesize{Inductive bias}\\\footnotesize{(Wake)}
-      } (synthesis.west);
-    }
+    %% \visible<5->{
+    %%   \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=backgroundBeige,inner sep=1pt,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (synthesis.east);
+    %%   \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=backgroundBeige,inner sep=0pt,align = center]{\footnotesize{Inductive bias}\\\footnotesize{(Wake)}
+    %%   } (synthesis.west);
+    %% }
 
   \end{scope}}
     \end{tikzpicture}
@@ -1650,8 +1650,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \begin{tabular}{l}
       {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
       {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{black}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{black}{next steps}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
