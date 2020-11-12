@@ -143,9 +143,9 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 %\DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{Growing domain-specific languages alongside neural program synthesizers via wake-sleep program learning} %DreamCoder:\\Growing generalizable, interpretable knowledge with wake-sleep Bayesian program learning}
-\author{Kevin Ellis}%\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
-\institute{PL+AI Seminar}
+\title{DreamCoder:\\Growing generalizable, interpretable knowledge with wake-sleep program learning}
+\author{Kevin Ellis\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
+\institute{CAP NeurIPS workshop}
 \date{2020}
   
  
@@ -613,39 +613,11 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \only<3>{\includegraphics[width = \textwidth]{cycleGraphicalModel3}}
   \only<4>{\includegraphics[width = \textwidth]{cycleGraphicalModel4}}
   \only<5>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
-%  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
+  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
 \end{frame}
 
 
-\begin{frame}[t]{}
-  \Wider[3em]{
-    \only<1>{OBJECTIVE: $\probability\left[\text{library} \right]\prod\limits_{\text{task}}\probability\left[\text{task}|\text{library} \right]$}
-    \only<2->{OBJECTIVE: $\probability\left[\text{library} \right]\prod\limits_{\text{task}}\sum\limits_{\text{prog}}\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]$}\\  
-    \visible<3->{\phantom{OBJECTIVE: }$\qquad\geq \probability\left[\text{library} \right]\prod\limits_{\text{task}}\sum\limits_{\substack{\text{prog}\in \\\text{beam}(\text{task})}}\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]$}\\
-    \visible<4->{lower bound holds $\forall \text{beam}(\cdot )$.}
-    \visible<5->{ finite beam: $|\text{beam}(\text{task})|\leq 5$}\\\\
 
-    \visible<6->{\underline{ABSTRACTION}: max wrt library:}\\
-    \visible<7->{$\argmax\limits_{\text{library}}\underbrace{\probability\left[\text{library} \right]}_{\text{short lib}}\prod\limits_{\text{task}}\underbrace{\sum\limits_{\substack{\text{prog}\in \\\text{beam}(\text{task})}}\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]}_{\text{compress programs}}$}\\
-    \visible<8->{\underline{WAKE}: max wrt beams:}\\
-    \only<9>{$\text{beam}(\text{task}) = \argmaxk\limits_{\text{prog}}\underbrace{\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]}_{\propto\text{posterior prob.}}$}
-    \visible<10->{$\text{beam}(\text{task}) = \argmaxk\limits_{\text{prog}\sim\text{NN}(\cdot |\text{task})}\underbrace{\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]}_{\propto\text{posterior prob.}}$}\\
-    \visible<11->{\underline{DREAMING}: train neural net (NN):}\\
-    \visible<11->{train $\text{NN}(\text{prog}|\text{task})\approx\probability\left[\text{prog}|\text{task},\text{library} \right]\propto\probability\left[\text{task}|\text{prog} \right]\probability\left[\text{prog}|\text{library} \right]$}
-
-    \only<1-5>{
-     % \vfill
-      \vspace*{-4cm}\hspace*{4cm}\includegraphics[width = 0.3\textwidth]{cycleGraphicalModel1}
-    }
-  }
-\end{frame}
-
-\begin{frame}{}
-%  \myPaper{\footnotesize Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
-  \centering
-  \only<1>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
-  \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
-\end{frame}
 
 
 
@@ -897,279 +869,27 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 %%   \only<21>{\includegraphics[width = \textwidth]{figures/compressionAnimation/21.jpg}}
 %%   \only<22>{\includegraphics[width = \textwidth]{figures/compressionAnimation/22.jpg}}
 %%   \only<23>{\includegraphics[width = \textwidth]{figures/compressionAnimation/23.jpg}}
-%%   \only<24>{\includegraphics[width = \textwidth]{figures/compressionAnimation/24.jpg}}
-%%   \only<25>{\includegraphics[width = \textwidth]{figures/compressionAnimation/25.jpg}}
-%%   \only<26>{\includegraphics[width = \textwidth]{figures/compressionAnimation/26.jpg}}
-%% \end{frame}
-\newcommand{\abstractionTree}[2]{
-  \smallTree{#1}{#2}{+}{$x$}{$x$};
-  \node(a#1) at ([yshift=0.5cm]root#1.south) {$\lambda x$};
-
-  \draw (a#1.south) -- (root#1.south);  
-  }
-\newcommand{\smallTree}[5]{
-  \node(root#1) at (#2) {};
-  \node[anchor=north](r#1) at ([xshift=0.5cm,yshift=-0.5cm]root#1) {#5};
-  \node(l#1) at ([xshift=-0.5cm,yshift=-0.5cm]root#1) {};
-  \node(ll#1) at ([xshift=-0.5cm,yshift=-0.5cm]l#1) {#3};
-  \node(lr#1) at ([xshift=0.5cm,yshift=-0.5cm]l#1) {#4};
-
-  \draw (root#1.south) -- (r#1.north);
-  \draw (root#1.south) -- (l#1.north);
-  \draw (l#1.north) -- (ll#1.north);
-  \draw (l#1.north) -- (lr#1.north);
-}
-\newcommand{\appliedTree}[6]{
-  \smallTree{#1}{#2}{#3}{#4}{#5};
-  \node(a#1) at ([yshift=0.5cm]root#1.south) {$\lambda x$};
-  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
-  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#6};
-
-  \draw (a#1.south) -- (root#1.south);
-  \draw (argument#1.north) -- (ar#1.south);
-  \draw (a#1.north) -- (ar#1.south);
-}
-\newcommand{\chooseAny}[4]{
-  \node[anchor=north](any#1) at (#2) {\textsc{\small Any}};
-  \node(anyl#1) at ([xshift=-0.25cm,yshift=-0.5cm]any#1.south) {#3};
-  \node(anyr#1) at ([xshift=0.25cm,yshift=-0.5cm]any#1.south) {#4};
-  \draw (any#1.south)--(anyl#1.north);
-  \draw (any#1.south)--(anyr#1.north);  
-}
-\newcommand{\chooseTreeTiny}[3]{
-  \node(a#1) at (#2) {$\lambda z$};
-  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
-  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#3};
-
-  \chooseAny{any#1}{[yshift=-0.2cm]a#1.south}{#3}{$z$}
-
-  \draw (a#1.south) -- (anyany#1.north);
-  \draw (argument#1.north) -- (ar#1.south);
-  \draw (a#1.north) -- (ar#1.south);
-}  
-
-\newcommand{\chooseTreeSmall}[7]{
-  \node(root#1) at (#2) {};
-  \node[anchor=north](r#1) at ([xshift=0.5cm,yshift=-0.5cm]root#1) {#5};
-  \node(l#1) at ([xshift=-0.5cm,yshift=-0.5cm]root#1) {};
-  \chooseAny{any#1}{[xshift=-0.5cm,yshift=-0.5cm]l#1}{#3}{#4};
-  \draw (l#1.north) -- (anyany#1.north);
-%  \node(ll#1) at ([xshift=-0.5cm,yshift=-0.5cm]l#1) {};
-  \node(lr#1) at ([xshift=0.5cm,yshift=-0.5cm]l#1) {#5};
-
-  \draw (root#1.south) -- (r#1.north);
-  \draw (root#1.south) -- (l#1.north);
-  \draw (l#1.north) -- (lr#1.north);
-
-  \node(a#1) at ([yshift=0.5cm]root#1.south) {$\lambda y$};
-  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
-  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#7};
-
-  \draw (a#1.south) -- (root#1.south);
-  \draw (argument#1.north) -- (ar#1.south);
-  \draw (a#1.north) -- (ar#1.south);
-}
-\newcommand{\chooseTree}[6]{
-  \node(root#1) at (#2) {};
-  \chooseAny{anyl#1}{[xshift=1cm,yshift=-0.8cm]root#1}{#4}{#5};
-  \draw (root#1.south) -- (anyanyl#1.north);  
-  \node(l#1) at ([xshift=-0.75cm,yshift=-0.75cm]root#1) {};
-  \node(ll#1) at ([xshift=-0.75cm,yshift=-0.75cm]l#1) {#3};
-  \chooseAny{anyr#1}{[xshift=0.5cm,yshift=-0.5cm]l#1}{#4}{#5};
-  \draw (l#1.north) -- (anyanyr#1.north);
-
-  \draw (root#1.south) -- (l#1.north);
-  \draw (l#1.north) -- (ll#1.north);
-
-
-  \node(a#1) at ([yshift=0.5cm]root#1.south) {$\lambda x$};
-  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
-  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#6};
-
-  \draw (a#1.south) -- (root#1.south);
-  \draw (argument#1.north) -- (ar#1.south);
-  \draw (a#1.north) -- (ar#1.south);
-}
-\newcommand{\chooseTreeCompact}[6]{
-  \node(root#1) at (#2) {};
-  \chooseAny{anyl#1}{[xshift=0.75cm,yshift=-0.5cm]root#1}{#4}{#5};
-  \draw (root#1.south) -- (anyanyl#1.north);  
-  \node(l#1) at ([xshift=-0.5cm,yshift=-0.5cm]root#1) {};
-  \node(ll#1) at ([xshift=-0.5cm,yshift=-0.5cm]l#1) {#3};
-  \chooseAny{anyr#1}{[xshift=0.3cm,yshift=-0.3cm]l#1}{#4}{#5};
-  \draw (l#1.north) -- (anyanyr#1.north);
-
-  \draw (root#1.south) -- (l#1.north);
-  \draw (l#1.north) -- (ll#1.north);
-
-
-  \node(a#1) at ([yshift=0.5cm]root#1.south) {$\lambda x$};
-  \node(ar#1) at ([xshift=0.5cm,yshift=0.4cm]a#1.north) {};
-  \node[anchor=north](argument#1) at ([xshift=1cm]a#1.north) {#6};
-
-  \draw (a#1.south) -- (root#1.south);
-  \draw (argument#1.north) -- (ar#1.south);
-  \draw (a#1.north) -- (ar#1.south);
-}
-
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{black}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
-    \end{tabular}
-  \end{center}
-\end{frame}
-  
-\begin{frame}[fragile]{Abstraction Sleep: Growing the library via refactoring}
-  $5 + 5$\\\pause\texttt{(+ 5 5)}\pause
-
-  \vspace*{-0.5cm}\begin{center}
-    \begin{tikzpicture}[scale=1]
-      \smallTree{start}{0,0}{+}{5}{5};
-    \end{tikzpicture}
-  \end{center}
-\end{frame}
-
-\begin{frame}[fragile]{Abstraction Sleep: Growing the library via refactoring}
-  \centering
-  \begin{tikzpicture}[scale=1]
-    \smallTree{start}{0,0}{+}{5}{5};
-    \pause
-    \appliedTree{r1}{4,-0.5}{+}{5}{$x$}{5};
-    \pause
-    \appliedTree{r2}{0,2}{$+$}{$x$}{5}{5};
-    \pause
-    \appliedTree{r3}{-4,-0.5}{$+$}{$x$}{$x$}{5};
-    \pause
-    \appliedTree{r4}{0,-3}{$+$}{5}{5}{5};
-    \pause
-
-    \draw [*-*,dashed,orange, very thick](rootstart.south) to[out=10,in=150] (arr1.south);
-    \draw [-*,dashed,orange, very thick](rootstart.south) to[out=20,in=-90] ([xshift=2cm,yshift=-1cm]arr2.south) to[out=90,in=10] (arr2.south);
-    \draw [-*,dashed,orange, very thick](rootstart.south) to[out=160,in=30] (arr3.south);
-    \draw [-*,dashed,orange, very thick](rootstart.south) to[out=20,in=0] (arr4.south);
-
-    \node[anchor=south west](legend) at (-5,2.5) {legend};
-    \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.2cm]legend.south west)--([yshift=-0.2cm,xshift=0.5cm]legend.south west);
-    \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.5cm]legend.south west) {\small semantic equivalence};
-    \draw[rounded corners] (legend.north west) rectangle (se.south east);
-
-    \node[anchor=west] at (-5.5,-3.25) {\small cf. [Ross Tate et al. 2009]
-      %[Downey et al. 1980]
-      };
-    
-  \end{tikzpicture}
-  
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
-
-\begin{frame}[fragile,noframenumbering]{Abstraction Sleep: Growing the library via refactoring}
-\Wider[4em]{  \begin{tikzpicture}
-    \node[anchor=south west](legend) at (-5,2) {legend};
-    \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.2cm]legend.south west)--([yshift=-0.2cm,xshift=0.9cm]legend.south west);
-    \node(se)[anchor=west] at ([yshift=-0.2cm,xshift=0.9cm]legend.south west) {\small semantic equivalence};
-    \node[anchor=west](choosing) at ([yshift=-0.6cm]legend.south west) {{\textsc{\small Any}} \small nondeterministic choice};
-    \draw[rounded corners] (legend.north west) rectangle (choosing.south east);
-
-    \smallTree{start}{0,0}{+}{5}{5};
-    \chooseTree{L}{4,-1}{+}{5}{$x$}{5};
-    \draw [*-*,dashed,orange, very thick] (rootstart.south)    -- (arL.south);
-
-    \node[align=left,anchor=west] at (-5.75,-4.5) {\small cf. [Gulwani 2012]\\\phantom{t}};%\\\small\phantom{cf. }Liang et al. 2010};
-
-    \pause
-
-    \chooseTreeSmall{R}{-4,-1}{+}{$y$}{5}{5}{+};
-    \draw [-*,dashed,orange, very thick] (rootstart.south)    -- (arR.south);
-
-    \pause
-
-    \chooseTreeTiny{fiber}{0,-2.75}{5};
-    
-    \draw [-*,dashed,orange, very thick] (rstart.south)    -- (arfiber.south);
-    \draw [dashed,orange, very thick] (lrstart.south)    -- (arfiber.south);
-    \draw [dashed,orange, very thick] (rR.east)    -- (arfiber.south);
-    \draw [dashed,orange, very thick] (lrR.south east)    -- (arfiber.south);
-
-    \pause
-
-    \node[inner sep=0pt,dotted,very thick,label=below:{2 choices},fit=(anyanyfiber)(anylanyfiber)(anyranyfiber),draw] {};
-    \node[inner sep=0pt,dotted,very thick,label=below:{2 choices},fit=(anyanyR)(anylanyR)(anyranyR),draw] {};
-    \node[inner sep=0pt,dotted,very thick,label=below:{2 choices},fit=(anyanylL)(anyranylL)(anylanylL),draw] {};
-    \node[inner sep=0pt,dotted,very thick,label=below:{2 choices},fit=(anyanyrL)(anyranyrL)(anylanyrL),draw] {};
-
-    \pause
-    \node at (arL.north) {\small $2\times 2=4$ choices};
-    \node at (arR.north) {\small $2\times 2\times 2=8$ choices};
-    \node at (rootstart.north) {\small $2\times 2=4$ choices};
-%    \node[inner sep=0pt,dotted,very thick,label=above:{$2\times 2=4$ choices},fit=(choiceLabelA)(choiceLabelB),draw] {};
-    
-\end{tikzpicture}}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
-
-\begin{frame}[fragile]{}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}%
-  \Wider[4em]{  \vspace*{-0.5cm}\begin{tikzpicture}
-%      \node[align=left,anchor=south west] at (7,-9) {\small Ellis et al. 2020.};
-    \node[anchor=south west](legend) at (-1,-8) {legend};
-    \draw [dashed,orange, very thick]([xshift=0.1cm,yshift=-0.1cm]legend.south west)--([yshift=-0.1cm,xshift=0.9cm]legend.south west);
-    \node(se)[anchor=west] at ([yshift=-0.1cm,xshift=0.9cm]legend.south west) {\small semantic equivalence};
-    \node[anchor=west](choosing) at ([yshift=-0.5cm]legend.south west) {{\textsc{\small Any}} \small nondeterministic choice};
-    \draw[rounded corners] (legend.north west) rectangle (choosing.south east);
-    
-    \smallTree{original}{0,0}{+}{5}{5};
-    \chooseTreeCompact{originalSpace}{3,-1}{+}{5}{$x$}{5};
-    \draw [*-*,dashed,orange, very thick] (rootoriginal.south)    -- (aroriginalSpace.south);
-
-    \smallTree{remix}{0,-4}{+}{4}{4};
-    \chooseTreeCompact{remixSpace}{3,-5}{+}{4}{$x$}{4};
-    \draw [*-*,dashed,orange, very thick] (rootremix.south)    -- (arremixSpace.south);
-
-    \pause
-
-    \draw[very thick] ([yshift=-1cm]rootremixSpace.north) circle (1.4cm);
-    \draw[very thick] ([yshift=-1cm]rootoriginalSpace.north) circle (1.4cm);
-    \node at ([xshift=1.5cm,yshift=-0.2cm]rootoriginalSpace.north) {\textbf{``A''}};
-    \node at ([xshift=1.5cm,yshift=-0.2cm]rootremixSpace.north) {\textbf{``B''}};
-
-    \pause
-
-    \abstractionTree{common}{8,-1};
-    \node[anchor=south] at (acommon.north) {\textbf{A intersect B:}};%$\mathbf\cap$\textbf{B is:}};
-
-    \pause
-
-    \node(python) at (lrcommon.south) {$\underbrace{\phantom{testingtestinging}}_{\text{\texttt{(lambda (x) (+ x x))}}}$};
-
-    \pause
-
-    \node(double)[anchor=north] at (python.south) {$=$\texttt{ double}};
-
-    \pause
-
-    \node[anchor=north] at ([yshift=-1cm]double.south) {
-        \begin{tabular}{ll}
-          w/o \texttt{double}&w/ \texttt{double}\\\midrule 
-          \texttt{(+ 5 5)}&\texttt{(double 5)}\\
-          \texttt{(+ 4 4)}&\texttt{(double 4)}\\
-          \texttt{(+ 3 3)}&\texttt{(double 3)}\\
-          \multicolumn{2}{c}{$\cdots $}
-      \end{tabular}};
-
-    
-
-    \end{tikzpicture}}
-
-  \end{frame}
 
 \begin{frame}{Abstraction Sleep: Growing the library via refactoring}
   \centering
     \Wider[0em]{\begin{tikzpicture}[every node/.style={inner sep=1,outer sep=0,rounded corners,thick, scale=0.7}]
   \footnotesize
+  
+  
+
+    \node(t1)[draw] at (-1,1.5) {\begin{tabular}{ll}
+      \textbf{Task}:&\texttt{[1 2 3]$\to$[2 4 6]}\\
+      &\texttt{[4 3 4]$\to$[8 6 8]}
+  \end{tabular}};
+
+    
+  \node(t2)[draw] at (4.85,1.5) {\begin{tabular}{ll}
+      \textbf{Task}:&\texttt{[1 2 3]$\to$[0 1 2]}\\
+      &\texttt{[4 3 4]$\to$[3 2 3]}
+  \end{tabular}};
+
+  \pause
+  
   \node(p1)[draw,rounded corners,thick] at (-1,0) {
     \begin{tabular}{l}
       \texttt{(Y ($\lambda$ (r l) (if (nil? l) nil}\\
@@ -1177,25 +897,15 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
       \phantom{\texttt{(cons }}\texttt{ (r (cdr l))))))}
     \end{tabular}
   };
-  
-  \node(p2)[draw] at ([xshift=4cm]p1.east) {
+    \node(p2)[draw] at ([xshift=4cm]p1.east) {
     \begin{tabular}{l}
       \texttt{(Y ($\lambda$ (r l) (if (nil? l) nil}\\
       \texttt{ (cons (- (car l) 1)}\\
       \phantom{\texttt{(cons }}\texttt{ (r (cdr l))))))}
     \end{tabular}
     
-  };
-
-    \node(t1)[draw] at ([yshift=1cm]p1.north) {\begin{tabular}{ll}
-      \textbf{Task}:&\texttt{[1 2 3]$\to$[2 4 6]}\\
-      &\texttt{[4 3 4]$\to$[8 6 8]}
-  \end{tabular}};
-  \draw [->] (t1.south)  --(p1.north) node[fill=white,midway] {Wake: program search};
-  \node(t2)[draw] at ([yshift=1cm]p2.north) {\begin{tabular}{ll}
-      \textbf{Task}:&\texttt{[1 2 3]$\to$[0 1 2]}\\
-      &\texttt{[4 3 4]$\to$[3 2 3]}
-  \end{tabular}};
+    };
+    \draw [->] (t1.south)  --(p1.north) node[fill=white,midway] {Wake: program search};
   \draw [->] (t2.south)  --(p2.north) node[fill=white,midway] {Wake: program search};
 
   
@@ -1255,7 +965,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
     \end{tikzpicture}}
 
-    \only<4>{
+    \only<5>{
       \messageOverlay{these $\mathbf{10^{14}}$ refactorings are represented in DreamCoder's\\ exponentially more efficient refactoring data structure\\ using $\mathbf{10^{6}}$ nodes, calculated in under 5min}
       }
 \end{frame}
