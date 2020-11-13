@@ -305,16 +305,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   
   \vspace{0.75cm}
   
-  \visible<2>{
-  \begin{tikzpicture}
-    \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
-    \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
-    \draw[->] (problem.east) -- (synthesizer.west);
-    \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\$f(x) = 0.3x^3+$\\$1.1x^2-2x+0.6$};
-    \draw[->] (synthesizer.east) -- (program.west);
-  \end{tikzpicture}
+  %% \visible<2>{
+  %% \begin{tikzpicture}
+  %%   \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
+  %%   \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
+  %%   \draw[->] (problem.east) -- (synthesizer.west);
+  %%   \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\$f(x) = 0.3x^3+$\\$1.1x^2-2x+0.6$};
+  %%   \draw[->] (synthesizer.east) -- (program.west);
+  %% \end{tikzpicture}
   
-    \vspace{0.2cm}Concepts: $x^3$, $\alpha x + \beta$, etc\\Inference strategy: neurosymbolic search for programs}
+  %%   \vspace{0.2cm}Concepts: $x^3$, $\alpha x + \beta$, etc\\Inference strategy: neurosymbolic search for programs}
   %% \renewcommand\code\texttt
   %%   \only<3>{
   %% \begin{tikzpicture}
@@ -913,8 +913,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \begin{tabular}{rl}
     circle$(r)$
     &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{dc/logo_primitives/circle_negative.png}}\\
-    polygon$(n,\ell)$
-    &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{dc/logo_primitives/polygon_negative.png}}
+    arc$(n,\ell,\theta)$
+    &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{../dreamcoder/figures/logo_primitives/arc/arc.png}}
   \end{tabular}
   }}
   \only<5>{
