@@ -193,6 +193,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
         \includegraphics[width = 3cm]{figures/famous}
     \end{tabular}}
   \end{tabular}}
+
+  \only<5>{\messageOverlay{Challenge: Combinatorial search,\\\phantom{tt}massive compute time}}
 \end{frame}
 
 
@@ -231,9 +233,9 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \begin{center}
     \begin{tabular}{l}
       {\textcolor{black}{Program Induction and {\textcolor{black}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning a library}}\\
+%      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{gray}{synergy between library \& neural search}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -258,16 +260,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   
   \vspace{0.75cm}
   
-  \visible<2>{
-  \begin{tikzpicture}
-    \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
-    \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
-    \draw[->] (problem.east) -- (synthesizer.west);
-    \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\$f(x) = 0.3x^3+$\\$1.1x^2-2x+0.6$};
-    \draw[->] (synthesizer.east) -- (program.west);
-  \end{tikzpicture}
+  %% \visible<2>{
+  %% \begin{tikzpicture}
+  %%   \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
+  %%   \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
+  %%   \draw[->] (problem.east) -- (synthesizer.west);
+  %%   \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\$f(x) = 0.3x^3+$\\$1.1x^2-2x+0.6$};
+  %%   \draw[->] (synthesizer.east) -- (program.west);
+  %% \end{tikzpicture}
   
-    \vspace{0.2cm}Concepts: $x^3$, $\alpha x + \beta$, etc\\Inference strategy: neurosymbolic search for programs}
+  %%   \vspace{0.2cm}Concepts: $x^3$, $\alpha x + \beta$, etc\\Inference strategy: neurosymbolic search for programs}
   %% \renewcommand\code\texttt
   %%   \only<3>{
   %% \begin{tikzpicture}
@@ -556,9 +558,9 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \Wider[4em]{
   \begin{center}
-    library learning via program analysis + \\
-    new neural inference network for program synthesis + \\
-    better program representation (Lisp+polymorphic types [Milner 1978])
+    \phantom{library learning via program analysis + }\\
+    \phantom{new neural inference network for program synthesis + }\\
+    \phantom{better program representation (Lisp+polymorphic types [Milner 1978])}
   \end{center}
 }
 \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
@@ -617,10 +619,30 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
 \end{frame}
 
+\begin{frame}{Abstraction as analogy --- from Fran{\c c}ois Chollet, yesterday}
+\centering  \includegraphics[width = 0.8\textwidth]{figures/fortunatecollision}
+\end{frame}
+
 \begin{frame}{Abstraction Sleep: Growing the library via refactoring}
   \centering
     \Wider[0em]{\begin{tikzpicture}[every node/.style={inner sep=1,outer sep=0,rounded corners,thick, scale=0.7}]
   \footnotesize
+  
+  
+
+    \node(t1)[draw] at (-1,1.5) {\begin{tabular}{ll}
+      \textbf{Task}:&\texttt{[1 2 3]$\to$[2 4 6]}\\
+      &\texttt{[4 3 4]$\to$[8 6 8]}
+  \end{tabular}};
+
+    
+  \node(t2)[draw] at (4.85,1.5) {\begin{tabular}{ll}
+      \textbf{Task}:&\texttt{[1 2 3]$\to$[0 1 2]}\\
+      &\texttt{[4 3 4]$\to$[3 2 3]}
+  \end{tabular}};
+
+  \pause
+  
   \node(p1)[draw,rounded corners,thick] at (-1,0) {
     \begin{tabular}{l}
       \texttt{(Y ($\lambda$ (r l) (if (nil? l) nil}\\
@@ -628,25 +650,15 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
       \phantom{\texttt{(cons }}\texttt{ (r (cdr l))))))}
     \end{tabular}
   };
-  
-  \node(p2)[draw] at ([xshift=4cm]p1.east) {
+    \node(p2)[draw] at ([xshift=4cm]p1.east) {
     \begin{tabular}{l}
       \texttt{(Y ($\lambda$ (r l) (if (nil? l) nil}\\
       \texttt{ (cons (- (car l) 1)}\\
       \phantom{\texttt{(cons }}\texttt{ (r (cdr l))))))}
     \end{tabular}
     
-  };
-
-    \node(t1)[draw] at ([yshift=1cm]p1.north) {\begin{tabular}{ll}
-      \textbf{Task}:&\texttt{[1 2 3]$\to$[2 4 6]}\\
-      &\texttt{[4 3 4]$\to$[8 6 8]}
-  \end{tabular}};
-  \draw [->] (t1.south)  --(p1.north) node[fill=white,midway] {Wake: program search};
-  \node(t2)[draw] at ([yshift=1cm]p2.north) {\begin{tabular}{ll}
-      \textbf{Task}:&\texttt{[1 2 3]$\to$[0 1 2]}\\
-      &\texttt{[4 3 4]$\to$[3 2 3]}
-  \end{tabular}};
+    };
+    \draw [->] (t1.south)  --(p1.north) node[fill=white,midway] {Wake: program search};
   \draw [->] (t2.south)  --(p2.north) node[fill=white,midway] {Wake: program search};
 
   
@@ -706,18 +718,19 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
     \end{tikzpicture}}
 
-    \only<4>{
-      \messageOverlay{these $\mathbf{10^{14}}$ refactorings are manipulated using\\version spaces + equivalence graphs:\\exponentially more efficient refactoring data structure\\uses $\mathbf{10^{6}}$ nodes, calculated in $\leq $5min}
+    \only<5>{
+      \messageOverlay{these $\mathbf{10^{14}}$ refactorings represented in exponentially\\more efficient refactoring data structure:\\equivalence graphs+version spaces using $\mathbf{10^{6}}$ nodes,\\calculated in under 5min\\ c.f. [Tate et al 2009], [Gulwani 2012]}
       }
 \end{frame}
 
+\begin{comment}
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
       {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{black}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning a library}}\\
+%      {\phantom{Program Induction and }\textcolor{black}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL \& neural search}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -811,13 +824,15 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \end{tikzpicture}
 \end{frame}
 
+\end{comment}
+
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
       {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{black}{synergy between DSL+learned synthesizer}}}\\
+      {\phantom{Program Induction and }\textcolor{gray}{learning a library}}\\
+%      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
+      {\phantom{Program Induction and }{\textcolor{black}{synergy between library \& neural search}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -1163,12 +1178,14 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \end{frame}
 
 \begin{frame}{Evidence for dreaming bootstrapping better libraries}
-    \begin{tabular}{c}
+  \centering
+  \begin{tabular}{c}
       %        \multicolumn{1}{l}{\textbf{B}}\\
       \only<1>{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN_blue.png}}
     \only<2->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN.png}}\\
 {    \visible<2->{\includegraphics[height = 1cm]{figures/revisedLearningCurves/scatterLegend.png}}}
     \end{tabular}
+    
     Darker: Early in learning
 
     Brighter: Later in learning
@@ -1235,15 +1252,19 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \begin{frame}{Lessons}
 
-  Symbols aren't necessarily interpretable. Flexibly grow the language based on experience to make it more powerful \emph{and} more human understandable
+  Growing a library of abstractions interacts synergistically with learning how to use those abstractions
 
   \vspace{1cm}
 
-  Learning-from-scratch is possible in principle. Don't do it. But program induction makes it convenient to build in what we know how to build in, and then learn and adapt on top of that
+  \pause
+
+  Bayesian, symbolic learning algorithms mean you don't need massive data sets to learn libraries of abstractions
+
+  \pause
 
   \vspace{1cm}
 
-  Some abstractions can be bootstrapped without language---but surely natural language supervision help...?
+  Some abstractions can be bootstrapped without language---but surely natural language supervision would help...?
 \end{frame}
 
 \begin{comment}
@@ -1252,8 +1273,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \begin{center}
       \begin{tabular}{l}
         {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-        {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-        {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
+        {\phantom{Program Induction and }\textcolor{gray}{learning a library}}\\
+      {\phantom{Program Induction and }{\textcolor{gray}{synergy between library \& neural search}}}\\
         {\phantom{Program Induction and }{\textcolor{black}{next steps}}}\\
       \end{tabular}
     \end{center}
@@ -1302,8 +1323,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \Wider[6em]{  \centering\begin{tabular}{ccc}
     \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
     \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
-    \person{Max Nye}{collaborators/MaxNye}\\\phantom{test}\\
-    \person{Cathy Wong}{collaborators/cw}&
+    \person{Cathy Wong}{collaborators/cw}\\\phantom{test}\\
+    \person{Max Nye}{collaborators/MaxNye}&
     \person{Mathias Sable-Meyer}{collaborators/French}&
     \person{Lucas Morales}{collaborators/Lucas}\\\phantom{test}\\
     \multicolumn{3}{c}{
