@@ -143,10 +143,10 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 %\DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{DreamCoder:\\Growing generalizable, interpretable knowledge with wake-sleep program learning}
+\title{Dreamcoder: Bootstrapping Inductive Program Synthesis With Wake-Sleep Library Learning}
 \author{Kevin Ellis\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
-\institute{CAP NeurIPS workshop}
-\date{2020}
+\institute{Synthesis of Models and Systems}
+\date{2021}
   
  
 \begin{document}
@@ -262,14 +262,14 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \end{tabular}}
 \end{frame}
 
-\begin{frame}{Human-level Program induction}
-  \begin{tikzpicture}
-    \node at(0,0) {\includegraphics[width = 8cm]{../ecPaper/characters.png}};
-    \node at(-3,2) {\includegraphics[width = 8cm]{../ecPaper/Brendan.jpg}};
+%% \begin{frame}{Human-level Program induction}
+%%   \begin{tikzpicture}
+%%     \node at(0,0) {\includegraphics[width = 8cm]{../ecPaper/characters.png}};
+%%     \node at(-3,2) {\includegraphics[width = 8cm]{../ecPaper/Brendan.jpg}};
 
-    \node at (-5,-4) {  Lake et al 2015};
-    \end{tikzpicture}
-\end{frame}
+%%     \node at (-5,-4) {  Lake et al 2015};
+%%     \end{tikzpicture}
+%% \end{frame}
 
 
 
@@ -859,8 +859,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
         %      \draw[->] (l.south)-- node[fill=white,align=center,midway,inner sep=0,outer sep=0]{$Q_{\text{start},\texttt{+},1}(x)$}(k.north);
         
 
-        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{left})}(x1.north);
-        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{right})}(x2.north);
+        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{right})}(x1.north);
+        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{left})}(x2.north);
       }
 
       \only<6>{
@@ -1200,6 +1200,9 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   Learning-from-scratch is possible in principle. Don't do it. But program induction makes it convenient to build in what we know how to build in, and then learn on top of that
 \end{frame}
 
+\begin{comment}
+
+
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
@@ -1229,6 +1232,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   How do we learn data structures, or discover new types, and thereby \emph{actually} learn DSLs?
 
 \end{frame}
+  \end{comment}
 
 \begin{frame}{}
 
@@ -1252,23 +1256,23 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \includegraphics[width = 1.7cm]{#2}
 \end{tabular}}}
 
-%% \begin{frame}{Collaborators}
-%% \Wider[6em]{  \centering\begin{tabular}{ccc}
-%%     \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
-%%     \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
-%%     \person{Max Nye}{collaborators/MaxNye}\\\phantom{test}\\
-%%     \person{Cathy Wong}{collaborators/cw}&
-%%     \person{Mathias Sable-Meyer}{collaborators/French}&
-%%     \person{Lucas Morales}{collaborators/Lucas}\\\phantom{test}\\
-%%     \multicolumn{3}{c}{
-%%     \begin{tabular}{c}
-%%         \textbf{\Large thank}\\
-%%         \textbf{\Large you}
-%%     \end{tabular}}
-%%     \end{tabular}}
+\begin{frame}{Collaborators}
+\Wider[6em]{  \centering\begin{tabular}{ccc}
+    \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
+    \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
+    \person{Max Nye}{collaborators/MaxNye}\\\phantom{test}\\
+    \person{Cathy Wong}{collaborators/cw}&
+    \person{Mathias Sable-Meyer}{collaborators/French}&
+    \person{Lucas Morales}{collaborators/Lucas}\\\phantom{test}\\
+    \multicolumn{3}{c}{
+    \begin{tabular}{c}
+        \textbf{\Large thank}\\
+        \textbf{\Large you}
+    \end{tabular}}
+    \end{tabular}}
   
 
-%% \end{frame}
+\end{frame}
 
 
 \begin{frame}[t]{3D program induction}
