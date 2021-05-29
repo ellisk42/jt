@@ -143,9 +143,9 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 %\DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{Dreamcoder: Bootstrapping Inductive Program Synthesis With Wake-Sleep Library Learning}
-\author{Kevin Ellis\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
-\institute{Synthesis of Models and Systems}
+\title{DreamCoder:\\Bootstrapping Inductive Program Synthesis with Wake-Sleep Library Learning}
+\author{Kevin Ellis$^1$ Catherine Wong$^2$ Maxwell Nye$^2$ Mathias Sabl\'e-Meyer$^3$\\  Lucas Morales$^2$ Luke Hewitt$^2$ Luc Cary$^2$\\Armando Solar-Lezama$^2$ Joshua B. Tenenbaum$^2$}
+\institute{PLDI. $^1$Cornell; $^2$MIT; $^3$PSL/Collège de France \& NeuroSpin}
 \date{2021}
   
  
@@ -153,45 +153,14 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
  
 \frame{\titlepage}
 
-\begin{frame}{The premise of program induction}
+\begin{frame}{Inductive program synthesis}
 
-  1. Represent knowledge as programs: as symbolic code
+  \textbf{Program synthesis:} automatically write computer programs from a specification of what they should do
 
   \pause
 
-  \vspace{1cm}
+  \textbf{Inductive program synthesis:} Learning programs from examples
 
-  2. Learning$ = $adding to that body of knowledge$ = $ \phantom{testtesttest}%
-  making new programs$ = $program synthesis
-
-\end{frame}
-
-\begin{frame}{Why program induction?}
-  \Wider[6.5em]{  \begin{tabular}{ccc}
-    \visible<2->{\begin{tabular}{l}
-      strong generalization\\
-      +data efficiency
-    \end{tabular}}&
-    \visible<3->{\begin{tabular}{l}
-      interpretability\\
-    \end{tabular}}
-    &\visible<4->{\begin{tabular}{l}
-       universal expressivity\\
-     \end{tabular}}\\
-    \visible<2->{
-      \begin{tabular}{c}
-        \includegraphics[width = 3cm]{figures/polynomialExtrapolation}\\
-        {\small\texttt{f(x)=(x-1)**2 - 0.5}}
-    \end{tabular}}&
-    \visible<3->{\begin{tabular}{c}
-        \includegraphics[width = 3.5cm]{figures/explodedCAD}\\\emph{vs}\\
-        \includegraphics[width = 3.5cm]{figures/drillMesh}
-    \end{tabular}}&
-    \visible<4->{%% \includegraphics[width = 4cm]{figures/turingMachine}
-      \begin{tabular}{c}
-        \includegraphics[width = 3cm]{figures/famous}
-    \end{tabular}}
-  \end{tabular}}
 \end{frame}
 
 
@@ -214,53 +183,53 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \end{tabular}}
 \end{frame}
 
-\begin{frame}{Visual programs}
-  \Wider[6em]{\centering\begin{tabular}{c}
-    \includegraphics[width = 10cm]{tutorial/ns}\\{\small Mao$^*$, Zhang$^*$, et al 2019}\\
-    \visible<1->{\includegraphics[width = 10cm]{assets/we_are_cool_4.png}}\\
-    \visible<1->{{\small Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, et al 2019}}\\
-    %% \includegraphics[width = 10cm]{graphicsTeaser1}\\
-    %% Ellis, Ritchie, et al 2018\\\\
-    \begin{tabular}{cc}
-      \visible<1->{\includegraphics[width = 5cm]{tutorial/kind}}&
-      \visible<1->{\includegraphics[width = 8cm]{tutorial/shape2}}
-      \\
-      \visible<1->{\small Young et al 2019}&\visible<1->{\small Tian et al 2019}
-      \end{tabular}
-  \end{tabular}}
-  %% \begin{tikzpicture}
-  %%   \node[draw,label={hand drawing}](picture1) at (0,-1) {\includegraphics[height = 2.2cm]{TikZfigures/expert-31-trim.png}};
-  %%   \node[label={%% [align=right]left:
-  %%       machine-generated program},draw,right=1cm of picture1] (c1) {
-  %%     \begin{lstlisting}[basicstyle = \small\ttfamily]
-  %%       for (0 <= i < 3)
-  %%       rectangle(3*i,-2*i+4,
-  %%       3*i+2,6)
-  %%       for (0 <= j < i + 1)
-  %%       circle(3*i+1,-2*j+5)
-  %%     \end{lstlisting}
-  %%   };
+%% \begin{frame}{Visual programs}
+%%   \Wider[6em]{\centering\begin{tabular}{c}
+%%     \includegraphics[width = 10cm]{tutorial/ns}\\{\small Mao$^*$, Zhang$^*$, et al 2019}\\
+%%     \visible<1->{\includegraphics[width = 10cm]{assets/we_are_cool_4.png}}\\
+%%     \visible<1->{{\small Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, et al 2019}}\\
+%%     %% \includegraphics[width = 10cm]{graphicsTeaser1}\\
+%%     %% Ellis, Ritchie, et al 2018\\\\
+%%     \begin{tabular}{cc}
+%%       \visible<1->{\includegraphics[width = 5cm]{tutorial/kind}}&
+%%       \visible<1->{\includegraphics[width = 8cm]{tutorial/shape2}}
+%%       \\
+%%       \visible<1->{\small Young et al 2019}&\visible<1->{\small Tian et al 2019}
+%%       \end{tabular}
+%%   \end{tabular}}
+%%   %% \begin{tikzpicture}
+%%   %%   \node[draw,label={hand drawing}](picture1) at (0,-1) {\includegraphics[height = 2.2cm]{TikZfigures/expert-31-trim.png}};
+%%   %%   \node[label={%% [align=right]left:
+%%   %%       machine-generated program},draw,right=1cm of picture1] (c1) {
+%%   %%     \begin{lstlisting}[basicstyle = \small\ttfamily]
+%%   %%       for (0 <= i < 3)
+%%   %%       rectangle(3*i,-2*i+4,
+%%   %%       3*i+2,6)
+%%   %%       for (0 <= j < i + 1)
+%%   %%       circle(3*i+1,-2*j+5)
+%%   %%     \end{lstlisting}
+%%   %%   };
     
-  %%   \draw[very thick,->] (picture1.east)  -- (c1.west);
+%%   %%   \draw[very thick,->] (picture1.east)  -- (c1.west);
 
-  %%   %    \node(l1)[anchor=south] at ([yshift=0.75cm,xshift=2.5cm]picture1.north) {model infers program from drawing};
-  %% \end{tikzpicture}  
-\end{frame}
-\begin{frame}{Where does this language come from?}
-  \Wider[6em]{\centering\begin{tabular}{c}
-    \includegraphics[width = 10cm]{tutorial/nsl}\\{\small Mao$^*$, Zhang$^*$, et al 2019}\\
-    \visible<1->{\includegraphics[width = 10cm]{assets/we_are_cool_4l.png}}\\
-    \visible<1->{{\small Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, et al 2019}}\\
-    %% \includegraphics[width = 10cm]{graphicsTeaser1}\\
-    %% Ellis, Ritchie, et al 2018\\\\
-    \begin{tabular}{cc}
-      \visible<1->{\includegraphics[width = 5cm]{tutorial/kindl}}&
-      \visible<1->{\includegraphics[width = 8cm]{tutorial/shape2l}}
-      \\
-      \visible<1->{\small Young et al 2019}&\visible<1->{\small Tian et al 2019}
-      \end{tabular}
-  \end{tabular}}
-\end{frame}
+%%   %%   %    \node(l1)[anchor=south] at ([yshift=0.75cm,xshift=2.5cm]picture1.north) {model infers program from drawing};
+%%   %% \end{tikzpicture}  
+%% \end{frame}
+%% \begin{frame}{Where does this language come from?}
+%%   \Wider[6em]{\centering\begin{tabular}{c}
+%%     \includegraphics[width = 10cm]{tutorial/nsl}\\{\small Mao$^*$, Zhang$^*$, et al 2019}\\
+%%     \visible<1->{\includegraphics[width = 10cm]{assets/we_are_cool_4l.png}}\\
+%%     \visible<1->{{\small Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, et al 2019}}\\
+%%     %% \includegraphics[width = 10cm]{graphicsTeaser1}\\
+%%     %% Ellis, Ritchie, et al 2018\\\\
+%%     \begin{tabular}{cc}
+%%       \visible<1->{\includegraphics[width = 5cm]{tutorial/kindl}}&
+%%       \visible<1->{\includegraphics[width = 8cm]{tutorial/shape2l}}
+%%       \\
+%%       \visible<1->{\small Young et al 2019}&\visible<1->{\small Tian et al 2019}
+%%       \end{tabular}
+%%   \end{tabular}}
+%% \end{frame}
 
 %% \begin{frame}{Human-level Program induction}
 %%   \begin{tikzpicture}
@@ -271,19 +240,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 %%     \end{tikzpicture}
 %% \end{frame}
 
-
-
-
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{black}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
-    \end{tabular}
-  \end{center}
-\end{frame}
 
 
 
@@ -339,8 +295,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
       \end{tabular}
     \end{center}
   }
-  \myPaper{Ellis, Morales, Sable-Meyer, Solar-Lezama, Tenenbaum. NeurIPS 2018.\\
-    Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
 \end{frame}
 
 \begin{frame}[t]{Library learning}
@@ -351,7 +305,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
       \includegraphics[height=0.6\textheight]{figures/figureOneFinal1_problem}
     \end{tabular}
 \end{center}}
-\myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
 \end{frame}
 
 
@@ -378,18 +331,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \tiny\texttt{(lambda (x) (map (lambda (y) (car (fold (fold x nil (lambda (z u) (if (gt? (+ y 1) (length (fold x nil (lambda (v w) (if (gt? z v) (cons v w) w))))) (cons z u) u))) nil (lambda (a b) (if (nil? (fold (fold x nil (lambda (c d) (if (gt? (+ y 1) (length (fold x nil (lambda (e f) (if (gt? c e) (cons e f) f))))) (cons c d) d))) nil (lambda (g h) (if (gt? g a) (cons g h) h)))) (cons a b) b))))) (range (length x))))}}
 
   \visible<13>{\normalsize induced sort program found in $\leq 10$min. Brute-force search without learned library would take $\approx 10^{73}$ years }
-
-  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
   
 \end{frame}
 
 \begin{frame}{DreamCoder}
   \begin{itemize}
   \item   \textbf{Wake:} Solve problems by writing programs
-  \item \textbf{Sleep:} Improve library and neural recognition model:
+  \item \textbf{Sleep:} Improve library and neural network:
     \begin{itemize}
     \item \textbf{Abstraction sleep:} Improve library
-      \item \textbf{Dream sleep:} Improve neural recognition model
+      \item \textbf{Dream sleep:} Improve neural network
     \end{itemize}
 %  \item   Combines ideas from Wake-Sleep \& Exploration-Compression % \& Program analysis
   \end{itemize}
@@ -408,150 +359,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \hspace*{-0.4cm}\small cf. Helmholtz machine, wake/sleep neural network training algorithms
 \end{frame}
-\begin{frame}[t]{Library learning as Bayesian inference}
-  %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
-\centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
-\node[align=left] at (1.5,3) {\small dark: observed\\\small light: unobserved};
-  \node[latent,scale=1] at (3.5,3) (dx){Library};
-  \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
-  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
-  \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
-  
-  \node[latent,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->] (dx.south) -- (zp.north);
-  \draw [->] (zp.south) -- (xp.north);
-
-
-  \end{tikzpicture}
-  
-
-\vspace{0.5cm}
-  
-[Dechter et al, 2013]  [Liang et al, 2010] [Lake et al, 2015]
-
-%\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
-
-  %% \vfill
-  %% Gray: Observed.\\
-  %% White: Latent.\\
-  %% Boxed (plate): Repeated.\\
-  
-\end{frame}
-\begin{frame}[t]{Library learning as Bayesian inference}
-  %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
-\centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
-\node[align=left] at (1.5,3) {\small dark: observed\\\small light: unobserved};
-  \node[obs,scale=1] at (3.5,3) (dx){Library};
-  \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
-  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
-  \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
-  
-  \node[latent,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->] (dx.south) -- (zp.north);
-  \draw [->] (zp.south) -- (xp.north);
-
-
-  \end{tikzpicture}
-  
-
-\vspace{0.5cm}
-  
-\textbf{[Dechter et al, 2013]}  [Liang et al, 2010] [Lake et al, 2015]
-
-%\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
-
-  %% \vfill
-  %% Gray: Observed.\\
-  %% White: Latent.\\
-  %% Boxed (plate): Repeated.\\
-  
-\end{frame}
-\begin{frame}[t]{Library learning as Bayesian inference}
-  %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
-\centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
-\node[align=left] at (1.5,3) {\small dark: observed\\\small light: unobserved};
-  \node[latent,scale=1] at (3.5,3) (dx){Library};
-  \node[obs,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
-  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
-  \node[obs,scale=1] at ([xshift=2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
-  
-  \node[obs,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->] (dx.south) -- (zp.north);
-  \draw [->] (zp.south) -- (xp.north);
-
-
-  \end{tikzpicture}
-  
-
-\vspace{0.5cm}
-  
-\textbf{[Dechter et al, 2013]}  [Liang et al, 2010] [Lake et al, 2015]
-
-%\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
-
-  %% \vfill
-  %% Gray: Observed.\\
-  %% White: Latent.\\
-  %% Boxed (plate): Repeated.\\
-  
-\end{frame}
-\begin{frame}[t]{Library learning as Bayesian inference}
-  %  \includegraphics[width = 11cm]{ecFigures/animation/EC.eps}
-\centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
-\node[align=left] at (1.5,3) {\small dark: observed\\\small light: unobserved};
-  \node[obs,scale=1] at (3.5,3) (dx){Library};
-  \node[obs,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
-  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
-  \node[obs,scale=1] at ([xshift=2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->,red,opacity=0.0001] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
-  
-  \node[obs,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->] (dx.south) -- (zp.north);
-  \draw [->] (zp.south) -- (xp.north);
-
-
-  \end{tikzpicture}
-  
-
-\vspace{0.5cm}
-  
-\textbf{[Dechter et al, 2013]}  [Liang et al, 2010] [Lake et al, 2015]
-
-%\textbf{Dechter et al.}: Exploration-Compression. Inspiration for DreamCoder.
-
-  %% \vfill
-  %% Gray: Observed.\\
-  %% White: Latent.\\
-  %% Boxed (plate): Repeated.\\
-  
-\end{frame}
 \newcommand{\NeuralNetwork}[1]{    \begin{tikzpicture}[x=2.5cm,y=1.25cm,transform canvas={scale=#1,shift={+(-1,2.5)}}]
       \tikzstyle{neuron}=[circle,fill=blue!50,minimum size=20pt]
       \fill[fill=white] (-0.25,-0.5) rectangle (2.25,-4.5);
@@ -569,47 +376,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
           \foreach \dest in {1,...,4}
               \draw [-latex] (H-\source) -- (O-\dest);
     \end{tikzpicture}}
-\begin{frame}[t]{Library learning as \alert{neurally-guided} Bayesian inference}
-\centering  \begin{tikzpicture}[scale=1.3,line width=0.5mm]
 
-  \node[latent,scale=1] at (3.5,3) (dx){Library};
-  \node[latent,scale=1] at ([yshift=-1.5cm]dx) (zp){prog};
-  \node[obs,scale=1] at ([yshift=-2cm]zp) (xp) {task};
-  \node[latent,scale=1] at ([xshift=2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
-%  \node at (nn) {\NeuralNetwork{0.5}};
-  
-  \node[latent,scale=1] at ([xshift=-2cm]zp) (zp1){prog};
-  \node[obs,scale=1] at ([xshift=-2cm]xp) (xp1) {task};
-  \draw [->] (zp1.south) -- (xp1.north);
-  \draw [->] (dx.south) -- (zp1.north);
-  \draw [->,red] (xp1.east) to[out = 30,in = -30] node(nn){} (zp1.east);
-%  \node at (nn) {\NeuralNetwork{0.5}};
-
-
-  \draw [->,red] (xp.east) to[out = 30,in = -30] node(nn){} (zp.east);
-  \node at (nn) {\NeuralNetwork{0.25}};
-  \draw [->] (dx.south) -- (zp.north);
-  \draw [->] (zp.south) -- (xp.north);
-
-
-  %\node[shift={+(0,-1.7)}] at (nn) { $Q$  };
-
-\end{tikzpicture}
-
-
-\Wider[4em]{
-  \begin{center}
-    library learning via program analysis + \\
-    new neural inference network for program synthesis + \\
-    better program representation (Lisp+polymorphic types [Milner 1978])
-  \end{center}
-}
-\myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
 \newcommand{\NeuralNetwork}[1]{    \begin{tikzpicture}[x=2.5cm,y=1.25cm,transform canvas={scale=#1,shift={+(-1,2.5)}}]
       \tikzstyle{neuron}=[circle,fill=blue!50,minimum size=20pt]
       \fill[fill=teal!5!white] (-0.25,-0.5) rectangle (2.25,-4.5);
@@ -650,595 +417,91 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{frame}{}
 %  \myPaper{\footnotesize Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
   \centering
-  \only<1>{
-
-    \vspace{3cm}
-
-    
-
-    \hspace*{1cm}\includegraphics[width = 0.3\textwidth]{cycleGraphicalModel1}}
-  \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModel2}}
-  \only<3>{\includegraphics[width = \textwidth]{cycleGraphicalModel3}}
-  \only<4>{\includegraphics[width = \textwidth]{cycleGraphicalModel4}}
-  \only<5>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
-  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
-\end{frame}
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{black}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
-    \end{tabular}
-  \end{center}
-\end{frame}
-\begin{frame}{Abstraction Sleep: Growing the library via refactoring}
-  \centering
-    \Wider[0em]{\begin{tikzpicture}[every node/.style={inner sep=1,outer sep=0,rounded corners,thick, scale=0.7}]
-  \footnotesize
-  
-  
-
-    \node(t1)[draw] at (-1,1.5) {\begin{tabular}{ll}
-      \textbf{Task}:&\texttt{[1 2 3]$\to$[2 4 6]}\\
-      &\texttt{[4 3 4]$\to$[8 6 8]}
-  \end{tabular}};
-
-    
-  \node(t2)[draw] at (4.85,1.5) {\begin{tabular}{ll}
-      \textbf{Task}:&\texttt{[1 2 3]$\to$[0 1 2]}\\
-      &\texttt{[4 3 4]$\to$[3 2 3]}
-  \end{tabular}};
-
-  \pause
-  
-  \node(p1)[draw,rounded corners,thick] at (-1,0) {
-    \begin{tabular}{l}
-      \texttt{(Y ($\lambda$ (r l) (if (nil? l) nil}\\
-      \texttt{ (cons (+ (car l) (car l))}\\
-      \phantom{\texttt{(cons }}\texttt{ (r (cdr l))))))}
-    \end{tabular}
-  };
-    \node(p2)[draw] at ([xshift=4cm]p1.east) {
-    \begin{tabular}{l}
-      \texttt{(Y ($\lambda$ (r l) (if (nil? l) nil}\\
-      \texttt{ (cons (- (car l) 1)}\\
-      \phantom{\texttt{(cons }}\texttt{ (r (cdr l))))))}
-    \end{tabular}
-    
-    };
-    \draw [->] (t1.south)  --(p1.north) node[fill=white,midway] {Wake: program search};
-  \draw [->] (t2.south)  --(p2.north) node[fill=white,midway] {Wake: program search};
-
-  
-  \pause
-  \node(r1)[draw,inner sep=0,outer sep=0] at ([yshift=-2cm]p1.south) {
-    \begin{tabular}{l}
-      \texttt{(}\orange{\texttt{($\lambda$ (f) (Y ($\lambda$ (r l) (if (nil? l)}}\\
-      \phantom{(($\lambda$ (f) (Y ($\lambda$ (r l)}\orange{\texttt{nil}}\\
-      \phantom{(($\lambda$ (f) (Y ($\lambda$ (r l)}\orange{\texttt{(cons (f (car l))}}\\
-      \phantom{(($\lambda$ (f) (Y ($\lambda$ (r l)}\orange{\texttt{ (r (cdr l)))))))}}\\
-      \texttt{ ($\lambda$ (z) (+ z z)))}
-    \end{tabular}
-  };
-
-  \node(r2)[draw] at ([yshift=-2cm]p2.south) {
-    \begin{tabular}{l}
-      \texttt{(}\orange{\texttt{($\lambda$ (f) (Y ($\lambda$ (r l) (if (nil? l)}}\\
-      \phantom{(($\lambda$ (f) (Y ($\lambda$ (r l)}\orange{\texttt{nil}}\\
-      \phantom{(($\lambda$ (f) (Y ($\lambda$ (r l)}\orange{\texttt{(cons (f (car l))}}\\
-      \phantom{(($\lambda$ (f) (Y ($\lambda$ (r l)}\orange{\texttt{ (r (cdr l)))))))}}\\
-      \texttt{ ($\lambda$ (z) (- z 1)))}
-    \end{tabular}
-
-  };
-
-  \draw [->] (p1.south)  --(r1.north) node[fill=white,midway,align=center] {refactor\\($\mathbf{10^{14}}$ refactorings)};
-  \draw [->] (p2.south)  --(r2.north) node[fill=white,midway,align=center] {refactor\\($\mathbf{10^{14}}$ refactorings)};
-
-
-
-    \node(dummy) at ($(0,1) + (r1.north)!0.5!(r2.north)$) {};
-    \node(dummy1) at (r1.west) {\phantom{t}};
-
-
-    \draw[ultra thick] ($(r1.north west) + (-0.5,1)$) -- ($(r2.north east) + (0.5,1)$)
-    -- ($(r2.north east) + (0.5,1) + (0,-5.75)$)
-    -- ($(r1.north west) + (-0.5,1) + (0,-5.75)$)
-    -- ($(r1.north west) + (-0.5,1)$);
-    %  \node(sleepBox)[ultra thick, rounded corners=0, inner sep=25,outer sep=20, draw, fit= (dummy) (r1) (r2) (m) (dummy1) ] {};
-    \node at ($(0.0,0.5) + (r1.north)!0.5!(r2.north)$) {{\normalsize\textbf{Sleep: Abstraction}}};
-
-    \pause
-    
-    \node[draw](m) at ($(0,-2) + (r1.south)!0.5!(r2.south)$) {
-      \begin{tabular}{lr}
-        &\\
-        \code{(}\fbox{\textsc{map}}\code{ ($\lambda$ (z) (+ z z)))}&
-        \code{(}\fbox{\textsc{map}}\code{ ($\lambda$ (z) (- z 1)))}\\&\\
-        \multicolumn{2}{l}{\fbox{\textsc{map}} = \orange{\texttt{($\lambda$ (f) (Y ($\lambda$ (r l) (if (nil? l) nil}}}\\
-        \multicolumn{2}{l}{\phantom{\texttt{\emph{map}} = \texttt{($\lambda$ (f) (Y ($\lambda$ (r l) (if }}\orange{\texttt{(cons (f (car l))}}}\\
-        \multicolumn{2}{l}{\phantom{\texttt{\emph{map}} = \texttt{($\lambda$ (f) (Y ($\lambda$ (r l) (if }}\orange{\texttt{(r (cdr l))))))}}}
-      \end{tabular}      
-    };
-    \draw [->](r1.south)--($(-1.75,-0.3) + (m.north)$);
-    \draw [->](r2.south)--($(1.75,-0.3) + (m.north)$);
-    \node[fill=white] at ([yshift=0.4cm]m.north) {\textbf{Compress (MDL/Bayes objective)}};
-
-    \end{tikzpicture}}
-
-    \only<5>{
-      \messageOverlay{these $\mathbf{10^{14}}$ refactorings represented in exponentially\\more efficient refactoring data structure:\\equivalence graphs+version spaces using $\mathbf{10^{6}}$ nodes,\\calculated in under 5min\\ c.f. [Tate et al 2009], [Gulwani 2012]}
-      }
+    \only<1>{\vspace{3cm}\hspace*{1cm}\includegraphics[width = 0.3\textwidth]{cycleGraphicalModel0NoGraphical}}
+  \only<2>{\vspace{3cm}\hspace*{1cm}\includegraphics[width = 0.3\textwidth]{cycleGraphicalModel1NoGraphical}}
+  \only<3>{\includegraphics[width = \textwidth]{cycleGraphicalModel2NoGraphical}}
+  \only<4>{\includegraphics[width = \textwidth]{cycleGraphicalModel3NoGraphical}}
+  \only<5>{\includegraphics[width = \textwidth]{cycleGraphicalModel4NoGraphical}}
+  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModel5NoGraphical}}
+%  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
 \end{frame}
 
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{black}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
-    \end{tabular}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-  \only<1>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
-  \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModelRecognition}}
-\end{frame}
-
-\begin{frame}[t]{Neural recognition model guides search}
-  \vspace{1.2cm}
-  \begin{tikzpicture}
-    \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
-      \NeuralNetwork{0.17}};
-    \node(p) at ([xshift=2cm]n.east) {program};
-    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
-    \draw[thick,->] ([xshift=0.4cm]n.east) -- (p.west);
-
-    %% \node(n1) at ([yshift=-2cm]t.south) {\phantom{.}};
-    %% \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {\phantom{is a \textbf{``bigram'' model over syntax trees}}\\\phantom{test}\\\phantom{test}}\\\phantom{test}};
-  \end{tikzpicture}
-
-\end{frame}
-\begin{frame}[t]{Neural recognition model guides search}
-  \vspace{1cm}
-  \begin{tikzpicture}
-    \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
-      \NeuralNetwork{0.17}};
-    \node(d) at ([xshift=2cm]n.east) {distribution};
-    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
-    \draw[thick,->] ([xshift=0.4cm]n.east) -- (d.west);
-    \node(p) at ([xshift=2cm]d.east) {program};
-    \draw[squiggle, thick,->] (d.east) -- node[sloped,above]{{{sample}}} (p.west);
-
-    \pause
-
-    \node(n1) at ([yshift=-2cm]t.south) {\NeuralNetwork{0.17}};
-    \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {is a...\\\phantom{is a...}recurrent network (Devlin et al 2017)\\
-      \phantom{is a...}unigram model (Menon et al 2013; Balog et al 2016)};
-  \end{tikzpicture}
-\end{frame}
-\begin{frame}[t]{Neural recognition model guides search}
-  \vspace{1cm}
-  \begin{tikzpicture}
-    \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
-      \NeuralNetwork{0.17}};
-    \node[align=left](d) at ([xshift=2cm]n.east) {distribution};
-    \node[anchor=north] at (d.south) {{\tiny P(child$\vert$parent,arg)}};
-    \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
-    \draw[thick,->] ([xshift=0.4cm]n.east) -- (d.west);
-    \node(p) at ([xshift=2cm]d.east) {program};
-    \draw[squiggle, thick,->] (d.east) -- node[sloped,above]{{{sample}}} (p.west);
-
-    \only<1>{
-      \node(n1) at ([yshift=-2cm]t.south) {\NeuralNetwork{0.17}};
-      \node[anchor=north west,align=left](c1) at ([xshift=0.5cm,yshift=0.3cm]n1.east) {is a \textbf{``bigram'' model over syntax trees}};
-    }
-
-    \only<2->{
-%      \node(l)[draw] at (2,-1) {\texttt{$\lambda$ (a)}};
-      \node(k)[draw] at (1.7,-1.3) {\texttt{+}};
-      \only<3->{
-      \node(o)[draw] at ([xshift=-50,yshift=-50]k.south) {\texttt{9}};
-      \draw[->] (k.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{+},\text{arg}=\text{left})}(o.north);
-      }
-      \only<4->{
-        \node(m)[draw] at ([xshift=50,yshift=-50]k.south) {\texttt{*}};
-        \draw[->] (k.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{+},\text{arg}=\text{right})}(m.north);
-      }
-      \only<5->{
-        \node(x1)[draw] at ([xshift=50,yshift=-50]m.south) {\texttt{2}};
-        \node(x2)[draw] at ([xshift=-50,yshift=-50]m.south) {\texttt{8}};
-
-        %      \draw[->] (l.south)-- node[fill=white,align=center,midway,inner sep=0,outer sep=0]{$Q_{\text{start},\texttt{+},1}(x)$}(k.north);
-        
-
-        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{right})}(x1.north);
-        \draw[->] (m.south)--node[sloped, above]{\tiny P($\cdot \vert$ \texttt{*},\text{arg}=\text{left})}(x2.north);
-      }
-
-      \only<6>{
-        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU};
-      }
-      \only<7>{
-        \node[draw,rounded corners,ultra thick,align=left,anchor=north west] at (4.6,-0.7) {Advantages:\\neural net runs once per task,\\\phantom{tt}so CPU bottlenecks instead of GPU\\learns to break syntactic symmetries:\\\phantom{tt}P(1$\vert$\texttt{*},\text{arg}=\text{left})=0.0\\\phantom{tttt}``do not multiply by one''};
-        }
-    }
-  \end{tikzpicture}
-\end{frame}
-
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{black}{synergy between DSL+learned synthesizer}}}\\
-    \end{tabular}
-  \end{center}
-\end{frame}
 
 \begin{frame}{DreamCoder Domains}
   \Wider[5em]{
     \only<1>{\includegraphics[width = \textwidth]{figures/manyDomainsLarger.png}}%{statement/taskbar2_expended.png}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/manyDomainsSelected.png}}%statement/taskbar2_selected.png}}
+%    \only<2>{\includegraphics[width = \textwidth]{figures/manyDomainsSelected.png}}%statement/taskbar2_selected.png}}
   }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
 \end{frame}
 
-\begin{frame}{LOGO Turtle Graphics}
-  30 out of 160 tasks
-  \includegraphics[width = \textwidth]{dc/logoTasks30.png}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
-
-\begin{frame}{LOGO Turtle Graphics -- learning an interpretable library}
-  \Wider[5em]{
-    \only<1>{\includegraphics[width = \textwidth]{dc/logo_kathy.png}}
-    \only<2>{\includegraphics[width = \textwidth]{dc/logo_kathy_exploded1.png}}
-    \only<3>{\includegraphics[width = \textwidth]{dc/logo_kathy_exploded2.png}}
-    \only<4>{\includegraphics[width = \textwidth]{dc/logo_kathy_exploded3.png}}
-    \only<5->{\includegraphics[width = \textwidth]{dc/logo_kathy.png}}
-      
-  }
-
-  \only<6>{
-  \messageOverlay{
-    \begin{tabular}{rl}
-    circle$(r)$
-    &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{dc/logo_primitives/circle_negative.png}}\\
-    arc$(n,\ell,\theta)$
-    &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{../dreamcoder/figures/logo_primitives/arc/arc.png}}
-  \end{tabular}
-  }}
-  \only<5>{
-    \messageOverlay{\begin{tabular}{c}
-    radial symmetry$(n,\text{body})$\\
-    \includegraphics[width = 0.35\textwidth]{dc/rotationalmontage_negative.png}
-  \end{tabular}}
-  }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
-
-\begin{frame}{What does DreamCoder dream of? (before learning)}
-%  \emph{before} learning:
-  \Wider[5em]{
-    \begin{center}
-      \includegraphics[height=\textheight]{dc/dreams/beforeLearning36}
-    \end{center}
-  }
-%  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}  
-  %  \includegraphics[height=3cm]{dc/dreams/cherry_picked/montageSeptember14}    
-%    \end{tabular}}
-    %% \only<2>{\begin{tabular}{lll}
-    %%     before learning&&after learning\\
-    %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogoinitial.png}&&
-    %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogofinal.png}
-    %%     \end{tabular}}
-\end{frame}
-
-\begin{frame}{What does DreamCoder dream of? (after learning)}
-%  \emph{after} learning:
-  \Wider[4em]{
-    \begin{center}
-      \includegraphics[height=\textheight]{figures/postDreams6}
-    \end{center}
-  }
-%  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}  
-
-%    \end{tabular}}
-    %% \only<2>{\begin{tabular}{lll}
-    %%     before learning&&after learning\\
-    %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogoinitial.png}&&
-    %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogofinal.png}
-    %%     \end{tabular}}
-\end{frame}
-
-\begin{frame}{Planning to build towers}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-  \Wider[5.5em]{
-    \footnotesize
-    \begin{tabular}{l}
-      {example tasks (112 total)}\\
-      \includegraphics[clip, trim = 0 0cm 0 2.9cm,width = 0.9\textwidth]{dc/tower_montage_21_negative.png}\\\\
-
-    \end{tabular}
-    \pause
-    \begin{tabular}{l}
-      {learned library routines ($\approx $ 20 total)}\\
-      \begin{tabular}[t]{rlrl}
-        arch$(h)$&%\begin{tabular}{l}
-        \raisebox{-.1\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_towerArch.png}}&
-        %\end{tabular}&
-        pyramid$(h)$&
-        \raisebox{-.1\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_pyramid.png}}
-        \\
-        wall$(w,h)$&
-        \raisebox{-.3\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_bricks.png}}
-        &%\\\\
-        %% stairs$(h)$&\begin{tabular}{l}
-        %%   \includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_staircase.png}
-        %% \end{tabular}\\\\
-        \phantom{bbb}bridge$(w,h)$&
-        \raisebox{-.3\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_bridge.png}}
-        %\\\\\\
-      \end{tabular}\\\\
-
-  \end{tabular}}
-
-  %% \pause
-
-  %% \messageOverlay{
-  %%   \begin{tabular}{ll}
-  %%         \textbf{dreams before learning}&\textbf{dreams after learning}\\
-  %%         \begin{tabular}{c}
-  %%           \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = 0.4\textwidth]{dc/tower/dreams/cherry_montage_initial_20.png}
-  %%         \end{tabular}\phantom{testing}&
-  %%         \begin{tabular}{c}
-  %%           \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = 0.4\textwidth]{dc/tower/dreams/cherry_montage_final.png}
-  %%           \end{tabular}
-  %%         \\\\
-  %%     \end{tabular}
-  %% }
-\end{frame}
-
-\begin{frame}{Dreams before learning}
-  \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_initial_20.png}
-%  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
-\end{frame}
-
-\begin{frame}{Dreams after learning}
-  \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_final.png}
-%  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
-\end{frame}
-\begin{frame}{Learning dynamics}
-  \phantom{
-  \small baselines: Exploration-Compression, EC [Dechter et al. 2013]
-    \small \phantom{baselines: }neural program synthesis, RobustFill [Devlin et al. 2017]\phantom{otest}
-    \small \phantom{baselines: }24 hours of brute-force enumeration
-    }
-  \begin{tabular}{lr}
-    \begin{tabular}{l}
-    \only<1>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage1.png}}
-    %    \only<2>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage2.png}}
-    \only<2>{\includegraphics[height = 2.29cm]{figures/tower_hits_ws_average_pretty_small_yl_ablationStage.png}}
-%    \only<3>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage3.png}}
-    \only<3>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl.png}}
-  \end{tabular}
-
-    &
-
-    \begin{tabular}{l}
-      \only<2>{\includegraphics[width = 3cm]{figures/revisedLearningCurves/curveLegendTruncated.png}}
-          \only<3>{\includegraphics[width = 3cm]{figures/revisedLearningCurves/curveLegend.png}}
-  \end{tabular}
-  \end{tabular}
-
+%% \begin{frame}{LOGO Turtle Graphics}
+%%   task: given pixels, synthesize graphics program
   
-
-  \visible<3>{
-    \small baselines: Exploration-Compression, EC [Dechter et al. 2013]
-    \small \phantom{baselines: }neural program synthesis, RobustFill [Devlin et al. 2017]\phantom{otest}
-    \small \phantom{baselines: }24 hours of brute-force enumeration
-    }
-
-
-  %% }
-  %% }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
-
-\begin{frame}{Learning dynamics}
-  \begin{tabular}{ll}
-    \includegraphics[height = 2cm]{figures/revisedLearningCurves/text_hits_average_pretty_small_yl.png}
-    %      \only<4->{\includegraphics[height = 2cm]{figures/revisedLearningCurves/text_hits_average_pretty_small_yl.png}}
-    &
-    \phantom{ttt}%
-    \includegraphics[height = 2cm]{figures/revisedLearningCurves/logo_hits_average_pretty_small.png}\\
-    \includegraphics[height = 2cm]{figures/revisedLearningCurves/tower_hits_average_pretty_small_yl.png}&
-    \phantom{ttt}%
-    \includegraphics[height = 2cm]{figures/revisedLearningCurves/rational_hits_average_pretty_small.png}\\
-    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/list_hard_hits_ws_average_pretty_small_yl.png}
-    &
-    \phantom{tt.}%
-    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}
-    %      \only<4->{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}}%
-    %    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}%
-    \phantom{tt}\includegraphics[width = 2.5cm]{figures/revisedLearningCurves/curveLegend.png}\hspace{-3cm}
-  \end{tabular}
-
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-  %% }
-  %% }
-
-\end{frame}
-
-\begin{frame}{Synergy between recognition model and library learning}
-  \begin{tikzpicture}[scale=1.5]
-    {
-    \begin{scope}[shift = {(1,-1)}]
-    \node[align = center](synthesis) at (6,4) {Problem-solving};
-    \node[align = center](Library) at (3,1) {Library};
-    \node[align = center](recognitionModel) at (9,1) {Recognition \\model};
-
-    \visible<2->{
-      \draw [->,thick] (synthesis.-120) to[out = -150,in = 60] node[below,rotate = 45,align = center]{{\footnotesize Trains}\\{\footnotesize (Abstraction)}} (Library.30);
-    }
-    \visible<3->{
-%      \draw [->,thick] (synthesis.-60) to[out = -30,in = 120] node[below,rotate=-45,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (recognitionModel.150);
-      \draw [->,thick] (Library.east) to[out = -30,in = 210] node[above, align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (recognitionModel.west);    
-    }
-
-
-    \visible<4->{
-      \draw [->,thick] (recognitionModel.150) to[in = -30,out = 120] node[below,rotate=-45,align = center]{{\footnotesize Makes tractable}\\{\footnotesize (Wake)}} (synthesis.-60);
-    }
-
-    %% \visible<5->{
-    %%   \draw [->,thick,dashed] (recognitionModel.north) to[out = 90,in = 0] node[fill=backgroundBeige,inner sep=1pt,align = center]{{\footnotesize Trains}\\{\footnotesize (Dreaming)}} (synthesis.east);
-    %%   \draw [->,thick,dashed] (Library.north) to[out = 90,in = 180] node[fill=backgroundBeige,inner sep=0pt,align = center]{\footnotesize{Inductive bias}\\\footnotesize{(Wake)}
-    %%   } (synthesis.west);
-    %% }
-
-  \end{scope}}
-    \end{tikzpicture}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
-
-\begin{frame}{Evidence for dreaming bootstrapping better libraries}
-    \begin{tabular}{rr}
-      %        \multicolumn{1}{l}{\textbf{B}}\\
-      \only<1>{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN_blue.png}}
-    \only<2->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN.png}}&
-    \visible<3->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_SIZE.png}} \\\\
-\multicolumn{2}{c}{    \visible<2->{\includegraphics[height = 1cm]{figures/revisedLearningCurves/scatterLegend.png}}}
-    \end{tabular}
-    Darker: Early in learning
-
-    Brighter: Later in learning
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
-
-
-
-%% \begin{frame}{Library structure: Probabilistic generative modeling of text}
-%%   \Wider[5em]{\includegraphics[width = \textwidth]{deepArray2.pdf}}
+%%   \includegraphics[width = \textwidth]{dc/logoTasks30.png}
+  
 %% \end{frame}
 
-\begin{frame}{}
+%% \begin{frame}{LOGO Turtle Graphics -- learning a library}
+%%   \Wider[5em]{
+%%     \only<1>{\includegraphics[width = \textwidth]{dc/logo_kathy.png}}
+%%     \only<2>{\includegraphics[width = \textwidth]{dc/logo_kathy_exploded1.png}}
+%%     \only<3>{\includegraphics[width = \textwidth]{dc/logo_kathy_exploded2.png}}
+%%     \only<4>{\includegraphics[width = \textwidth]{dc/logo_kathy_exploded3.png}}
+%%     \only<5->{\includegraphics[width = \textwidth]{dc/logo_kathy.png}}
+      
+%%   }
 
-  {\huge
-    From learning libraries,\phantom{tttesttesttest} \phantom{Fr} to learning languages}
+%%   \only<6>{
+%%   \messageOverlay{
+%%     \begin{tabular}{rl}
+%%     circle$(r)$
+%%     &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{dc/logo_primitives/circle_negative.png}}\\
+%%     arc$(n,\ell,\theta)$
+%%     &\raisebox{-.5\height}{\includegraphics[width = 0.3\textwidth]{../dreamcoder/figures/logo_primitives/arc/arc.png}}
+%%   \end{tabular}
+%%   }}
+%%   \only<5>{
+%%     \messageOverlay{\begin{tabular}{c}
+%%     radial symmetry$(n,\text{body})$\\
+%%     \includegraphics[width = 0.35\textwidth]{dc/rotationalmontage_negative.png}
+%%   \end{tabular}}
+%%   }
+%% %  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
+%% \end{frame}
 
-  \vspace{2cm}
+%% \begin{frame}{What does DreamCoder dream of? (before learning)}
+%% %  \emph{before} learning:
+%%   \Wider[5em]{
+%%     \begin{center}
+%%       \includegraphics[height=\textheight]{dc/dreams/beforeLearning36}
+%%     \end{center}
+%%   }
+%% %  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}  
+%%   %  \includegraphics[height=3cm]{dc/dreams/cherry_picked/montageSeptember14}    
+%% %    \end{tabular}}
+%%     %% \only<2>{\begin{tabular}{lll}
+%%     %%     before learning&&after learning\\
+%%     %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogoinitial.png}&&
+%%     %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogofinal.png}
+%%     %%     \end{tabular}}
+%% \end{frame}
 
-  \Wider[4em]{
-    \visible<3>{\Large 1950's Lisp $\to $  }\visible<2->{\Large modern functional programming $\to $ physics}
-  }
-\end{frame}
+%% \begin{frame}{What does DreamCoder dream of? (after learning)}
+%% %  \emph{after} learning:
+%%   \Wider[4em]{
+%%     \begin{center}
+%%       \includegraphics[height=\textheight]{figures/postDreams6}
+%%     \end{center}
+%%   }
+%% %  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}  
 
-\begin{frame}{}
-  \begin{center}
-    \includegraphics[width = 0.8\textwidth]{figures/PhysicsFormulas}
-   \end{center}
-\end{frame}
-
-\begin{frame}{Growing languages for vector algebra and physics}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-  \Wider[5em]{
-    \only<1>{\includegraphics[width = \textwidth]{figures/physicsAnimation7}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/physicsAnimation6}}
-    \only<3>{\includegraphics[width = \textwidth]{figures/physicsAnimation5}}
-%    \only<4>{\includegraphics[width = \textwidth]{figures/physicsAnimation4}}
-    \only<4>{\includegraphics[width = \textwidth]{figures/physicsAnimation3}}
-    \only<5>{\includegraphics[width = \textwidth]{figures/physicsAnimation2}}
-    \only<6>{\includegraphics[width = \textwidth]{figures/physicsAnimation1}}
-  }
-\end{frame}
-
-\begin{frame}{Growing a language for recursive programming}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}\Wider[5em]{\only<1>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation5}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation4}}
-    \only<3>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation3}}
-    \only<4->{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation2}}
-%    \only<5>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation1}}
-  }
-
-  \vspace{-0.5cm}
-  
-  \visible<6>{\textbf{\Large 1 year of compute. 5 days on 64 CPUs.}}
-  
-  \visible<5->{
-    \begin{tabular}{cc}
-      \begin{tabular}{c}
-        \includegraphics[width = 2cm]{figures/origamiCrane}
-        \end{tabular}&\normalsize Origami Programming: Jeremy Gibbons, 2003
-    \end{tabular}
-  }
-\end{frame}
-
-\begin{frame}{Lessons}
-
-  Library learning interacts synergistically with neural synthesis:\\bootstrapping, more than sum of parts
-
-  \pause
-
-  \vspace{1cm}
-
-  Symbols aren't necessarily interpretable. Grow the language based on experience to make it more powerful \emph{and} more human understandable
-
-  \pause
-
-  \vspace{1cm}
-
-  Learning-from-scratch is possible in principle. Don't do it. But program induction makes it convenient to build in what we know how to build in, and then learn on top of that
-\end{frame}
-
-\begin{comment}
-
-
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{black}{next steps}}}\\
-    \end{tabular}
-  \end{center}
-\end{frame}
-
-\begin{frame}{Some unresolved questions}
-
-  Not everything is crisp and symbolic. How do we learn DSLs for neurosymbolic hybrid programs?\\(see Memoised Wake-Sleep, Hewitt et al 2020)
-
-  \vspace{1cm}
-
-  \pause
-
-  Combinatorial search is still hard %\\(see ``REPL'': Ellis, Nye, Pu, Sosa et al 2019)
-
-  \vspace{1cm}
-
-  \pause
-
-  Library$\not=$Language:\\
-  How do we learn data structures, or discover new types, and thereby \emph{actually} learn DSLs?
-
-\end{frame}
-  \end{comment}
-
-\begin{frame}{}
-
-  \texttt{\Huge the end.}
-
-  \end{frame}
+%% %    \end{tabular}}
+%%     %% \only<2>{\begin{tabular}{lll}
+%%     %%     before learning&&after learning\\
+%%     %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogoinitial.png}&&
+%%     %%     \includegraphics[width = 0.4\textwidth]{dc/dreams/appendixlogofinal.png}
+%%     %%     \end{tabular}}
+%% \end{frame}
 
 \newcommand{\closex}[2]{
   \renewcommand{\arraystretch}{#1}
@@ -1256,135 +519,22 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \includegraphics[width = 1.7cm]{#2}
 \end{tabular}}}
 
-\begin{frame}{Collaborators}
-\Wider[6em]{  \centering\begin{tabular}{ccc}
-    \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
-    \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
-    \person{Max Nye}{collaborators/MaxNye}\\\phantom{test}\\
-    \person{Cathy Wong}{collaborators/cw}&
-    \person{Mathias Sable-Meyer}{collaborators/French}&
-    \person{Lucas Morales}{collaborators/Lucas}\\\phantom{test}\\
-    \multicolumn{3}{c}{
-    \begin{tabular}{c}
-        \textbf{\Large thank}\\
-        \textbf{\Large you}
-    \end{tabular}}
-    \end{tabular}}
-  
-
-\end{frame}
-
-
-\begin{frame}[t]{3D program induction}
-  \Wider[5em]{
-    \begin{center}
-      \includegraphics[width = \textwidth]{assets/we_are_cool_4.png}
-    \end{center}
-  }
-
-    \vspace{1cm}
+%% \begin{frame}{Collaborators}
+%% \Wider[6em]{  \centering\begin{tabular}{ccc}
+%%   \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
+%%   \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}&
     
-      Challenge: combinatorial search!\\
-      Branching factor: $ > 1.3$ million per line of code, $\approx$ 20 lines of code\\
-      search space size: $(1.3\text{ million})^{20}\approx 10^{122}$ programs
-\myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-
-\end{frame}
-
-
-
-\begin{frame}{}
-  Solution: stochastic \textbf{tree search} + learn \textbf{policy} that writes code\\ + learn \textbf{value} function that assesses execution of program so far;\\
-  analogous to \textbf{AlphaGo} [Silver et al. 2016]
-
-  \Wider[5em]{
-    \only<1>{\includegraphics[width = \textwidth]{figures/capitalism3.png}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/capitalism2.png}}
-    \only<3>{\includegraphics[width = \textwidth]{figures/capitalism1.png}}
-    \only<4>{\includegraphics[width = \textwidth]{figures/capitalism.png}}
-  }
-%  \myPaper{\tiny Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
-\end{frame}
-
-\begin{frame}{3D program induction}
-  \Wider[5em]{
-    \begin{center}
-      
-      \setlength{\tabcolsep}{0pt}
-      \renewcommand{\arraystretch}{0}  
-      
-      %    \includegraphics[width = \textwidth]{assets/pixel_montage} \\
-      % \begin{tabular}{cc}
-      %   \includegraphics[width = 0.3\textwidth]{assets/2d_synthetic_montage}&
-      %   \includegraphics[width = 0.6\textwidth]{assets/tool_montage}
-      % \end{tabular}\\\\    
-
-
-        \begin{tabular}{ccccccc}
-        \rotatebox[origin=l]{90}{Input}
-        &    \rotatebox[origin=l]{90}{(voxels)}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo3/spec}&
-        %    \includegraphics[width = 2cm]{assets/3-D/demo6/0000png_v.png}&
-        \includegraphics[width = 2cm]{assets/3-D/demo2/spec}&
-        \includegraphics[width = 2cm]{assets/3-D/demo4/012_png_v.png}&
-        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_input}&
-        \includegraphics[width = 2cm]{assets/3-D/demo1/spec}
-        \\
-        \rotatebox[origin=l]{90}{Rendered}&
-        \rotatebox[origin=l]{90}{program}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo3/000_SMC_value_pickle_pretty.png}$\;$&
-        %    \includegraphics[width = 2cm]{assets/3-D/demo6/2}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo2/pretty}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo4/012_SMC_value_pickle_pretty}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo5/CAD_example_output}$\;$&
-        \includegraphics[width = 2cm]{assets/3-D/demo1/pretty}
-        \end{tabular}
-      \setlength{\tabcolsep}{6pt}
-      \renewcommand{\arraystretch}{1}
-    \end{center}
-  }
-
-  \visible<2>{ same architecture learns to synthesize text editing programs (FlashFill, Gulwani 2012)}
+%%     \person{Max Nye}{collaborators/MaxNye}\\
+%%     \person{Cathy Wong}{collaborators/cw}&\person{Mathias Sable-Meyer}{collaborators/French}&
+%%     \person{Luc Cary}{collaborators/lc}\\
+%%     \person{Lucas Morales}{collaborators/Lucas}&\person{Luke Hewitt}{collaborators/lbh}&
+%%     \multicolumn{1}{c}{
+%%     \begin{tabular}{c}
+%%         \textbf{\Large thank}\\
+%%         \textbf{\Large you}
+%%     \end{tabular}}
+%%     \end{tabular}}
   
-  \myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
 
-\end{frame}
-\newcommand{\image}[2]{\includegraphics[#1]{../dreamcoder/figures/dpl/every/#2.pdf}}
-\begin{frame}{Library structure: Text Editing}
-  \Wider[5em]{
-    DreamCoder learns libraries for FlashFill-style text editing  [Gulwani 2012]
-
-    \vspace{0.5cm}
-
-    \begin{tabular}{cc}
-      \image{height=2.4cm}{text3}&
-      \image{height=2.4cm}{text6}\\
-      \image{height=2.4cm}{text5}&
-      \image{height=2.4cm}{text4}
-    \end{tabular}
-  }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. arxiv 2020.}
-\end{frame}
-\begin{frame}{Library structure: Generating Text}
-  Libraries for probabilistic generative models over text:\\data from crawling web for CSV files
-
-  
-  \Wider[5em]{\begin{center}
-    
-    \begin{tabular}{cc}
-      \image{height=3cm}{regex3}&
-      \image{height=3.5cm}{regex1}\\
-      \image{height=3.5cm}{regex2}&
-      \image{height=3cm}{regex4}
-    \end{tabular}
-    \end{center}
-  }
-\end{frame}
-
-\begin{frame}{150 random dreams before learning}
-  \includegraphics[width = \textwidth]{../dreamcoder/figures/dreams/appendixlogoinitial.png}
-\end{frame}
-\begin{frame}{150 random dreams after learning}
-  \includegraphics[width = \textwidth]{../dreamcoder/figures/dreams/appendixlogofinal.png}
-\end{frame}
+%% \end{frame}
 \end{document}
