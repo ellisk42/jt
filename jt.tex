@@ -85,14 +85,14 @@
       \tikz[overlay,remember picture]
       \node[align=left,fill=backgroundGreen,text=white] at (current page.center){#1};
 }
-\newcommand{\myPaper}[1]{
-  \tikz[overlay,remember picture]
-  \node[anchor=south west,align=left] at (current page.south west){#1};
-}
-\newcommand{\myPaperRight}[1]{
-  \tikz[overlay,remember picture]
-  \node[anchor=south east,align=left] at (current page.south east){#1};
-}
+\newcommand{\myPaper}[1]{}
+%  \tikz[overlay,remember picture]
+%  \node[anchor=south west,align=left] at (current page.south west){#1};
+%}
+\newcommand{\myPaperRight}[1]{}
+%  \tikz[overlay,remember picture]
+%  \node[anchor=south east,align=left] at (current page.south east){#1};
+%}
 \usepackage{booktabs}
 \usepackage{tipa}
 \usepackage{amssymb}
@@ -143,59 +143,59 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 %\DeclareMathOperator*{\argmax}{arg\,max}
 %Information to be included in the title page:
-\title{DreamCoder:\\Growing generalizable, interpretable knowledge with wake-sleep program learning}
-\author{Kevin Ellis\\Collaborators: Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Armando Solar-Lezama, Joshua B. Tenenbaum}
-\institute{CAP NeurIPS workshop}
-\date{2020}
+\title{\texttt{DreamCoder:}\\Bootstrapping Inductive Program Synthesis with Wake-Sleep Library Learning}
+\author{Kevin Ellis (speaker), Catherine Wong, Maxwell Nye, Mathias Sabl\'e-Meyer,\\  Lucas Morales, Luke Hewitt, Luc Cary,\\Armando Solar-Lezama, Joshua B. Tenenbaum}
+\institute{PLDI 2021}
+%\date{2021}
   
  
 \begin{document}
  
 \frame{\titlepage}
 
-\begin{frame}{The premise of program induction}
+%% \begin{frame}{The premise of program induction}
 
-  1. Represent knowledge as programs: as symbolic code
+%%   1. Represent knowledge as programs: as symbolic code
 
-  \pause
+%%   \pause
 
-  \vspace{1cm}
+%%   \vspace{1cm}
 
-  2. Learning$ = $adding to that body of knowledge$ = $ \phantom{testtesttest}%
-  making new programs$ = $program synthesis
+%%   2. Learning$ = $adding to that body of knowledge$ = $ \phantom{testtesttest}%
+%%   making new programs$ = $program synthesis
 
-\end{frame}
+%% \end{frame}
 
-\begin{frame}{Why program induction?}
-  \Wider[6.5em]{  \begin{tabular}{ccc}
-    \visible<2->{\begin{tabular}{l}
-      strong generalization\\
-      +data efficiency
-    \end{tabular}}&
-    \visible<3->{\begin{tabular}{l}
-      interpretability\\
-    \end{tabular}}
-    &\visible<4->{\begin{tabular}{l}
-       universal expressivity\\
-     \end{tabular}}\\
-    \visible<2->{
-      \begin{tabular}{c}
-        \includegraphics[width = 3cm]{figures/polynomialExtrapolation}\\
-        {\small\texttt{f(x)=(x-1)**2 - 0.5}}
-    \end{tabular}}&
-    \visible<3->{\begin{tabular}{c}
-        \includegraphics[width = 3.5cm]{figures/explodedCAD}\\\emph{vs}\\
-        \includegraphics[width = 3.5cm]{figures/drillMesh}
-    \end{tabular}}&
-    \visible<4->{%% \includegraphics[width = 4cm]{figures/turingMachine}
-      \begin{tabular}{c}
-        \includegraphics[width = 3cm]{figures/famous}
-    \end{tabular}}
-  \end{tabular}}
-\end{frame}
+%% \begin{frame}{Why program induction?}
+%%   \Wider[6.5em]{  \begin{tabular}{ccc}
+%%     \visible<2->{\begin{tabular}{l}
+%%       strong generalization\\
+%%       +data efficiency
+%%     \end{tabular}}&
+%%     \visible<3->{\begin{tabular}{l}
+%%       interpretability\\
+%%     \end{tabular}}
+%%     &\visible<4->{\begin{tabular}{l}
+%%        universal expressivity\\
+%%      \end{tabular}}\\
+%%     \visible<2->{
+%%       \begin{tabular}{c}
+%%         \includegraphics[width = 3cm]{figures/polynomialExtrapolation}\\
+%%         {\small\texttt{f(x)=(x-1)**2 - 0.5}}
+%%     \end{tabular}}&
+%%     \visible<3->{\begin{tabular}{c}
+%%         \includegraphics[width = 3.5cm]{figures/explodedCAD}\\\emph{vs}\\
+%%         \includegraphics[width = 3.5cm]{figures/drillMesh}
+%%     \end{tabular}}&
+%%     \visible<4->{%% \includegraphics[width = 4cm]{figures/turingMachine}
+%%       \begin{tabular}{c}
+%%         \includegraphics[width = 3cm]{figures/famous}
+%%     \end{tabular}}
+%%   \end{tabular}}
+%% \end{frame}
 
 
-\begin{frame}{}
+\begin{frame}{Inductive program synthesis}
   \Wider[5em]{  \begin{tabular}{cc}
       FlashFill (Gulwani 2012)&\\
       \begin{tabular}{c}
@@ -277,10 +277,10 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{black}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+      {\textcolor{black}{DreamCoder and {\textcolor{black}{learning to learn}}}}\\
+      {\phantom{DreamCoder and }\textcolor{gray}{learning a library}}\\
+      {\phantom{DreamCoder and }\textcolor{gray}{learning to search}}\\
+      {\phantom{DreamCoder and }{\textcolor{gray}{synergy between library+learned search}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -298,8 +298,8 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
   \Wider[4em]{
     \begin{itemize}
-    \item Library of abstractions (domain specific language) \\ %; generative model over programs)
-      \item      Inference strategy (synthesis algorithm)
+    \item Library of components \\ %; generative model over programs)
+      \item Search strategy (synthesis algorithm)
       \end{itemize}
   }
   
@@ -666,10 +666,10 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{black}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+      {\textcolor{black}{DreamCoder and {\textcolor{gray}{learning to learn}}}}\\
+      {\phantom{DreamCoder and }\textcolor{black}{learning a library}}\\
+      {\phantom{DreamCoder and }\textcolor{gray}{learning to search}}\\
+      {\phantom{DreamCoder and }{\textcolor{gray}{synergy between library+learned search}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -776,10 +776,10 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{black}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{gray}{synergy between DSL+learned synthesizer}}}\\
+      {\textcolor{black}{DreamCoder and {\textcolor{gray}{learning to learn}}}}\\
+      {\phantom{DreamCoder and }\textcolor{gray}{learning a library}}\\
+      {\phantom{DreamCoder and }\textcolor{black}{learning to search}}\\
+      {\phantom{DreamCoder and }{\textcolor{gray}{synergy between library+learned search}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -793,7 +793,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \vspace{1.2cm}
   \begin{tikzpicture}
     \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
+    \node(n) at ([xshift=2cm]t.east) {
       \NeuralNetwork{0.17}};
     \node(p) at ([xshift=2cm]n.east) {program};
     \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
@@ -808,7 +808,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \vspace{1cm}
   \begin{tikzpicture}
     \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
+    \node(n) at ([xshift=2cm]t.east) {
       \NeuralNetwork{0.17}};
     \node(d) at ([xshift=2cm]n.east) {distribution};
     \draw[thick,->] (t.east) -- ([xshift=-0.4cm]n.west);
@@ -827,7 +827,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \vspace{1cm}
   \begin{tikzpicture}
     \node(t) at (0,0) {task};
-    \node(n) at ([xshift=2cm]task.east) {
+    \node(n) at ([xshift=2cm]t.east) {
       \NeuralNetwork{0.17}};
     \node[align=left](d) at ([xshift=2cm]n.east) {distribution};
     \node[anchor=north] at (d.south) {{\tiny P(child$\vert$parent,arg)}};
@@ -876,10 +876,10 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{black}{synergy between DSL+learned synthesizer}}}\\
+      {\textcolor{black}{DreamCoder and {\textcolor{gray}{learning to learn}}}}\\
+      {\phantom{DreamCoder and }\textcolor{gray}{learning a library}}\\
+      {\phantom{DreamCoder and }\textcolor{gray}{learning to search}}\\
+      {\phantom{DreamCoder and }{\textcolor{black}{synergy between library+learned search}}}\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -1200,41 +1200,13 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   Learning-from-scratch is possible in principle. Don't do it. But program induction makes it convenient to build in what we know how to build in, and then learn on top of that
 \end{frame}
 
-\begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and {\textcolor{gray}{learning to learn}}}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning a DSL}}\\
-      {\phantom{Program Induction and }\textcolor{gray}{learning to synthesize}}\\
-      {\phantom{Program Induction and }{\textcolor{black}{next steps}}}\\
-    \end{tabular}
-  \end{center}
-\end{frame}
 
-\begin{frame}{Some unresolved questions}
-
-  Not everything is crisp and symbolic. How do we learn DSLs for neurosymbolic hybrid programs?\\(see Memoised Wake-Sleep, Hewitt et al 2020)
-
-  \vspace{1cm}
-
-  \pause
-
-  Combinatorial search is still hard %\\(see ``REPL'': Ellis, Nye, Pu, Sosa et al 2019)
-
-  \vspace{1cm}
-
-  \pause
-
-  Library$\not=$Language:\\
-  How do we learn data structures, or discover new types, and thereby \emph{actually} learn DSLs?
-
-\end{frame}
 
 \begin{frame}{}
 
   \texttt{\Huge the end.}
 
-  \end{frame}
+\end{frame}
 
 \newcommand{\closex}[2]{
   \renewcommand{\arraystretch}{#1}
