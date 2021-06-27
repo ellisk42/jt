@@ -162,7 +162,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 %Information to be included in the title page:
 %\usepackage{soul}
 \usepackage[normalem]{ulem}
-\title{The Role of Higher-level Knowledge in Discovery Problems: Programs and Hierarchical Bayes}
+\title{The Role of Higher-level Knowledge\\in Discovery Problems:\\Programs and Hierarchical Bayes}
 \author{Kevin Ellis}
 \institute{Cornell} 
 \date{2021 Workshop on Artificial Scientific Discovery}
@@ -200,7 +200,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \Wider[6.5em]{  \begin{tabular}{ccc}
     \visible<2->{\begin{tabular}{l}
       strong generalization\\
-      \phantom{+data efficiency}
     \end{tabular}}&
     \visible<3->{\begin{tabular}{l}
       interpretability\\
@@ -223,7 +222,7 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \end{tabular}}
   \end{tabular}}
 
-  \visible<5->{\messageOverlay{main challenge:\\combinatorial search}}
+  \visible<5->{\messageOverlay{\large main challenge:\\\large combinatorial search}}
 
 \end{frame}
 
@@ -232,9 +231,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Higher-level Knowledge: }}\\
-      \phantom{Program Induction and }{\textcolor{gray}{model discovery}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}
+      {\textcolor{black}{Higher-level Knowledge: Case study in linguistics}}\\
+      {\textcolor{black}{Higher-level Knowledge: General program discovery}}
+      \end{tabular}
+  \end{center}
+\end{frame}
+\begin{frame}{}
+  \begin{center}
+    \begin{tabular}{l}
+      {\textcolor{black}{Higher-level Knowledge: Case study in linguistics}}\\
+      {\textcolor{gray}{Higher-level Knowledge: General program discovery}}
       \end{tabular}
   \end{center}
 \end{frame}
@@ -468,9 +474,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 
 
-
-
-
 \begin{frame}{Lessons}
 
   Higher-level knowledge matters (``universal grammar''). Get the basics of the representation correct
@@ -481,12 +484,12 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \end{frame}
 
+
 \begin{frame}{}
   \begin{center}
     \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{model discovery}}\\
-      \phantom{Program Induction and }{\textcolor{black}{learning to learn}}
+      {\textcolor{gray}{Higher-level Knowledge: Case study in linguistics}}\\
+      {\textcolor{black}{Higher-level Knowledge: General program discovery}}
       \end{tabular}
   \end{center}
 \end{frame}
@@ -521,16 +524,16 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   
   \vspace{0.75cm}
   
-  \visible<2>{
-  \begin{tikzpicture}
-    \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
-    \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
-    \draw[->] (problem.east) -- (synthesizer.west);
-    \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\$f(x) = 0.3x^3+$\\$1.1x^2-2x+0.6$};
-    \draw[->] (synthesizer.east) -- (program.west);
-  \end{tikzpicture}
+  %% \visible<2>{
+  %% \begin{tikzpicture}
+  %%   \node(problem) at (0,0) {\includegraphics[width = 2cm]{figures/cubic.png}};
+  %%   \node(synthesizer)[draw,align=center] at ([xshift=3cm]problem.east) {Learned \\program inducer};
+  %%   \draw[->] (problem.east) -- (synthesizer.west);
+  %%   \node(program)[draw, align=center] at ([xshift=3cm]synthesizer.east) {program:\\$f(x) = 0.3x^3+$\\$1.1x^2-2x+0.6$};
+  %%   \draw[->] (synthesizer.east) -- (program.west);
+  %% \end{tikzpicture}
   
-    \vspace{0.2cm}Concepts: $x^3$, $\alpha x + \beta$, etc\\Inference strategy: neurosymbolic search for programs}
+  %%   \vspace{0.2cm}Concepts: $x^3$, $\alpha x + \beta$, etc\\Inference strategy: neurosymbolic search for programs}
   %% \renewcommand\code\texttt
   %%   \only<3>{
   %% \begin{tikzpicture}
@@ -608,15 +611,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     \end{itemize}
 %  \item   Combines ideas from Wake-Sleep \& Exploration-Compression % \& Program analysis
   \end{itemize}
-  \Wider[5.4em]{
-    \begin{center}
-      \begin{tikzpicture}
-    \visible<2->{
-      \node(Lisp) at (-3,0) {\includegraphics[width = 0.8\textwidth]{figures/manyDomains_child.png}};
-    }
-    \node at (0.8,1.3) {  \includegraphics[width = 4cm]{ecFigures/sleepingChild.jpg}};
-  \end{tikzpicture}
-        \end{center}}
 
 \hspace*{-0.4cm}\small cf. Helmholtz machine, wake/sleep neural network training algorithms
 \end{frame}
@@ -769,14 +763,21 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \only<1>{
 
     \vspace{3cm}
+    \includegraphics[width = 0.3\textwidth]{cycleGraphicalModel1.pdf}
+  }
 
-    
+  
 
-    \hspace*{1cm}\includegraphics[width = 0.3\textwidth]{cycleGraphicalModel1}}
   \only<2>{\includegraphics[width = \textwidth]{cycleGraphicalModel2}}
   \only<3>{\includegraphics[width = \textwidth]{cycleGraphicalModel3}}
-  \only<4>{\includegraphics[width = \textwidth]{cycleGraphicalModel4}}
-  \only<5>{\includegraphics[width = \textwidth]{cycleGraphicalModel5}}
+  \only<4>{\includegraphics[width = \textwidth]{cycleGraphicalModel4vl5}}
+  \only<5>{\includegraphics[width = \textwidth]{cycleGraphicalModel4vl4}}
+  \only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModel4}}
+  
+  \only<7>{\includegraphics[width = \textwidth]{cycleGraphicalModelvl3}}
+  \only<8>{\includegraphics[width = \textwidth]{cycleGraphicalModelvl2}}
+  \only<9>{\includegraphics[width = \textwidth]{cycleGraphicalModelvl1}}
+  \only<10>{\includegraphics[width = \textwidth]{cycleGraphicalModelvl}}
   %\only<6>{\includegraphics[width = \textwidth]{cycleGraphicalModelAbstraction}}
 \end{frame}
 
@@ -1227,126 +1228,64 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     %%     \end{tabular}}
 \end{frame}
 
-\begin{frame}{Planning to build towers}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
-  \Wider[5.5em]{
-    \footnotesize
-    \begin{tabular}{l}
-      {example tasks (112 total)}\\
-      \includegraphics[clip, trim = 0 0cm 0 2.9cm,width = 0.9\textwidth]{dc/tower_montage_21_negative.png}\\\\
+%% \begin{frame}{Planning to build towers}
+%%   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
+%%   \Wider[5.5em]{
+%%     \footnotesize
+%%     \begin{tabular}{l}
+%%       {example tasks (112 total)}\\
+%%       \includegraphics[clip, trim = 0 0cm 0 2.9cm,width = 0.9\textwidth]{dc/tower_montage_21_negative.png}\\\\
 
-    \end{tabular}
-    \pause
-    \begin{tabular}{l}
-      {learned library routines ($\approx $ 20 total)}\\
-      \begin{tabular}[t]{rlrl}
-        arch$(h)$&%\begin{tabular}{l}
-        \raisebox{-.1\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_towerArch.png}}&
-        %\end{tabular}&
-        pyramid$(h)$&
-        \raisebox{-.1\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_pyramid.png}}
-        \\
-        wall$(w,h)$&
-        \raisebox{-.3\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_bricks.png}}
-        &%\\\\
-        %% stairs$(h)$&\begin{tabular}{l}
-        %%   \includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_staircase.png}
-        %% \end{tabular}\\\\
-        \phantom{bbb}bridge$(w,h)$&
-        \raisebox{-.3\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_bridge.png}}
-        %\\\\\\
-      \end{tabular}\\\\
+%%     \end{tabular}
+%%     \pause
+%%     \begin{tabular}{l}
+%%       {learned library routines ($\approx $ 20 total)}\\
+%%       \begin{tabular}[t]{rlrl}
+%%         arch$(h)$&%\begin{tabular}{l}
+%%         \raisebox{-.1\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_towerArch.png}}&
+%%         %\end{tabular}&
+%%         pyramid$(h)$&
+%%         \raisebox{-.1\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_pyramid.png}}
+%%         \\
+%%         wall$(w,h)$&
+%%         \raisebox{-.3\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_bricks.png}}
+%%         &%\\\\
+%%         %% stairs$(h)$&\begin{tabular}{l}
+%%         %%   \includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_staircase.png}
+%%         %% \end{tabular}\\\\
+%%         \phantom{bbb}bridge$(w,h)$&
+%%         \raisebox{-.3\height}{\includegraphics[width = 0.25\textwidth]{dc/tower/tower_dsl_bridge.png}}
+%%         %\\\\\\
+%%       \end{tabular}\\\\
 
-  \end{tabular}}
+%%   \end{tabular}}
 
-  %% \pause
+%%   %% \pause
 
-  %% \messageOverlay{
-  %%   \begin{tabular}{ll}
-  %%         \textbf{dreams before learning}&\textbf{dreams after learning}\\
-  %%         \begin{tabular}{c}
-  %%           \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = 0.4\textwidth]{dc/tower/dreams/cherry_montage_initial_20.png}
-  %%         \end{tabular}\phantom{testing}&
-  %%         \begin{tabular}{c}
-  %%           \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = 0.4\textwidth]{dc/tower/dreams/cherry_montage_final.png}
-  %%           \end{tabular}
-  %%         \\\\
-  %%     \end{tabular}
-  %% }
-\end{frame}
+%%   %% \messageOverlay{
+%%   %%   \begin{tabular}{ll}
+%%   %%         \textbf{dreams before learning}&\textbf{dreams after learning}\\
+%%   %%         \begin{tabular}{c}
+%%   %%           \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = 0.4\textwidth]{dc/tower/dreams/cherry_montage_initial_20.png}
+%%   %%         \end{tabular}\phantom{testing}&
+%%   %%         \begin{tabular}{c}
+%%   %%           \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = 0.4\textwidth]{dc/tower/dreams/cherry_montage_final.png}
+%%   %%           \end{tabular}
+%%   %%         \\\\
+%%   %%     \end{tabular}
+%%   %% }
+%% \end{frame}
 
-\begin{frame}{Dreams before learning}
-  \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_initial_20.png}
-%  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
-\end{frame}
+%% \begin{frame}{Dreams before learning}
+%%   \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_initial_20.png}
+%% %  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
+%% \end{frame}
 
-\begin{frame}{Dreams after learning}
-  \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_final.png}
-%  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
-\end{frame}
-\begin{comment}
-\begin{frame}{Learning dynamics}
-  \phantom{
-  \small baselines: Exploration-Compression, EC [Dechter et al. 2013]
-    \small \phantom{baselines: }neural program synthesis, RobustFill [Devlin et al. 2017]\phantom{otest}
-    \small \phantom{baselines: }24 hours of brute-force enumeration
-    }
-  \begin{tabular}{lr}
-    \begin{tabular}{l}
-    \only<1>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage1.png}}
-    %    \only<2>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage2.png}}
-    \only<2>{\includegraphics[height = 2.29cm]{figures/tower_hits_ws_average_pretty_small_yl_ablationStage.png}}
-%    \only<3>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage3.png}}
-    \only<3>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl.png}}
-  \end{tabular}
+%% \begin{frame}{Dreams after learning}
+%%   \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_final.png}
+%% %  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
+%% \end{frame}
 
-    &
-
-    \begin{tabular}{l}
-      \only<2>{\includegraphics[width = 3cm]{figures/revisedLearningCurves/curveLegendTruncated.png}}
-          \only<3>{\includegraphics[width = 3cm]{figures/revisedLearningCurves/curveLegend.png}}
-  \end{tabular}
-  \end{tabular}
-
-  
-
-  \visible<3>{
-    \small baselines: Exploration-Compression, EC [Dechter et al. 2013]
-    \small \phantom{baselines: }neural program synthesis, RobustFill [Devlin et al. 2017]\phantom{otest}
-    \small \phantom{baselines: }24 hours of brute-force enumeration
-    }
-
-
-  %% }
-  %% }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
-\end{frame}
-
-\begin{frame}{Learning dynamics}
-  \begin{tabular}{ll}
-    \includegraphics[height = 2cm]{figures/revisedLearningCurves/text_hits_average_pretty_small_yl.png}
-    %      \only<4->{\includegraphics[height = 2cm]{figures/revisedLearningCurves/text_hits_average_pretty_small_yl.png}}
-    &
-    \phantom{ttt}%
-    \includegraphics[height = 2cm]{figures/revisedLearningCurves/logo_hits_average_pretty_small.png}\\
-    \includegraphics[height = 2cm]{figures/revisedLearningCurves/tower_hits_average_pretty_small_yl.png}&
-    \phantom{ttt}%
-    \includegraphics[height = 2cm]{figures/revisedLearningCurves/rational_hits_average_pretty_small.png}\\
-    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/list_hard_hits_ws_average_pretty_small_yl.png}
-    &
-    \phantom{tt.}%
-    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}
-    %      \only<4->{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}}%
-    %    \includegraphics[height = 2.29cm]{figures/revisedLearningCurves/regex_marginal_test_unigram_gen_ws.png}%
-    \phantom{tt}\includegraphics[width = 2.5cm]{figures/revisedLearningCurves/curveLegend.png}\hspace{-3cm}
-  \end{tabular}
-
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
-  %% }
-  %% }
-
-\end{frame}
-\end{comment}
 
 \begin{frame}{Learning dynamics}
   \phantom{
@@ -1360,7 +1299,6 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
     %    \only<2>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage2.png}}
     \only<2>{\includegraphics[height = 2.29cm]{figures/tower_hits_ws_average_pretty_small_yl_ablationStage.png}}
 %    \only<3>{\includegraphics[height = 2.29cm]{figures/revisedLearningCurves/tower_hits_ws_average_pretty_small_yl_stage3.png}}
-    \only<3>{\includegraphics[height = 2.29cm]{figures/memorizeMontage/tower_memorize_talk_hits_ws_average_pretty_small_yl.png}}
   \end{tabular}
 
     &
@@ -1379,13 +1317,13 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
-\begin{frame}{Synergy between dreaming and library learning (higher-level knowledge)}
+\begin{frame}{Synergy between Dreaming, Discovery, \& Higher-level knowledge}
   \begin{tikzpicture}[scale=1.5]
     {
     \begin{scope}[shift = {(1,-1)}]
-    \node[align = center](synthesis) at (6,4) {Discovery};
+    \node[align = center](synthesis) at (6,4) {Program\\Discovery};
     \node[align = center](Library) at (3,1) {Library:\\Higher-level\\knowledge};
-    \node[align = center](recognitionModel) at (9,1) {Recognition \\model};
+    \node[align = center](recognitionModel) at (9,1) {Neural\\Recognition \\model};
 
     \visible<2->{
       \draw [->,thick] (synthesis.-120) to[out = -150,in = 60] node[below,rotate = 45,align = center]{{\footnotesize Trains}\\{\footnotesize (Abstraction)}} (Library.30);
@@ -1412,24 +1350,26 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \end{frame}
 
 \begin{frame}{Evidence for dreaming bootstrapping better libraries}
-    \begin{tabular}{rr}
+  \begin{center}
+    \begin{tabular}{c}
       %        \multicolumn{1}{l}{\textbf{B}}\\
       \only<1>{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN_blue.png}}
-    \only<2->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN.png}}&
-    \visible<3->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_SIZE.png}} \\\\
-\multicolumn{2}{c}{    \visible<2->{\includegraphics[height = 1cm]{figures/revisedLearningCurves/scatterLegend.png}}}
+    \only<2->{\includegraphics[height = 0.3\textwidth]{figures/depthVersusAccuracy_revision_MEAN.png}}
+\\\\
+ \visible<2->{\includegraphics[height = 1cm]{figures/revisedLearningCurves/scatterLegend.png}}
     \end{tabular}
+
+    
     Darker: Early in learning
 
     Brighter: Later in learning
+
+  \end{center}
+  
   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 
-
-%% \begin{frame}{Library structure: Probabilistic generative modeling of text}
-%%   \Wider[5em]{\includegraphics[width = \textwidth]{deepArray2.pdf}}
-%% \end{frame}
 
 \begin{frame}{}
 
@@ -1485,234 +1425,28 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 
 \begin{frame}{Lessons}
 
-  Symbols aren't necessarily interpretable. Flexibly grow the language based on experience to make it more powerful \emph{and} more human understandable
+  Programs as a knowledge representation for discovery problems
+
+  \pause
+
+
+  Higher-level knowledge makes program synthesis tractable
+
+  \pause
 
   \vspace{1cm}
 
-  Learning-from-scratch is possible in principle. Don't do it. But program induction makes it convenient to build in what we know how to build in, and then learn and adapt on top of that
+  Higher-level knowledge makes these programs more interpretable
 \end{frame}
 
 \begin{frame}{}
-  \begin{center}
-    \begin{tabular}{l}
-      {\textcolor{black}{Program Induction and }\textcolor{gray}{perception}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{learning to learn}}\\
-      \phantom{Program Induction and }{\textcolor{gray}{model discovery}}\\
-      \phantom{Program Induction and }{\textcolor{black}{the future}}
-      \end{tabular}
-  \end{center}
-\end{frame}
 
-\begin{frame}{}
-  What we've got now:\\ a toolkit for program induction,\\addressing combinatorial program search via learning, integrating techniques for machine learning, AI, and programming languages %symbolic, probabilistic, and neural techniques
-  
+  \Huge\centering
 
-  \vspace{2cm}
-
-  Where will this toolkit take us?
-\end{frame}
-
-\begin{frame}{What's in reach}
-  \Wider[5em]{
-    \begin{center}
-      \begin{tabular}[t]{ccc}
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<2>{\textbf{Library learning+}}\only<1>{Library learning+}\only<3->{Library learning+}\\
-            \only<2>{\textbf{Natural language}}\only<1>{Natural language}\only<3->{Natural language}\\
-            \includegraphics[width = 3cm]{figures/semanticParsing}
-          \end{tabular}
-        }&
-
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-2>{Computer-Aided}\only<3>{\textbf{Computer-Aided}}\only<4->{Computer-Aided}\\
-            \only<1-2>{Science}\only<3>{\textbf{Science}}\only<4->{Science}\\
-            \includegraphics[width = 3cm]{figures/geneInteraction}
-          \end{tabular}
-        }&
-
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-3>{Synthesis for}\only<4>{\textbf{Synthesis for}}\only<5->{Synthesis for}\\
-            \only<1-3>{software engineers}\only<4>{\textbf{software engineers}}\only<5->{software engineers}\\
-            \includegraphics[width = 3cm]{figures/IDE}
-          \end{tabular}
-        }
-        
-        
-      \end{tabular}
-
-      \vspace{0.6cm}
-
-      \begin{tabular}{cc}
-        \closex{0.3}{
-          \begin{tabular}{c}
-
-            \only<1-4>{Theory for}\only<5>{\textbf{Theory for}}\only<6->{Theory for}\\
-            \only<1-4>{program induction}\only<5>{\textbf{program induction}}\only<6->{program induction}\\
-            \includegraphics[width = 3cm]{figures/formula}\\
-            \includegraphics[width = 2cm]{figures/complexityTextbook} 
-          \end{tabular}
-        }
-
-        &
-
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-5>{Modeling the}\only<6>{\textbf{Modeling the}}\\%\only<4-6>{Modeling the}\only<7>{\textbf{Modeling the}}\\
-            \only<1-5>{physical world}\only<6>{\textbf{physical world}}\\%\only<4-6>{physical world}\only<7>{\textbf{physical world}}\\
-            \includegraphics[width = 3cm]{figures/room}\\\phantom{t}
-          \end{tabular}
-        }
-        
-      \end{tabular}
-    \end{center}
-}
-\end{frame}
-
-%% \begin{frame}{Within reach: Modeling the physical world}
-%%   \begin{tabular}{rcc}
-%%     \begin{tabular}{c}
-%%       hinge
-%%     \end{tabular}&
-%%     \begin{tabular}{c}
-%%       \includegraphics[width = 3cm]{figures/hinge}
-%%     \end{tabular}&
-%%     \begin{tabular}{c}
-%%       \includegraphics[width = 3cm]{figures/laptopHinge}
-%%     \end{tabular}\\
-%%     \vspace{1cm}
-%%     \\
-%%     \multicolumn{1}{c}{
-%%       \begin{tabular}{c}
-%%         gear
-%%       \end{tabular}
-%%     }&
-%%     %empty
-%%     &
-%%     \begin{tabular}{c}
-%%       doorknob
-%%     \end{tabular}\\
-%%     \begin{tabular}{c}
-%%       \includegraphics[width = 3cm]{figures/gears}
-%%     \end{tabular}&
-%%     &
-%%     \begin{tabular}{c}
-%%       \includegraphics[width = 3cm]{figures/doorknob}
-%%     \end{tabular}
-%%   \end{tabular}
-%% \end{frame}
-
-%% \begin{frame}{Within reach: Modeling the physical world}
-%%   \Wider[5em]{
-%%     \begin{center}
-%%       \input{vapor.tex}
-%%     \end{center}
-%%   }
-%% \end{frame}
-
-\begin{frame}{}
-
-  These next steps are in reach.
-
-  \vspace{1cm}
-
-  More broadly: what's in the future of machine learning?
+  \texttt{the end.}
 
 \end{frame}
 
-\begin{frame}{What we want for the future of machine learning}
-
-  Strong generalization %%in many domains
-
-  %% \vspace{1cm}
-
-  %% Domain generality
-
-  \vspace{1cm}
-
-\pause  Bootstrapping, learning-to-learn, representation learning
-
-  \vspace{1cm}
-
-\pause  Discovering knowledge that humans can understand and build on
-
-\end{frame}
-\begin{comment}
-  \renewcommand{\insertframenumber}{}
-  \begin{frame}{What do we want from machine learning?}
-    \Wider[4em]{
-      \vspace*{-0.25cm}    \closex{0.1}{\closey{1pt}{\begin{tabular}{rccc}
-            Strong generalization&
-            \begin{tabular}{rcl}
-              %% \begin{tabular}{c}
-              %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing1.png}
-              %% \end{tabular}&$\to$&%
-              %% \begin{tabular}{c}
-              %%   \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation1.png}
-              %% \end{tabular}\\
-              \begin{tabular}{c}
-                \includegraphics[width = 1.5cm]{TikZfigures/extrapolationDrawing2.png}
-              \end{tabular}&$\to$&%
-              \begin{tabular}{c}
-                \includegraphics[width = 1.5cm]{TikZfigures/extrapolationExtrapolation2.png}
-              \end{tabular}
-            \end{tabular}&\phantom{test}&
-            \begin{tabular}{c}
-              \includegraphics[width = 1.75cm]{dc/dreams/cherry_picked/65_pretty.png}
-            \end{tabular}
-      \end{tabular}}}
-
-      \visible<2->{
-
-        %  \vspace{1cm}
-
-        Bootstrapping, learning-to-learn, representation learning
-        \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
-              \multicolumn{1}{c}{\begin{tabular}{llll}
-                  \phantom{testtest}&
-                  \begin{tabular}{c}
-                    \includegraphics[width = 4cm]{figures/finalLearningCurveMontage}
-                  \end{tabular}&\phantom{test}&\begin{tabular}{c}
-                    \visible<3->{\includegraphics[width = 4cm]{../dreamcoder/figures/dpl/every/text6.pdf}}
-                  \end{tabular}
-              \end{tabular}}
-            \end{tabular}
-        }}
-      }
-
-
-      %  \vspace{1cm}
-
-      \phantom{test}
-
-      \visible<4->{
-        \closex{0.1}{\closey{1pt}{\begin{tabular}{l}
-              Discovering knowledge that humans can understand and build on\\
-              \begin{tabular}{lll}
-                \begin{tabular}{c}
-                  \includegraphics[width = 0.15\textwidth]{figures/odden}
-                \end{tabular}&
-                \begin{tabular}{c}
-                  \includegraphics[width = 0.15\textwidth]{figures/spe}
-                \end{tabular}&
-                \begin{tabular}{cc}
-                  \begin{tabular}{c}
-                    \includegraphics[width = 2cm]{figures/origamiCrane}
-                  \end{tabular}&
-                  \begin{tabular}{c}
-                    \includegraphics[width = 6cm]{figures/mcCarthyAnimationFinalMontage}
-                  \end{tabular}
-                \end{tabular}
-              \end{tabular}
-            \end{tabular}
-        }}
-      }
-
-    }
-  \end{frame}
-\end{comment}
 
 \begin{comment}
   \begin{frame}{What's far off, but worthwhile?}
