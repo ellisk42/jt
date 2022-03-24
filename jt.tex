@@ -286,10 +286,24 @@ by=0mm, boxrule=0pt,boxsep=0pt,breakable,fontupper=\color{white}}
 \end{frame}
 
 
+\begin{frame}{Human program induction}
+ %\begin{tikzpicture} \node () {
+     \includegraphics[width = 11cm]{../ecPaper/theory.png}
+ %  }; \node at (-5,-4) {  }; \end{tikzpicture}
+ \myPaper{Ullman et al 2012}
+\end{frame}
+
+\begin{frame}{Human program induction}
+  \begin{tikzpicture}
+    \node at(0,0) {\includegraphics[width = 8cm]{../ecPaper/characters.png}};
+    \node at(-3,2) {\includegraphics[width = 8cm]{../ecPaper/Brendan.jpg}};
+
+    \node at (-5,-4) {  Lake et al 2015};
+    \end{tikzpicture}
+\end{frame}
 
 
-
-\begin{frame}{Why might this work?}
+\begin{frame}{Can we engineer program induction systems?}
 
   better toolkits: neural+probabilistic+symbolic, and knowing how to combine them % we now know how to use all these things together
 
@@ -701,11 +715,13 @@ rectangle(...)
 
   \vspace{1cm}
 
-  \centering\begin{tabular}{ccc}
+  \centering{\closey{0pt}{\begin{tabular}{ccccc}
     \person{Max Nye}{collaborators/MaxNye}&
     \person{Evan Pu}{collaborators/Evan}&
-    \person{Felix Sosa}{collaborators/Felix}
-  \end{tabular}
+    \person{Felix Sosa}{collaborators/Felix}&
+    \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}
+    \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}
+  \end{tabular}}}
 
     
 \myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
@@ -724,7 +740,7 @@ rectangle(...)
       Challenge: combinatorial search!\\
       Branching factor: $ > 1.3$ million per line of code, $\approx$ 20 lines of code\\
       search space size: $(1.3\text{ million})^{20}\approx 10^{122}$ programs
-\myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+%\myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
 
 \end{frame}
 
@@ -783,7 +799,7 @@ rectangle(...)
 
   \visible<2>{\textbf{\large same architecture learns to synthesize text editing programs (FlashFill, Gulwani 2012)}}
   
-  \myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
+%  \myPaper{Ellis$^*$, Nye$^*$, Pu$^*$, Sosa$^*$, Tenenbaum, Solar-Lezama. NeurIPS 2019.\\$^*$equal contribution}
 
 \end{frame}
 
@@ -911,15 +927,15 @@ rectangle(...)
 \end{frame}
 \begin{frame}{Turkic Sakha (Yakut)}
   \input{phonology/harmonyAnimation.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
 \end{frame}
 \begin{frame}{Turkic Sakha (Yakut)}
   \input{phonology/harmonyAnimation2.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
 \end{frame}
 %% \begin{frame}{Turkic Sakha (Yakut)}
 %%   \input{phonology/harmonyAnimation3.tex}%  \includegraphics[width = \textwidth]{phonology/harmony}
-%%   \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+%%   \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
 %% \end{frame}
 
 
@@ -927,10 +943,10 @@ rectangle(...)
   \Wider[5em]{
 %    \only<1>{\includegraphics[width = \textwidth]{figures/betterMontage1}}
     %    \only<2>{\includegraphics[width = \textwidth]{figures/betterMontage2}}
-    \only<1>{\includegraphics[width = \textwidth]{figures/percentage_solved_just_names}}
-    \only<2>{\includegraphics[width = \textwidth]{figures/percentage_solved}}
+    \only<1>{\includegraphics[width = \textwidth]{updated_phonology_results/0}}
+    \only<2>{\includegraphics[width = \textwidth]{updated_phonology_results/2}}
   }
-%  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+%  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
 \end{frame}
 \begin{frame}[fragile]{Distilling higher-level knowledge}
   \Wider[5em]{
@@ -939,7 +955,7 @@ rectangle(...)
         \input{languageHierarchy.tex}
       \end{tikzpicture}
   \end{center}}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+  %\myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
 \end{frame}
 \begin{frame}[fragile]{Distilling higher-level knowledge}
   \Wider[5em]{
@@ -949,7 +965,7 @@ rectangle(...)
         \input{languageHierarchy2.tex}
       \end{tikzpicture}
   \end{center}}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+  %\myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
 \end{frame}
 \begin{frame}[fragile]{Distilling higher-level knowledge}
   \Wider[5em]{
@@ -959,7 +975,7 @@ rectangle(...)
         \input{languageHierarchy3.tex}
       \end{tikzpicture}
   \end{center}}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+  %\myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
 \end{frame}
 \begin{frame}[fragile]{Distilling higher-level knowledge}
   \Wider[5em]{
@@ -969,7 +985,16 @@ rectangle(...)
         \input{languageHierarchy4.tex}
       \end{tikzpicture}
   \end{center}}
-  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2020.}
+  %\myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
+\end{frame}
+\begin{frame}{}
+  \Wider[5em]{
+%    \only<1>{\includegraphics[width = \textwidth]{figures/betterMontage1}}
+    %    \only<2>{\includegraphics[width = \textwidth]{figures/betterMontage2}}
+    \only<1>{\includegraphics[width = \textwidth]{updated_phonology_results/2}}
+    \only<2>{\includegraphics[width = \textwidth]{updated_phonology_results/3}}
+  }
+%  \myPaper{\small Ellis, Albright, Solar-Lezama, Tenenbaum, O'Donnell. 2022.}
 \end{frame}
 %% \begin{frame}{Distilling higher-level knowledge}
 %%   \Wider[5em]{
@@ -1082,12 +1107,13 @@ rectangle(...)
 
   \only<1>{
     \vspace{1cm}
-    \centering\begin{tabular}{cccc}
+    \Wider[0em]{\closey{0.1}{\begin{tabular}{ccccc}
       \person{Cathy Wong}{collaborators/cw}&
       \person{Max Nye}{collaborators/MaxNye}&
       \person{Mathias\\{\footnotesize Sable-Meyer}}{collaborators/French2}&
-      \person{Lucas Morales}{collaborators/Lucas}
-    \end{tabular}
+      \person{Armando\\{\footnotesize Solar-Lezama}}{collaborators/Armando}&
+      \person{Josh\\{\footnotesize Tenenbaum}}{collaborators/Josh}
+    \end{tabular}}}
   }
   
   \vspace{0.75cm}
@@ -1127,7 +1153,7 @@ rectangle(...)
     \end{center}
   }
   \myPaper{Ellis, Morales, Sable-Meyer, Solar-Lezama, Tenenbaum. NeurIPS 2018.\\
-    Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+    Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 \begin{frame}[t]{Library learning}
@@ -1138,7 +1164,7 @@ rectangle(...)
       \includegraphics[height=0.6\textheight]{figures/figureOneFinal1_problem}
     \end{tabular}
 \end{center}}
-\myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+\myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 
@@ -1166,7 +1192,7 @@ rectangle(...)
 
   \visible<13>{\normalsize induced sort program found in $\leq 10$min. Brute-force search without learned library would take $\approx 10^{73}$ years }
 
-  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+%  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
   
 \end{frame}
 
@@ -1296,7 +1322,7 @@ rectangle(...)
     better program representation (Lisp+polymorphic types [Milner 1978])
   \end{center}
 }
-\myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+%\myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 \newcommand{\NeuralNetwork}[1]{    \begin{tikzpicture}[x=2.5cm,y=1.25cm,transform canvas={scale=#1,shift={+(-1,2.5)}}]
       \tikzstyle{neuron}=[circle,fill=blue!50,minimum size=20pt]
@@ -1336,7 +1362,7 @@ rectangle(...)
 }
 
 \begin{frame}{}
-%  \myPaper{\footnotesize Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+%  \myPaper{\footnotesize Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
   \centering
   \only<1>{
 
@@ -1756,7 +1782,7 @@ rectangle(...)
     
 %%   \end{tikzpicture}
   
-%%   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+%%   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 %% \end{frame}
 
 %% \begin{frame}[fragile,noframenumbering]{Abstraction Sleep: Growing the library via refactoring}
@@ -1801,11 +1827,11 @@ rectangle(...)
 %% %    \node[inner sep=0pt,dotted,very thick,label=above:{$2\times 2=4$ choices},fit=(choiceLabelA)(choiceLabelB),draw] {};
     
 %% \end{tikzpicture}}
-%%   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+%%   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 %% \end{frame}
 
 %% \begin{frame}[fragile]{}
-%%   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}%
+%%   \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}%
 %%   \Wider[4em]{  \vspace*{-0.5cm}\begin{tikzpicture}
 %% %      \node[align=left,anchor=south west] at (7,-9) {\small Ellis et al. 2020.};
 %%     \node[anchor=south west](legend) at (-1,-8) {legend};
@@ -1949,7 +1975,8 @@ rectangle(...)
     \end{tikzpicture}}
 
     \only<4>{
-      \messageOverlay{these $\mathbf{10^{14}}$ refactorings are represented in DreamCoder's\\ exponentially more efficient refactoring data structure\\ using $\mathbf{10^{6}}$ nodes, calculated in under 5min}
+      \messageOverlay{these $\mathbf{10^{14}}$ refactorings are represented in an\\ exponentially more efficient refactoring data structure\\ using $\mathbf{10^{6}}$ nodes, calculated in under 5min\\
+      PL ideas: version spaces [Lau 2001], egraphs [Tate 2009]}
       }
 \end{frame}
 
@@ -1961,13 +1988,13 @@ rectangle(...)
     \only<1>{\includegraphics[width = \textwidth]{figures/manyDomainsLarger.png}}%{statement/taskbar2_expended.png}}
     \only<2>{\includegraphics[width = \textwidth]{figures/manyDomainsSelected.png}}%statement/taskbar2_selected.png}}
   }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 \begin{frame}{LOGO Turtle Graphics}
   30 out of 160 tasks
   \includegraphics[width = \textwidth]{dc/logoTasks30.png}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 \begin{frame}{LOGO Turtle Graphics -- learning an interpretable library}
@@ -1997,7 +2024,7 @@ rectangle(...)
     \includegraphics[width = 0.35\textwidth]{dc/rotationalmontage_negative.png}
   \end{tabular}}
   }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 \begin{frame}{What does DreamCoder dream of? (before learning)}
@@ -2007,7 +2034,7 @@ rectangle(...)
       \includegraphics[height=\textheight]{dc/dreams/beforeLearning36}
     \end{center}
   }
-%  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}  
+%  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}  
   %  \includegraphics[height=3cm]{dc/dreams/cherry_picked/montageSeptember14}    
 %    \end{tabular}}
     %% \only<2>{\begin{tabular}{lll}
@@ -2024,7 +2051,7 @@ rectangle(...)
       \includegraphics[height=\textheight]{figures/postDreams6}
     \end{center}
   }
-%  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}  
+%  \myPaper{Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}  
 
 %    \end{tabular}}
     %% \only<2>{\begin{tabular}{lll}
@@ -2035,7 +2062,7 @@ rectangle(...)
 \end{frame}
 
 \begin{frame}{Planning to build towers}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
   \Wider[5.5em]{
     \footnotesize
     \begin{tabular}{l}
@@ -2084,12 +2111,12 @@ rectangle(...)
 
 \begin{frame}{Dreams before learning}
   \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_initial_20.png}
-%  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+%  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 \begin{frame}{Dreams after learning}
   \includegraphics[clip,trim = 0 4.5cm 0 0cm,width = \textwidth]{dc/tower/dreams/cherry_montage_final.png}
-%  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+%  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 \begin{comment}
 \begin{frame}{Learning dynamics}
@@ -2126,7 +2153,7 @@ rectangle(...)
 
   %% }
   %% }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+ % \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 \begin{frame}{Learning dynamics}
@@ -2148,7 +2175,7 @@ rectangle(...)
     \phantom{tt}\includegraphics[width = 2.5cm]{figures/revisedLearningCurves/curveLegend.png}\hspace{-3cm}
   \end{tabular}
 
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
   %% }
   %% }
 
@@ -2189,7 +2216,7 @@ rectangle(...)
 
   %% }
   %% }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+ % \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 \begin{frame}{Learning dynamics}
@@ -2211,7 +2238,7 @@ rectangle(...)
     \phantom{tt}\includegraphics[width = 2.5cm]{figures/memorizeMontage/curveLegend.png}\hspace{-3cm}
   \end{tabular}
 
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
   %% }
   %% }
 
@@ -2246,7 +2273,7 @@ rectangle(...)
 
   \end{scope}}
     \end{tikzpicture}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 \begin{frame}{Evidence for dreaming bootstrapping better libraries}
@@ -2260,7 +2287,7 @@ rectangle(...)
     Darker: Early in learning
 
     Brighter: Later in learning
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 
 
@@ -2288,7 +2315,7 @@ rectangle(...)
 \end{frame}
 
 \begin{frame}{Growing languages for vector algebra and physics}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  %\myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
   \Wider[5em]{
     \only<1>{\includegraphics[width = \textwidth]{figures/physicsAnimation7}}
     \only<2>{\includegraphics[width = \textwidth]{figures/physicsAnimation6}}
@@ -2301,7 +2328,8 @@ rectangle(...)
 \end{frame}
 
 \begin{frame}{Growing a language for recursive programming}
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}\Wider[5em]{\only<1>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation5}}
+  % \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
+  \Wider[5em]{\only<1>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation5}}
     \only<2>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation4}}
     \only<3>{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation3}}
     \only<4->{\includegraphics[width = \textwidth]{figures/mcCarthyAnimation2}}
@@ -2342,72 +2370,72 @@ rectangle(...)
 \end{frame}
 
 \begin{frame}{}
-  What we've got now:\\ a toolkit for program induction,\\addressing combinatorial program search via learning, integrating techniques for machine learning, AI, and programming languages %symbolic, probabilistic, and neural techniques
+  This work:\\ a toolkit for program induction,\\addressing combinatorial program search via learning, integrating techniques for machine learning, AI, and programming languages %symbolic, probabilistic, and neural techniques
   
 
   \vspace{2cm}
 
-  Where will this toolkit take us?
+  Where should we aim?
 \end{frame}
 
-\begin{frame}{What's in reach}
-  \Wider[5em]{
-    \begin{center}
-      \begin{tabular}[t]{ccc}
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<2>{\textbf{Library learning+}}\only<1>{Library learning+}\only<3->{Library learning+}\\
-            \only<2>{\textbf{Natural language}}\only<1>{Natural language}\only<3->{Natural language}\\
-            \includegraphics[width = 3cm]{figures/semanticParsing}
-          \end{tabular}
-        }&
+%% \begin{frame}{What's in reach}
+%%   \Wider[5em]{
+%%     \begin{center}
+%%       \begin{tabular}[t]{ccc}
+%%         \closex{0.3}{
+%%           \begin{tabular}{c}
+%%             \only<2>{\textbf{Library learning+}}\only<1>{Library learning+}\only<3->{Library learning+}\\
+%%             \only<2>{\textbf{Natural language}}\only<1>{Natural language}\only<3->{Natural language}\\
+%%             \includegraphics[width = 3cm]{figures/semanticParsing}
+%%           \end{tabular}
+%%         }&
 
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-2>{Computer-Aided}\only<3>{\textbf{Computer-Aided}}\only<4->{Computer-Aided}\\
-            \only<1-2>{Science}\only<3>{\textbf{Science}}\only<4->{Science}\\
-            \includegraphics[width = 3cm]{figures/geneInteraction}
-          \end{tabular}
-        }&
+%%         \closex{0.3}{
+%%           \begin{tabular}{c}
+%%             \only<1-2>{Computer-Aided}\only<3>{\textbf{Computer-Aided}}\only<4->{Computer-Aided}\\
+%%             \only<1-2>{Science}\only<3>{\textbf{Science}}\only<4->{Science}\\
+%%             \includegraphics[width = 3cm]{figures/geneInteraction}
+%%           \end{tabular}
+%%         }&
 
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-3>{Synthesis for}\only<4>{\textbf{Synthesis for}}\only<5->{Synthesis for}\\
-            \only<1-3>{software engineers}\only<4>{\textbf{software engineers}}\only<5->{software engineers}\\
-            \includegraphics[width = 3cm]{figures/IDE}
-          \end{tabular}
-        }
+%%         \closex{0.3}{
+%%           \begin{tabular}{c}
+%%             \only<1-3>{Synthesis for}\only<4>{\textbf{Synthesis for}}\only<5->{Synthesis for}\\
+%%             \only<1-3>{software engineers}\only<4>{\textbf{software engineers}}\only<5->{software engineers}\\
+%%             \includegraphics[width = 3cm]{figures/IDE}
+%%           \end{tabular}
+%%         }
         
         
-      \end{tabular}
+%%       \end{tabular}
 
-      \vspace{0.6cm}
+%%       \vspace{0.6cm}
 
-      \begin{tabular}{cc}
-        \closex{0.3}{
-          \begin{tabular}{c}
+%%       \begin{tabular}{cc}
+%%         \closex{0.3}{
+%%           \begin{tabular}{c}
 
-            \only<1-4>{Theory for}\only<5>{\textbf{Theory for}}\only<6->{Theory for}\\
-            \only<1-4>{program induction}\only<5>{\textbf{program induction}}\only<6->{program induction}\\
-            \includegraphics[width = 3cm]{figures/formula}\\
-            \includegraphics[width = 2cm]{figures/complexityTextbook} 
-          \end{tabular}
-        }
+%%             \only<1-4>{Theory for}\only<5>{\textbf{Theory for}}\only<6->{Theory for}\\
+%%             \only<1-4>{program induction}\only<5>{\textbf{program induction}}\only<6->{program induction}\\
+%%             \includegraphics[width = 3cm]{figures/formula}\\
+%%             \includegraphics[width = 2cm]{figures/complexityTextbook} 
+%%           \end{tabular}
+%%         }
 
-        &
+%%         &
 
-        \closex{0.3}{
-          \begin{tabular}{c}
-            \only<1-5>{Modeling the}\only<6>{\textbf{Modeling the}}\\%\only<4-6>{Modeling the}\only<7>{\textbf{Modeling the}}\\
-            \only<1-5>{physical world}\only<6>{\textbf{physical world}}\\%\only<4-6>{physical world}\only<7>{\textbf{physical world}}\\
-            \includegraphics[width = 3cm]{figures/room}\\\phantom{t}
-          \end{tabular}
-        }
+%%         \closex{0.3}{
+%%           \begin{tabular}{c}
+%%             \only<1-5>{Modeling the}\only<6>{\textbf{Modeling the}}\\%\only<4-6>{Modeling the}\only<7>{\textbf{Modeling the}}\\
+%%             \only<1-5>{physical world}\only<6>{\textbf{physical world}}\\%\only<4-6>{physical world}\only<7>{\textbf{physical world}}\\
+%%             \includegraphics[width = 3cm]{figures/room}\\\phantom{t}
+%%           \end{tabular}
+%%         }
         
-      \end{tabular}
-    \end{center}
-}
-\end{frame}
+%%       \end{tabular}
+%%     \end{center}
+%% }
+%% \end{frame}
 
 %% \begin{frame}{Within reach: Modeling the physical world}
 %%   \begin{tabular}{rcc}
@@ -2450,15 +2478,7 @@ rectangle(...)
 %%   }
 %% \end{frame}
 
-\begin{frame}{}
 
-  These next steps are in reach.
-
-  \vspace{1cm}
-
-  More broadly: what's in the future of machine learning?
-
-\end{frame}
 
 \begin{frame}{What we want for the future of machine learning}
 
@@ -2552,93 +2572,25 @@ rectangle(...)
   \end{frame}
 \end{comment}
 
-\begin{comment}
-  \begin{frame}{What's far off, but worthwhile?}
-    What kinds of future machines could learn all this?
 
-    \vspace{1cm}
+\begin{frame}{A language of thought for \\the mental representation of geometric shapes}
 
-    \Wider[5em]{
-      \begin{center}
-        \only<1>{\begin{tabular}{ccc}
-            using new devices&play&coding\\
-            \includegraphics[height = 2cm]{figures/noodles}&
-            \includegraphics[height = 2cm]{figures/childPlaying}&
-            \includegraphics[height = 2cm]{../ecPaper/figures/1975.png}\\
-            language&science&design\\%&engineering\\
-            \includegraphics[height = 2cm]{figures/acquisition}&
-            \includegraphics[height = 2cm]{figures/blackboard}&
-            \includegraphics[height = 2cm]{figures/textile2}
-            %      \includegraphics[height = 2cm]{figures/primitiveTools}\\
-        \end{tabular}}
-      \end{center}
-    }
+  
+  
+
+  \centering\begin{tabular}{c}
+    \only<1>{\includegraphics[width = 0.7\textwidth]{french_geometric}}
+    \only<2>{\includegraphics[width = 0.55\textwidth]{french_geometric2}}
+    \only<3>{\includegraphics[width = 0.5\textwidth]{french_geometric3}}
     
-
-    
-
-  \end{frame}
-\end{comment}
-
-\begin{frame}
-\centering
-  \begin{tabular}{cc}
-    \bigPerson{Josh Tenenbaum}{collaborators/Josh}&
-    \bigPerson{Armando Solar-Lezama}{collaborators/Armando}&
     \end{tabular}
-\end{frame}
 
-\renewcommand{\person}[2]{\closex{0.2}{\begin{tabular}{c}
-    {\footnotesize #1}\\
-    \includegraphics[width = 2.3cm]{#2}
-\end{tabular}}}
+\visible<3>{Program structure predicts:\\ human shape similarity judgments\\ human processing time}
 
-\begin{frame}%{Collaborators}
-\Wider[6em]{\centering \closey{0}{ \begin{tabular}{ccccc}
-    \person{Evan Pu}{collaborators/haircut}&
-    \person{Lucas Tian}{collaborators/LucasT}&
-    \person{Marta Kryven}{collaborators/Marta}&
-%    \person{Adam Albright}{collaborators/Adam}&
-    \person{Chris Yang}{collaborators/Chris}&
-    \person{Ronald Alvarez}{collaborators/Ronald}\\
-%        \person{Josh Rule}{collaborators/jr}\\
-    \person{Max Nye}{collaborators/MaxNye}& 
-    \person{Cathy Wong}{collaborators/cw}&
-%    \person{Jiajun Wu}{collaborators/jw}    &
-%    \person{Dan Ritchie}{collaborators/Daniel}&
-    \person{Kliment\\{\footnotesize Serafimov}}{collaborators/ks}&
-    \person{Eyal Dechter}{collaborators/eyal}&
-    \person{Mathias\\{\footnotesize Sable-Meyer}}{collaborators/French}\\
-    \person{Lucas Morales}{collaborators/Lucas}&
-    \person{Tao Du}{collaborators/tao}&
-    \person{Felix Sosa}{collaborators/Felix}&
-%    \person{Tim O'Donnell}{collaborators/Timothy}\\
-%    \person{Owen Lewis}{collaborators/Owen}&
-%    \person{Sumit Gulwani}{collaborators/sg}&
-    \person{Sam Tenka}{collaborators/st}&
-    \person{Julio\\{\footnotesize Cortazar}}{collaborators/Julio.jpg} 
-    \end{tabular}}}  
-\end{frame}
-
-\begin{frame}{thank you...}
-  family
-
-  \begin{tabular}{cccc}
-    \includegraphics[width = 2cm]{collaborators/family/1}
-    &    \includegraphics[width = 2cm]{collaborators/family/2}
-    &    \includegraphics[width = 2.5cm]{collaborators/family/3}
-    &    \includegraphics[width = 2cm]{collaborators/family/g}
-  \end{tabular}
-
-  \vspace{1cm}
-
-  MIT Brain and Cognitive Sciences
-
-  \vspace{1cm}
-
-  twitch viewers
+\myPaper{Mathias Sable-Meyer, Ellis, Tenenbaum, Dehaene. 2022}
 
 \end{frame}
+
 
 \begin{frame}{}
 
@@ -2807,7 +2759,7 @@ rectangle(...)
       \image{height=2.4cm}{text4}
     \end{tabular}
   }
-  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. 2020.}
+  \myPaper{\small Ellis, Wong, Nye, ..., Solar-Lezama, Tenenbaum. PLDI 2021.}
 \end{frame}
 \begin{frame}{Library structure: Generating Text}
   Libraries for probabilistic generative models over text:\\data from crawling web for CSV files
